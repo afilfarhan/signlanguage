@@ -1,0 +1,431 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SignTutor — Camera Setup</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121935; --panel2:#0f1530;
+    --ink:#e9ecff; --muted:#9aa3c7; --line:#2a335c;
+    --accent:#7c9cff; --accent2:#5ee0c1; --warn:#ffb86b; --bad:#ff7a90;
+    --ok:#5ee0c1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5; min-height:100vh;
+  }
+  /* Skip link for keyboard a11y (PDR FR-5.3) */
+  .skip{position:absolute; left:-9999px; top:0}
+  .skip:focus{left:8px; top:8px; background:var(--accent); color:#0a0f24; padding:8px 12px; border-radius:6px; z-index:99}
+
+  header{
+    padding:18px 24px; border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    background:linear-gradient(180deg,#0d1430,#0b1020);
+  }
+  header h1{margin:0; font-size:16px; letter-spacing:.02em}
+  header h1 small{color:var(--muted); font-weight:400; margin-left:6px}
+  .privacy{display:flex; align-items:center; gap:6px; color:var(--ok); font-size:13px}
+
+  main{max-width:980px; margin:0 auto; padding:24px}
+
+  /* Stepper */
+  .stepper{
+    display:flex; gap:0; align-items:center; margin-bottom:24px;
+    border:1px solid var(--line); border-radius:12px; overflow:hidden;
+    background:var(--panel);
+  }
+  .step{
+    flex:1; padding:14px 16px; display:flex; align-items:center; gap:10px;
+    border-right:1px solid var(--line); color:var(--muted); font-size:13px;
+  }
+  .step:last-child{border-right:none}
+  .step .n{
+    width:26px; height:26px; border-radius:50%; background:var(--panel2);
+    border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    font-size:13px; font-weight:600;
+  }
+  .step.active{color:var(--ink); background:rgba(124,156,255,.08)}
+  .step.active .n{background:var(--accent); color:#0a0f24; border-color:transparent}
+  .step.done .n{background:var(--ok); color:#0a0f24; border-color:transparent}
+  .step.done{color:var(--ink)}
+
+  .card{
+    background:var(--panel); border:1px solid var(--line);
+    border-radius:14px; padding:24px; margin-bottom:16px;
+  }
+  .card h2{margin:0 0 6px; font-size:22px}
+  .card p.lead{margin:0 0 18px; color:var(--muted)}
+  .grid{display:grid; gap:16px; grid-template-columns:1fr 1fr}
+  @media (max-width:780px){ .grid{grid-template-columns:1fr} }
+
+  /* Inputs */
+  .opt{
+    display:flex; align-items:center; gap:12px; padding:14px;
+    border:1px solid var(--line); border-radius:10px; background:var(--panel2);
+    cursor:pointer; transition:.15s;
+  }
+  .opt:hover{border-color:var(--accent)}
+  .opt input{accent-color:var(--accent); width:18px; height:18px}
+  .opt .t{display:flex; flex-direction:column}
+  .opt .t b{font-size:15px}
+  .opt .t span{color:var(--muted); font-size:13px}
+  .opt[aria-disabled="true"]{opacity:.5; cursor:not-allowed}
+  .opt.selected{border-color:var(--accent); background:rgba(124,156,255,.08)}
+
+  /* Camera preview */
+  .videoWrap{
+    position:relative; aspect-ratio:4/3; background:#000; border-radius:10px;
+    overflow:hidden; border:1px solid var(--line);
+  }
+  .videoWrap.mirrored video{transform:scaleX(-1)}
+  .videoWrap video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+
+  /* Framing guide overlay (SVG) */
+  .guide{
+    position:absolute; inset:0; pointer-events:none;
+  }
+
+  /* Lighting / framing meter */
+  .meters{display:flex; flex-direction:column; gap:12px; margin-top:12px}
+  .meter{
+    display:flex; align-items:center; gap:12px;
+    padding:10px 12px; border-radius:8px; background:var(--panel2); border:1px solid var(--line);
+  }
+  .meter .lbl{flex:1; font-size:14px}
+  .meter .lbl b{display:block; font-size:13px; color:var(--muted); font-weight:500}
+  .bar{
+    width:120px; height:8px; background:var(--line); border-radius:999px; overflow:hidden;
+  }
+  .bar > div{height:100%; background:var(--accent2); transition:width .2s}
+  .pill{
+    font-size:12px; padding:3px 8px; border-radius:999px;
+    border:1px solid var(--line); color:var(--muted);
+  }
+  .pill.ok{color:var(--ok); border-color:rgba(94,224,193,.45); background:rgba(94,224,193,.08)}
+  .pill.warn{color:var(--warn); border-color:rgba(255,184,107,.45); background:rgba(255,184,107,.08)}
+  .pill.bad{color:var(--bad); border-color:rgba(255,122,144,.45); background:rgba(255,122,144,.08)}
+
+  /* Footer / nav */
+  .nav{
+    display:flex; justify-content:space-between; align-items:center; gap:12px;
+    margin-top:8px;
+  }
+  .nav .left{color:var(--muted); font-size:13px}
+  button{
+    background:var(--panel2); color:var(--ink); border:1px solid var(--line);
+    padding:10px 18px; border-radius:8px; font-size:14px; cursor:pointer; font-family:inherit;
+  }
+  button.primary{background:var(--accent); color:#0a0f24; border-color:transparent; font-weight:600}
+  button:disabled{opacity:.4; cursor:not-allowed}
+
+  .err{
+    margin-top:12px; padding:12px; border-radius:8px;
+    background:rgba(255,122,144,.10); border:1px solid rgba(255,122,144,.45);
+    color:var(--bad); font-size:14px;
+  }
+  .ok-msg{
+    margin-top:12px; padding:12px; border-radius:8px;
+    background:rgba(94,224,193,.10); border:1px solid rgba(94,224,193,.45);
+    color:var(--ok); font-size:14px;
+  }
+</style>
+</head>
+<body>
+<a href="#wizard" class="skip">Skip to wizard</a>
+
+<header>
+  <h1>SignTutor <small>· Camera setup</small></h1>
+  <span class="privacy" aria-label="On-device privacy guarantee">🔒 On-device · no upload</span>
+</header>
+
+<main id="wizard">
+
+  <div class="stepper" role="navigation" aria-label="Setup steps">
+    <div class="step active" data-step="1"><span class="n">1</span> Language</div>
+    <div class="step" data-step="2"><span class="n">2</span> Camera permission</div>
+    <div class="step" data-step="3"><span class="n">3</span> Lighting check</div>
+    <div class="step" data-step="4"><span class="n">4</span> Framing &amp; handedness</div>
+  </div>
+
+  <!-- ============ STEP 1: language ============ -->
+  <section class="card" id="card-1" aria-labelledby="h-1">
+    <h2 id="h-1">Choose your sign language</h2>
+    <p class="lead">You can change this later in settings. Multi-language is scaffolded; only ASL is fully shipped in this release.</p>
+    <div class="grid" role="radiogroup" aria-labelledby="h-1">
+      <label class="opt selected">
+        <input type="radio" name="lang" value="asl" checked />
+        <span class="t"><b>ASL — American Sign Language</b><span>Fully shipped · 200 signs</span></span>
+      </label>
+      <label class="opt" aria-disabled="true">
+        <input type="radio" name="lang" value="bsl" disabled />
+        <span class="t"><b>BSL — British Sign Language</b><span>Preview · 25 signs</span></span>
+      </label>
+      <label class="opt" aria-disabled="true">
+        <input type="radio" name="lang" value="arsl" disabled />
+        <span class="t"><b>ArSL — Arabic Sign Language</b><span>Preview · 25 signs</span></span>
+      </label>
+      <label class="opt" aria-disabled="true">
+        <input type="radio" name="lang" value="other" disabled />
+        <span class="t"><b>Other</b><span>Coming soon — see roadmap</span></span>
+      </label>
+    </div>
+    <div class="nav">
+      <span class="left">Step 1 of 4</span>
+      <button class="primary" data-next>Next: camera permission →</button>
+    </div>
+  </section>
+
+  <!-- ============ STEP 2: permission ============ -->
+  <section class="card" id="card-2" hidden aria-labelledby="h-2">
+    <h2 id="h-2">Allow camera access</h2>
+    <p class="lead">
+      We use your webcam to give you real-time feedback on your signs.
+      Frames and hand-landmark data <b>stay on this device</b> — they are never uploaded.
+    </p>
+    <div class="grid">
+      <div>
+        <p style="margin-top:0">When you click below, your browser will show a camera permission prompt. Choose <b>Allow</b>.</p>
+        <ul style="color:var(--muted); font-size:14px; padding-left:18px">
+          <li>You can revoke camera access anytime in your browser settings.</li>
+          <li>If you deny by accident, refresh the page to try again.</li>
+          <li>We do not record audio.</li>
+        </ul>
+      </div>
+      <div style="display:flex; align-items:center; justify-content:center; padding:20px;
+                  border:1px dashed var(--line); border-radius:10px; background:var(--panel2);
+                  color:var(--muted); font-size:48px">📷</div>
+    </div>
+    <div id="permErr" class="err" hidden></div>
+    <div id="permOk" class="ok-msg" hidden>Camera permission granted ✓</div>
+    <div class="nav">
+      <button data-prev>← Back</button>
+      <div>
+        <button id="permBtn" class="primary">Request camera access</button>
+        <button class="primary" data-next disabled id="permNext">Next: lighting check →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STEP 3: lighting check ============ -->
+  <section class="card" id="card-3" hidden aria-labelledby="h-3">
+    <h2 id="h-3">Lighting check</h2>
+    <p class="lead">For best accuracy, light your hand from the front. Avoid back-light from windows.</p>
+    <div class="grid">
+      <div>
+        <div class="videoWrap" id="lightWrap">
+          <video id="video3" playsinline muted></video>
+        </div>
+        <div class="meters">
+          <div class="meter">
+            <div class="lbl"><b>Average brightness</b><span id="brightVal">measuring…</span></div>
+            <div class="bar"><div id="brightBar" style="width:0%"></div></div>
+            <span class="pill" id="brightPill">—</span>
+          </div>
+          <div class="meter">
+            <div class="lbl"><b>Brightness uniformity</b><span id="uniVal">measuring…</span></div>
+            <div class="bar"><div id="uniBar" style="width:0%"></div></div>
+            <span class="pill" id="uniPill">—</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-top:0; font-size:15px">Tips</h3>
+        <ul style="color:var(--muted); font-size:14px; padding-left:18px">
+          <li>Face a window or lamp; don't sit with one behind you.</li>
+          <li>Plain background helps but isn't required.</li>
+          <li>Even diffuse light beats a single bright spot.</li>
+        </ul>
+        <p style="color:var(--muted); font-size:13px; margin-top:18px">
+          You can proceed even if these aren't green — feedback may just be less accurate.
+        </p>
+      </div>
+    </div>
+    <div class="nav">
+      <button data-prev>← Back</button>
+      <button class="primary" data-next>Next: framing →</button>
+    </div>
+  </section>
+
+  <!-- ============ STEP 4: framing + handedness ============ -->
+  <section class="card" id="card-4" hidden aria-labelledby="h-4">
+    <h2 id="h-4">Framing &amp; handedness</h2>
+    <p class="lead">Sit so your head and hands fit inside the guide rectangle. Pick your dominant signing hand.</p>
+    <div class="grid">
+      <div>
+        <div class="videoWrap mirrored" id="frameWrap">
+          <video id="video4" playsinline muted></video>
+          <svg class="guide" viewBox="0 0 400 300" preserveAspectRatio="none" aria-hidden="true">
+            <!-- Head circle -->
+            <circle cx="200" cy="80" r="42" fill="none" stroke="#7c9cff" stroke-width="2" stroke-dasharray="6 5" opacity=".8" />
+            <!-- Body / signing space rectangle -->
+            <rect x="80" y="130" width="240" height="150" rx="14" fill="none" stroke="#5ee0c1" stroke-width="2" stroke-dasharray="6 5" opacity=".8" />
+            <text x="200" y="78" fill="#7c9cff" font-size="11" text-anchor="middle" font-family="sans-serif" opacity=".9">head</text>
+            <text x="200" y="208" fill="#5ee0c1" font-size="11" text-anchor="middle" font-family="sans-serif" opacity=".9">signing space</text>
+          </svg>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-top:0; font-size:15px">Dominant hand</h3>
+        <div class="grid" style="grid-template-columns:1fr 1fr; gap:10px" role="radiogroup" aria-label="Dominant hand">
+          <label class="opt selected">
+            <input type="radio" name="hand" value="right" checked />
+            <span class="t"><b>Right</b><span>Most common</span></span>
+          </label>
+          <label class="opt">
+            <input type="radio" name="hand" value="left" />
+            <span class="t"><b>Left</b><span>Demos will flip</span></span>
+          </label>
+        </div>
+        <h3 style="margin-top:18px; font-size:15px">Mirror webcam preview</h3>
+        <label class="opt selected" style="margin-top:0">
+          <input type="checkbox" id="mirrorPref" checked />
+          <span class="t"><b>Mirror by default</b><span>Recommended — matches the demo signer's view</span></span>
+        </label>
+        <p style="color:var(--muted); font-size:13px; margin-top:18px">
+          You can change all of these anytime in settings.
+        </p>
+      </div>
+    </div>
+    <div class="nav">
+      <button data-prev>← Back</button>
+      <button class="primary" id="finish">Finish setup &amp; start lesson →</button>
+    </div>
+  </section>
+
+</main>
+
+<script>
+/* ============================================================================
+ * Camera-setup wizard (PDR S-01).
+ * - Pure client-side; no network required.
+ * - Reuses one MediaStream across steps 2-4 to avoid re-prompting.
+ * - Lighting check samples downscaled video frames to estimate average
+ *   brightness and uniformity (std-dev across patches). No frames are uploaded.
+ * - On finish, persists prefs to localStorage and redirects to index.html.
+ * ========================================================================== */
+const $ = id => document.getElementById(id);
+let stream = null;
+let lightingTimer = null;
+
+function show(step){
+  for (let i=1; i<=4; i++){
+    $('card-'+i).hidden = (i !== step);
+    const s = document.querySelector(`.step[data-step="${i}"]`);
+    s.classList.toggle('active', i === step);
+    s.classList.toggle('done', i < step);
+  }
+  // attach video stream to the active step's <video>, if any
+  const v = document.querySelector(`#card-${step} video`);
+  if (v && stream){ v.srcObject = stream; v.play().catch(()=>{}); }
+  if (step === 3) startLightingLoop();
+  else stopLightingLoop();
+}
+
+document.querySelectorAll('[data-next]').forEach(b => b.onclick = () => {
+  const cur = +document.querySelector('.step.active').dataset.step;
+  show(Math.min(cur + 1, 4));
+});
+document.querySelectorAll('[data-prev]').forEach(b => b.onclick = () => {
+  const cur = +document.querySelector('.step.active').dataset.step;
+  show(Math.max(cur - 1, 1));
+});
+
+// Update "selected" styling on radio/checkbox change
+document.querySelectorAll('.opt input').forEach(inp => {
+  inp.addEventListener('change', () => {
+    const group = inp.name;
+    if (group){
+      document.querySelectorAll(`input[name="${group}"]`).forEach(i => {
+        i.closest('.opt').classList.toggle('selected', i.checked);
+      });
+    } else {
+      inp.closest('.opt').classList.toggle('selected', inp.checked);
+    }
+  });
+});
+
+// Step 2 — request permission
+$('permBtn').onclick = async () => {
+  $('permErr').hidden = true; $('permOk').hidden = true;
+  try {
+    stream = await navigator.mediaDevices.getUserMedia({
+      video: { width: 640, height: 480, facingMode: 'user' }, audio: false
+    });
+    $('permOk').hidden = false;
+    $('permNext').disabled = false;
+    $('permBtn').disabled = true;
+  } catch (e) {
+    $('permErr').textContent =
+      'Camera unavailable: ' + e.message +
+      ' — open this page over https or localhost, and grant camera access in browser settings.';
+    $('permErr').hidden = false;
+  }
+};
+
+// Step 3 — lighting analysis (on-device)
+function startLightingLoop(){
+  stopLightingLoop();
+  const v = $('video3');
+  const c = document.createElement('canvas');
+  c.width = 64; c.height = 48;
+  const ctx = c.getContext('2d', { willReadFrequently: true });
+  lightingTimer = setInterval(() => {
+    if (!v.videoWidth) return;
+    ctx.drawImage(v, 0, 0, c.width, c.height);
+    const data = ctx.getImageData(0, 0, c.width, c.height).data;
+    // Average luminance (Rec. 709)
+    let sum = 0, n = c.width * c.height;
+    const lum = new Float32Array(n);
+    for (let i=0, j=0; i<data.length; i+=4, j++){
+      const Y = 0.2126*data[i] + 0.7152*data[i+1] + 0.0722*data[i+2];
+      lum[j] = Y; sum += Y;
+    }
+    const mean = sum / n;
+    let varSum = 0;
+    for (let j=0; j<n; j++){ const d = lum[j] - mean; varSum += d*d; }
+    const std = Math.sqrt(varSum / n);
+    // Heuristics
+    const brightPct = Math.min(1, mean / 180);  // 0..1, target ~120-180
+    const uniPct = Math.max(0, 1 - std / 90);  // lower std = better
+    paintMeter('bright', brightPct, mean, [70, 120],
+      v => v < 70 ? 'Too dark — add more front light' :
+           v > 200 ? 'Too bright — reduce direct light' :
+           'Good');
+    paintMeter('uni', uniPct, std, [50, 80],
+      v => v > 80 ? 'Uneven — try diffuse light' :
+           v > 50 ? 'OK' : 'Even ✓');
+  }, 250);
+}
+function stopLightingLoop(){ if (lightingTimer){ clearInterval(lightingTimer); lightingTimer = null; } }
+
+function paintMeter(key, pct, raw, thresholds, msgFn){
+  $(key+'Bar').style.width = `${(pct*100).toFixed(0)}%`;
+  $(key+'Val').textContent = `${raw.toFixed(0)} · ${msgFn(raw)}`;
+  const pill = $(key+'Pill');
+  pill.classList.remove('ok','warn','bad');
+  if (pct >= 0.7) { pill.classList.add('ok'); pill.textContent = 'good'; }
+  else if (pct >= 0.4) { pill.classList.add('warn'); pill.textContent = 'ok'; }
+  else { pill.classList.add('bad'); pill.textContent = 'low'; }
+}
+
+// Finish — persist prefs and head to the lesson player
+$('finish').onclick = () => {
+  const prefs = {
+    language: document.querySelector('input[name="lang"]:checked').value,
+    handedness: document.querySelector('input[name="hand"]:checked').value,
+    mirror: $('mirrorPref').checked,
+    completedAt: new Date().toISOString(),
+  };
+  try { localStorage.setItem('signtutor.prefs', JSON.stringify(prefs)); } catch {}
+  // Stop the stream — the next page will start its own.
+  if (stream) stream.getTracks().forEach(t => t.stop());
+  window.location.href = 'index.html';
+};
+
+show(1);
+</script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+✓ B  first6_drift=1.10e-5  l2_drift=1.97e-5
+✓ F  first6_drift=1.84e-5  l2_drift=6.22e-5
+✓ I  first6_drift=1.79e-4  l2_drift=5.32e-4
+✓ L  first6_drift=2.24e-4  l2_drift=6.19e-4
+✓ Y  first6_drift=1.51e-5  l2_drift=4.03e-5
+
+5/5 samples within tolerance 0.001

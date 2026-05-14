@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SignTutor — Prototype bundle</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121935; --panel2:#0f1530;
+    --ink:#e9ecff; --muted:#9aa3c7; --line:#2a335c;
+    --accent:#7c9cff; --accent2:#5ee0c1; --warn:#ffb86b; --bad:#ff7a90; --ok:#5ee0c1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; background:var(--bg); color:var(--ink); min-height:100vh;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;
+  }
+  main{max-width:1080px; margin:0 auto; padding:40px 24px}
+  .hero{
+    padding:28px 28px 32px; border-radius:16px; border:1px solid var(--line);
+    background:linear-gradient(135deg, rgba(124,156,255,.10), rgba(94,224,193,.05));
+    margin-bottom:28px;
+  }
+  .hero .eyebrow{color:var(--accent); font-size:12px; letter-spacing:.18em; text-transform:uppercase}
+  .hero h1{margin:8px 0 6px; font-size:30px; line-height:1.15}
+  .hero p{margin:0; color:var(--muted); max-width:62ch}
+  .hero .badges{margin-top:16px; display:flex; gap:8px; flex-wrap:wrap}
+  .b{font-size:12px; padding:5px 11px; border-radius:999px; border:1px solid var(--line); color:var(--muted)}
+  .b.ok{color:var(--ok); border-color:rgba(94,224,193,.45); background:rgba(94,224,193,.08)}
+
+  .grid{display:grid; gap:16px; grid-template-columns:repeat(2,1fr)}
+  @media (max-width:780px){ .grid{grid-template-columns:1fr} }
+  .card{
+    background:var(--panel); border:1px solid var(--line); border-radius:14px;
+    padding:20px 22px; display:flex; flex-direction:column; gap:8px;
+    text-decoration:none; color:var(--ink); transition:.15s;
+  }
+  .card:hover{border-color:var(--accent); transform:translateY(-1px)}
+  .card .tag{font-size:11px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent2)}
+  .card h2{margin:4px 0 0; font-size:18px}
+  .card p{margin:0; color:var(--muted); font-size:14px; flex:1}
+  .card .meta{display:flex; gap:6px; flex-wrap:wrap; margin-top:8px}
+  .meta .pill{font-size:11px; padding:3px 8px; border-radius:6px;
+    background:rgba(124,156,255,.10); color:var(--accent); border:1px solid rgba(124,156,255,.30)}
+  .card .cta{margin-top:12px; align-self:flex-start; font-size:13px; color:var(--accent); font-weight:600}
+
+  .seq{
+    display:flex; align-items:center; gap:10px; margin:16px 0 8px;
+    color:var(--muted); font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+  }
+  .seq .line{flex:1; height:1px; background:var(--line)}
+
+  section.docs{margin-top:28px; padding:20px 22px; border:1px solid var(--line);
+    border-radius:14px; background:var(--panel)}
+  section.docs h3{margin:0 0 8px; font-size:14px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase}
+  section.docs ul{margin:0; padding-left:18px; color:var(--muted); font-size:14px}
+  section.docs li{margin:4px 0}
+  section.docs code{background:rgba(124,156,255,.10); color:var(--accent); padding:1px 6px; border-radius:5px; font-size:13px}
+</style>
+</head>
+<body>
+<main>
+
+  <div class="hero">
+    <div class="eyebrow">SignTutor · prototype bundle</div>
+    <h1>Vision-based sign language tutor — four working flows</h1>
+    <p>Slices of the v2 PDR turned into running code: onboarding wizard, two on-device lesson players (static + dynamic), an educator dashboard wireframe, and a real Python training pipeline that produces both ONNX models the lesson players load.</p>
+    <div class="badges">
+      <span class="b ok">🔒 On-device by default</span>
+      <span class="b">MediaPipe Hands</span>
+      <span class="b">ONNX MLP · 24 letters · CI gated</span>
+      <span class="b">Transformer · rotation gate ❌→✅</span>
+      <span class="b">WCAG-conscious</span>
+    </div>
+  </div>
+
+  <div class="seq"><span>1 · Onboard</span><span class="line"></span></div>
+
+  <div class="grid">
+    <a class="card" href="wizard.html">
+      <span class="tag">PDR S-01</span>
+      <h2>Camera setup wizard →</h2>
+      <p>4-step flow: language → permission → lighting check (live in-browser meter) → framing &amp; handedness. Prefs persist to localStorage.</p>
+      <div class="meta"><span class="pill">FR-1.1</span><span class="pill">FR-5.x a11y</span></div>
+      <span class="cta">Open wizard →</span>
+    </a>
+    <div class="card" style="background:var(--panel2)">
+      <span class="tag">Why it's first</span>
+      <h2>Camera UX is the real onboarding</h2>
+      <p>Webcam permission is the highest-friction step in any vision-based tutor. The wizard makes lighting/framing problems visible *before* the user blames the model.</p>
+      <div class="meta"><span class="pill">Trust UX</span></div>
+    </div>
+  </div>
+
+  <div class="seq"><span>2 · Practice — Static signs</span><span class="line"></span></div>
+
+  <div class="grid">
+    <a class="card" href="index.html">
+      <span class="tag">PDR S-05 · NEW</span>
+      <h2>Fingerspelling player →</h2>
+      <p>End-to-end ML pipeline, <b>now covering all 24 static ASL letters</b> (J & Z are motion → dynamic page). MediaPipe → JS <code>normalize()</code> → <b>ONNX MLP</b> → top-5 + confidence-gated verdict + <b>per-finger panel</b> ✓/✗ vs. target. Hybrid ML/rule toggle with auto-fallback. Startup self-test verifies JS↔Python feature parity to 1e-3.</p>
+      <div class="meta"><span class="pill">PDR §7.1</span><span class="pill">FR-3.1..3.5</span><span class="pill">24 letters · 72 KB</span><span class="pill">per-finger panel ⭐</span></div>
+      <span class="cta">Open static-sign player →</span>
+    </a>
+    <div class="card" style="background:var(--panel2)">
+      <span class="tag">ML pipeline · static</span>
+      <h2>MLP classifier (sklearn → ONNX)</h2>
+      <p>24-class MLP. Eval is <b>collision-aware</b>: synth letters that share a finger pattern (A=E=M=N=S=T, etc.) are credited within their equivalence class, so the metric reports model skill not synth ambiguity. Strict 0.45 / collision-aware 0.93. Real data closes the gap.</p>
+      <div class="meta"><span class="pill">PDR S-05</span><span class="pill">93% collision-aware</span><span class="pill">parity ✓</span></div>
+      <span class="cta">See <code>ml/models/eval_report.md</code></span>
+    </div>
+  </div>
+
+  <div class="seq"><span>3 · Practice — Dynamic signs</span><span class="line"></span></div>
+
+  <div class="grid">
+    <a class="card" href="dynamic.html">
+      <span class="tag">PDR S-06 · NEW</span>
+      <h2>Dynamic-signs player →</h2>
+      <p>End-to-end Transformer pipeline. 45-frame landmark window → in-browser feature normalization (port of <code>ml/seq_features.py</code>) → ONNX Transformer (<code>onnxruntime-web</code>) → softmax → top-5 with confidence-gated verdict and discriminative tips.</p>
+      <div class="meta"><span class="pill">PDR §7.1</span><span class="pill">8 isolated signs</span><span class="pill">~360 KB ONNX</span></div>
+      <span class="cta">Open dynamic-sign player →</span>
+    </a>
+    <div class="card" style="background:var(--panel2)">
+      <span class="tag">ML pipeline · dynamic</span>
+      <h2>Transformer (PyTorch → ONNX)</h2>
+      <p>78,600-param Transformer encoder over 45-frame landmark sequences. Trains in &lt;40s on CPU. <b>PyTorch ↔ ONNX parity = 1.000</b>. Robustness sweep runs 6 perturbation slices and surfaces a real ❌ on rotation (▼9pp).</p>
+      <div class="meta"><span class="pill">PDR S-06</span><span class="pill">NFR-9 ≥ 80%</span><span class="pill">NFR-10 robustness gate</span></div>
+      <span class="cta">See <code>ml/models/dynamic_eval_report.md</code> &amp; <code>dynamic_robustness_report.md</code></span>
+    </div>
+  </div>
+
+  <div class="seq"><span>4 · Teach</span><span class="line"></span></div>
+
+  <div class="grid">
+    <a class="card" href="educator.html">
+      <span class="tag">EPIC-15 · v2 wireframe</span>
+      <h2>Educator dashboard →</h2>
+      <p>Class overview with mastery, sparklines, hardest signs, assignments, and a fairness-audit panel that surfaces a realistically-failing "low lighting" slice. Privacy-respecting (no per-student video).</p>
+      <div class="meta"><span class="pill">EPIC-15</span><span class="pill">NFR-10 visible</span></div>
+      <span class="cta">Open dashboard →</span>
+    </a>
+    <div class="card" style="background:var(--panel2)">
+      <span class="tag">Why v2 wireframe now</span>
+      <h2>De-risk school-district sales</h2>
+      <p>Educator features change the data model (rosters, assignments, FERPA). Surfacing the wireframe early lets sales/legal react before engineers commit to a schema.</p>
+      <div class="meta"><span class="pill">B2B</span></div>
+    </div>
+  </div>
+
+  
+  <div class="seq"><span>5 · CI / Release gates</span><span class="line"></span></div>
+
+  <div class="grid">
+    <div class="card" style="background:var(--panel2)">
+      <span class="tag">.github/workflows/ml-gate.yml</span>
+      <h2>ML release gates in CI ⭐</h2>
+      <p>One workflow runs both training scripts, the robustness sweep, and the JS↔Python parity test on every push. <code>ci/check_nfr.py</code> parses the markdown reports and exits non-zero on NFR-9 / NFR-10 / parity violations. Verified locally: gate <b>FAILS correctly</b> on the pre-augmentation (BEFORE) model and <b>PASSES</b> on the augmented one.</p>
+      <div class="meta"><span class="pill">NFR-9</span><span class="pill">NFR-10</span><span class="pill">parity</span></div>
+    </div>
+    <div class="card" style="background:var(--panel2)">
+      <span class="tag">Why this matters</span>
+      <h2>Reports → enforcement</h2>
+      <p>The eval/robustness markdown files were already written by the training scripts. The CI gate makes them <i>actionable</i>: a regression in any slice blocks the merge. Same machinery will work unchanged on real WLASL/MS-ASL data.</p>
+      <div class="meta"><span class="pill">CI</span></div>
+    </div>
+  </div>
+
+  <section class="docs">
+    <h3>Bundle map</h3>
+    <ul>
+      <li><code>prototype/home.html</code> — this page</li>
+      <li><code>prototype/wizard.html</code> — camera-setup wizard</li>
+      <li><code>prototype/index.html</code> — static-sign player · <b>24 letters · per-finger panel · ONNX MLP</b></li>
+      <li><code>.github/workflows/ml-gate.yml</code> + <code>ci/check_nfr.py</code> + <code>ci/run_parity.mjs</code> — release-gate CI ⭐</li>
+      <li><code>prototype/dynamic.html</code> — dynamic-sign lesson player (Transformer + ONNX, NEW)</li>
+      <li><code>prototype/educator.html</code> — v2 educator dashboard wireframe</li>
+      <li><code>prototype/models/</code> — ONNX models + labels (copied from <code>ml/models/</code>)</li>
+      <li><code>ml/train_export.py</code> — train MLP for static signs, export ONNX</li>
+      <li><code>ml/train_transformer.py</code> — train Transformer for dynamic signs, export ONNX (NEW)</li>
+      <li><code>ml/eval_robustness.py</code> — perturbation sweep on the trained Transformer (NEW)</li>
+      <li><code>ml/synth_landmarks.py</code>, <code>ml/synth_sequences.py</code>, <code>ml/features.py</code>, <code>ml/seq_features.py</code> — data generators &amp; normalization (the JS in <code>dynamic.html</code> mirrors <code>seq_features.py</code> exactly)</li>
+      <li><code>ml/models/dynamic_eval_report.md</code>, <code>dynamic_robustness_report.md</code> — release-gate reports (NEW)</li>
+      <li><code>pdr-review/01..04</code> — PDR critique, refined PDR v2, one-page summary, Jira-ready epics &amp; stories</li>
+    </ul>
+  </section>
+
+</main>
+</body>
+</html>

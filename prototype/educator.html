@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SignTutor — Educator Dashboard (v2 wireframe)</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121935; --panel2:#0f1530;
+    --ink:#e9ecff; --muted:#9aa3c7; --line:#2a335c;
+    --accent:#7c9cff; --accent2:#5ee0c1; --warn:#ffb86b; --bad:#ff7a90;
+    --ok:#5ee0c1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.45;
+  }
+  /* WIREFRAME watermark */
+  body::before{
+    content:"WIREFRAME · v2 · indicative data only"; position:fixed; top:10px; right:14px;
+    font-size:10px; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--muted); opacity:.6; z-index:100; pointer-events:none;
+    border:1px dashed var(--line); padding:3px 8px; border-radius:4px;
+  }
+
+  .layout{display:grid; grid-template-columns:240px 1fr; min-height:100vh}
+  @media (max-width:900px){ .layout{grid-template-columns:1fr} aside{display:none} }
+
+  aside{
+    background:#0a0e22; border-right:1px solid var(--line); padding:18px 14px;
+  }
+  .brand{font-weight:700; font-size:15px; padding:6px 10px; margin-bottom:18px;
+    display:flex; align-items:center; gap:8px}
+  .brand .logo{
+    width:24px; height:24px; border-radius:6px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    display:flex; align-items:center; justify-content:center; color:#0a0f24; font-weight:800
+  }
+  nav.side a{
+    display:flex; align-items:center; gap:10px; padding:9px 10px;
+    color:var(--muted); text-decoration:none; border-radius:8px; font-size:14px;
+    margin-bottom:2px;
+  }
+  nav.side a:hover{background:rgba(255,255,255,.04); color:var(--ink)}
+  nav.side a.active{background:rgba(124,156,255,.10); color:var(--ink)}
+  nav.side .sep{font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--muted); padding:14px 10px 6px}
+
+  main{padding:22px 28px; min-width:0}
+  header.bar{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:12px; margin-bottom:18px;
+  }
+  header.bar h1{margin:0; font-size:22px}
+  header.bar .sub{color:var(--muted); font-size:13px; margin-top:2px}
+  .right{display:flex; gap:8px; align-items:center}
+  button, select{
+    background:var(--panel2); color:var(--ink); border:1px solid var(--line);
+    padding:8px 12px; border-radius:8px; font-size:13px; cursor:pointer; font-family:inherit
+  }
+  button.primary{background:var(--accent); color:#0a0f24; border-color:transparent; font-weight:600}
+
+  /* KPI tiles */
+  .kpis{display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-bottom:18px}
+  @media (max-width:780px){ .kpis{grid-template-columns:repeat(2,1fr)} }
+  .kpi{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    padding:14px 16px;
+  }
+  .kpi .l{font-size:11px; color:var(--muted); letter-spacing:.1em; text-transform:uppercase}
+  .kpi .v{font-size:26px; font-weight:700; margin-top:4px}
+  .kpi .d{font-size:12px; margin-top:4px}
+  .kpi .d.up{color:var(--ok)} .kpi .d.down{color:var(--bad)} .kpi .d.flat{color:var(--muted)}
+
+  .panels{display:grid; grid-template-columns:2fr 1fr; gap:14px; margin-bottom:18px}
+  @media (max-width:980px){ .panels{grid-template-columns:1fr} }
+
+  .panel{
+    background:var(--panel); border:1px solid var(--line); border-radius:12px;
+    overflow:hidden;
+  }
+  .panel h2{
+    margin:0; padding:12px 16px; font-size:13px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; align-items:center;
+  }
+  .panel h2 .actions{display:flex; gap:6px}
+  .panel h2 .actions button{padding:4px 10px; font-size:12px}
+  .body{padding:14px 16px}
+
+  /* Roster table */
+  table{width:100%; border-collapse:collapse; font-size:13px}
+  th, td{padding:10px 12px; text-align:left; border-bottom:1px solid var(--line); vertical-align:middle}
+  th{font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); font-weight:600}
+  tr:hover td{background:rgba(124,156,255,.04)}
+  .avatar{
+    width:30px; height:30px; border-radius:50%;
+    display:inline-flex; align-items:center; justify-content:center;
+    color:#0a0f24; font-weight:700; font-size:12px;
+    background:linear-gradient(135deg,var(--accent),var(--accent2));
+    margin-right:8px; vertical-align:middle;
+  }
+  .progBar{
+    width:120px; height:6px; background:var(--line); border-radius:999px; overflow:hidden;
+    display:inline-block; vertical-align:middle; margin-right:8px;
+  }
+  .progBar > div{height:100%; background:var(--accent2)}
+  .pill{display:inline-block; padding:3px 9px; border-radius:999px; font-size:11px; border:1px solid var(--line)}
+  .pill.ok{color:var(--ok); border-color:rgba(94,224,193,.45); background:rgba(94,224,193,.08)}
+  .pill.warn{color:var(--warn); border-color:rgba(255,184,107,.45); background:rgba(255,184,107,.08)}
+  .pill.bad{color:var(--bad); border-color:rgba(255,122,144,.45); background:rgba(255,122,144,.08)}
+  .pill.muted{color:var(--muted)}
+
+  /* Sparkline */
+  .spark{width:80px; height:22px; vertical-align:middle}
+
+  /* Class engagement chart (bars) */
+  .chart{display:flex; align-items:flex-end; gap:6px; height:140px; padding:8px 4px}
+  .chart .col{
+    flex:1; background:linear-gradient(180deg,var(--accent),rgba(124,156,255,.35));
+    border-radius:4px 4px 0 0; position:relative; min-width:14px;
+  }
+  .chart .col span{
+    position:absolute; bottom:-18px; left:0; right:0; text-align:center;
+    font-size:10px; color:var(--muted)
+  }
+
+  /* Confusion / hardest signs */
+  .ranklist{list-style:none; padding:0; margin:0}
+  .ranklist li{
+    display:flex; align-items:center; gap:10px; padding:8px 0;
+    border-bottom:1px solid var(--line); font-size:14px;
+  }
+  .ranklist li:last-child{border-bottom:none}
+  .ranklist .sign{font-weight:600; min-width:60px}
+  .ranklist .meterbar{flex:1; height:6px; background:var(--line); border-radius:999px; overflow:hidden}
+  .ranklist .meterbar > div{height:100%; background:var(--bad)}
+  .ranklist .pct{color:var(--muted); font-size:12px; min-width:40px; text-align:right}
+
+  /* Privacy banner */
+  .privBanner{
+    margin-bottom:14px; padding:10px 14px; border-radius:10px;
+    background:rgba(94,224,193,.06); border:1px solid rgba(94,224,193,.30);
+    color:var(--ink); font-size:13px; display:flex; gap:10px; align-items:center;
+  }
+  .privBanner b{color:var(--ok)}
+</style>
+</head>
+<body>
+
+<div class="layout">
+
+  <aside>
+    <div class="brand"><span class="logo">S</span> SignTutor</div>
+    <nav class="side">
+      <div class="sep">Teach</div>
+      <a href="#" class="active">📊 Class overview</a>
+      <a href="#">👥 Roster</a>
+      <a href="#">📚 Assignments</a>
+      <a href="#">📝 Lesson library</a>
+      <div class="sep">Insights</div>
+      <a href="#">📈 Mastery report</a>
+      <a href="#">🎯 Hardest signs</a>
+      <a href="#">⚖️ Fairness audit</a>
+      <div class="sep">Account</div>
+      <a href="#">⚙️ Settings</a>
+      <a href="#">❓ Help</a>
+    </nav>
+  </aside>
+
+  <main>
+
+    <header class="bar">
+      <div>
+        <h1>ASL 101 · Period 3</h1>
+        <div class="sub">28 students · Mon/Wed/Fri · taught by Ms. Rivera</div>
+      </div>
+      <div class="right">
+        <select aria-label="Date range">
+          <option>Last 7 days</option><option>Last 30 days</option><option>This semester</option>
+        </select>
+        <button>Export CSV</button>
+        <button class="primary">+ New assignment</button>
+      </div>
+    </header>
+
+    <div class="privBanner">
+      🔒 <b>Privacy-respecting view.</b>
+      You see <i>aggregate progress and per-student mastery counts</i>. Webcam frames and individual attempt videos
+      are <b>never recorded or visible</b> — they stay on each student's device.
+      <a href="#" style="color:var(--accent); margin-left:auto">Privacy details →</a>
+    </div>
+
+    <!-- KPI tiles -->
+    <div class="kpis" aria-label="Class metrics">
+      <div class="kpi">
+        <div class="l">Active learners (7d)</div>
+        <div class="v">24<span style="font-size:14px; color:var(--muted)"> / 28</span></div>
+        <div class="d up">▲ 3 vs. last week</div>
+      </div>
+      <div class="kpi">
+        <div class="l">Median signs mastered</div>
+        <div class="v">42</div>
+        <div class="d up">▲ 6 this week</div>
+      </div>
+      <div class="kpi">
+        <div class="l">Avg. session length</div>
+        <div class="v">11.4 <span style="font-size:14px; color:var(--muted)">min</span></div>
+        <div class="d flat">— flat</div>
+      </div>
+      <div class="kpi">
+        <div class="l">Assignment completion</div>
+        <div class="v">86<span style="font-size:14px; color:var(--muted)">%</span></div>
+        <div class="d down">▼ 4pp vs. last assignment</div>
+      </div>
+    </div>
+
+    <div class="panels">
+
+      <!-- Roster panel (large) -->
+      <div class="panel">
+        <h2>
+          <span>Roster</span>
+          <span class="actions">
+            <button>Filter</button>
+            <button>Sort: Mastery ↓</button>
+          </span>
+        </h2>
+        <div class="body" style="padding:0">
+          <table>
+            <thead>
+              <tr>
+                <th>Student</th>
+                <th>Mastery</th>
+                <th>Trend (7d)</th>
+                <th>Last active</th>
+                <th>Current assignment</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="roster"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Right column: chart + hardest signs -->
+      <div style="display:flex; flex-direction:column; gap:14px">
+
+        <div class="panel">
+          <h2><span>Engagement this week</span></h2>
+          <div class="body">
+            <div class="chart" id="chart" aria-label="Daily active learners">
+              <!-- filled by script -->
+            </div>
+            <div style="margin-top:24px; color:var(--muted); font-size:12px; text-align:center">
+              Daily active learners
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h2>
+            <span>Hardest signs (class-wide)</span>
+            <span class="actions"><button>View all</button></span>
+          </h2>
+          <div class="body">
+            <ul class="ranklist" id="hardest"></ul>
+            <p style="color:var(--muted); font-size:12px; margin-top:10px">
+              Based on aggregated component scores; identifies which signs to revisit in class.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Bottom row: assignments + fairness -->
+    <div class="panels">
+
+      <div class="panel">
+        <h2>
+          <span>Assignments</span>
+          <span class="actions"><button class="primary">+ New</button></span>
+        </h2>
+        <div class="body" style="padding:0">
+          <table>
+            <thead>
+              <tr><th>Title</th><th>Due</th><th>Completion</th><th>Median mastery gain</th><th></th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>Fingerspelling sprint A–M</b></td><td>Mon · 2 days</td>
+                  <td><span class="progBar"><div style="width:86%"></div></span>86%</td>
+                  <td>+8 signs</td><td><button>Open</button></td></tr>
+              <tr><td><b>Family signs</b></td><td>Wed · 4 days</td>
+                  <td><span class="progBar"><div style="width:62%"></div></span>62%</td>
+                  <td>+5 signs</td><td><button>Open</button></td></tr>
+              <tr><td><b>Numbers 1–20</b></td><td>Closed</td>
+                  <td><span class="progBar"><div style="width:100%"></div></span>100%</td>
+                  <td>+12 signs</td><td><button>Open</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2><span>Fairness audit</span></h2>
+        <div class="body" style="font-size:13px">
+          <p style="margin-top:0; color:var(--muted)">
+            Recognition accuracy across self-reported demographic slices for this class.
+            <b>Gate (NFR-10):</b> no slice &gt; 5pp below class average.
+          </p>
+          <table style="font-size:12px">
+            <thead><tr><th>Slice</th><th>Accuracy</th><th>Δ</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Class overall</td><td>89.2%</td><td>—</td><td></td></tr>
+              <tr><td>Right-handed</td><td>89.6%</td><td>+0.4</td><td><span class="pill ok">pass</span></td></tr>
+              <tr><td>Left-handed</td><td>87.1%</td><td>−2.1</td><td><span class="pill ok">pass</span></td></tr>
+              <tr><td>Lighting · low</td><td>83.4%</td><td>−5.8</td><td><span class="pill bad">fail</span></td></tr>
+              <tr><td>Lighting · normal</td><td>91.0%</td><td>+1.8</td><td><span class="pill ok">pass</span></td></tr>
+            </tbody>
+          </table>
+          <p style="color:var(--muted); font-size:12px; margin:10px 0 0">
+            ⚠️ "Low lighting" slice fails the fairness gate. Recommend lesson-time lighting check
+            and inclusion of more low-light examples in the next training data collection.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+</div>
+
+<script>
+/* Mock data — wireframe only. Replace with API client in implementation. */
+const ROSTER = [
+  { name:'Alex Rivera',     mastery:58, trend:[3,4,5,6,5,7,8],  last:'2h ago',   asn:'Fingerspelling A–M',  status:'on-track' },
+  { name:'Beatriz Okafor',  mastery:54, trend:[2,3,4,5,6,6,7],  last:'5h ago',   asn:'Fingerspelling A–M',  status:'on-track' },
+  { name:'Chen Wei',        mastery:51, trend:[5,6,5,4,3,2,2],  last:'yesterday',asn:'Family signs',         status:'slipping' },
+  { name:'Devon Park',      mastery:48, trend:[4,4,4,5,5,5,6],  last:'3h ago',   asn:'Fingerspelling A–M',  status:'on-track' },
+  { name:'Emi Tanaka',      mastery:46, trend:[1,2,3,4,5,6,7],  last:'1h ago',   asn:'Family signs',         status:'on-track' },
+  { name:'Farhan Ali',      mastery:42, trend:[6,5,4,3,2,1,0],  last:'5d ago',   asn:'Fingerspelling A–M',  status:'inactive' },
+  { name:'Grace Lin',       mastery:40, trend:[3,3,4,4,5,5,5],  last:'today',    asn:'Family signs',         status:'on-track' },
+  { name:'Hugo Martín',     mastery:31, trend:[2,2,2,3,3,3,4],  last:'2d ago',   asn:'Family signs',         status:'needs help' },
+];
+
+const STATUS_CLS = { 'on-track':'ok', 'slipping':'warn', 'needs help':'bad', 'inactive':'muted' };
+
+function spark(values){
+  const max = Math.max(...values, 1);
+  const pts = values.map((v,i) => `${i*(80/(values.length-1))},${22 - (v/max)*20}`).join(' ');
+  return `<svg class="spark" viewBox="0 0 80 22" preserveAspectRatio="none">
+    <polyline points="${pts}" fill="none" stroke="#7c9cff" stroke-width="1.5"/>
+  </svg>`;
+}
+function initials(name){ return name.split(' ').map(s=>s[0]).join('').slice(0,2); }
+
+document.getElementById('roster').innerHTML = ROSTER.map(s => `
+  <tr>
+    <td><span class="avatar">${initials(s.name)}</span>${s.name}</td>
+    <td><span class="progBar"><div style="width:${(s.mastery/60*100)|0}%"></div></span>${s.mastery} signs</td>
+    <td>${spark(s.trend)}</td>
+    <td>${s.last}</td>
+    <td>${s.asn}</td>
+    <td><span class="pill ${STATUS_CLS[s.status]}">${s.status}</span></td>
+  </tr>
+`).join('');
+
+// Engagement chart
+const engagement = [18, 22, 21, 24, 19, 14, 24]; // Mon..Sun
+const max = Math.max(...engagement);
+document.getElementById('chart').innerHTML = engagement.map((v, i) => `
+  <div class="col" style="height:${(v/max*100)|0}%"><span>${['M','T','W','T','F','S','S'][i]}</span></div>
+`).join('');
+
+// Hardest signs
+const HARDEST = [
+  { sign:'C', err:0.42 },
+  { sign:'M', err:0.38 },
+  { sign:'N', err:0.31 },
+  { sign:'family', err:0.28 },
+  { sign:'thank you', err:0.22 },
+];
+document.getElementById('hardest').innerHTML = HARDEST.map(h => `
+  <li>
+    <span class="sign">${h.sign}</span>
+    <span class="meterbar"><div style="width:${(h.err*100)|0}%"></div></span>
+    <span class="pct">${(h.err*100)|0}% err</span>
+  </li>
+`).join('');
+</script>
+</body>
+</html>

@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SignTutor — Dynamic Signs (Transformer)</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121935; --panel2:#0f1530;
+    --ink:#e9ecff; --muted:#9aa3c7; --line:#2a335c;
+    --accent:#7c9cff; --accent2:#5ee0c1; --warn:#ffb86b; --bad:#ff7a90; --ok:#5ee0c1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.45;
+  }
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px; border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#0d1430,#0b1020); position:sticky; top:0; z-index:5;
+  }
+  header h1{font-size:16px; margin:0}
+  header h1 small{color:var(--muted); font-weight:400; margin-left:6px}
+  .badges{display:flex; gap:8px; flex-wrap:wrap}
+  .badge{font-size:12px; padding:4px 10px; border-radius:999px; border:1px solid var(--line); color:var(--muted); background:rgba(255,255,255,.02)}
+  .badge.ok{color:var(--ok); border-color:rgba(94,224,193,.45); background:rgba(94,224,193,.08)}
+  .badge.bad{color:var(--bad); border-color:rgba(255,122,144,.45); background:rgba(255,122,144,.08)}
+  .badge.warn{color:var(--warn); border-color:rgba(255,184,107,.45); background:rgba(255,184,107,.08)}
+  main{max-width:1280px; margin:0 auto; padding:20px}
+  .toolbar{
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    padding:12px 14px; border:1px solid var(--line); border-radius:12px;
+    background:var(--panel); margin-bottom:16px;
+  }
+  select, button{
+    background:var(--panel2); color:var(--ink); border:1px solid var(--line);
+    padding:8px 12px; border-radius:8px; font-size:14px; cursor:pointer; font-family:inherit;
+  }
+  button.primary{background:var(--accent); color:#0a0f24; border-color:transparent; font-weight:600}
+  button:disabled{opacity:.5; cursor:not-allowed}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:980px){ .row{grid-template-columns:1fr} }
+  .pane{background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden}
+  .pane h2{margin:0; padding:12px 14px; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center}
+  .videoWrap{position:relative; aspect-ratio:4/3; background:#000}
+  .videoWrap video, .videoWrap canvas{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+  .videoWrap.mirrored video, .videoWrap.mirrored canvas{transform:scaleX(-1)}
+
+  .demoSign{
+    width:100%; height:100%; display:flex; flex-direction:column;
+    align-items:center; justify-content:center; gap:10px;
+    background:radial-gradient(ellipse at center, #1a2350 0%, #0b1020 70%);
+    color:var(--ink);
+  }
+  .demoSign .glyph{
+    font-size:64px; font-weight:700; letter-spacing:.05em;
+    text-shadow:0 4px 20px rgba(124,156,255,.4);
+  }
+  .demoSign .desc{
+    max-width:80%; text-align:center; color:var(--muted); font-size:14px;
+  }
+  .demoSign .anim{
+    width:160px; height:160px; border-radius:50%;
+    background:radial-gradient(circle, var(--accent2), transparent 70%);
+    animation:pulse 1.6s ease-in-out infinite; opacity:.45;
+  }
+  @keyframes pulse{
+    0%,100%{transform:scale(.85); opacity:.35}
+    50%    {transform:scale(1.05); opacity:.6}
+  }
+
+  .hudRow{position:absolute; top:10px; left:10px; right:10px; display:flex; justify-content:space-between; gap:8px; pointer-events:none}
+  .hudPill{background:rgba(11,16,32,.75); padding:4px 10px; border-radius:999px; font-size:12px; border:1px solid var(--line); backdrop-filter:blur(4px)}
+
+  .feedback{padding:14px; display:flex; flex-direction:column; gap:12px}
+  .verdict{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px; border-radius:10px; border:1px solid var(--line);
+    background:rgba(124,156,255,.06);
+  }
+  .verdict .label{font-size:12px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase}
+  .verdict .value{font-size:28px; font-weight:700; line-height:1.1; margin-top:2px}
+  .verdict.match{background:rgba(94,224,193,.10); border-color:rgba(94,224,193,.45)}
+  .verdict.match .value{color:var(--ok)}
+  .verdict.close{background:rgba(255,184,107,.10); border-color:rgba(255,184,107,.45)}
+  .verdict.close .value{color:var(--warn)}
+  .verdict.miss{background:rgba(255,122,144,.10); border-color:rgba(255,122,144,.45)}
+  .verdict.miss .value{color:var(--bad)}
+  .conf{font-size:13px; color:var(--muted); text-align:right}
+  .conf b{display:block; font-size:22px; color:var(--ink); margin-top:2px}
+
+  .topk{display:flex; flex-direction:column; gap:5px}
+  .topk .row{display:grid; grid-template-columns:80px 1fr 50px; gap:8px; align-items:center; font-size:13px}
+  .topk .bar{height:8px; background:var(--line); border-radius:999px; overflow:hidden}
+  .topk .bar > div{height:100%; background:var(--accent); transition:width .2s}
+  .topk .row.win .bar > div{background:var(--accent2)}
+  .topk .pct{color:var(--muted); text-align:right}
+
+  .actionable{
+    padding:12px; border:1px dashed var(--line); border-radius:10px;
+    background:rgba(124,156,255,.04); font-size:14px;
+  }
+  .actionable b{color:var(--accent)}
+
+  .targets{display:flex; gap:6px; flex-wrap:wrap; padding:0 14px 14px}
+  .targets button{padding:6px 10px; font-size:13px; background:var(--panel2)}
+  .targets button.active{background:var(--accent); color:#0a0f24; border-color:transparent}
+
+  .recordBar{
+    padding:0 14px 14px; display:flex; align-items:center; gap:10px;
+  }
+  .recordBar progress{flex:1; height:8px; accent-color:var(--accent2)}
+  .recordBar .lab{font-size:12px; color:var(--muted)}
+
+  .log{max-height:120px; overflow:auto; font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--muted); padding:10px 14px; border-top:1px solid var(--line); background:var(--panel2)}
+  .log div{margin:2px 0}
+  .log .err{color:var(--bad)} .log .ok{color:var(--ok)}
+
+  .switchRow{display:flex; align-items:center; gap:8px; margin-left:auto; flex-wrap:wrap}
+  .switch{display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--muted); cursor:pointer}
+  .switch input{accent-color:var(--accent)}
+
+  .footer{margin-top:18px; padding:14px; border:1px solid var(--line); border-radius:12px; background:var(--panel); color:var(--muted); font-size:13px}
+  .footer code{background:rgba(124,156,255,.1); color:var(--accent); padding:1px 6px; border-radius:5px}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SignTutor <small>· Dynamic signs (Transformer · ONNX)</small></h1>
+  <div class="badges">
+    <span class="badge" id="b-runtime">Runtime: loading…</span>
+    <span class="badge" id="b-model">Model: loading…</span>
+    <span class="badge" id="b-fps">FPS: —</span>
+    <span class="badge ok">🔒 On-device</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="toolbar">
+    <label for="lesson" style="font-size:13px;color:var(--muted)">Lesson</label>
+    <select id="lesson">
+      <option value="greetings">Common signs (HELLO · GOODBYE · YES · NO · PLEASE · THANKS · SORRY · HELP)</option>
+    </select>
+
+    <button id="btnStart" class="primary">Start camera</button>
+    <button id="btnRecord" disabled>● Record attempt (1.5 s)</button>
+    <button id="btnStop" disabled>Stop</button>
+
+    <div class="switchRow">
+      <label class="switch"><input type="checkbox" id="continuous" /> Continuous (no record button)</label>
+      <label class="switch"><input type="checkbox" id="mirror" checked /> Mirror</label>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <section class="pane">
+      <h2>
+        <span>Target sign (mock demo)</span>
+        <span class="hudPill" id="targetHud">Target: HELLO</span>
+      </h2>
+      <div class="videoWrap" id="demoWrap">
+        <div class="demoSign">
+          <div class="anim"></div>
+          <div class="glyph" id="demoGlyph">HELLO</div>
+          <div class="desc" id="demoDesc">Right hand starts near forehead, salutes outward.</div>
+        </div>
+      </div>
+      <div class="targets" id="targets"></div>
+    </section>
+
+    <section class="pane">
+      <h2>
+        <span>Your attempt</span>
+        <span class="hudPill" id="hudLatency">— ms</span>
+      </h2>
+      <div class="videoWrap mirrored" id="userWrap">
+        <video id="video" playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <div class="hudRow">
+          <span class="hudPill" id="hudHand">No hand</span>
+          <span class="hudPill" id="hudBuf">Buffer: 0/45</span>
+        </div>
+      </div>
+      <div class="recordBar">
+        <span class="lab">Recording window</span>
+        <progress id="bufferBar" value="0" max="45"></progress>
+        <span class="lab" id="bufferTxt">0/45 frames</span>
+      </div>
+      <div class="feedback">
+        <div class="verdict" id="verdict">
+          <div>
+            <div class="label">Top prediction</div>
+            <div class="value" id="detected">—</div>
+          </div>
+          <div class="conf">confidence<b id="confidence">—</b></div>
+        </div>
+
+        <div class="topk" id="topk"></div>
+
+        <div class="actionable" id="actionable">
+          Click <b>Start camera</b>, pick a target sign, then click <b>Record attempt</b>
+          and perform the sign. The Transformer needs ~1.5 s of continuous frames.
+        </div>
+      </div>
+      <div class="log" id="log"></div>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    <b>Architecture (PDR §7.1, S-06):</b>
+    webcam → MediaPipe Hands → 21×3 landmark sequence buffer (45 frames) →
+    <code>seq_features.normalize_sequence()</code> ported to JS →
+    Transformer (ONNX, 78,600 params, 360&nbsp;KB) loaded with
+    <code>onnxruntime-web</code> → softmax → top-k display + confidence-gated verdict.
+    All inference is on-device; no frames or landmarks leave the browser.
+    <br /><br />
+    <i>Note: this preview's iframe has no network, so MediaPipe + ONNX-Runtime
+    can't download. Open the file via <code>localhost</code> to use it for real.
+    The model was trained on synthetic data — see
+    <code>ml/models/dynamic_robustness_report.md</code> for the realistic robustness sweep.</i>
+  </div>
+
+</main>
+
+<!-- MediaPipe Hands + onnxruntime-web (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.18.0/dist/ort.min.js" crossorigin="anonymous"></script>
+
+<script>
+/* ============================================================================
+ * Dynamic-signs lesson player
+ * Loads the Transformer ONNX exported by ml/train_transformer.py and runs it
+ * over a 45-frame sliding window of MediaPipe landmark output, normalized
+ * with the same pipeline as ml/seq_features.py.
+ * ========================================================================== */
+
+const $ = id => document.getElementById(id);
+const log = (msg, cls='') => {
+  const d = document.createElement('div'); if (cls) d.className = cls;
+  d.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  $('log').appendChild(d); $('log').scrollTop = 1e9;
+};
+
+const T_FRAMES = 45;
+const N_LANDMARKS = 21;
+const FEATURE_DIM = N_LANDMARKS * 3 * 2; // 126
+const WRIST = 0, MIDDLE_MCP = 9;
+
+const LESSON = {
+  HELLO:   'Right hand starts near forehead, salutes outward.',
+  GOODBYE: 'Open hand at chest height, fingers wave (curl/uncurl).',
+  YES:     'Closed fist, nods up-down twice.',
+  NO:      'Index + middle extended, snap closed twice.',
+  PLEASE:  'Flat hand on chest, small circular motion.',
+  THANKS:  'Flat hand starts at chin, moves outward.',
+  SORRY:   'Closed fist on chest, small circular motion.',
+  HELP:    'Closed fist lifts upward (on a flat palm in real ASL).',
+};
+const LABELS = Object.keys(LESSON);
+
+const state = {
+  hands: null, camera: null, stream: null, session: null, modelLabels: [],
+  running: false, target: 'HELLO',
+  buffer: [],            // ring buffer of last T raw landmark frames (each (21,3) Float32Array)
+  recording: false, recordEnd: 0, continuous: false,
+  fpsCounter: { frames:0, t0: performance.now() },
+  inferenceLatencyMs: 0,
+  framesSinceLastInfer: 0,
+};
+
+/* ---- UI: lesson targets ---- */
+function buildTargets(){
+  const wrap = $('targets'); wrap.innerHTML = '';
+  LABELS.forEach(letter => {
+    const b = document.createElement('button');
+    b.textContent = letter; b.dataset.letter = letter;
+    if (letter === state.target) b.classList.add('active');
+    b.onclick = () => setTarget(letter);
+    wrap.appendChild(b);
+  });
+}
+function setTarget(name){
+  state.target = name;
+  $('demoGlyph').textContent = name;
+  $('demoDesc').textContent  = LESSON[name];
+  $('targetHud').textContent = `Target: ${name}`;
+  document.querySelectorAll('#targets button').forEach(b => {
+    b.classList.toggle('active', b.dataset.letter === name);
+  });
+}
+$('mirror').onchange = e => $('userWrap').classList.toggle('mirrored', e.target.checked);
+$('continuous').onchange = e => {
+  state.continuous = e.target.checked;
+  $('btnRecord').disabled = state.continuous || !state.running;
+};
+
+/* ---- Load the ONNX model up-front so we can show clear errors ---- */
+async function loadModel(){
+  $('b-runtime').textContent = 'Runtime: ONNX Runtime Web';
+  try {
+    if (!window.ort) throw new Error('onnxruntime-web not loaded (no network?)');
+    state.session = await ort.InferenceSession.create('models/dynamic_signs_transformer.onnx', {
+      executionProviders: ['wasm']
+    });
+    const meta = await fetch('models/dynamic_labels.json').then(r => r.json());
+    state.modelLabels = meta.labels;
+    $('b-model').textContent = `Model: ${meta.labels.length} signs · seq=${meta.seq_len}`;
+    $('b-model').classList.add('ok');
+    log(`Loaded ONNX model (${meta.labels.length} classes, seq_len=${meta.seq_len})`, 'ok');
+  } catch (e) {
+    $('b-model').textContent = 'Model: failed to load';
+    $('b-model').classList.add('bad');
+    log('Failed to load model: ' + e.message, 'err');
+  }
+}
+loadModel();
+
+/* ---- Camera + MediaPipe ---- */
+async function start(){
+  if (state.running) return;
+  $('btnStart').disabled = true;
+  if (!window.Hands){
+    log('MediaPipe Hands script unavailable.', 'err');
+    $('btnStart').disabled = false; return;
+  }
+  state.hands = new Hands({ locateFile: f =>
+    `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${f}` });
+  state.hands.setOptions({
+    maxNumHands: 1, modelComplexity: 1,
+    minDetectionConfidence: 0.6, minTrackingConfidence: 0.5,
+  });
+  state.hands.onResults(onResults);
+
+  try {
+    state.stream = await navigator.mediaDevices.getUserMedia({
+      video: { width: 640, height: 480, facingMode: 'user' }, audio: false
+    });
+  } catch (e){
+    log('Camera unavailable: ' + e.message, 'err');
+    $('btnStart').disabled = false; return;
+  }
+  const video = $('video'); video.srcObject = state.stream; await video.play();
+  $('overlay').width = video.videoWidth || 640;
+  $('overlay').height = video.videoHeight || 480;
+
+  state.camera = new Camera(video, {
+    onFrame: async () => { await state.hands.send({ image: video }); },
+    width: 640, height: 480
+  });
+  state.camera.start();
+  state.running = true;
+  $('btnStop').disabled = false;
+  $('btnRecord').disabled = state.continuous;
+  log('Camera started · on-device', 'ok');
+}
+function stop(){
+  if (!state.running) return;
+  try { state.camera && state.camera.stop(); } catch{}
+  if (state.stream) state.stream.getTracks().forEach(t => t.stop());
+  state.running = false;
+  $('btnStart').disabled = false; $('btnStop').disabled = true; $('btnRecord').disabled = true;
+  $('hudHand').textContent = 'No hand';
+  log('Camera stopped');
+}
+$('btnStart').onclick = start;
+$('btnStop').onclick = stop;
+$('btnRecord').onclick = () => {
+  state.recording = true;
+  state.buffer.length = 0;
+  state.recordEnd = 0;
+  $('btnRecord').disabled = true;
+  $('actionable').innerHTML = `Recording <b>${state.target}</b>… perform the sign now.`;
+};
+
+/* ---- Per-frame ---- */
+function onResults(results){
+  const lm = (results.multiHandLandmarks && results.multiHandLandmarks[0]) || null;
+
+  const ctx = $('overlay').getContext('2d');
+  ctx.clearRect(0, 0, $('overlay').width, $('overlay').height);
+  if (lm){
+    $('hudHand').textContent = 'Hand detected';
+    if (window.drawConnectors && window.HAND_CONNECTIONS){
+      drawConnectors(ctx, lm, HAND_CONNECTIONS, { color:'#7c9cff', lineWidth:3 });
+      drawLandmarks(ctx, lm, { color:'#5ee0c1', lineWidth:1, radius:3 });
+    }
+    pushFrame(lm);
+  } else {
+    $('hudHand').textContent = 'No hand';
+  }
+
+  // FPS
+  const fc = state.fpsCounter; fc.frames++;
+  const now = performance.now();
+  if (now - fc.t0 > 1000){
+    $('b-fps').textContent = `FPS: ${(fc.frames * 1000/(now - fc.t0)).toFixed(0)}`;
+    fc.frames = 0; fc.t0 = now;
+  }
+}
+
+function pushFrame(lm){
+  // Convert MediaPipe landmark list to a (21,3) Float32Array
+  const arr = new Float32Array(N_LANDMARKS * 3);
+  for (let i=0; i<N_LANDMARKS; i++){
+    arr[i*3+0] = lm[i].x; arr[i*3+1] = lm[i].y; arr[i*3+2] = lm[i].z || 0;
+  }
+  state.buffer.push(arr);
+  if (state.buffer.length > T_FRAMES) state.buffer.shift();
+
+  $('hudBuf').textContent = `Buffer: ${state.buffer.length}/${T_FRAMES}`;
+  $('bufferBar').value = state.buffer.length;
+  $('bufferTxt').textContent = `${state.buffer.length}/${T_FRAMES} frames`;
+
+  // Trigger inference at end of recording window (or every frame in continuous mode)
+  state.framesSinceLastInfer++;
+  if (state.recording){
+    if (state.buffer.length >= T_FRAMES){
+      runInference().finally(() => {
+        state.recording = false;
+        $('btnRecord').disabled = state.continuous || !state.running;
+      });
+    }
+  } else if (state.continuous && state.buffer.length >= T_FRAMES){
+    // Throttle to ~3 Hz so we don't saturate the CPU
+    if (state.framesSinceLastInfer >= 10){
+      state.framesSinceLastInfer = 0;
+      runInference();
+    }
+  }
+}
+
+/* ---- Feature normalization (mirror of ml/seq_features.py) ---- */
+function normalizeSequence(buf){
+  // buf: array of T Float32Array(21*3). Returns Float32Array(T*126).
+  const T = buf.length;
+  const pos = new Float32Array(T * N_LANDMARKS * 3);
+
+  // Anchor = first-frame wrist
+  const anchor_x = buf[0][WRIST*3+0];
+  const anchor_y = buf[0][WRIST*3+1];
+  const anchor_z = buf[0][WRIST*3+2];
+
+  for (let t=0; t<T; t++){
+    for (let j=0; j<N_LANDMARKS; j++){
+      pos[(t*N_LANDMARKS+j)*3+0] = buf[t][j*3+0] - anchor_x;
+      pos[(t*N_LANDMARKS+j)*3+1] = buf[t][j*3+1] - anchor_y;
+      pos[(t*N_LANDMARKS+j)*3+2] = buf[t][j*3+2] - anchor_z;
+    }
+  }
+  // Scale from first frame's wrist->middle-MCP distance (xy)
+  const mx = pos[(0*N_LANDMARKS + MIDDLE_MCP)*3+0];
+  const my = pos[(0*N_LANDMARKS + MIDDLE_MCP)*3+1];
+  let scale = Math.hypot(mx, my); if (scale < 1e-6) scale = 1.0;
+  for (let i=0; i<pos.length; i++) pos[i] /= scale;
+
+  // Velocities
+  const out = new Float32Array(T * FEATURE_DIM);
+  for (let t=0; t<T; t++){
+    for (let j=0; j<N_LANDMARKS*3; j++){
+      out[t*FEATURE_DIM + j] = pos[t*N_LANDMARKS*3 + j];
+      const v = (t === 0) ? 0 : pos[t*N_LANDMARKS*3 + j] - pos[(t-1)*N_LANDMARKS*3 + j];
+      out[t*FEATURE_DIM + N_LANDMARKS*3 + j] = v;
+    }
+  }
+  return out;
+}
+
+/* ---- Inference ---- */
+async function runInference(){
+  if (!state.session) return;
+  const t0 = performance.now();
+  const flat = normalizeSequence(state.buffer);
+  const tensor = new ort.Tensor('float32', flat, [1, T_FRAMES, FEATURE_DIM]);
+  const out = await state.session.run({ input: tensor });
+  const logits = out.logits.data; // Float32Array length = n_classes
+  // Softmax
+  const max = Math.max(...logits);
+  const exps = Array.from(logits, v => Math.exp(v - max));
+  const sumE = exps.reduce((a,b)=>a+b, 0);
+  const probs = exps.map(e => e / sumE);
+  // Top-k
+  const ranked = probs.map((p, i) => ({ label: state.modelLabels[i], prob: p }))
+                      .sort((a,b) => b.prob - a.prob);
+  const dt = performance.now() - t0;
+  state.inferenceLatencyMs = dt;
+  $('hudLatency').textContent = `${dt.toFixed(0)} ms`;
+  renderResult(ranked);
+}
+
+function renderResult(ranked){
+  const top = ranked[0];
+  $('detected').textContent  = top.label;
+  $('confidence').textContent = `${(top.prob*100).toFixed(0)}%`;
+
+  // Verdict gating (PDR FR-3.2): never call it "wrong" below threshold
+  const v = $('verdict'); v.classList.remove('match','close','miss');
+  let verdict;
+  if (top.prob < 0.50) verdict = 'miss';
+  else if (top.label === state.target && top.prob >= 0.75) verdict = 'match';
+  else verdict = 'close';
+  v.classList.add(verdict);
+
+  // Top-k bars
+  $('topk').innerHTML = ranked.slice(0, 5).map((r, i) => `
+    <div class="row ${i===0 ? 'win' : ''}">
+      <div>${r.label}</div>
+      <div class="bar"><div style="width:${(r.prob*100).toFixed(0)}%"></div></div>
+      <div class="pct">${(r.prob*100).toFixed(0)}%</div>
+    </div>`).join('');
+
+  // Most actionable feedback (FR-3.4)
+  let tip;
+  if (verdict === 'match'){
+    tip = `<b>Nice — that's "${state.target}".</b> Try once more to confirm.`;
+  } else if (verdict === 'miss'){
+    tip = `Couldn't read your sign clearly — try again with the hand fully in frame and consistent lighting.`;
+  } else if (top.label === state.target){
+    tip = `Looks like "${state.target}" but confidence is only ${(top.prob*100|0)}%. Slow down and exaggerate the motion slightly.`;
+  } else {
+    // Different sign was top — give a discriminative hint
+    tip = `That came out closer to <b>"${top.label}"</b>. Re-watch the demo: <i>${LESSON[state.target]}</i>`;
+  }
+  $('actionable').innerHTML = tip;
+}
+
+/* ---- Init ---- */
+buildTargets();
+setTarget('HELLO');
+log('Page ready. Click "Start camera", pick a target, then "Record attempt".');
+</script>
+</body>
+</html>

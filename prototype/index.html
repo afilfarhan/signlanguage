@@ -1,0 +1,852 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SignTutor — Static signs (ONNX MLP)</title>
+<style>
+  :root{
+    --bg:#0b1020; --panel:#121935; --panel2:#0f1530;
+    --ink:#e9ecff; --muted:#9aa3c7; --line:#2a335c;
+    --accent:#7c9cff; --accent2:#5ee0c1; --warn:#ffb86b; --bad:#ff7a90; --ok:#5ee0c1;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0; padding:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.45;
+  }
+  a{color:var(--accent)}
+  header{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 20px; border-bottom:1px solid var(--line);
+    background:linear-gradient(180deg,#0d1430,#0b1020);
+    position:sticky; top:0; z-index:5;
+  }
+  header h1{font-size:16px; margin:0; letter-spacing:.02em}
+  header h1 small{color:var(--muted); font-weight:400; margin-left:6px}
+  .badges{display:flex; gap:8px; flex-wrap:wrap}
+  .badge{font-size:12px; padding:4px 10px; border-radius:999px;
+    border:1px solid var(--line); color:var(--muted); background:rgba(255,255,255,.02)}
+  .badge.ok{color:var(--ok); border-color:rgba(94,224,193,.45); background:rgba(94,224,193,.08)}
+  .badge.warn{color:var(--warn); border-color:rgba(255,184,107,.45); background:rgba(255,184,107,.08)}
+  .badge.bad{color:var(--bad); border-color:rgba(255,122,144,.45); background:rgba(255,122,144,.08)}
+  main{max-width:1280px; margin:0 auto; padding:20px}
+  .toolbar{
+    display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+    padding:12px 14px; border:1px solid var(--line); border-radius:12px;
+    background:var(--panel); margin-bottom:16px;
+  }
+  .toolbar label{font-size:13px; color:var(--muted); margin-right:6px}
+  select, button{
+    background:var(--panel2); color:var(--ink); border:1px solid var(--line);
+    padding:8px 12px; border-radius:8px; font-size:14px; cursor:pointer; font-family:inherit;
+  }
+  button.primary{background:var(--accent); color:#0a0f24; border-color:transparent; font-weight:600}
+  button.primary:hover{filter:brightness(1.05)}
+  button:disabled{opacity:.5; cursor:not-allowed}
+  .row{display:grid; grid-template-columns:1fr 1fr; gap:16px}
+  @media (max-width:980px){ .row{grid-template-columns:1fr} }
+  .pane{background:var(--panel); border:1px solid var(--line); border-radius:14px; overflow:hidden; display:flex; flex-direction:column}
+  .pane h2{margin:0; padding:12px 14px; font-size:13px; letter-spacing:.1em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center}
+  .videoWrap{position:relative; aspect-ratio:4/3; background:#000}
+  .videoWrap video, .videoWrap canvas{position:absolute; inset:0; width:100%; height:100%; object-fit:cover}
+  .videoWrap.mirrored video, .videoWrap.mirrored canvas{transform:scaleX(-1)}
+  .demoSign{
+    width:100%; height:100%; display:flex; align-items:center; justify-content:center;
+    background:radial-gradient(ellipse at center, #1a2350 0%, #0b1020 70%);
+    color:var(--ink); font-size:200px; font-weight:700; letter-spacing:.05em;
+    text-shadow:0 4px 20px rgba(124,156,255,.4);
+  }
+  .demoSign .hint{position:absolute; bottom:12px; left:12px; right:12px; font-size:13px;
+    color:var(--muted); font-weight:400; text-shadow:none;
+    background:rgba(11,16,32,.7); padding:8px 12px; border-radius:8px; backdrop-filter: blur(4px)}
+  .hudRow{position:absolute; top:10px; left:10px; right:10px; display:flex; justify-content:space-between; gap:8px; pointer-events:none}
+  .hudPill{background:rgba(11,16,32,.75); color:var(--ink); padding:4px 10px; border-radius:999px; font-size:12px; border:1px solid var(--line); backdrop-filter:blur(4px)}
+
+  .feedback{padding:14px; display:flex; flex-direction:column; gap:10px}
+  .verdict{display:flex; align-items:center; justify-content:space-between; padding:14px; border-radius:10px; border:1px solid var(--line); background:rgba(124,156,255,.06)}
+  .verdict .what{display:flex; flex-direction:column}
+  .verdict .label{font-size:12px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase}
+  .verdict .value{font-size:28px; font-weight:700; line-height:1.1; margin-top:2px}
+  .verdict.match{background:rgba(94,224,193,.10); border-color:rgba(94,224,193,.45)}
+  .verdict.match .value{color:var(--ok)}
+  .verdict.close{background:rgba(255,184,107,.10); border-color:rgba(255,184,107,.45)}
+  .verdict.close .value{color:var(--warn)}
+  .verdict.miss{background:rgba(255,122,144,.10); border-color:rgba(255,122,144,.45)}
+  .verdict.miss .value{color:var(--bad)}
+  .conf{font-size:13px; color:var(--muted); text-align:right}
+  .conf b{display:block; font-size:22px; color:var(--ink); margin-top:2px}
+
+  /* Top-K bars (shown in ML mode) */
+  .topk{display:flex; flex-direction:column; gap:5px; padding:6px 4px 0}
+  .topk .row{display:grid; grid-template-columns:50px 1fr 50px; gap:8px; align-items:center; font-size:13px}
+  .topk .bar{height:8px; background:var(--line); border-radius:999px; overflow:hidden}
+  .topk .bar > div{height:100%; background:var(--accent); transition:width .2s}
+  .topk .row.win .bar > div{background:var(--accent2)}
+  .topk .pct{color:var(--muted); text-align:right}
+
+  .components{display:grid; grid-template-columns:1fr 1fr; gap:8px}
+  .comp{padding:10px 12px; border:1px solid var(--line); border-radius:10px;
+    background:var(--panel2); display:flex; flex-direction:column; gap:4px}
+  .comp .ck{font-size:12px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase}
+  .comp .cv{font-size:14px; display:flex; align-items:center; gap:6px}
+  .dot{width:10px; height:10px; border-radius:50%}
+  .dot.ok{background:var(--ok)} .dot.warn{background:var(--warn)} .dot.bad{background:var(--bad)}
+
+  .actionable{padding:12px; border:1px dashed var(--line); border-radius:10px;
+    background:rgba(124,156,255,.04); font-size:14px}
+  .actionable b{color:var(--accent)}
+  .targets{display:flex; gap:6px; flex-wrap:wrap; padding:0 14px 14px}
+  .targets button{padding:6px 10px; font-size:13px; background:var(--panel2)}
+  .targets button.active{background:var(--accent); color:#0a0f24; border-color:transparent}
+
+  .footer{margin-top:18px; padding:14px; border:1px solid var(--line); border-radius:12px;
+    background:var(--panel); color:var(--muted); font-size:13px}
+  .footer code{background:rgba(124,156,255,.1); color:var(--accent); padding:1px 6px; border-radius:5px}
+  .privacy{display:flex; align-items:center; gap:6px; color:var(--ok); font-size:13px}
+  .log{max-height:120px; overflow:auto; font-family:ui-monospace,Menlo,monospace; font-size:12px; color:var(--muted); padding:10px 14px; border-top:1px solid var(--line); background:var(--panel2)}
+  .log div{margin:2px 0}
+  .log .err{color:var(--bad)} .log .ok{color:var(--ok)} .log .warn{color:var(--warn)}
+  .switchRow{display:flex; align-items:center; gap:8px; margin-left:auto; flex-wrap:wrap}
+  .switch{display:inline-flex; align-items:center; gap:6px; font-size:13px; color:var(--muted); cursor:pointer}
+  .switch input{accent-color:var(--accent)}
+
+  /* Per-finger panel — the rule layer's interpretability surfaced visually */
+  .fingers{
+    display:grid; grid-template-columns:repeat(5, 1fr); gap:6px;
+    padding:8px 10px; border:1px solid var(--line); border-radius:10px;
+    background:var(--panel2);
+  }
+  .finger{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    padding:6px 4px; border-radius:8px; transition:background .15s;
+  }
+  .finger.match{background:rgba(94,224,193,.10)}
+  .finger.miss{background:rgba(255,122,144,.10)}
+  .finger .name{font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--muted)}
+  .finger .icon{font-size:18px; line-height:1}
+  .finger.match .icon{color:var(--ok)}
+  .finger.miss  .icon{color:var(--bad)}
+  .finger .target{font-size:10px; color:var(--muted); margin-top:2px}
+  .finger.match .target{color:var(--ok)}
+  .finger.miss  .target{color:var(--bad)}
+
+  /* Tiny segmented toggle for classifier mode */
+  .seg{display:inline-flex; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--panel2)}
+  .seg button{border:none; border-radius:0; padding:7px 12px; font-size:13px; background:transparent; color:var(--muted)}
+  .seg button.on{background:var(--accent); color:#0a0f24; font-weight:600}
+  .seg button:not(.on):hover{background:rgba(124,156,255,.08); color:var(--ink)}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SignTutor <small>· Static signs · ONNX MLP</small></h1>
+  <div class="badges">
+    <span class="badge" id="b-runtime">Runtime: loading…</span>
+    <span class="badge" id="b-model">Model: loading…</span>
+    <span class="badge" id="b-fps">FPS: —</span>
+    <span class="badge ok" id="b-privacy">🔒 On-device · no upload</span>
+  </div>
+</header>
+
+<main>
+
+  <div class="toolbar">
+    <label for="lang">Language</label>
+    <select id="lang">
+      <option value="asl">ASL (American)</option>
+      <option value="bsl" disabled>BSL (preview)</option>
+      <option value="arsl" disabled>ArSL (preview)</option>
+    </select>
+
+    <label for="lesson">Lesson</label>
+    <select id="lesson">
+      <option value="alphabet">Fingerspelling — Alphabet (mock)</option>
+    </select>
+
+    <label>Classifier</label>
+    <span class="seg" role="radiogroup" aria-label="Classifier mode">
+      <button id="modeML"   class="on" data-mode="ml">ML (ONNX)</button>
+      <button id="modeRule" data-mode="rule">Rule-based</button>
+    </span>
+
+    <button id="btnStart" class="primary">Start camera</button>
+    <button id="btnStop" disabled>Stop</button>
+
+    <div class="switchRow">
+      <label class="switch"><input type="checkbox" id="mirror" checked /> Mirror webcam</label>
+      <label class="switch"><input type="checkbox" id="leftHanded" /> Left-handed</label>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <section class="pane">
+      <h2>
+        <span>Demo · Native signer (mock)</span>
+        <span class="hudPill" id="targetHud">Target: A</span>
+      </h2>
+      <div class="videoWrap" id="demoWrap">
+        <div class="demoSign">
+          <span id="demoLetter">A</span>
+          <div class="hint" id="demoHint">Closed fist · thumb resting alongside index · palm forward.</div>
+        </div>
+      </div>
+      <div class="targets" id="targets"></div>
+    </section>
+
+    <section class="pane">
+      <h2>
+        <span>You · Webcam</span>
+        <span class="privacy">🔒 On-device</span>
+      </h2>
+      <div class="videoWrap mirrored" id="userWrap">
+        <video id="video" playsinline muted></video>
+        <canvas id="overlay"></canvas>
+        <div class="hudRow">
+          <span class="hudPill" id="hudHand">No hand detected</span>
+          <span class="hudPill" id="hudLatency">— ms</span>
+        </div>
+      </div>
+      <div class="feedback">
+        <div class="verdict" id="verdict">
+          <div class="what">
+            <span class="label" id="verdictLabel">Detected (ML)</span>
+            <span class="value" id="detected">—</span>
+          </div>
+          <div class="conf">
+            confidence
+            <b id="confidence">—</b>
+          </div>
+        </div>
+
+        <div class="topk" id="topk" hidden></div>
+
+        <div class="fingers" id="fingers" aria-label="Per-finger handshape match">
+          <div class="finger" data-finger="thumb" ><span class="name">Thumb</span> <span class="icon" id="fi-thumb">·</span><span class="target" id="ft-thumb">—</span></div>
+          <div class="finger" data-finger="index" ><span class="name">Index</span> <span class="icon" id="fi-index">·</span><span class="target" id="ft-index">—</span></div>
+          <div class="finger" data-finger="middle"><span class="name">Middle</span><span class="icon" id="fi-middle">·</span><span class="target" id="ft-middle">—</span></div>
+          <div class="finger" data-finger="ring"  ><span class="name">Ring</span>  <span class="icon" id="fi-ring">·</span><span class="target" id="ft-ring">—</span></div>
+          <div class="finger" data-finger="pinky" ><span class="name">Pinky</span> <span class="icon" id="fi-pinky">·</span><span class="target" id="ft-pinky">—</span></div>
+        </div>
+
+        <div class="components">
+          <div class="comp"><span class="ck">Handshape</span><span class="cv"><span class="dot" id="d-shape"></span><span id="t-shape">—</span></span></div>
+          <div class="comp"><span class="ck">Orientation</span><span class="cv"><span class="dot" id="d-orient"></span><span id="t-orient">—</span></span></div>
+          <div class="comp"><span class="ck">Location</span><span class="cv"><span class="dot" id="d-loc"></span><span id="t-loc">—</span></span></div>
+          <div class="comp"><span class="ck">Movement</span><span class="cv"><span class="dot" id="d-move"></span><span id="t-move">—</span></span></div>
+        </div>
+
+        <div class="actionable" id="actionable">
+          Click <b>Start camera</b> and choose a target letter to begin practicing.
+        </div>
+      </div>
+      <div class="log" id="log"></div>
+    </section>
+
+  </div>
+
+  <div class="footer">
+    <b>Architecture (PDR §7.1, S-05):</b>
+    webcam → MediaPipe Hands → 21×3 landmarks →
+    <code>normalize()</code> (a JS port of <code>ml/features.py</code>, byte-equivalent contract) →
+    <b>ONNX MLP</b> (sklearn-trained, exported to ONNX, loaded with
+    <code>onnxruntime-web</code>) → softmax → top-3 + confidence-gated verdict.
+    The rule-based classifier is still here as a toggle (so you can compare) and
+    its per-finger output drives the actionable tips ("extend your thumb"),
+    because the MLP itself is opaque on which finger is wrong.
+    A startup self-test runs the model on a canonical input and logs PyTorch ↔ ONNX parity (line in the log below).
+    All inference is on-device.
+    <br /><br />
+    <i>Note: this preview iframe has no network, so MediaPipe + onnxruntime-web
+    can't download. Open the file via <code>localhost</code> to use it for real;
+    if the model fails to load, the page falls back to the rule-based classifier
+    so the UI still works.</i>
+  </div>
+
+</main>
+
+<!-- MediaPipe Hands + onnxruntime-web (CDN; only used outside the sandboxed preview) -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.18.0/dist/ort.min.js" crossorigin="anonymous"></script>
+
+<script>
+/* ============================================================================
+ * SignTutor — Static signs with ONNX MLP
+ *
+ *   getUserMedia -> MediaPipe Hands -> 21x3 landmarks
+ *     -> normalize()         (mirror of ml/features.py)
+ *     -> ONNX MLP (5 letters) via onnxruntime-web
+ *     -> top-3 probabilities + confidence-gated verdict
+ *     -> structured-feedback engine (handshape/orientation/location/movement)
+ *
+ * The rule-based classifier remains as a fallback (when ONNX fails to load)
+ * and as a toggle (so you can compare ML vs rules side-by-side). Even in
+ * ML-mode, the rule layer's per-finger states drive the actionable tips,
+ * because the MLP is opaque about *which* finger is wrong.
+ * ========================================================================== */
+
+const $ = id => document.getElementById(id);
+const log = (msg, cls='') => {
+  const d = document.createElement('div'); if (cls) d.className = cls;
+  d.textContent = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  $('log').appendChild(d); $('log').scrollTop = 1e9;
+};
+
+/* ---------- Lesson content ----------------------------------------------- */
+const LESSONS = {
+  alphabet: {
+    // J and Z are motion letters — they live in the dynamic-sign player.
+    targets: ['A','B','C','D','E','F','G','H','I','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y'],
+    descriptions: {
+      A: 'Closed fist · thumb resting alongside index · palm forward.',
+      B: 'Flat hand · fingers extended & together · thumb folded across palm.',
+      C: 'Curved hand forming a "C" shape · palm to the side.',
+      D: 'Index extended up · other fingers and thumb meet to form a circle.',
+      E: 'All fingertips curled to touch the thumb across the palm.',
+      F: 'Thumb and index touch in a circle · other three fingers extended up.',
+      G: 'Index extended sideways · thumb parallel · other fingers closed.',
+      H: 'Index and middle extended together sideways · others closed.',
+      I: 'Pinky extended up · all other fingers and thumb closed.',
+      K: 'Index up, middle out at angle, thumb between · others closed.',
+      L: 'Index up · thumb out · other fingers curled. Forms an "L".',
+      M: 'Thumb tucked under index, middle, and ring · pinky out.',
+      N: 'Thumb tucked under index and middle · ring and pinky closed.',
+      O: 'All fingers curled to touch the thumb · forms an "O".',
+      P: 'Like K but pointed downward.',
+      Q: 'Like G but pointed downward.',
+      R: 'Index and middle crossed · others closed.',
+      S: 'Closed fist with thumb across the front of the fingers.',
+      T: 'Closed fist with thumb tucked between index and middle.',
+      U: 'Index and middle extended together up · others closed.',
+      V: 'Index and middle extended apart up · others closed. "Peace".',
+      W: 'Index, middle, and ring extended up · pinky and thumb closed.',
+      X: 'Index bent into a hook · others closed.',
+      Y: 'Thumb and pinky extended · index/middle/ring curled. "Hang loose".',
+    }
+  }
+};
+
+// Synth-collision groups: letters this model genuinely cannot tell apart on
+// finger-pattern alone (mirrors SYNTH_COLLISIONS in ml/synth_landmarks.py).
+// We use these to soften the verdict when the model picks a "neighbour".
+const COLLISION_GROUPS = [
+  ['A','E','M','N','S','T'],
+  ['D','G','L','Q'],
+  ['H','U','V'],
+  ['K','P'],
+  ['C','O'],
+];
+function inSameGroup(a, b){
+  if (a === b) return true;
+  for (const g of COLLISION_GROUPS) if (g.includes(a) && g.includes(b)) return true;
+  return false;
+}
+
+/* ---------- State -------------------------------------------------------- */
+const state = {
+  hands: null, camera: null, stream: null,
+  session: null, modelLabels: [], modelReady: false,
+  mode: 'ml',           // 'ml' | 'rule' — falls back to 'rule' if model unavailable
+  running: false, target: 'A', mirror: true,
+  fpsCounter: { frames:0, t0: performance.now() },
+  movementBuf: [],
+  mediapipeLatency: 0, classifierLatency: 0,
+};
+
+/* ---------- Targets / mode UI -------------------------------------------- */
+function buildTargets(){
+  const wrap = $('targets'); wrap.innerHTML = '';
+  LESSONS.alphabet.targets.forEach(letter => {
+    const b = document.createElement('button');
+    b.textContent = letter; b.dataset.letter = letter;
+    if (letter === state.target) b.classList.add('active');
+    b.onclick = () => setTarget(letter);
+    wrap.appendChild(b);
+  });
+}
+function setTarget(letter){
+  state.target = letter;
+  $('demoLetter').textContent = letter;
+  $('demoHint').textContent = LESSONS.alphabet.descriptions[letter];
+  $('targetHud').textContent = `Target: ${letter}`;
+  document.querySelectorAll('#targets button').forEach(b =>
+    b.classList.toggle('active', b.dataset.letter===letter));
+}
+function setMode(m){
+  state.mode = m;
+  $('modeML').classList.toggle('on', m==='ml');
+  $('modeRule').classList.toggle('on', m==='rule');
+  $('verdictLabel').textContent = (m==='ml') ? 'Detected (ML)' : 'Detected (rule)';
+  $('topk').hidden = (m !== 'ml');
+}
+$('modeML').onclick   = () => { if (state.modelReady) setMode('ml'); else log('ML mode unavailable — model not loaded.', 'warn'); };
+$('modeRule').onclick = () => setMode('rule');
+$('mirror').onchange = e => $('userWrap').classList.toggle('mirrored', e.target.checked);
+
+/* ============================================================================
+ * Feature normalization — line-for-line mirror of ml/features.py
+ * Input : (21, 3) array as plain JS arrays
+ * Output: Float32Array(63), normalized by translation to wrist + scale by
+ *         wrist→middle-MCP distance (xy magnitude). Same contract as Python.
+ * ========================================================================== */
+const WRIST = 0, MIDDLE_MCP = 9;
+
+function normalize(landmarks){
+  // landmarks: array of 21 {x,y,z}
+  const out = new Float32Array(21 * 3);
+  // 1. translate so wrist is origin
+  const wx = landmarks[WRIST].x, wy = landmarks[WRIST].y, wz = (landmarks[WRIST].z || 0);
+  for (let i = 0; i < 21; i++){
+    out[i*3+0] = landmarks[i].x - wx;
+    out[i*3+1] = landmarks[i].y - wy;
+    out[i*3+2] = (landmarks[i].z || 0) - wz;
+  }
+  // 2. scale by wrist->middle-MCP distance (xy)
+  const mx = out[MIDDLE_MCP*3+0], my = out[MIDDLE_MCP*3+1];
+  let scale = Math.hypot(mx, my); if (scale < 1e-6) scale = 1.0;
+  for (let i = 0; i < out.length; i++) out[i] /= scale;
+  return out;
+}
+
+/* ============================================================================
+ * Load ONNX MLP up-front so we can show clear errors and run a parity test.
+ * ========================================================================== */
+async function loadModel(){
+  $('b-runtime').textContent = 'Runtime: ONNX Runtime Web';
+  if (!window.ort){
+    $('b-model').textContent = 'Model: ort.js unavailable';
+    $('b-model').classList.add('bad');
+    log('onnxruntime-web not loaded (no network in this preview). Falling back to rule-based.', 'warn');
+    setMode('rule'); $('modeML').disabled = true;
+    return;
+  }
+  try {
+    state.session = await ort.InferenceSession.create(
+      'models/fingerspell_mlp.onnx', { executionProviders: ['wasm'] });
+    const meta = await fetch('models/labels.json').then(r => r.json());
+    state.modelLabels = meta.labels;
+    state.modelReady = true;
+    $('b-model').textContent = `Model: MLP · ${meta.labels.length} classes`;
+    $('b-model').classList.add('ok');
+    log(`Loaded ONNX MLP (${meta.labels.length} classes: ${meta.labels.join(', ')})`, 'ok');
+    await selfTest();
+  } catch (e) {
+    $('b-model').textContent = 'Model: failed to load';
+    $('b-model').classList.add('bad');
+    log('Failed to load ONNX model: ' + e.message + ' — falling back to rule-based.', 'err');
+    setMode('rule'); $('modeML').disabled = true;
+  }
+}
+
+/* Startup parity self-test (PDR-grade contract check):
+   Loads canonical landmark frames generated by ml/synth_landmarks.py with
+   seed=42 (one per class), runs them through:
+     (1) the JS normalize() — and compares feature outputs to the reference
+         computed by ml/features.py (must match to ~1e-4)
+     (2) the loaded ONNX model — and compares top-1 labels to ground truth
+   If either check drifts, the JS feature pipeline is out of sync with the
+   Python training pipeline and the model would silently mis-score everyone. */
+async function selfTest(){
+  let parity;
+  try {
+    parity = await fetch('models/parity_samples.json').then(r => r.json());
+  } catch (e) {
+    log('Self-test skipped: parity_samples.json unavailable.', 'warn');
+    return;
+  }
+  const tol = 1e-3;
+  let featPass = 0, featFail = 0, predPass = 0, predFail = 0;
+  const failedPreds = [];
+
+  for (const [letter, sample] of Object.entries(parity)){
+    // Convert (21, 3) array to MediaPipe-shaped {x,y,z}[]
+    const lm = sample.landmarks.map(pt => ({x: pt[0], y: pt[1], z: pt[2]}));
+    // (1) Feature parity
+    const feats = normalize(lm);
+    let drift = 0;
+    for (let i = 0; i < 6; i++){
+      drift = Math.max(drift, Math.abs(feats[i] - sample.expected_normalized_first6[i]));
+    }
+    let l2 = 0; for (let i = 0; i < feats.length; i++) l2 += feats[i] * feats[i];
+    l2 = Math.sqrt(l2);
+    const l2Drift = Math.abs(l2 - sample.expected_normalized_l2);
+    if (drift < tol && l2Drift < tol) featPass++; else featFail++;
+
+    // (2) Prediction parity
+    const pred = await runModel(lm);
+    if (pred && pred[0].label === letter) predPass++;
+    else { predFail++; failedPreds.push(`${letter}→${pred?pred[0].label:'?'}`); }
+  }
+
+  const total = Object.keys(parity).length;
+  if (featFail === 0 && predFail === 0){
+    log(`Self-test ✓  features: ${featPass}/${total} match Python · predictions: ${predPass}/${total} correct`, 'ok');
+  } else {
+    if (featFail > 0)
+      log(`Self-test ⚠  ${featFail}/${total} features drifted from Python — JS normalize() out of sync with ml/features.py`, 'warn');
+    if (predFail > 0)
+      log(`Self-test ⚠  ${predFail}/${total} predictions wrong: ${failedPreds.join(', ')}`, 'warn');
+  }
+}
+
+/* ---------- Run the MLP on a single frame -------------------------------- */
+async function runModel(landmarks){
+  if (!state.session) return null;
+  const t0 = performance.now();
+  const feats = normalize(landmarks);
+  const tensor = new ort.Tensor('float32', feats, [1, 63]);
+  const out = await state.session.run({ input: tensor });
+  state.classifierLatency = performance.now() - t0;
+  // Output names (set in train_export.py via convert_sklearn): "label" + "probabilities"
+  const probs = out.probabilities.data; // Float32Array length = n_classes
+  return Array.from(probs).map((p, i) => ({ label: state.modelLabels[i], prob: p }))
+                          .sort((a, b) => b.prob - a.prob);
+}
+
+/* ============================================================================
+ * Camera + MediaPipe
+ * ========================================================================== */
+async function start(){
+  if (state.running) return;
+  $('btnStart').disabled = true;
+  log('Requesting camera permission…');
+  if (!window.Hands){
+    log('MediaPipe Hands script not available (no network in this preview).', 'err');
+    $('b-runtime').textContent = 'Runtime: offline';
+    $('b-runtime').classList.add('bad'); $('btnStart').disabled = false; return;
+  }
+  try {
+    const hands = new Hands({ locateFile: f =>
+      `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${f}` });
+    hands.setOptions({ maxNumHands:1, modelComplexity:1,
+      minDetectionConfidence:0.6, minTrackingConfidence:0.5 });
+    hands.onResults(onResults);
+    state.hands = hands;
+  } catch (e){ log('Failed to init MediaPipe: ' + e.message, 'err'); $('btnStart').disabled = false; return; }
+
+  try {
+    state.stream = await navigator.mediaDevices.getUserMedia({
+      video: { width: 640, height: 480, facingMode: 'user' }, audio: false });
+  } catch (e){ log('Camera unavailable: ' + e.message, 'err'); $('btnStart').disabled = false; return; }
+
+  const video = $('video'); video.srcObject = state.stream; await video.play();
+  $('overlay').width = video.videoWidth || 640;
+  $('overlay').height = video.videoHeight || 480;
+
+  state.camera = new Camera(video, {
+    onFrame: async () => {
+      const t0 = performance.now();
+      await state.hands.send({ image: video });
+      state.mediapipeLatency = performance.now() - t0;
+      // Total = MediaPipe + classifier (the latter set inside onResults via runModel)
+      $('hudLatency').textContent =
+        `mp ${state.mediapipeLatency.toFixed(0)}ms · clf ${state.classifierLatency.toFixed(0)}ms`;
+    },
+    width: 640, height: 480
+  });
+  state.camera.start();
+  state.running = true; $('btnStop').disabled = false;
+  log('Camera started · running on-device', 'ok');
+}
+function stop(){
+  if (!state.running) return;
+  try { state.camera && state.camera.stop(); } catch{}
+  if (state.stream) state.stream.getTracks().forEach(t => t.stop());
+  state.running = false;
+  $('btnStart').disabled = false; $('btnStop').disabled = true;
+  $('hudHand').textContent = 'No hand detected';
+  log('Camera stopped');
+}
+$('btnStart').onclick = start;
+$('btnStop').onclick = stop;
+
+/* ---------- Per-frame ---------------------------------------------------- */
+async function onResults(results){
+  const ctx = $('overlay').getContext('2d');
+  ctx.clearRect(0, 0, $('overlay').width, $('overlay').height);
+
+  const lm = (results.multiHandLandmarks && results.multiHandLandmarks[0]) || null;
+  if (lm){
+    $('hudHand').textContent = 'Hand detected';
+    if (window.drawConnectors && window.HAND_CONNECTIONS){
+      drawConnectors(ctx, lm, HAND_CONNECTIONS, { color:'#7c9cff', lineWidth:3 });
+      drawLandmarks(ctx, lm, { color:'#5ee0c1', lineWidth:1, radius:3 });
+    }
+    state.movementBuf.push({ x: lm[0].x, y: lm[0].y, t: performance.now() });
+    if (state.movementBuf.length > 30) state.movementBuf.shift();
+    await classifyAndScore(lm);
+  } else {
+    $('hudHand').textContent = 'No hand detected';
+    state.movementBuf.length = 0;
+    setVerdict('—', 0, null, []);
+  }
+
+  // FPS
+  const fc = state.fpsCounter; fc.frames++;
+  const now = performance.now();
+  if (now - fc.t0 > 1000){
+    $('b-fps').textContent = `FPS: ${(fc.frames * 1000 / (now - fc.t0)).toFixed(0)}`;
+    fc.frames = 0; fc.t0 = now;
+  }
+}
+
+/* ============================================================================
+ * Rule-based classifier (kept for fallback + tip generation in ML mode)
+ * ========================================================================== */
+const FT  = { THUMB:4, INDEX:8, MIDDLE:12, RING:16, PINKY:20 };
+const PIP = { THUMB:3, INDEX:6, MIDDLE:10, RING:14, PINKY:18 };
+const MCP = { THUMB:2, INDEX:5, MIDDLE:9,  RING:13, PINKY:17 };
+
+function dist(a,b){ const dx=a.x-b.x, dy=a.y-b.y, dz=(a.z||0)-(b.z||0); return Math.hypot(dx,dy,dz); }
+function fingerExtended(lm, tip, pip, mcp){
+  const w = lm[0];
+  return dist(lm[tip], w) > dist(lm[pip], w) * 1.05
+      && dist(lm[tip], w) > dist(lm[mcp], w) * 1.10;
+}
+function thumbExtended(lm){
+  return dist(lm[FT.THUMB], lm[0]) > dist(lm[PIP.THUMB], lm[0]) * 1.05;
+}
+function fingerStates(lm){
+  return {
+    thumb:  thumbExtended(lm),
+    index:  fingerExtended(lm, FT.INDEX,  PIP.INDEX,  MCP.INDEX),
+    middle: fingerExtended(lm, FT.MIDDLE, PIP.MIDDLE, MCP.MIDDLE),
+    ring:   fingerExtended(lm, FT.RING,   PIP.RING,   MCP.RING),
+    pinky:  fingerExtended(lm, FT.PINKY,  PIP.PINKY,  MCP.PINKY),
+  };
+}
+// Mirrors PATTERNS in ml/synth_landmarks.py (kept in sync by hand; the CI
+// gate will surface drift via prediction parity if these get out of sync).
+const PATTERNS = {
+  A: {thumb:false,index:false,middle:false,ring:false,pinky:false},
+  B: {thumb:false,index:true, middle:true, ring:true, pinky:true},
+  C: {thumb:true, index:false,middle:false,ring:false,pinky:false},
+  D: {thumb:true, index:true, middle:false,ring:false,pinky:false},
+  E: {thumb:false,index:false,middle:false,ring:false,pinky:false},
+  F: {thumb:true, index:false,middle:true, ring:true, pinky:true},
+  G: {thumb:true, index:true, middle:false,ring:false,pinky:false},
+  H: {thumb:false,index:true, middle:true, ring:false,pinky:false},
+  I: {thumb:false,index:false,middle:false,ring:false,pinky:true},
+  K: {thumb:true, index:true, middle:true, ring:false,pinky:false},
+  L: {thumb:true, index:true, middle:false,ring:false,pinky:false},
+  M: {thumb:false,index:false,middle:false,ring:false,pinky:false},
+  N: {thumb:false,index:false,middle:false,ring:false,pinky:false},
+  O: {thumb:true, index:false,middle:false,ring:false,pinky:false},
+  P: {thumb:true, index:true, middle:true, ring:false,pinky:false},
+  Q: {thumb:true, index:true, middle:false,ring:false,pinky:false},
+  R: {thumb:false,index:true, middle:true, ring:false,pinky:false},
+  S: {thumb:false,index:false,middle:false,ring:false,pinky:false},
+  T: {thumb:false,index:false,middle:false,ring:false,pinky:false},
+  U: {thumb:false,index:true, middle:true, ring:false,pinky:false},
+  V: {thumb:false,index:true, middle:true, ring:false,pinky:false},
+  W: {thumb:false,index:true, middle:true, ring:true, pinky:false},
+  X: {thumb:false,index:true, middle:false,ring:false,pinky:false},
+  Y: {thumb:true, index:false,middle:false,ring:false,pinky:true},
+};
+function scoreLetterRule(states, target){
+  const ref = PATTERNS[target]; let agree = 0, total = 0;
+  for (const k of Object.keys(ref)){ total++; if (ref[k] === states[k]) agree++; }
+  return agree / total;
+}
+function classifyRule(lm){
+  const states = fingerStates(lm);
+  let best = { label: '?', prob: 0 };
+  const ranked = Object.keys(PATTERNS).map(letter => ({
+    label: letter, prob: scoreLetterRule(states, letter)
+  })).sort((a,b)=>b.prob - a.prob);
+  return { ranked, states };
+}
+
+/* ---------- Movement / orientation / location helpers ------------------- */
+function recentMovement(){
+  if (state.movementBuf.length < 5) return 0;
+  let total = 0;
+  for (let i=1; i<state.movementBuf.length; i++)
+    total += dist(state.movementBuf[i], state.movementBuf[i-1]);
+  return total;
+}
+function palmFacingCamera(lm){
+  const a = lm[5], b = lm[17], w = lm[0];
+  const v1 = { x:a.x-w.x, y:a.y-w.y };
+  const v2 = { x:b.x-w.x, y:b.y-w.y };
+  const nz = v1.x*v2.y - v1.y*v2.x;
+  return { facing: nz < 0, magnitude: Math.abs(nz) };
+}
+function locationLabel(lm){
+  const w = lm[0];
+  if (w.y < 0.33) return 'upper';
+  if (w.y < 0.66) return 'middle (neutral signing space)';
+  return 'lower';
+}
+
+/* ============================================================================
+ * Main per-frame: classify (ML or rule) -> structured feedback + verdict
+ * ========================================================================== */
+async function classifyAndScore(lm){
+  const states = fingerStates(lm);                      // always compute (used for tips)
+  const target = state.target;
+  const orient = palmFacingCamera(lm);
+  const loc    = locationLabel(lm);
+  const movement = recentMovement();
+
+  // --- Top-1 + confidence: from ML or rule, with auto-fallback ---
+  let ranked, modelTopProbForTarget;
+  if (state.mode === 'ml' && state.modelReady){
+    try {
+      ranked = await runModel(lm);
+    } catch (e) {
+      log('Inference error: ' + e.message + ' — falling back to rule for this frame', 'warn');
+    }
+  }
+  if (!ranked){
+    const r = classifyRule(lm);
+    ranked = r.ranked;
+    state.classifierLatency = 0; // rule is effectively instant
+  }
+  const top = ranked[0];
+  // Probability the model assigns to the *target* class (used for "shape" component)
+  const targetEntry = ranked.find(r => r.label === target);
+  modelTopProbForTarget = targetEntry ? targetEntry.prob : 0;
+
+  // --- Structured component scoring ---
+  const components = {
+    shape:  modelTopProbForTarget, // ML's view of "how much is this the target?"
+    orient: orient.facing ? 1 : 0.4,
+    loc:    loc.startsWith('middle') ? 1 : 0.6,
+    move:   movement < 0.05 ? 1 : (movement < 0.15 ? 0.6 : 0.2),
+  };
+  // Aggregate confidence
+  const conf = components.shape  * 0.55
+             + components.orient * 0.15
+             + components.loc    * 0.10
+             + components.move   * 0.20;
+
+  // Verdict gating (PDR FR-3.2). With 24 classes the model often confuses
+  // letters within a synth-collision group; treat those as "close" rather
+  // than "match" so the user knows they need to refine handshape, but never
+  // call them "miss" if the target's own probability is reasonable.
+  let verdict = 'close';
+  if (top.label === target && components.shape >= 0.50 && conf >= 0.65) verdict = 'match';
+  else if (inSameGroup(top.label, target) && components.shape >= 0.30) verdict = 'close';
+  else if (conf < 0.30 || components.shape < 0.10) verdict = 'miss';
+
+  setVerdict(top.label, conf, verdict, ranked);
+
+  // Per-component dots
+  paintComp('shape',  components.shape, `${(components.shape*100|0)}% probability of "${target}"`);
+  paintComp('orient', components.orient, orient.facing ? 'palm forward ✓' : 'rotate palm toward camera');
+  paintComp('loc',    components.loc,    loc);
+  paintComp('move',   components.move,   movement < 0.05 ? 'steady ✓' : 'hold the sign still');
+
+  // Per-finger panel (interpretability)
+  paintFingers(states, target);
+
+  // Most actionable single tip (uses rule states for finger-level interpretability)
+  $('actionable').innerHTML = chooseTip(components, top, target, orient, states);
+}
+
+function setVerdict(letter, conf, verdict, ranked){
+  $('detected').textContent = letter || '—';
+  $('confidence').textContent = (conf>0) ? `${(conf*100).toFixed(0)}%` : '—';
+  const v = $('verdict');
+  v.classList.remove('match','close','miss');
+  if (verdict) v.classList.add(verdict);
+
+  // Top-K bars (ML mode only, since rule mode top-K is just exact-match counts)
+  if (state.mode === 'ml' && state.modelReady && ranked && ranked.length){
+    $('topk').hidden = false;
+    $('topk').innerHTML = ranked.slice(0, 5).map((r, i) => `
+      <div class="row ${i===0 ? 'win' : ''}">
+        <div>${r.label}</div>
+        <div class="bar"><div style="width:${(r.prob*100).toFixed(0)}%"></div></div>
+        <div class="pct">${(r.prob*100).toFixed(0)}%</div>
+      </div>`).join('');
+  } else {
+    $('topk').hidden = true;
+  }
+}
+
+function paintComp(key, score, text){
+  const dot = $('d-'+key), label = $('t-'+key);
+  dot.classList.remove('ok','warn','bad');
+  if (score >= 0.7) dot.classList.add('ok');
+  else if (score >= 0.4) dot.classList.add('warn');
+  else dot.classList.add('bad');
+  label.textContent = text;
+}
+
+/* paintFingers — show the rule layer's per-finger extended/curled state vs.
+   the target pattern. Green ✓ when the user's finger matches the target,
+   red ✗ when it doesn't, plain · when there's no target pattern available. */
+function paintFingers(states, target){
+  const ref = PATTERNS[target] || null;
+  for (const f of ['thumb','index','middle','ring','pinky']){
+    const el = document.querySelector(`.finger[data-finger="${f}"]`);
+    el.classList.remove('match','miss');
+    const youExt = !!states[f];
+    const ftEl = $('ft-'+f), iconEl = $('fi-'+f);
+    iconEl.textContent = youExt ? '✓' : '✗';
+    if (!ref){
+      ftEl.textContent = youExt ? 'extended' : 'curled';
+      continue;
+    }
+    const want = ref[f];
+    const ok = (youExt === want);
+    el.classList.add(ok ? 'match' : 'miss');
+    ftEl.textContent = ok ? (want ? 'extend ✓' : 'curl ✓')
+                          : (want ? 'should extend' : 'should curl');
+  }
+}
+
+
+function chooseTip(c, top, target, orient, ruleStates){
+  // 1. If we already have a match, congratulate
+  if (top.label === target && c.shape >= 0.75 && c.orient > 0.5 && c.move > 0.5){
+    return `<b>Nice — that looks like "${target}".</b> Hold it for a beat to confirm.`;
+  }
+  // 2. Same-group neighbour: tell the user the model can't *visually* tell
+  //    them apart on this synth, so they're hitting the right family.
+  if (top.label !== target && inSameGroup(top.label, target) && top.prob > 0.4){
+    return `Reads as <b>"${top.label}"</b>, which is the same handshape family as "${target}" in this model. With finger-curvature cues these are distinct — for now, hold the sign confidently.`;
+  }
+  // 3. Different letter with high confidence: surface for discriminative learning
+  if (top.label !== target && top.prob > 0.6){
+    return `Looks closer to <b>"${top.label}"</b>. For "${target}": ${LESSONS.alphabet.descriptions[target].toLowerCase()}`;
+  }
+  // 3. Otherwise pick the weakest *non-shape* component first,
+  //    or fall through to a finger-level tip (rule-derived)
+  const ranked = [['orient', c.orient], ['loc', c.loc], ['move', c.move]]
+                 .sort((a, b) => a[1] - b[1]);
+  const [worstKey, worstVal] = ranked[0];
+  if (c.shape < 0.5){
+    // Use the rule layer to find the first finger that disagrees with the target pattern
+    const ref = PATTERNS[target];
+    for (const finger of ['thumb','index','middle','ring','pinky']){
+      if (ref[finger] !== ruleStates[finger]){
+        return ref[finger]
+          ? `Try <b>extending your ${finger}</b> for "${target}".`
+          : `Try <b>curling your ${finger}</b> in for "${target}".`;
+      }
+    }
+    return `Adjust your handshape to match "${target}".`;
+  }
+  if (worstVal > 0.7) return `Almost — keep going.`;
+  if (worstKey === 'orient') return `Rotate your <b>palm toward the camera</b>.`;
+  if (worstKey === 'loc')    return `Bring your hand into the <b>neutral signing space</b> in front of your chest.`;
+  if (worstKey === 'move')   return `<b>Hold the sign still</b> — fingerspelling letters are static.`;
+  return `Keep going.`;
+}
+
+/* ---------- Init -------------------------------------------------------- */
+buildTargets();
+setTarget('A');
+setMode('ml');
+log('Page loaded. Loading ONNX MLP…');
+loadModel();
+</script>
+</body>
+</html>

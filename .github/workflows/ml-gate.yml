@@ -1,0 +1,96 @@
+name: ML release gates (PDR NFR-9 · NFR-10 · feature parity)
+
+on:
+  push:
+    paths:
+      - 'ml/**'
+      - 'prototype/models/**'
+      - 'prototype/index.html'
+      - 'prototype/dynamic.html'
+      - 'ci/**'
+      - '.github/workflows/ml-gate.yml'
+  pull_request: {}
+  workflow_dispatch: {}
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Python deps
+        run: |
+          python3 -m pip install --quiet \
+            numpy scikit-learn skl2onnx onnx \
+            torch --index-url https://download.pytorch.org/whl/cpu \
+            onnxruntime onnxscript
+
+      # --- Static MLP -----------------------------------------------------
+      - name: Train static MLP & write eval report
+        run: python3 ml/train_export.py
+
+      # --- Dynamic Transformer (with rotation augmentation) --------------
+      # The --rotation-aug flag is what closes the NFR-10 gate; see
+      # ml/ROBUSTNESS_GATE_DEMO.md for the full diagnosis.
+      - name: Train dynamic Transformer & write eval report
+        run: python3 ml/train_transformer.py --rotation-aug
+
+      - name: Robustness sweep on dynamic model
+        run: python3 ml/eval_robustness.py
+
+      # --- Sync prototype/models/ from ml/models/ -------------------------
+      - name: Copy models into served bundle
+        run: |
+          mkdir -p prototype/models
+          cp ml/models/fingerspell_mlp.onnx ml/models/labels.json prototype/models/
+          cp ml/models/dynamic_signs_transformer.onnx ml/models/dynamic_labels.json prototype/models/
+
+      # --- Regenerate parity samples from the trained pipeline -----------
+      - name: Regenerate parity samples
+        run: |
+          python3 - <<'PY'
+          import json, sys, numpy as np; sys.path.insert(0, 'ml')
+          from synth_landmarks import _synthesize_one
+          from features import normalize
+          rng = np.random.default_rng(42)
+          samples = {}
+          for letter in ['A','B','C','L','Y']:
+              lm = _synthesize_one(letter, rng); feats = normalize(lm)
+              samples[letter] = {
+                  'landmarks': [[round(float(v), 6) for v in pt] for pt in lm],
+                  'expected_normalized_first6': [round(float(v), 6) for v in feats[:6]],
+                  'expected_normalized_l2': round(float(np.linalg.norm(feats)), 6),
+              }
+          json.dump(samples, open('prototype/models/parity_samples.json','w'), indent=2)
+          PY
+
+      - name: JS↔Python feature parity
+        run: |
+          mkdir -p ci
+          node ci/run_parity.mjs | tee ci/parity.log
+
+      # --- Final gate -----------------------------------------------------
+      - name: Enforce release gates
+        run: python3 ci/check_nfr.py
+
+      # --- Upload artifacts so reviewers can read the reports -------------
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ml-reports
+          path: |
+            ml/models/eval_report.md
+            ml/models/dynamic_eval_report.md
+            ml/models/dynamic_robustness_report.md
+            ci/parity.log
