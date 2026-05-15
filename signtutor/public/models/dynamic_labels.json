@@ -1,0 +1,14 @@
+{
+  "labels": [
+    "HELLO",
+    "GOODBYE",
+    "YES",
+    "NO",
+    "PLEASE",
+    "THANKS",
+    "SORRY",
+    "HELP"
+  ],
+  "seq_len": 45,
+  "feature_dim": 126
+}
