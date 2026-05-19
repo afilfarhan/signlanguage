@@ -1,19 +1,21 @@
-name: ML release gates (PDR NFR-9 · NFR-10 · feature parity)
+name: CI (ML release gates + Frontend checks)
 
 on:
   push:
     paths:
       - 'ml/**'
-      - 'prototype/models/**'
-      - 'prototype/index.html'
-      - 'prototype/dynamic.html'
+      - 'prototype/**'
       - 'ci/**'
+      - 'signtutor/**'
       - '.github/workflows/ml-gate.yml'
   pull_request: {}
   workflow_dispatch: {}
 
 jobs:
-  gate:
+  # --------------------------------------------------------------------------
+  # ML jobs – must keep running and passing on every push that touches ML code.
+  # --------------------------------------------------------------------------
+  ml-gate:
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
@@ -94,3 +96,72 @@ jobs:
             ml/models/dynamic_eval_report.md
             ml/models/dynamic_robustness_report.md
             ci/parity.log
+
+  # --------------------------------------------------------------------------
+  # Frontend jobs – lint, typecheck, unit tests, Playwright, Lighthouse.
+  # Gate: a11y score must be ≥ 95 on /, /setup, and a lesson page.
+  # --------------------------------------------------------------------------
+  frontend-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: signtutor
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'signtutor/package-lock.json'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint -- --max-warnings=0
+
+      - name: Type check
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Start server for E2E & Lighthouse
+        run: |
+          npm start &
+          npx wait-on http://localhost:3000 --timeout 120000
+
+      - name: Playwright E2E tests
+        run: npx playwright test
+
+      - name: Lighthouse a11y audit
+        run: |
+          mkdir -p lighthouse
+          npx lighthouse http://localhost:3000/ --chrome-flags="--headless=new --no-sandbox" --preset=desktop --output=html --output-path=lighthouse/home.html --only-categories=accessibility
+          npx lighthouse http://localhost:3000/setup --chrome-flags="--headless=new --no-sandbox" --preset=desktop --output=html --output-path=lighthouse/setup.html --only-categories=accessibility
+          npx lighthouse http://localhost:3000/learn/asl/fingerspelling/A --chrome-flags="--headless=new --no-sandbox" --preset=desktop --output=html --output-path=lighthouse/lesson.html --only-categories=accessibility
+
+      - name: Enforce a11y ≥ 95
+        run: |
+          for f in lighthouse/home.html lighthouse/setup.html lighthouse/lesson.html; do
+            score=$(grep -oP 'lighthouse":\{"lighthouseVersion"[^}]*,"accessibility"[^}]*,"score":[0-9.]*' "$f" | grep -oP 'score":[0-9.]*' | cut -d: -f2)
+            echo "$f accessibility score: $score"
+            if (( $(echo "$score < 0.95" | bc -l) )); then
+              echo "FAIL: a11y score < 95"; exit 1
+            fi
+          done
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: frontend-reports
+          path: |
+            signtutor/lighthouse/
+            signtutor/playwright-report/
+            signtutor/test-results/"
