@@ -94,10 +94,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+          cache-dependency-path: signtutor/package-lock.json
       - name: Install dependencies
         run: |
           cd signtutor
-          npm install
+          npm ci
       - name: Run PersonalAdapter unit tests
         run: |
           cd signtutor
@@ -174,10 +176,12 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+          cache-dependency-path: signtutor/package-lock.json
       - name: Install dependencies
         run: |
           cd signtutor
-          npm install
+          npm ci
       - name: Type check
         run: |
           cd signtutor
