@@ -85,9 +85,11 @@ export const SIGN_DESCRIPTIONS: Record<string, string> = {
   HELP: "Closed fist lifts upward (on a flat palm in real ASL).",
 };
 
+import { VOCABULARY_200 } from "./vocabulary_200";
+
 export interface CurriculumItem {
   id: string;
-  type: "static" | "dynamic";
+  type: "static" | "dynamic" | "vocabulary";
   label: string;
   slug: string;
   description: string;
@@ -109,6 +111,14 @@ export const CURRICULUM: CurriculumItem[] = [
     label: sign,
     slug: sign.toLowerCase(),
     description: SIGN_DESCRIPTIONS[sign],
+    prerequisites: [] as string[],
+  })),
+  ...VOCABULARY_200.map((v) => ({
+    id: `vocab-${v.id}`,
+    type: "vocabulary" as const,
+    label: v.gloss,
+    slug: v.id,
+    description: v.description,
     prerequisites: [] as string[],
   })),
 ];

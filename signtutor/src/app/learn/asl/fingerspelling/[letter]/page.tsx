@@ -19,23 +19,12 @@ import {
 } from "@/lib/normalize";
 import { LETTER_DESCRIPTIONS, STATIC_LETTERS, ASL_REF_IMAGES } from "@/lib/curriculum";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
-
-import "@/lib/mediapipe/holisticRunner";
+import { loadMediaPipe, loadONNX, type MediaPipeLibs, type ONNXLibs } from "@/lib/loadExternals";
 
 type MediaPipeHands = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void> };
 type MediaPipeCamera = { start: () => void; stop: () => void };
 type OrtSession = { run: (f: Record<string, unknown>) => Promise<Record<string, { data: Float32Array }>> };
-type OrtTensorCtor = new (type: string, data: Float32Array, dims: number[]) => unknown;
 interface MediaPipeResults { multiHandLandmarks?: Landmark[][]; }
-
-declare global {
-  interface Window {
-    Hands: new (opts: { locateFile: (f: string) => string }) => MediaPipeHands;
-    Camera: new (video: HTMLVideoElement, opts: { onFrame: () => Promise<void>; width: number; height: number }) => MediaPipeCamera;
-    HAND_CONNECTIONS: unknown;
-    ort: { InferenceSession: { create: (path: string, opts: object) => Promise<OrtSession> }; Tensor: OrtTensorCtor };
-  }
-}
 
 type Verdict = "match" | "close" | "miss";
 type Mode = "ml" | "rule";
@@ -101,6 +90,8 @@ export default function FingerspellingLetterPage() {
   const [hudLatency, setHudLatency] = useState("— ms");
   const [modelBadge, setModelBadge] = useState("Model: loading…");
   const [fps, setFps] = useState("—");
+  const [loadingExternals, setLoadingExternals] = useState(false);
+  const [externalsError, setExternalsError] = useState("");
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
@@ -115,6 +106,8 @@ export default function FingerspellingLetterPage() {
   const modeRef = useRef<Mode>("ml");
   const modelReadyRef = useRef(false);
   const targetRef = useRef(letter);
+  const mpLibsRef = useRef<MediaPipeLibs | null>(null);
+  const onnxLibsRef = useRef<ONNXLibs | null>(null);
 
   useEffect(() => { targetRef.current = letter; }, [letter]);
   useEffect(() => { modeRef.current = mode; }, [mode]);
@@ -124,7 +117,8 @@ export default function FingerspellingLetterPage() {
     try {
       const t0 = performance.now();
       const feats = normalize(landmarks);
-      const tensor = new window.ort.Tensor("float32", feats, [1, 63]);
+      if (!onnxLibsRef.current) return null;
+      const tensor = new onnxLibsRef.current.Tensor("float32", feats, [1, 63]);
       const out = await session.run({ input: tensor });
       clfLatencyRef.current = performance.now() - t0;
       const probs = out.probabilities.data;
@@ -184,9 +178,10 @@ export default function FingerspellingLetterPage() {
       const lm = results.multiHandLandmarks?.[0] || null;
       if (lm) {
         setHudHand("Hand detected");
-        if (window.drawConnectors && window.HAND_CONNECTIONS) {
-          window.drawConnectors(ctx, lm, window.HAND_CONNECTIONS, { color: "#7c9cff", lineWidth: 3 });
-          window.drawLandmarks(ctx, lm, { color: "#5ee0c1", lineWidth: 1, radius: 3 });
+        const libs = mpLibsRef.current;
+        if (libs) {
+          libs.drawConnectors(ctx, lm, libs.HAND_CONNECTIONS, { color: "#00e5b0", lineWidth: 3 });
+          libs.drawLandmarks(ctx, lm, { color: "#4f8cff", lineWidth: 1, radius: 3 });
         }
         movementBufRef.current.push({ x: lm[0].x, y: lm[0].y, t: performance.now() });
         if (movementBufRef.current.length > 30) movementBufRef.current.shift();
@@ -224,65 +219,81 @@ export default function FingerspellingLetterPage() {
     setMode("rule");
   }, []);
 
-  const onModelUnavailable = useCallback(() => {
-    setModelBadge("ort.js unavailable");
-    setMode("rule");
-  }, []);
-
   const startCamera = useCallback(async () => {
     if (running) return;
+    setLoadingExternals(true);
+    setExternalsError("");
 
-    if (!sessionRef.current && typeof window !== "undefined" && window.ort && !modelReady) {
-      try {
-        const session = await window.ort.InferenceSession.create("/models/fingerspell_mlp.onnx", { executionProviders: ["wasm"] });
-        const resp = await fetch("/models/labels.json");
-        const meta = await resp.json();
-        onModelLoaded(meta.labels, session);
-      } catch {
-        onModelError();
-      }
-    } else if (!modelReady && typeof window !== "undefined" && !window.ort) {
-      onModelUnavailable();
-    }
-
-    if (!window.Hands) return;
     try {
-      const hands = new window.Hands({
+      // Load MediaPipe Hands
+      if (!mpLibsRef.current) {
+        mpLibsRef.current = await loadMediaPipe();
+      }
+      const mpLibs = mpLibsRef.current;
+
+      // Load ONNX Runtime
+      if (!onnxLibsRef.current && !modelReady) {
+        try {
+          onnxLibsRef.current = await loadONNX();
+        } catch {
+          setModelBadge("ort.js unavailable");
+          setMode("rule");
+        }
+      }
+
+      // Load ML model if ONNX is available
+      if (!sessionRef.current && onnxLibsRef.current && !modelReady) {
+        try {
+          const session = await onnxLibsRef.current.InferenceSession.create("/models/fingerspell_mlp.onnx", { executionProviders: ["wasm"] });
+          const resp = await fetch("/models/labels.json");
+          const meta = await resp.json();
+          onModelLoaded(meta.labels, session);
+        } catch {
+          onModelError();
+        }
+      }
+
+      // Create Hands instance
+      const hands = new mpLibs.Hands({
         locateFile: (f: string) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${f}`,
       });
       hands.setOptions({ maxNumHands: 1, modelComplexity: 1, minDetectionConfidence: 0.6, minTrackingConfidence: 0.5 });
       hands.onResults(onResults);
       handsRef.current = hands;
-    } catch { return; }
 
-    try {
+      // Get camera stream
       streamRef.current = await navigator.mediaDevices.getUserMedia({
         video: { width: 640, height: 480, facingMode: "user" },
         audio: false,
       });
-    } catch { return; }
 
-    const video = videoRef.current!;
-    video.srcObject = streamRef.current;
-    await video.play();
-    if (overlayRef.current) {
-      overlayRef.current.width = video.videoWidth || 640;
-      overlayRef.current.height = video.videoHeight || 480;
+      const video = videoRef.current!;
+      video.srcObject = streamRef.current;
+      await video.play();
+      if (overlayRef.current) {
+        overlayRef.current.width = video.videoWidth || 640;
+        overlayRef.current.height = video.videoHeight || 480;
+      }
+
+      const camera = new mpLibs.Camera(video, {
+        onFrame: async () => {
+          const t0 = performance.now();
+          await handsRef.current!.send({ image: video });
+          mpLatencyRef.current = performance.now() - t0;
+          setHudLatency(`mp ${mpLatencyRef.current.toFixed(0)}ms · clf ${clfLatencyRef.current.toFixed(0)}ms`);
+        },
+        width: 640,
+        height: 480,
+      });
+      cameraRef.current = camera;
+      camera.start();
+      setRunning(true);
+    } catch (e) {
+      setExternalsError((e as Error).message);
+    } finally {
+      setLoadingExternals(false);
     }
-
-    cameraRef.current = new window.Camera(video, {
-      onFrame: async () => {
-        const t0 = performance.now();
-        await handsRef.current!.send({ image: video });
-        mpLatencyRef.current = performance.now() - t0;
-        setHudLatency(`mp ${mpLatencyRef.current.toFixed(0)}ms · clf ${clfLatencyRef.current.toFixed(0)}ms`);
-      },
-      width: 640,
-      height: 480,
-    });
-    cameraRef.current.start();
-    setRunning(true);
-  }, [running, onResults, modelReady, onModelLoaded, onModelError, onModelUnavailable]);
+  }, [running, onResults, modelReady, onModelLoaded, onModelError]);
 
   const stop = useCallback(() => {
     try { cameraRef.current?.stop(); } catch {}
@@ -306,66 +317,129 @@ export default function FingerspellingLetterPage() {
   };
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-6">
-      <div className="mb-4 flex flex-wrap items-center gap-3 rounded-xl border border-line bg-panel p-3">
-        <label className="text-sm text-muted" htmlFor="mode-sel">Classifier</label>
-        <span className="inline-flex overflow-hidden rounded-lg border border-line bg-panel2" role="radiogroup" aria-label="Classifier mode">
+    <div className="mx-auto max-w-7xl px-4 py-6 lg:px-6 lg:py-8">
+      {/* Toolbar */}
+      <div className="mb-6 flex flex-wrap items-center gap-3 rounded-xl border border-line bg-surface p-3">
+        <Link
+          href="/learn/asl/fingerspelling"
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted transition-colors hover:bg-elevated hover:text-foreground"
+          aria-label="Back to fingerspelling"
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 20 20">
+            <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </Link>
+
+        <div className="flex items-center gap-2">
+          <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent/10 text-lg font-display font-bold text-accent">
+            {letter}
+          </span>
+          <div>
+            <h1 className="text-sm font-semibold text-foreground">Letter {letter}</h1>
+            <p className="text-xs text-muted">{LETTER_DESCRIPTIONS[letter]}</p>
+          </div>
+        </div>
+
+        <div className="ml-auto flex items-center gap-3">
+          <span className="inline-flex overflow-hidden rounded-lg border border-line bg-elevated" role="radiogroup" aria-label="Classifier mode">
+            <button
+              role="radio"
+              aria-checked={mode === "ml"}
+              onClick={() => { if (modelReady) setMode("ml"); }}
+              className={`px-3 py-1.5 text-xs font-medium transition-colors ${mode === "ml" ? "bg-accent text-background" : "text-muted hover:text-foreground"}`}
+            >
+              ML
+            </button>
+            <button
+              role="radio"
+              aria-checked={mode === "rule"}
+              onClick={() => setMode("rule")}
+              className={`px-3 py-1.5 text-xs font-medium transition-colors ${mode === "rule" ? "bg-accent text-background" : "text-muted hover:text-foreground"}`}
+            >
+              Rule
+            </button>
+          </span>
+
           <button
-            role="radio"
-            aria-checked={mode === "ml"}
-            onClick={() => { if (modelReady) setMode("ml"); }}
-            className={`px-3 py-1.5 text-sm ${mode === "ml" ? "bg-accent font-semibold text-background" : "text-muted hover:text-foreground"}`}
+            onClick={startCamera}
+            disabled={running || loadingExternals}
+            className="rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-background transition-colors hover:bg-accent/90 disabled:opacity-50"
           >
-            ML (ONNX)
+            {loadingExternals ? "Loading…" : "Start camera"}
           </button>
           <button
-            role="radio"
-            aria-checked={mode === "rule"}
-            onClick={() => setMode("rule")}
-            className={`px-3 py-1.5 text-sm ${mode === "rule" ? "bg-accent font-semibold text-background" : "text-muted hover:text-foreground"}`}
+            onClick={stop}
+            disabled={!running}
+            className="rounded-lg border border-line bg-elevated px-4 py-2 text-xs font-medium text-muted transition-colors hover:text-foreground disabled:opacity-50"
           >
-            Rule-based
+            Stop
           </button>
-        </span>
 
-        <button onClick={startCamera} disabled={running} className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-background hover:bg-accent/80 disabled:opacity-50">Start camera</button>
-        <button onClick={stop} disabled={!running} className="rounded-lg border border-line bg-panel2 px-4 py-2 text-sm text-muted hover:text-foreground disabled:opacity-50">Stop</button>
-
-        <div className="ml-auto flex flex-wrap items-center gap-3 text-sm text-muted">
-          <label className="flex items-center gap-1.5">
-            <input type="checkbox" checked={mirror} onChange={(e) => handleMirrorChange(e.target.checked)} className="accent-accent" />
-            Mirror webcam
+          <label className="flex items-center gap-1.5 text-xs text-muted">
+            <input type="checkbox" checked={mirror} onChange={(e) => handleMirrorChange(e.target.checked)} className="rounded border-line bg-elevated accent-accent" />
+            Mirror
           </label>
-          <label className="flex items-center gap-1.5">
-            <input type="checkbox" checked={prefs.handedness === "left"} onChange={handleHandednessChange} className="accent-accent" />
-            Left-handed
+          <label className="flex items-center gap-1.5 text-xs text-muted">
+            <input type="checkbox" checked={prefs.handedness === "left"} onChange={handleHandednessChange} className="rounded border-line bg-elevated accent-accent" />
+            Left hand
           </label>
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-panel" aria-label="Demo">
+      {/* Error banner */}
+      {externalsError && (
+        <div className="mb-6 rounded-xl border border-bad/30 bg-bad/5 p-4 text-sm text-bad" role="alert">
+          <p className="font-semibold">Failed to load external libraries</p>
+          <p className="mt-1 text-xs">{externalsError}</p>
+          <p className="mt-2 text-xs text-muted">Check your internet connection and try refreshing the page.</p>
+        </div>
+      )}
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Reference panel */}
+        <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface" aria-label="Reference">
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted">Demo · Native signer (mock)</h2>
-            <span className="rounded-full bg-panel2 px-2.5 py-1 text-xs text-muted border border-line">Target: {letter}</span>
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">Reference</h2>
+            <span className="rounded-full bg-accent/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent">
+              Target: {letter}
+            </span>
           </div>
-          <div className="relative flex aspect-[4/3] items-center justify-center bg-gradient-radial from-[#1a2350] to-[#0b1020]">
-            <img
-              src={ASL_REF_IMAGES[letter] || ""}
-              alt={`ASL letter ${letter}: handshape reference`}
-              className="h-48 w-48 object-contain"
-            />
-            <div className="absolute bottom-3 left-3 right-3 rounded-lg bg-background/70 px-3 py-2 text-sm text-muted backdrop-blur-sm">
-              {LETTER_DESCRIPTIONS[letter] || ""}
-            </div>
+
+          <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden"
+            style={{
+              background: "radial-gradient(ellipse at center, rgba(0, 229, 176, 0.06) 0%, var(--bg-surface) 70%)",
+            }}
+          >
+            {ASL_REF_IMAGES[letter] ? (
+              <img
+                src={ASL_REF_IMAGES[letter]}
+                alt={`ASL letter ${letter} handshape reference`}
+                className="h-52 w-52 object-contain transition-transform duration-300 hover:scale-105"
+              />
+            ) : (
+              <div className="flex h-52 w-52 items-center justify-center rounded-2xl border border-dashed border-line text-6xl font-display font-bold text-dim">
+                {letter}
+              </div>
+            )}
           </div>
-          <div className="flex flex-wrap gap-1.5 p-3">
+
+          <div className="border-t border-line px-4 py-3">
+            <p className="text-sm leading-relaxed text-muted">
+              {LETTER_DESCRIPTIONS[letter]}
+            </p>
+          </div>
+
+          <div className="flex flex-wrap gap-1.5 border-t border-line p-3">
             {STATIC_LETTERS.map((l) => (
               <Link
                 key={l}
                 href={`/learn/asl/fingerspelling/${l}`}
                 aria-label={`Practice letter ${l}`}
-                className={`rounded-lg px-2.5 py-1.5 text-sm transition-colors ${l === letter ? "bg-accent font-semibold text-background" : "border border-line bg-panel2 text-muted hover:text-foreground"}`}
+                className={`rounded-md px-2.5 py-1.5 text-xs font-mono font-medium transition-all duration-150 ${
+                  l === letter
+                    ? "bg-accent text-background"
+                    : "border border-line bg-elevated text-muted hover:border-accent/30 hover:text-foreground"
+                }`}
               >
                 {l}
               </Link>
@@ -373,62 +447,108 @@ export default function FingerspellingLetterPage() {
           </div>
         </section>
 
-        <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-panel" aria-label="Your attempt">
+        {/* Webcam + feedback panel */}
+        <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface" aria-label="Your attempt">
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted">You · Webcam</h2>
-            <span className="flex items-center gap-1.5 text-xs font-semibold text-ok">🔒 On-device</span>
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">Your Attempt</h2>
+            <span className="flex items-center gap-1.5 text-xs font-mono font-medium text-ok">
+              <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse" />
+              On-device
+            </span>
           </div>
-          <div className={`relative aspect-[4/3] bg-black ${mirror ? "[transform:scaleX(-1)]" : ""}`}>
+
+          {/* Webcam */}
+          <div className={`relative aspect-[4/3] overflow-hidden bg-black ${mirror ? "[transform:scaleX(-1)]" : ""}`}>
             <video ref={videoRef} playsInline muted className="absolute inset-0 h-full w-full object-cover" />
             <canvas ref={overlayRef} className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute left-2.5 right-2.5 top-2.5 flex justify-between pointer-events-none">
-              <span className="rounded-full bg-background/75 px-2.5 py-1 text-xs backdrop-blur-sm border border-line">{hudHand}</span>
-              <span className="rounded-full bg-background/75 px-2.5 py-1 text-xs backdrop-blur-sm border border-line">{hudLatency}</span>
+            <div className="absolute left-3 right-3 top-3 flex justify-between pointer-events-none">
+              <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium backdrop-blur-sm border ${
+                hudHand === "Hand detected"
+                  ? "border-ok/30 bg-ok/10 text-ok"
+                  : "border-line bg-background/60 text-muted"
+              }`}>
+                {hudHand}
+              </span>
+              <span className="rounded-full border border-line bg-background/60 px-2.5 py-1 text-[10px] font-mono text-muted backdrop-blur-sm">
+                {hudLatency}
+              </span>
             </div>
           </div>
 
+          {/* Feedback */}
           <div className="flex flex-col gap-3 p-4">
-            <div className={`flex items-center justify-between rounded-xl p-4 border ${
-              verdict === "match" ? "border-ok/40 bg-ok/10" : verdict === "close" ? "border-warn/40 bg-warn/10" : verdict === "miss" ? "border-bad/40 bg-bad/10" : "border-line bg-accent/5"
+            {/* Verdict + Confidence */}
+            <div className={`flex items-center justify-between rounded-xl border p-4 transition-colors ${
+              verdict === "match"
+                ? "border-ok/30 bg-ok/5"
+                : verdict === "close"
+                ? "border-warn/30 bg-warn/5"
+                : verdict === "miss"
+                ? "border-bad/30 bg-bad/5"
+                : "border-line bg-elevated/50"
             }`}>
               <div>
-                <span className="block text-xs uppercase tracking-wider text-muted">{mode === "ml" ? "Detected (ML)" : "Detected (rule)"}</span>
-                <span className={`text-3xl font-bold leading-tight ${
-                  verdict === "match" ? "text-ok" : verdict === "close" ? "text-warn" : verdict === "miss" ? "text-bad" : ""
-                }`}>{detected}</span>
+                <span className="block text-[10px] uppercase tracking-wider text-muted">
+                  {mode === "ml" ? "Detected (ML)" : "Detected (rule)"}
+                </span>
+                <span className={`text-3xl font-display font-bold leading-none ${
+                  verdict === "match" ? "text-ok" : verdict === "close" ? "text-warn" : verdict === "miss" ? "text-bad" : "text-foreground"
+                }`}>
+                  {detected}
+                </span>
               </div>
-              <div className="text-right text-sm text-muted">
-                confidence
-                <span className="mt-0.5 block text-2xl font-bold text-foreground">{confidence}</span>
+              <div className="text-right">
+                <span className="block text-[10px] uppercase tracking-wider text-muted">Confidence</span>
+                <span className="text-2xl font-display font-bold text-foreground">{confidence}</span>
               </div>
             </div>
 
+            {/* Top-K bars */}
             {mode === "ml" && modelReady && topK.length > 0 && (
-              <div className="flex flex-col gap-1.5 pt-1">
+              <div className="flex flex-col gap-1.5">
                 {topK.map((r, i) => (
-                  <div key={r.label} className="grid grid-cols-[50px_1fr_50px] items-center gap-2 text-sm">
-                    <span>{r.label}</span>
-                    <div className="h-2 overflow-hidden rounded-full bg-line">
-                      <div className={`h-full transition-all ${i === 0 ? "bg-accent2" : "bg-accent"}`} style={{ width: `${r.prob * 100}%` }} />
+                  <div key={r.label} className="grid grid-cols-[40px_1fr_40px] items-center gap-2 text-xs">
+                    <span className={`font-mono font-medium ${r.label === letter ? "text-accent" : "text-muted"}`}>
+                      {r.label}
+                    </span>
+                    <div className="h-1.5 overflow-hidden rounded-full bg-elevated">
+                      <div
+                        className={`h-full rounded-full transition-all duration-200 ${
+                          i === 0 ? "bg-accent" : "bg-accent/40"
+                        }`}
+                        style={{ width: `${r.prob * 100}%` }}
+                      />
                     </div>
-                    <span className="text-right text-muted">{(r.prob * 100).toFixed(0)}%</span>
+                    <span className="text-right font-mono text-muted">
+                      {(r.prob * 100).toFixed(0)}%
+                    </span>
                   </div>
                 ))}
               </div>
             )}
 
-            <div className="grid grid-cols-5 gap-1.5 rounded-xl border border-line bg-panel2 p-2.5" aria-label="Per-finger handshape match">
+            {/* Finger feedback */}
+            <div className="grid grid-cols-5 gap-2 rounded-xl border border-line bg-elevated/50 p-2.5" aria-label="Per-finger handshape match">
               {(["thumb", "index", "middle", "ring", "pinky"] as FingerKey[]).map((f) => {
                 const ref = PATTERNS[letter]?.[f];
                 const you = fingers[f];
                 const ok = ref !== undefined ? you === ref : null;
                 return (
-                  <div key={f} className={`flex flex-col items-center gap-1 rounded-lg p-1.5 text-center ${ok === true ? "bg-ok/10" : ok === false ? "bg-bad/10" : ""}`}>
-                    <span className="text-[10px] uppercase tracking-wider text-muted">{f}</span>
-                    <span className={`text-lg leading-none ${ok === true ? "text-ok" : ok === false ? "text-bad" : "text-muted"}`}>
+                  <div
+                    key={f}
+                    className={`flex flex-col items-center gap-1 rounded-lg p-2 text-center transition-colors ${
+                      ok === true ? "bg-ok/10" : ok === false ? "bg-bad/10" : "bg-elevated"
+                    }`}
+                  >
+                    <span className="text-[9px] uppercase tracking-wider text-muted">{f}</span>
+                    <span className={`text-lg leading-none ${
+                      ok === true ? "text-ok" : ok === false ? "text-bad" : "text-muted"
+                    }`}>
                       {you ? "✓" : "✗"}
                     </span>
-                    <span className={`text-[10px] ${ok === true ? "text-ok" : ok === false ? "text-bad" : "text-muted"}`}>
+                    <span className={`text-[9px] leading-tight ${
+                      ok === true ? "text-ok" : ok === false ? "text-bad" : "text-muted"
+                    }`}>
                       {ok === true ? (ref ? "extend ✓" : "curl ✓") : ok === false ? (ref ? "should extend" : "should curl") : you ? "extended" : "curled"}
                     </span>
                   </div>
@@ -436,31 +556,52 @@ export default function FingerspellingLetterPage() {
               })}
             </div>
 
+            {/* 2x2 feedback grid */}
             <div className="grid grid-cols-2 gap-2">
               {([
-                { key: "shape", label: "Handshape", val: components.shape, text: `${(components.shape * 100) | 0}% probability of "${letter}"` },
-                { key: "orient", label: "Orientation", val: components.orient, text: components.orient > 0.5 ? "palm forward ✓" : "rotate palm toward camera" },
+                { key: "shape", label: "Handshape", val: components.shape, text: `${(components.shape * 100) | 0}% "${letter}"` },
+                { key: "orient", label: "Orientation", val: components.orient, text: components.orient > 0.5 ? "palm forward" : "rotate toward camera" },
                 { key: "loc", label: "Location", val: components.loc, text: locationLabel([{ x: 0.5, y: 0.5, z: 0 }]) },
-                { key: "move", label: "Movement", val: components.move, text: components.move > 0.7 ? "steady ✓" : "hold the sign still" },
+                { key: "move", label: "Movement", val: components.move, text: components.move > 0.7 ? "steady" : "hold still" },
               ] as const).map((c) => (
-                <div key={c.key} className="flex flex-col gap-1 rounded-lg border border-line bg-panel2 p-2.5">
-                  <span className="text-xs uppercase tracking-wider text-muted">{c.label}</span>
-                  <span className="flex items-center gap-1.5 text-sm">
-                    <span className={`inline-block h-2.5 w-2.5 rounded-full ${c.val >= 0.7 ? "bg-ok" : c.val >= 0.4 ? "bg-warn" : "bg-bad"}`} />
-                    {c.text}
-                  </span>
+                <div key={c.key} className="flex flex-col gap-1 rounded-lg border border-line bg-elevated/50 p-2.5">
+                  <span className="text-[10px] uppercase tracking-wider text-muted">{c.label}</span>
+                  <div className="flex items-center gap-2">
+                    <span className={`h-2 w-2 shrink-0 rounded-full ${
+                      c.val >= 0.7 ? "bg-ok" : c.val >= 0.4 ? "bg-warn" : "bg-bad"
+                    }`} />
+                    <span className="text-xs text-foreground">{c.text}</span>
+                  </div>
                 </div>
               ))}
             </div>
 
-            <div className="rounded-xl border border-dashed border-line bg-accent/5 p-3 text-sm" role="status">
-              <span dangerouslySetInnerHTML={{ __html: tip.replace(/"([^"]+)"/g, '<strong class="text-accent">"$1"</strong>') }} />
+            {/* Tip */}
+            <div
+              className="rounded-xl border border-dashed border-line bg-accent/5 p-3 text-sm text-muted"
+              role="status"
+              aria-live="polite"
+            >
+              <span
+                dangerouslySetInnerHTML={{
+                  __html: tip.replace(/"([^"]+)"/g, '<strong class="text-accent">"$1"</strong>'),
+                }}
+              />
             </div>
           </div>
 
-          <div className="flex gap-2 px-4 pb-3 text-xs text-muted">
-            <span className={`rounded-full border px-2 py-0.5 ${modelReady ? "border-ok/40 bg-ok/10 text-ok" : "border-bad/40 bg-bad/10 text-bad"}`}>{modelBadge}</span>
-            <span className="rounded-full border border-line bg-panel2 px-2 py-0.5">FPS: {fps}</span>
+          {/* Status bar */}
+          <div className="flex items-center gap-2 border-t border-line px-4 py-2.5 text-xs text-muted">
+            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${
+              modelReady
+                ? "border-ok/30 bg-ok/5 text-ok"
+                : "border-bad/30 bg-bad/5 text-bad"
+            }`}>
+              {modelBadge}
+            </span>
+            <span className="rounded-full border border-line bg-elevated px-2 py-0.5 text-[10px] font-mono">
+              FPS: {fps}
+            </span>
           </div>
         </section>
       </div>

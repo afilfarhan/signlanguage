@@ -5,41 +5,37 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { normalizeSequence, T_FRAMES, N_LANDMARKS, FEATURE_DIM } from "@/lib/seq-features";
 import { DYNAMIC_SIGNS, SIGN_DESCRIPTIONS } from "@/lib/curriculum";
+import { VOCABULARY_200, getSignById } from "@/lib/vocabulary_200";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
-import type { Landmark } from "@/lib/normalize";
-
-import "@/lib/mediapipe/holisticRunner";
+import { loadMediaPipe, loadONNX, type MediaPipeLibs, type ONNXLibs } from "@/lib/loadExternals";
 
 type MediaPipeHands = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void> };
 type MediaPipeCamera = { start: () => void; stop: () => void };
 type OrtSession = { run: (f: Record<string, unknown>) => Promise<Record<string, { data: Float32Array }>> };
-type OrtTensorCtor = new (type: string, data: Float32Array, dims: number[]) => unknown;
-interface MediaPipeResults { multiHandLandmarks?: Landmark[][]; }
-
-declare global {
-  interface Window {
-    Hands: new (opts: { locateFile: (f: string) => string }) => MediaPipeHands;
-    Camera: new (video: HTMLVideoElement, opts: { onFrame: () => Promise<void>; width: number; height: number }) => MediaPipeCamera;
-    HAND_CONNECTIONS: unknown;
-    ort: { InferenceSession: { create: (path: string, opts: object) => Promise<OrtSession> }; Tensor: OrtTensorCtor };
-  }
-}
+interface MediaPipeResults { multiHandLandmarks?: { x: number; y: number; z: number }[][]; }
 
 type Verdict = "match" | "close" | "miss";
-
 interface RankedResult { label: string; prob: number; }
 
 function computeTip(verdict: Verdict, top: RankedResult, target: string): string {
+  const desc = SIGN_DESCRIPTIONS[target as keyof typeof SIGN_DESCRIPTIONS] || target;
   if (verdict === "match") return `<strong>Nice — that's "${target}".</strong> Try once more to confirm.`;
   if (verdict === "miss") return "Couldn't read your sign clearly — try again with the hand fully in frame and consistent lighting.";
   if (top.label === target) return `Looks like "${target}" but confidence is only ${(top.prob * 100) | 0}%. Slow down and exaggerate the motion slightly.`;
-  return `That came out closer to <strong>"${top.label}"</strong>. Re-watch the demo: <i>${SIGN_DESCRIPTIONS[target]}</i>`;
+  return `That came out closer to <strong>"${top.label}"</strong>. Re-watch the demo: <i>${desc}</i>`;
 }
+
+const ML_SIGNS = new Set<string>(DYNAMIC_SIGNS as unknown as string[]);
 
 export default function DynamicSignPage() {
   const params = useParams();
   const slug = (params.slug as string || "hello").toLowerCase();
-  const sign = slug.toUpperCase();
+
+  const vocabSign = getSignById(slug);
+  const isMLSign = ML_SIGNS.has(slug.toUpperCase());
+  const signGloss = vocabSign ? vocabSign.gloss : slug.toUpperCase();
+  const signDescription = vocabSign ? vocabSign.description : (SIGN_DESCRIPTIONS[signGloss as keyof typeof SIGN_DESCRIPTIONS] || "");
+  const signCategory = vocabSign ? vocabSign.category : "";
 
   const [prefs, setPrefs] = useState<Prefs>(() => {
     if (typeof window === "undefined") return { language: "asl", handedness: "right", mirror: true };
@@ -60,6 +56,8 @@ export default function DynamicSignPage() {
   const [hudLatency, setHudLatency] = useState("— ms");
   const [modelBadge, setModelBadge] = useState("Model: loading…");
   const [fps, setFps] = useState("—");
+  const [loadingExternals, setLoadingExternals] = useState(false);
+  const [externalsError, setExternalsError] = useState("");
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
@@ -70,11 +68,13 @@ export default function DynamicSignPage() {
   const bufferRef = useRef<Float32Array[]>([]);
   const fpsCounterRef = useRef({ frames: 0, t0: 0 });
   const framesSinceInferRef = useRef(0);
-  const targetRef = useRef(sign);
+  const targetRef = useRef(signGloss);
   const recordingRef = useRef(false);
   const continuousRef = useRef(false);
+  const mpLibsRef = useRef<MediaPipeLibs | null>(null);
+  const onnxLibsRef = useRef<ONNXLibs | null>(null);
 
-  useEffect(() => { targetRef.current = sign; }, [sign]);
+  useEffect(() => { targetRef.current = signGloss; }, [signGloss]);
   useEffect(() => { recordingRef.current = recording; }, [recording]);
   useEffect(() => { continuousRef.current = continuous; }, [continuous]);
 
@@ -82,7 +82,8 @@ export default function DynamicSignPage() {
     if (buf.length < T_FRAMES) return;
     const t0 = performance.now();
     const flat = normalizeSequence(buf);
-    const tensor = new window.ort.Tensor("float32", flat, [1, T_FRAMES, FEATURE_DIM]);
+    if (!onnxLibsRef.current) return;
+    const tensor = new onnxLibsRef.current.Tensor("float32", flat, [1, T_FRAMES, FEATURE_DIM]);
     const out = await session.run({ input: tensor });
     const logits = out.logits.data;
     const max = Math.max(...logits);
@@ -114,9 +115,10 @@ export default function DynamicSignPage() {
       const lm = results.multiHandLandmarks?.[0] || null;
       if (lm) {
         setHudHand("Hand detected");
-        if (window.drawConnectors && window.HAND_CONNECTIONS) {
-          window.drawConnectors(ctx, lm, window.HAND_CONNECTIONS, { color: "#7c9cff", lineWidth: 3 });
-          window.drawLandmarks(ctx, lm, { color: "#5ee0c1", lineWidth: 1, radius: 3 });
+        const libs = mpLibsRef.current;
+        if (libs) {
+          libs.drawConnectors(ctx, lm, libs.HAND_CONNECTIONS, { color: "#00e5b0", lineWidth: 3 });
+          libs.drawLandmarks(ctx, lm, { color: "#4f8cff", lineWidth: 1, radius: 3 });
         }
         const arr = new Float32Array(N_LANDMARKS * 3);
         for (let i = 0; i < N_LANDMARKS; i++) {
@@ -172,57 +174,75 @@ export default function DynamicSignPage() {
 
   const onModelError = useCallback(() => { setModelBadge("failed to load"); }, []);
 
-  const onModelUnavailable = useCallback(() => { setModelBadge("ort.js unavailable"); }, []);
-
   const start = useCallback(async () => {
     if (running) return;
+    setLoadingExternals(true);
+    setExternalsError("");
 
-    if (!sessionRef.current && typeof window !== "undefined" && window.ort && !modelReady) {
-      try {
-        const session = await window.ort.InferenceSession.create("/models/dynamic_signs_transformer.onnx", { executionProviders: ["wasm"] });
-        const resp = await fetch("/models/dynamic_labels.json");
-        const meta = await resp.json();
-        onModelLoaded(meta.labels, session, meta.seq_len);
-      } catch {
-        onModelError();
-      }
-    } else if (!modelReady && typeof window !== "undefined" && !window.ort) {
-      onModelUnavailable();
-    }
-
-    if (!window.Hands) return;
     try {
-      const hands = new window.Hands({
+      // Load MediaPipe Hands
+      if (!mpLibsRef.current) {
+        mpLibsRef.current = await loadMediaPipe();
+      }
+      const mpLibs = mpLibsRef.current;
+
+      // Load ONNX Runtime
+      if (!onnxLibsRef.current && !modelReady) {
+        try {
+          onnxLibsRef.current = await loadONNX();
+        } catch {
+          setModelBadge("ort.js unavailable");
+        }
+      }
+
+      // Load ML model
+      if (!sessionRef.current && onnxLibsRef.current && !modelReady) {
+        try {
+          const session = await onnxLibsRef.current.InferenceSession.create("/models/dynamic_signs_transformer.onnx", { executionProviders: ["wasm"] });
+          const resp = await fetch("/models/dynamic_labels.json");
+          const meta = await resp.json();
+          onModelLoaded(meta.labels, session, meta.seq_len);
+        } catch {
+          onModelError();
+        }
+      }
+
+      // Create Hands instance
+      const hands = new mpLibs.Hands({
         locateFile: (f: string) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${f}`,
       });
       hands.setOptions({ maxNumHands: 1, modelComplexity: 1, minDetectionConfidence: 0.6, minTrackingConfidence: 0.5 });
       hands.onResults((r: MediaPipeResults) => onResults(r, runInference));
       handsRef.current = hands;
-    } catch { return; }
 
-    try {
+      // Get camera stream
       streamRef.current = await navigator.mediaDevices.getUserMedia({
         video: { width: 640, height: 480, facingMode: "user" },
         audio: false,
       });
-    } catch { return; }
 
-    const video = videoRef.current!;
-    video.srcObject = streamRef.current;
-    await video.play();
-    if (overlayRef.current) {
-      overlayRef.current.width = video.videoWidth || 640;
-      overlayRef.current.height = video.videoHeight || 480;
+      const video = videoRef.current!;
+      video.srcObject = streamRef.current;
+      await video.play();
+      if (overlayRef.current) {
+        overlayRef.current.width = video.videoWidth || 640;
+        overlayRef.current.height = video.videoHeight || 480;
+      }
+
+      const camera = new mpLibs.Camera(video, {
+        onFrame: async () => { await handsRef.current!.send({ image: video }); },
+        width: 640,
+        height: 480,
+      });
+      cameraRef.current = camera;
+      camera.start();
+      setRunning(true);
+    } catch (e) {
+      setExternalsError((e as Error).message);
+    } finally {
+      setLoadingExternals(false);
     }
-
-    cameraRef.current = new window.Camera(video, {
-      onFrame: async () => { await handsRef.current!.send({ image: video }); },
-      width: 640,
-      height: 480,
-    });
-    cameraRef.current.start();
-    setRunning(true);
-  }, [running, onResults, runInference, modelReady, onModelLoaded, onModelError, onModelUnavailable]);
+  }, [running, onResults, runInference, modelReady, onModelLoaded, onModelError]);
 
   const stop = useCallback(() => {
     try { cameraRef.current?.stop(); } catch {}
@@ -242,52 +262,195 @@ export default function DynamicSignPage() {
   }, []);
 
   const mirror = prefs.mirror;
-
   const handleMirrorChange = (checked: boolean) => {
     const next = { ...prefs, mirror: checked };
     setPrefs(next);
     savePrefs(next);
   };
 
-  return (
-    <div className="mx-auto max-w-6xl px-4 py-6">
-      <div className="mb-4 flex flex-wrap items-center gap-3 rounded-xl border border-line bg-panel p-3">
-        <button onClick={start} disabled={running} className="rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-background hover:bg-accent/80 disabled:opacity-50">Start camera</button>
-        <button onClick={startRecording} disabled={!running || recording || continuous} className="rounded-lg bg-accent2 px-4 py-2 text-sm font-semibold text-background hover:bg-accent2/80 disabled:opacity-50">● Record attempt (1.5 s)</button>
-        <button onClick={stop} disabled={!running} className="rounded-lg border border-line bg-panel2 px-4 py-2 text-sm text-muted hover:text-foreground disabled:opacity-50">Stop</button>
+  // ── Reference-only view (no ML model) ──
+  if (!isMLSign && vocabSign) {
+    return (
+      <div className="mx-auto max-w-5xl px-4 py-6 lg:px-6 lg:py-8">
+        <Link
+          href="/learn/asl/words"
+          className="mb-6 inline-flex items-center gap-1.5 text-sm font-medium text-accent transition-colors hover:text-accent/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+        >
+          <svg className="h-4 w-4" fill="none" viewBox="0 0 16 16">
+            <path d="M10 3L5 8L10 13" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+          Back to Vocabulary
+        </Link>
 
-        <div className="ml-auto flex flex-wrap items-center gap-3 text-sm text-muted">
-          <label className="flex items-center gap-1.5">
-            <input type="checkbox" checked={continuous} onChange={() => setContinuous(!continuous)} className="accent-accent" />
+        <div className="grid gap-6 lg:grid-cols-3">
+          <div className="lg:col-span-2">
+            <div className="rounded-2xl border border-line bg-surface p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <span className="rounded-full bg-accent/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-accent">
+                  {vocabSign.category}
+                </span>
+                <span className="text-xs font-mono text-dim">
+                  ASL-LEX #{vocabSign.aslLexRank}
+                </span>
+              </div>
+
+              <h1 className="text-3xl font-display font-bold text-foreground">
+                {vocabSign.gloss}
+              </h1>
+              <p className="mt-3 text-lg leading-relaxed text-muted">
+                {vocabSign.description}
+              </p>
+
+              <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {[
+                  { label: "Handshape", value: vocabSign.handshape },
+                  { label: "Location", value: vocabSign.location },
+                  { label: "Movement", value: vocabSign.movement },
+                  { label: "Orientation", value: vocabSign.orientation },
+                ].map((param) => (
+                  <div key={param.label} className="rounded-xl border border-line bg-elevated/50 p-3">
+                    <span className="block text-[10px] uppercase tracking-wider text-muted">{param.label}</span>
+                    <span className="mt-1 block text-sm font-medium text-foreground">{param.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              {vocabSign.nmm && (
+                <div className="mt-4 rounded-xl border border-line bg-elevated/50 p-3">
+                  <span className="block text-[10px] uppercase tracking-wider text-muted">Non-Manual Markers</span>
+                  <span className="mt-1 block text-sm text-foreground">{vocabSign.nmm}</span>
+                </div>
+              )}
+
+              <p className="mt-4 text-xs text-dim">Source: {vocabSign.sourceAttr}</p>
+            </div>
+          </div>
+
+          <div className="lg:col-span-1">
+            <div className="rounded-2xl border border-line bg-surface p-5">
+              <h3 className="text-sm font-semibold text-foreground mb-3">Sign Info</h3>
+              <dl className="space-y-3 text-sm">
+                <div><dt className="text-xs text-muted">Gloss</dt><dd className="font-medium text-foreground">{vocabSign.gloss}</dd></div>
+                <div><dt className="text-xs text-muted">Category</dt><dd className="font-medium text-foreground">{vocabSign.category}</dd></div>
+                <div><dt className="text-xs text-muted">ASL-LEX Rank</dt><dd className="font-medium text-foreground">#{vocabSign.aslLexRank}</dd></div>
+                <div><dt className="text-xs text-muted">Handshape</dt><dd className="font-medium text-foreground">{vocabSign.handshape}</dd></div>
+              </dl>
+
+              <div className="mt-5 rounded-xl border border-dashed border-line bg-accent/5 p-3 text-xs text-muted">
+                <p className="font-medium text-foreground mb-1">Reference Only</p>
+                <p>This sign doesn't have real-time ML feedback yet. Practice with the <Link href="/learn/asl/words/hello" className="text-accent hover:underline">8 ML-enabled signs</Link> for interactive practice.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // ── ML practice view ──
+  return (
+    <div className="mx-auto max-w-6xl px-4 py-6 lg:px-6 lg:py-8">
+      {/* Toolbar */}
+      <div className="mb-6 flex flex-wrap items-center gap-3 rounded-xl border border-line bg-surface p-3">
+        <Link
+          href="/learn/asl/words"
+          className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-muted transition-colors hover:bg-elevated hover:text-foreground"
+          aria-label="Back to words"
+        >
+          <svg className="h-5 w-5" fill="none" viewBox="0 0 20 20">
+            <path d="M12.5 5L7.5 10L12.5 15" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </Link>
+
+        <div className="flex items-center gap-2">
+          <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-accent2/10 text-lg font-display font-bold text-accent2">
+            {signGloss.charAt(0)}
+          </span>
+          <div>
+            <h1 className="text-sm font-semibold text-foreground">{signGloss}</h1>
+            <p className="text-xs text-muted">{signDescription}</p>
+          </div>
+        </div>
+
+        <div className="ml-auto flex items-center gap-3">
+          <button
+            onClick={start}
+            disabled={running || loadingExternals}
+            className="rounded-lg bg-accent px-4 py-2 text-xs font-semibold text-background transition-colors hover:bg-accent/90 disabled:opacity-50"
+          >
+            {loadingExternals ? "Loading…" : "Start camera"}
+          </button>
+          <button
+            onClick={startRecording}
+            disabled={!running || recording || continuous}
+            className="rounded-lg bg-accent2 px-4 py-2 text-xs font-semibold text-background transition-colors hover:bg-accent2/90 disabled:opacity-50"
+          >
+            ● Record (1.5s)
+          </button>
+          <button
+            onClick={stop}
+            disabled={!running}
+            className="rounded-lg border border-line bg-elevated px-4 py-2 text-xs font-medium text-muted transition-colors hover:text-foreground disabled:opacity-50"
+          >
+            Stop
+          </button>
+
+          <label className="flex items-center gap-1.5 text-xs text-muted">
+            <input type="checkbox" checked={continuous} onChange={() => setContinuous(!continuous)} className="rounded border-line bg-elevated accent-accent" />
             Continuous
           </label>
-          <label className="flex items-center gap-1.5">
-            <input type="checkbox" checked={mirror} onChange={(e) => handleMirrorChange(e.target.checked)} className="accent-accent" />
+          <label className="flex items-center gap-1.5 text-xs text-muted">
+            <input type="checkbox" checked={mirror} onChange={(e) => handleMirrorChange(e.target.checked)} className="rounded border-line bg-elevated accent-accent" />
             Mirror
           </label>
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
-        <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-panel" aria-label="Demo">
+      {/* Error banner */}
+      {externalsError && (
+        <div className="mb-6 rounded-xl border border-bad/30 bg-bad/5 p-4 text-sm text-bad" role="alert">
+          <p className="font-semibold">Failed to load external libraries</p>
+          <p className="mt-1 text-xs">{externalsError}</p>
+          <p className="mt-2 text-xs text-muted">Check your internet connection and try refreshing the page.</p>
+        </div>
+      )}
+
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Demo panel */}
+        <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface" aria-label="Demo">
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted">Target sign (mock demo)</h2>
-            <span className="rounded-full bg-panel2 px-2.5 py-1 text-xs text-muted border border-line">Target: {sign}</span>
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">Target Sign</h2>
+            <span className="rounded-full bg-accent2/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-accent2">
+              Target: {signGloss}
+            </span>
           </div>
-          <div className="relative flex aspect-[4/3] items-center justify-center bg-gradient-radial from-[#1a2350] to-[#0b1020]">
+
+          <div
+            className="relative flex aspect-[4/3] items-center justify-center overflow-hidden"
+            style={{
+              background: "radial-gradient(ellipse at center, rgba(0, 229, 176, 0.06) 0%, var(--bg-surface) 70%)",
+            }}
+          >
             <div className="h-40 w-40 animate-pulse rounded-full bg-accent2/20" style={{ animationDuration: "1.6s" }} />
-            <span className="absolute text-6xl font-bold tracking-wider text-foreground/90" style={{ textShadow: "0 4px 20px rgba(94,224,193,0.4)" }}>{sign}</span>
+            <span className="absolute text-6xl font-display font-bold tracking-wider text-foreground/90" style={{ textShadow: "0 4px 20px rgba(0, 229, 176, 0.4)" }}>
+              {signGloss}
+            </span>
             <div className="absolute bottom-3 left-3 right-3 rounded-lg bg-background/70 px-3 py-2 text-sm text-muted backdrop-blur-sm">
-              {SIGN_DESCRIPTIONS[sign] || ""}
+              {signDescription}
             </div>
           </div>
-          <div className="flex flex-wrap gap-1.5 p-3">
+
+          <div className="flex flex-wrap gap-1.5 border-t border-line p-3">
             {DYNAMIC_SIGNS.map((s) => (
               <Link
                 key={s}
                 href={`/learn/asl/words/${s.toLowerCase()}`}
                 aria-label={`Practice sign ${s}`}
-                className={`rounded-lg px-2.5 py-1.5 text-sm transition-colors ${s === sign ? "bg-accent2 font-semibold text-background" : "border border-line bg-panel2 text-muted hover:text-foreground"}`}
+                className={`rounded-md px-2.5 py-1.5 text-xs font-medium transition-all duration-150 ${
+                  s === signGloss
+                    ? "bg-accent2 text-background"
+                    : "border border-line bg-elevated text-muted hover:border-accent/30 hover:text-foreground"
+                }`}
               >
                 {s}
               </Link>
@@ -295,71 +458,88 @@ export default function DynamicSignPage() {
           </div>
         </section>
 
-        <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-panel" aria-label="Your attempt">
+        {/* Webcam + feedback */}
+        <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface" aria-label="Your attempt">
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
-            <h2 className="text-xs font-semibold uppercase tracking-widest text-muted">You · Webcam</h2>
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">Your Attempt</h2>
             <div className="flex items-center gap-2">
-              <span className="rounded-full bg-panel2 px-2.5 py-1 text-xs text-muted border border-line">Buffer: {bufferCount}/{T_FRAMES}</span>
-              <span className="flex items-center gap-1.5 text-xs font-semibold text-ok">🔒 On-device</span>
-            </div>
-          </div>
-          <div className={`relative aspect-[4/3] bg-black ${mirror ? "[transform:scaleX(-1)]" : ""}`}>
-            <video ref={videoRef} playsInline muted className="absolute inset-0 h-full w-full object-cover" />
-            <canvas ref={overlayRef} className="absolute inset-0 h-full w-full object-cover" />
-            <div className="absolute left-2.5 right-2.5 top-2.5 flex justify-between pointer-events-none">
-              <span className="rounded-full bg-background/75 px-2.5 py-1 text-xs backdrop-blur-sm border border-line">{hudHand}</span>
-              <span className="rounded-full bg-background/75 px-2.5 py-1 text-xs backdrop-blur-sm border border-line">{hudLatency}</span>
+              <span className="rounded-full border border-line bg-elevated px-2 py-0.5 text-[10px] font-mono text-muted">
+                Buffer: {bufferCount}/{T_FRAMES}
+              </span>
+              <span className="flex items-center gap-1.5 text-xs font-mono font-medium text-ok">
+                <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse" />
+                On-device
+              </span>
             </div>
           </div>
 
-          <div className="px-4 pt-3 pb-1">
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-muted">Recording window</span>
-              <div className="h-2 flex-1 overflow-hidden rounded-full bg-line">
-                <div className="h-full bg-accent2 transition-all" style={{ width: `${(bufferCount / T_FRAMES) * 100}%` }} />
-              </div>
-              <span className="text-xs text-muted">{bufferCount}/{T_FRAMES} frames</span>
+          <div className={`relative aspect-[4/3] overflow-hidden bg-black ${mirror ? "[transform:scaleX(-1)]" : ""}`}>
+            <video ref={videoRef} playsInline muted className="absolute inset-0 h-full w-full object-cover" />
+            <canvas ref={overlayRef} className="absolute inset-0 h-full w-full object-cover" />
+            <div className="absolute left-3 right-3 top-3 flex justify-between pointer-events-none">
+              <span className={`rounded-full px-2.5 py-1 text-[10px] font-medium backdrop-blur-sm border ${
+                hudHand === "Hand detected"
+                  ? "border-ok/30 bg-ok/10 text-ok"
+                  : "border-line bg-background/60 text-muted"
+              }`}>
+                {hudHand}
+              </span>
+              <span className="rounded-full border border-line bg-background/60 px-2.5 py-1 text-[10px] font-mono text-muted backdrop-blur-sm">
+                {hudLatency}
+              </span>
             </div>
           </div>
 
           <div className="flex flex-col gap-3 p-4">
-            <div className={`flex items-center justify-between rounded-xl p-4 border ${
-              verdict === "match" ? "border-ok/40 bg-ok/10" : verdict === "close" ? "border-warn/40 bg-warn/10" : verdict === "miss" ? "border-bad/40 bg-bad/10" : "border-line bg-accent/5"
+            <div className="flex items-center gap-3">
+              <span className="text-xs text-muted">Recording</span>
+              <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-elevated">
+                <div className="h-full rounded-full bg-accent2 transition-all" style={{ width: `${(bufferCount / T_FRAMES) * 100}%` }} />
+              </div>
+              <span className="text-xs font-mono text-muted">{bufferCount}/{T_FRAMES}</span>
+            </div>
+
+            <div className={`flex items-center justify-between rounded-xl border p-4 transition-colors ${
+              verdict === "match" ? "border-ok/30 bg-ok/5" : verdict === "close" ? "border-warn/30 bg-warn/5" : verdict === "miss" ? "border-bad/30 bg-bad/5" : "border-line bg-elevated/50"
             }`}>
               <div>
-                <span className="block text-xs uppercase tracking-wider text-muted">Top prediction</span>
-                <span className={`text-3xl font-bold leading-tight ${
-                  verdict === "match" ? "text-ok" : verdict === "close" ? "text-warn" : verdict === "miss" ? "text-bad" : ""
-                }`}>{detected}</span>
+                <span className="block text-[10px] uppercase tracking-wider text-muted">Top prediction</span>
+                <span className={`text-3xl font-display font-bold leading-none ${
+                  verdict === "match" ? "text-ok" : verdict === "close" ? "text-warn" : verdict === "miss" ? "text-bad" : "text-foreground"
+                }`}>
+                  {detected}
+                </span>
               </div>
-              <div className="text-right text-sm text-muted">
-                confidence
-                <span className="mt-0.5 block text-2xl font-bold text-foreground">{confidence}</span>
+              <div className="text-right">
+                <span className="block text-[10px] uppercase tracking-wider text-muted">Confidence</span>
+                <span className="text-2xl font-display font-bold text-foreground">{confidence}</span>
               </div>
             </div>
 
             {modelReady && topK.length > 0 && (
-              <div className="flex flex-col gap-1.5 pt-1">
+              <div className="flex flex-col gap-1.5">
                 {topK.map((r, i) => (
-                  <div key={r.label} className="grid grid-cols-[80px_1fr_50px] items-center gap-2 text-sm">
-                    <span>{r.label}</span>
-                    <div className="h-2 overflow-hidden rounded-full bg-line">
-                      <div className={`h-full transition-all ${i === 0 ? "bg-accent2" : "bg-accent"}`} style={{ width: `${r.prob * 100}%` }} />
+                  <div key={r.label} className="grid grid-cols-[60px_1fr_40px] items-center gap-2 text-xs">
+                    <span className={`font-mono font-medium ${r.label === signGloss ? "text-accent" : "text-muted"}`}>{r.label}</span>
+                    <div className="h-1.5 overflow-hidden rounded-full bg-elevated">
+                      <div className={`h-full rounded-full transition-all duration-200 ${i === 0 ? "bg-accent" : "bg-accent/40"}`} style={{ width: `${r.prob * 100}%` }} />
                     </div>
-                    <span className="text-right text-muted">{(r.prob * 100).toFixed(0)}%</span>
+                    <span className="text-right font-mono text-muted">{(r.prob * 100).toFixed(0)}%</span>
                   </div>
                 ))}
               </div>
             )}
 
-            <div className="rounded-xl border border-dashed border-line bg-accent/5 p-3 text-sm" role="status">
+            <div className="rounded-xl border border-dashed border-line bg-accent/5 p-3 text-sm text-muted" role="status" aria-live="polite">
               <span dangerouslySetInnerHTML={{ __html: tip.replace(/<strong>/g, '<strong class="text-accent">').replace(/<i>/g, '<i class="text-muted">') }} />
             </div>
           </div>
 
-          <div className="flex gap-2 px-4 pb-3 text-xs text-muted">
-            <span className={`rounded-full border px-2 py-0.5 ${modelReady ? "border-ok/40 bg-ok/10 text-ok" : "border-bad/40 bg-bad/10 text-bad"}`}>{modelBadge}</span>
-            <span className="rounded-full border border-line bg-panel2 px-2 py-0.5">FPS: {fps}</span>
+          <div className="flex items-center gap-2 border-t border-line px-4 py-2.5 text-xs text-muted">
+            <span className={`rounded-full border px-2 py-0.5 text-[10px] font-medium ${modelReady ? "border-ok/30 bg-ok/5 text-ok" : "border-bad/30 bg-bad/5 text-bad"}`}>
+              {modelBadge}
+            </span>
+            <span className="rounded-full border border-line bg-elevated px-2 py-0.5 text-[10px] font-mono">FPS: {fps}</span>
           </div>
         </section>
       </div>

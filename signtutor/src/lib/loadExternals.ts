@@ -1,19 +1,14 @@
 /**
- * External script loader for MediaPipe and ONNX Runtime
- *
- * BUILD_PROMPT §3.2 — loads all required inference dependencies
- * before the webcam pipeline starts. Returns typed handles.
+ * External script loader for MediaPipe Hands and ONNX Runtime
  */
 
-import type { NormalizedLandmark, HolisticResults } from "./mediapipe/holisticRunner";
-
 export interface MediaPipeLibs {
-  drawConnectors: (ctx: CanvasRenderingContext2D, lm: NormalizedLandmark[], conns: unknown, opts: object) => void;
-  drawLandmarks: (ctx: CanvasRenderingContext2D, lm: NormalizedLandmark[], opts: object) => void;
+  drawConnectors: (ctx: CanvasRenderingContext2D, lm: { x: number; y: number; z: number }[], conns: unknown, opts: object) => void;
+  drawLandmarks: (ctx: CanvasRenderingContext2D, lm: { x: number; y: number; z: number }[], opts: object) => void;
   HAND_CONNECTIONS: unknown;
-  Holistic: new (opts: { locateFile: (f: string) => string }) => {
+  Hands: new (opts: { locateFile: (f: string) => string }) => {
     setOptions: (opts: object) => void;
-    onResults: (cb: (results: HolisticResults) => void) => void;
+    onResults: (cb: (results: { multiHandLandmarks?: { x: number; y: number; z: number }[][] }) => void) => void;
     send: (input: { image: HTMLVideoElement }) => Promise<void>;
   };
   Camera: new (video: HTMLVideoElement, opts: { onFrame: () => Promise<void>; width: number; height: number }) => {
@@ -49,26 +44,26 @@ function loadScript(src: string): Promise<void> {
   });
 }
 
-/** Load MediaPipe Holistic + drawing + camera from CDN */
+/** Load MediaPipe Hands + drawing + camera from CDN */
 export async function loadMediaPipe(): Promise<MediaPipeLibs> {
   if (mediaPipePromise) return mediaPipePromise;
 
   mediaPipePromise = (async () => {
     await Promise.all([
-      loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.5.1675471629/holistic.js"),
+      loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js"),
       loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.js"),
       loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js"),
     ]);
 
     const w = window as unknown as {
-      Holistic: MediaPipeLibs["Holistic"];
+      Hands: MediaPipeLibs["Hands"];
+      Camera: MediaPipeLibs["Camera"];
       drawConnectors: MediaPipeLibs["drawConnectors"];
       drawLandmarks: MediaPipeLibs["drawLandmarks"];
       HAND_CONNECTIONS: MediaPipeLibs["HAND_CONNECTIONS"];
-      Camera: MediaPipeLibs["Camera"];
     };
 
-    if (!w.Holistic || !w.Camera) {
+    if (!w.Hands || !w.Camera) {
       throw new Error("MediaPipe libraries failed to load onto window");
     }
 
@@ -78,18 +73,22 @@ export async function loadMediaPipe(): Promise<MediaPipeLibs> {
   return mediaPipePromise;
 }
 
-/** Load ONNX Runtime (Web) dynamically to avoid SSR issues */
+/** Load ONNX Runtime via script tag (sets window.ort) */
 export async function loadONNX(): Promise<ONNXLibs> {
   if (onnxPromise) return onnxPromise;
 
   onnxPromise = (async () => {
-    // Dynamic import of onnxruntime-web
-    // @ts-expect-error: onnxruntime-web exports to window.ort upon import
-    const ort = (await import("onnxruntime-web")).default ?? (await import("onnxruntime-web")).ort;
-    if (!ort) {
+    await loadScript("https://cdn.jsdelivr.net/npm/onnxruntime-web@1.26.0/dist/ort.min.js");
+
+    const w = window as unknown as {
+      ort: ONNXLibs;
+    };
+
+    if (!w.ort) {
       throw new Error("onnxruntime-web failed to load");
     }
-    return ort as ONNXLibs;
+
+    return w.ort;
   })();
 
   return onnxPromise;

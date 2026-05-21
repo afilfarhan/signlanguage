@@ -1,22 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { Header } from "@/components/Header";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 export const metadata: Metadata = {
-  title: "SignTutor — Learn Sign Language",
+  title: "SignTutor — Learn ASL with Real-Time Feedback",
   description:
-    "Browser-based, vision-driven sign language learning with on-device inference",
+    "Browser-based ASL learning with on-device ML. No uploads, no accounts, no cloud processing.",
 };
 
 export default function RootLayout({
@@ -25,14 +14,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">
+    <html lang="en" className="h-full antialiased">
+      <body className="min-h-full flex flex-col bg-background text-foreground">
         <a
           href="#main-content"
-          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:rounded focus:bg-accent focus:px-4 focus:py-2 focus:text-background focus:font-semibold"
+          className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-4 focus:left-4 focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-background focus:font-semibold"
         >
           Skip to main content
         </a>
