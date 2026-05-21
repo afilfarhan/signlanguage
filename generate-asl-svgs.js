@@ -1,0 +1,24 @@
+const fs = require('fs');
+const path = require('path');
+
+const dir = path.join(__dirname, 'signtutor/public/refs/asl/fingerspelling');
+const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+
+letters.forEach(letter => {
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" width="200" height="260">
+  <defs>
+    <linearGradient id="bg-${letter}" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="200" height="260" fill="url(#bg-${letter})" rx="16"/>
+  <text x="100" y="150" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="130" font-weight="800" fill="white" style="text-shadow: 0 4px 20px rgba(0,0,0,0.3)">${letter}</text>
+  <text x="100" y="210" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" fill="rgba(255,255,255,0.8)">ASL Letter ${letter}</text>
+</svg>`;
+  
+  fs.writeFileSync(path.join(dir, `${letter}.svg`), svg);
+  console.log(`Created ${letter}.svg`);
+});
+
+console.log('Done! All ASL letter SVGs created.');
