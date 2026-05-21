@@ -1,0 +1,26 @@
+# SignTutor ML Extension - Python Requirements
+# Install: pip install -r requirements.txt
+
+# ── Core ──────────────────────────────────────────────────────────────────────
+numpy>=1.24.0,<2.0.0
+
+# ── Machine Learning ─────────────────────────────────────────────────────────
+scikit-learn>=1.3.0
+torch>=2.0.0
+onnxruntime>=1.16.0
+onnx>=1.14.0
+skl2onnx>=1.15.0
+
+# ── Computer Vision ──────────────────────────────────────────────────────────
+opencv-python>=4.8.0
+mediapipe>=0.10.0
+
+# ── Dataset Processing ───────────────────────────────────────────────────────
+# For video loading and landmark extraction from real datasets
+# (Optional: only needed when processing WLASL, MS-ASL, ChicagoFSWild+)
+# opencv-python already covers video loading
+
+# ── Development ──────────────────────────────────────────────────────────────
+# (Optional: for testing and development)
+# pytest>=7.0.0
+# matplotlib>=3.7.0  # For visualization and eval reports

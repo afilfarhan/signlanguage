@@ -1,0 +1,74 @@
+{
+  "labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y"
+  ],
+  "synth_collisions": [
+    [
+      "A",
+      "E",
+      "M",
+      "N",
+      "S",
+      "T"
+    ],
+    [
+      "D",
+      "G",
+      "L",
+      "Q"
+    ],
+    [
+      "H",
+      "U",
+      "V"
+    ],
+    [
+      "K",
+      "P"
+    ],
+    [
+      "C",
+      "O"
+    ]
+  ],
+  "feature_dim": 68,
+  "geometry_features": [
+    "index_middle_tip_distance",
+    "index_middle_mcp_distance",
+    "index_middle_cosine_angle",
+    "index_middle_cross_sign",
+    "tip_mcp_distance_ratio"
+  ],
+  "hard_classes": [
+    "R",
+    "U",
+    "V",
+    "M",
+    "N",
+    "O"
+  ],
+  "hard_class_weight": 2.25
+}
