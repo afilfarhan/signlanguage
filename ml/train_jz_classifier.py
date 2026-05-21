@@ -174,7 +174,7 @@ torch.onnx.export(
     onnx_path,
     input_names=["input"],
     output_names=["logits"],
-    opset_version=15,
+    opset_version=18,
 )
 
 # Save labels
