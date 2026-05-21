@@ -17,6 +17,7 @@ import {
   type FingerKey,
   type MovementPoint,
 } from "@/lib/normalize";
+import { normalizeSequenceFixed, JZ_FRAMES } from "@/lib/seq-features";
 import { LETTER_DESCRIPTIONS, STATIC_LETTERS, ASL_REF_IMAGES, MOTION_LETTERS } from "@/lib/curriculum";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
 import { loadMediaPipe, loadONNX, type MediaPipeLibs, type ONNXLibs } from "@/lib/loadExternals";
@@ -118,6 +119,10 @@ export default function FingerspellingLetterPage() {
   const onnxLibsRef = useRef<ONNXLibs | null>(null);
   const modelLabelsRef = useRef<string[]>([]);
   const featureDimRef = useRef(63);
+  const jzSessionRef = useRef<OrtSession | null>(null);
+  const jzLabelsRef = useRef<string[]>([]);
+  const jzReadyRef = useRef(false);
+  const jzBufRef = useRef<Float32Array[]>([]);
 
   useEffect(() => { targetRef.current = letter; }, [letter]);
   useEffect(() => { modeRef.current = mode; }, [mode]);
@@ -196,10 +201,55 @@ export default function FingerspellingLetterPage() {
         }
         movementBufRef.current.push({ x: lm[0].x, y: lm[0].y, t: performance.now() });
         if (movementBufRef.current.length > 30) movementBufRef.current.shift();
-        classifyAndScore(lm);
+
+        // Buffer landmarks for J/Z temporal model
+        const arr = new Float32Array(21 * 3);
+        for (let i = 0; i < 21; i++) {
+          arr[i * 3 + 0] = lm[i].x;
+          arr[i * 3 + 1] = lm[i].y;
+          arr[i * 3 + 2] = lm[i].z || 0;
+        }
+        jzBufRef.current.push(arr);
+        if (jzBufRef.current.length > JZ_FRAMES) jzBufRef.current.shift();
+
+        // If target is J or Z, use temporal model when enough frames
+        const target = targetRef.current;
+        if ((target === "J" || target === "Z") && jzBufRef.current.length >= JZ_FRAMES && jzReadyRef.current && jzSessionRef.current && onnxLibsRef.current) {
+          (async () => {
+            try {
+              const features = normalizeSequenceFixed(jzBufRef.current, JZ_FRAMES);
+              const tensor = new onnxLibsRef.current!.Tensor("float32", features, [1, JZ_FRAMES, 126]);
+              const out = await jzSessionRef.current!.run({ input: tensor });
+              const logits = out.logits.data;
+              // Softmax
+              const max = Math.max(...logits);
+              const exps = Array.from(logits, (v: number) => Math.exp(v - max));
+              const sumE = exps.reduce((a: number, b: number) => a + b, 0);
+              const probs = exps.map((e: number) => e / sumE);
+              const labels = jzLabelsRef.current;
+              const ranked = probs.map((p: number, i: number) => ({ label: labels[i] || String(i), prob: p })).sort((a: { prob: number }, b: { prob: number }) => b.prob - a.prob);
+              const top = ranked[0];
+              setDetected(top.label);
+              setConfidence(`${(top.prob * 100).toFixed(0)}%`);
+              setTopK(ranked);
+
+              const targetProb = ranked.find((r: { label: string }) => r.label === target)?.prob || 0;
+              const v: Verdict = top.label === target && targetProb >= 0.7 ? "match" : targetProb >= 0.3 ? "close" : "miss";
+              setVerdict(v);
+              setComponents({ shape: targetProb, orient: 1, loc: 1, move: 1 });
+              setTip(v === "match" ? `Nice — that looks like "${target}". Hold it for a beat.` : v === "close" ? `Almost "${target}". Keep tracing the shape.` : `Trace the "${target}" shape with your finger.`);
+            } catch {
+              // Fallback to static
+              classifyAndScore(lm);
+            }
+          })();
+        } else {
+          classifyAndScore(lm);
+        }
       } else {
         setHudHand("No hand detected");
         movementBufRef.current.length = 0;
+        jzBufRef.current.length = 0;
         setDetected("—");
         setConfidence("—");
         setVerdict(null);
@@ -270,6 +320,20 @@ export default function FingerspellingLetterPage() {
           onModelLoaded(meta.labels, session, meta.feature_dim);
         } catch {
           onModelError();
+        }
+      }
+
+      // Load J/Z temporal model
+      if (!jzSessionRef.current && onnxLibsRef.current && !jzReadyRef.current) {
+        try {
+          const jzSession = await onnxLibsRef.current.InferenceSession.create("/models/jz_classifier.onnx", { executionProviders: ["wasm"] });
+          const jzResp = await fetch("/models/jz_labels.json");
+          const jzMeta = await jzResp.json();
+          jzSessionRef.current = jzSession;
+          jzLabelsRef.current = jzMeta.labels;
+          jzReadyRef.current = true;
+        } catch {
+          // J/Z model is optional — static model still works
         }
       }
 

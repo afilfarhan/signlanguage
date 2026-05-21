@@ -1,0 +1,9 @@
+{
+  "labels": [
+    "J",
+    "Z"
+  ],
+  "seq_len": 30,
+  "feature_dim": 126,
+  "n_classes": 2
+}
