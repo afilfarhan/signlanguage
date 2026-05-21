@@ -1,0 +1,24 @@
+{
+  "name": "signlanguage",
+  "version": "1.0.0",
+  "description": "A browser-based, vision-driven sign language learning platform with on-device inference.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afilfarhan/signlanguage.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/afilfarhan/signlanguage/issues"
+  },
+  "homepage": "https://github.com/afilfarhan/signlanguage#readme",
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}
