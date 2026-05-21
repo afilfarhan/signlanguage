@@ -96,6 +96,7 @@ export const PATTERNS: Record<string, FingerStates> = {
   G: { thumb: true, index: true, middle: false, ring: false, pinky: false },
   H: { thumb: false, index: true, middle: true, ring: false, pinky: false },
   I: { thumb: false, index: false, middle: false, ring: false, pinky: true },
+  J: { thumb: false, index: false, middle: false, ring: false, pinky: true },
   K: { thumb: true, index: true, middle: true, ring: false, pinky: false },
   L: { thumb: true, index: true, middle: false, ring: false, pinky: false },
   M: { thumb: false, index: false, middle: false, ring: false, pinky: false },
@@ -111,6 +112,7 @@ export const PATTERNS: Record<string, FingerStates> = {
   W: { thumb: false, index: true, middle: true, ring: true, pinky: false },
   X: { thumb: false, index: true, middle: false, ring: false, pinky: false },
   Y: { thumb: true, index: false, middle: false, ring: false, pinky: true },
+  Z: { thumb: true, index: true, middle: false, ring: false, pinky: false },
 };
 
 export function scoreLetterRule(states: FingerStates, target: string): number {

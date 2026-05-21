@@ -2,16 +2,14 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { STATIC_LETTERS, LETTER_DESCRIPTIONS } from "@/lib/curriculum";
-
-const MOTION_LETTERS = ["J", "Z"];
+import { STATIC_LETTERS, LETTER_DESCRIPTIONS, MOTION_LETTERS } from "@/lib/curriculum";
 
 export default function FingerspellingPage() {
   const [filter, setFilter] = useState<"all" | "static" | "motion">("all");
 
   const letters = STATIC_LETTERS.filter((letter) => {
     if (filter === "all") return true;
-    const isMotion = MOTION_LETTERS.includes(letter);
+    const isMotion = (MOTION_LETTERS as readonly string[]).includes(letter);
     return filter === "motion" ? isMotion : !isMotion;
   });
 
@@ -55,7 +53,7 @@ export default function FingerspellingPage() {
       {/* Letter grid */}
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {letters.map((letter) => {
-          const isMotion = MOTION_LETTERS.includes(letter);
+          const isMotion = (MOTION_LETTERS as readonly string[]).includes(letter);
           return (
             <Link
               key={letter}

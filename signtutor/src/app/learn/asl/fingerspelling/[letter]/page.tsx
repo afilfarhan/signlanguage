@@ -17,7 +17,7 @@ import {
   type FingerKey,
   type MovementPoint,
 } from "@/lib/normalize";
-import { LETTER_DESCRIPTIONS, STATIC_LETTERS, ASL_REF_IMAGES } from "@/lib/curriculum";
+import { LETTER_DESCRIPTIONS, STATIC_LETTERS, ASL_REF_IMAGES, MOTION_LETTERS } from "@/lib/curriculum";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
 import { loadMediaPipe, loadONNX, type MediaPipeLibs, type ONNXLibs } from "@/lib/loadExternals";
 
@@ -117,6 +117,7 @@ export default function FingerspellingLetterPage() {
   const mpLibsRef = useRef<MediaPipeLibs | null>(null);
   const onnxLibsRef = useRef<ONNXLibs | null>(null);
   const modelLabelsRef = useRef<string[]>([]);
+  const featureDimRef = useRef(63);
 
   useEffect(() => { targetRef.current = letter; }, [letter]);
   useEffect(() => { modeRef.current = mode; }, [mode]);
@@ -127,7 +128,7 @@ export default function FingerspellingLetterPage() {
       const t0 = performance.now();
       const feats = normalize(landmarks);
       if (!onnxLibsRef.current) return null;
-      const tensor = new onnxLibsRef.current.Tensor("float32", feats, [1, 63]);
+      const tensor = new onnxLibsRef.current.Tensor("float32", feats, [1, featureDimRef.current]);
       const out = await session.run({ input: tensor });
       clfLatencyRef.current = performance.now() - t0;
       const probs = out.probabilities.data;
@@ -217,9 +218,10 @@ export default function FingerspellingLetterPage() {
     [classifyAndScore],
   );
 
-  const onModelLoaded = useCallback((labels: string[], session: OrtSession) => {
+  const onModelLoaded = useCallback((labels: string[], session: OrtSession, featureDim?: number) => {
     sessionRef.current = session;
     modelLabelsRef.current = labels;
+    if (featureDim) featureDimRef.current = featureDim;
     setModelLabels(labels);
     setModelReady(true);
     setModelBadge(`MLP · ${labels.length} classes`);
@@ -265,7 +267,7 @@ export default function FingerspellingLetterPage() {
           const session = await onnxLibsRef.current.InferenceSession.create("/models/fingerspell_mlp_v2.onnx", { executionProviders: ["wasm"] });
           const resp = await fetch("/models/labels_v2.json");
           const meta = await resp.json();
-          onModelLoaded(meta.labels, session);
+          onModelLoaded(meta.labels, session, meta.feature_dim);
         } catch {
           onModelError();
         }
@@ -353,7 +355,14 @@ export default function FingerspellingLetterPage() {
             {letter}
           </span>
           <div>
-            <h1 className="text-sm font-semibold text-foreground">Letter {letter}</h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-sm font-semibold text-foreground">Letter {letter}</h1>
+              {(MOTION_LETTERS as readonly string[]).includes(letter) && (
+                <span className="rounded-full bg-warm/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-warm">
+                  Motion
+                </span>
+              )}
+            </div>
             <p className="text-xs text-muted">{LETTER_DESCRIPTIONS[letter]}</p>
           </div>
         </div>

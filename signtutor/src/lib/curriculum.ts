@@ -1,7 +1,9 @@
 export const STATIC_LETTERS = [
-  "A","B","C","D","E","F","G","H","I","K","L","M",
-  "N","O","P","Q","R","S","T","U","V","W","X","Y",
+  "A","B","C","D","E","F","G","H","I","J","K","L","M",
+  "N","O","P","Q","R","S","T","U","V","W","X","Y","Z",
 ] as const;
+
+export const MOTION_LETTERS = ["J", "Z"] as const;
 
 export const ASL_REF_IMAGES: Record<string, string> = {
   A: "https://upload.wikimedia.org/wikipedia/commons/2/27/Sign_language_A.svg",
@@ -44,6 +46,7 @@ export const LETTER_DESCRIPTIONS: Record<string, string> = {
   G: "Index extended sideways, thumb parallel, other fingers closed.",
   H: "Index and middle extended together sideways, others closed.",
   I: "Pinky extended up, all other fingers and thumb closed.",
+  J: "Pinky extended, traces a J shape in the air. Motion letter.",
   K: "Index up, middle out at angle, thumb between, others closed.",
   L: "Index up, thumb out, other fingers curled. Forms an L.",
   M: "Thumb tucked under index, middle, and ring, pinky out.",
@@ -59,6 +62,7 @@ export const LETTER_DESCRIPTIONS: Record<string, string> = {
   W: "Index, middle, and ring extended up, pinky and thumb closed.",
   X: "Index bent into a hook, others closed.",
   Y: "Thumb and pinky extended, index/middle/ring curled. Hang loose.",
+  Z: "Index extended, traces a Z shape in the air. Motion letter.",
 };
 
 export const DYNAMIC_SIGNS = [
