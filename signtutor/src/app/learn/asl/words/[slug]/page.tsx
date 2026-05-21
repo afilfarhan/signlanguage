@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { normalizeSequence, T_FRAMES, N_LANDMARKS, FEATURE_DIM } from "@/lib/seq-features";
 import { DYNAMIC_SIGNS, SIGN_DESCRIPTIONS } from "@/lib/curriculum";
@@ -29,7 +29,15 @@ const ML_SIGNS = new Set<string>(DYNAMIC_SIGNS as unknown as string[]);
 
 export default function DynamicSignPage() {
   const params = useParams();
+  const router = useRouter();
   const slug = (params.slug as string || "hello").toLowerCase();
+
+  useEffect(() => {
+    const saved = loadPrefs();
+    if (!saved.completedAt) {
+      router.replace("/setup");
+    }
+  }, [router]);
 
   const vocabSign = getSignById(slug);
   const isMLSign = ML_SIGNS.has(slug.toUpperCase());
@@ -177,6 +185,13 @@ export default function DynamicSignPage() {
 
   const start = useCallback(async () => {
     if (running) return;
+
+    // Reset stuck state from a previous hung attempt
+    if (loadingExternals) {
+      mpLibsRef.current = null;
+      onnxLibsRef.current = null;
+    }
+
     setLoadingExternals(true);
     setExternalsError("");
 

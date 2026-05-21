@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
   normalize,
@@ -69,7 +69,15 @@ function chooseTip(
 
 export default function FingerspellingLetterPage() {
   const params = useParams();
+  const router = useRouter();
   const letter = (params.letter as string || "A").toUpperCase();
+
+  useEffect(() => {
+    const saved = loadPrefs();
+    if (!saved.completedAt) {
+      router.replace("/setup");
+    }
+  }, [router]);
 
   const [prefs, setPrefs] = useState<Prefs>(() => {
     if (typeof window === "undefined") return { language: "asl", handedness: "right", mirror: true };
@@ -224,6 +232,13 @@ export default function FingerspellingLetterPage() {
 
   const startCamera = useCallback(async () => {
     if (running) return;
+
+    // Reset stuck state from a previous hung attempt
+    if (loadingExternals) {
+      mpLibsRef.current = null;
+      onnxLibsRef.current = null;
+    }
+
     setLoadingExternals(true);
     setExternalsError("");
 

@@ -24,6 +24,13 @@ export default function SetupPage() {
   const lightingTimerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
+    const saved = loadPrefs();
+    if (saved.completedAt) {
+      router.replace("/learn/asl/fingerspelling/A");
+    }
+  }, [router]);
+
+  useEffect(() => {
     const video = step === 3 ? video3Ref.current : step === 4 ? video4Ref.current : null;
     if (video && stream) {
       video.srcObject = stream;

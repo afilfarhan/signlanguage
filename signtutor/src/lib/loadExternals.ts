@@ -29,7 +29,7 @@ export interface ONNXLibs {
 let mediaPipePromise: Promise<MediaPipeLibs> | null = null;
 let onnxPromise: Promise<ONNXLibs> | null = null;
 
-function loadScript(src: string): Promise<void> {
+function loadScript(src: string, timeoutMs = 15000): Promise<void> {
   return new Promise((resolve, reject) => {
     if (document.querySelector(`script[src="${src}"]`)) {
       resolve();
@@ -38,8 +38,12 @@ function loadScript(src: string): Promise<void> {
     const script = document.createElement("script");
     script.src = src;
     script.async = true;
-    script.onload = () => resolve();
-    script.onerror = () => reject(new Error(`Failed to load ${src}`));
+    const timer = setTimeout(() => {
+      script.remove();
+      reject(new Error(`Timeout loading ${src}`));
+    }, timeoutMs);
+    script.onload = () => { clearTimeout(timer); resolve(); };
+    script.onerror = () => { clearTimeout(timer); reject(new Error(`Failed to load ${src}`)); };
     document.head.appendChild(script);
   });
 }
