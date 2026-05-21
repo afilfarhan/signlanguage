@@ -73,12 +73,13 @@ export default function DynamicSignPage() {
   const continuousRef = useRef(false);
   const mpLibsRef = useRef<MediaPipeLibs | null>(null);
   const onnxLibsRef = useRef<ONNXLibs | null>(null);
+  const modelLabelsRef = useRef<string[]>([]);
 
   useEffect(() => { targetRef.current = signGloss; }, [signGloss]);
   useEffect(() => { recordingRef.current = recording; }, [recording]);
   useEffect(() => { continuousRef.current = continuous; }, [continuous]);
 
-  const runInference = useCallback(async (labels: string[], session: OrtSession, buf: Float32Array[], target: string) => {
+  const runInference = useCallback(async (session: OrtSession, buf: Float32Array[], target: string) => {
     if (buf.length < T_FRAMES) return;
     const t0 = performance.now();
     const flat = normalizeSequence(buf);
@@ -90,6 +91,7 @@ export default function DynamicSignPage() {
     const exps = Array.from(logits, (v) => Math.exp(v - max));
     const sumE = exps.reduce((a, b) => a + b, 0);
     const probs = exps.map((e) => e / sumE);
+    const labels = modelLabelsRef.current;
     const ranked = probs.map((p, i) => ({ label: labels[i] || String(i), prob: p })).sort((a, b) => b.prob - a.prob);
     const dt = performance.now() - t0;
     setHudLatency(`${dt.toFixed(0)} ms`);
@@ -133,20 +135,18 @@ export default function DynamicSignPage() {
         framesSinceInferRef.current++;
         if (recordingRef.current && bufferRef.current.length >= T_FRAMES) {
           const buf = bufferRef.current;
-          const labels = modelLabels;
           const session = sessionRef.current;
           const target = targetRef.current;
-          if (session && labels.length > 0) {
-            inferFn(labels, session, buf, target).finally(() => { setRecording(false); });
+          if (session && modelLabelsRef.current.length > 0) {
+            inferFn(session, buf, target).finally(() => { setRecording(false); });
           }
         } else if (continuousRef.current && bufferRef.current.length >= T_FRAMES && framesSinceInferRef.current >= 10) {
           framesSinceInferRef.current = 0;
           const buf = bufferRef.current;
-          const labels = modelLabels;
           const session = sessionRef.current;
           const target = targetRef.current;
-          if (session && labels.length > 0) {
-            inferFn(labels, session, buf, target);
+          if (session && modelLabelsRef.current.length > 0) {
+            inferFn(session, buf, target);
           }
         }
       } else {
@@ -162,11 +162,12 @@ export default function DynamicSignPage() {
         fc.t0 = now;
       }
     },
-    [modelLabels],
+    [],
   );
 
   const onModelLoaded = useCallback((labels: string[], session: OrtSession, seqLen: number) => {
     sessionRef.current = session;
+    modelLabelsRef.current = labels;
     setModelLabels(labels);
     setModelReady(true);
     setModelBadge(`Transformer · ${labels.length} signs · seq=${seqLen}`);

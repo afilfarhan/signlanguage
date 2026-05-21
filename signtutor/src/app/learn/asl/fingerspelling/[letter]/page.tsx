@@ -108,12 +108,13 @@ export default function FingerspellingLetterPage() {
   const targetRef = useRef(letter);
   const mpLibsRef = useRef<MediaPipeLibs | null>(null);
   const onnxLibsRef = useRef<ONNXLibs | null>(null);
+  const modelLabelsRef = useRef<string[]>([]);
 
   useEffect(() => { targetRef.current = letter; }, [letter]);
   useEffect(() => { modeRef.current = mode; }, [mode]);
   useEffect(() => { modelReadyRef.current = modelReady; }, [modelReady]);
 
-  const runModel = useCallback(async (landmarks: Landmark[], labels: string[], session: OrtSession): Promise<RankedResult[] | null> => {
+  const runModel = useCallback(async (landmarks: Landmark[], session: OrtSession): Promise<RankedResult[] | null> => {
     try {
       const t0 = performance.now();
       const feats = normalize(landmarks);
@@ -122,6 +123,7 @@ export default function FingerspellingLetterPage() {
       const out = await session.run({ input: tensor });
       clfLatencyRef.current = performance.now() - t0;
       const probs = out.probabilities.data;
+      const labels = modelLabelsRef.current;
       return Array.from(probs).map((p, i) => ({ label: labels[i] || String(i), prob: p })).sort((a, b) => b.prob - a.prob);
     } catch { return null; }
   }, []);
@@ -136,7 +138,7 @@ export default function FingerspellingLetterPage() {
 
     let ranked: RankedResult[] | null = null;
     if (modeRef.current === "ml" && modelReadyRef.current && sessionRef.current) {
-      ranked = await runModel(lm, modelLabels, sessionRef.current);
+      ranked = await runModel(lm, sessionRef.current);
     }
     if (!ranked) {
       const r = classifyRule(lm);
@@ -168,7 +170,7 @@ export default function FingerspellingLetterPage() {
     setVerdict(v);
     setTopK(ranked.slice(0, 5));
     setTip(chooseTip(comps, top, target, orient, states));
-  }, [runModel, modelLabels]);
+  }, [runModel]);
 
   const onResults = useCallback(
     (results: MediaPipeResults) => {
@@ -209,6 +211,7 @@ export default function FingerspellingLetterPage() {
 
   const onModelLoaded = useCallback((labels: string[], session: OrtSession) => {
     sessionRef.current = session;
+    modelLabelsRef.current = labels;
     setModelLabels(labels);
     setModelReady(true);
     setModelBadge(`MLP · ${labels.length} classes`);
@@ -244,8 +247,8 @@ export default function FingerspellingLetterPage() {
       // Load ML model if ONNX is available
       if (!sessionRef.current && onnxLibsRef.current && !modelReady) {
         try {
-          const session = await onnxLibsRef.current.InferenceSession.create("/models/fingerspell_mlp.onnx", { executionProviders: ["wasm"] });
-          const resp = await fetch("/models/labels.json");
+          const session = await onnxLibsRef.current.InferenceSession.create("/models/fingerspell_mlp_v2.onnx", { executionProviders: ["wasm"] });
+          const resp = await fetch("/models/labels_v2.json");
           const meta = await resp.json();
           onModelLoaded(meta.labels, session);
         } catch {
