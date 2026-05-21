@@ -8,6 +8,8 @@ import { DYNAMIC_SIGNS, SIGN_DESCRIPTIONS } from "@/lib/curriculum";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
 import type { Landmark } from "@/lib/normalize";
 
+import "@/lib/mediapipe/holisticRunner";
+
 type MediaPipeHands = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void> };
 type MediaPipeCamera = { start: () => void; stop: () => void };
 type OrtSession = { run: (f: Record<string, unknown>) => Promise<Record<string, { data: Float32Array }>> };
@@ -18,8 +20,6 @@ declare global {
   interface Window {
     Hands: new (opts: { locateFile: (f: string) => string }) => MediaPipeHands;
     Camera: new (video: HTMLVideoElement, opts: { onFrame: () => Promise<void>; width: number; height: number }) => MediaPipeCamera;
-    drawConnectors: (ctx: CanvasRenderingContext2D, lm: Landmark[], conns: unknown, opts: object) => void;
-    drawLandmarks: (ctx: CanvasRenderingContext2D, lm: Landmark[], opts: object) => void;
     HAND_CONNECTIONS: unknown;
     ort: { InferenceSession: { create: (path: string, opts: object) => Promise<OrtSession> }; Tensor: OrtTensorCtor };
   }

@@ -17,8 +17,10 @@ import {
   type FingerKey,
   type MovementPoint,
 } from "@/lib/normalize";
-import { LETTER_DESCRIPTIONS, STATIC_LETTERS } from "@/lib/curriculum";
+import { LETTER_DESCRIPTIONS, STATIC_LETTERS, ASL_REF_IMAGES } from "@/lib/curriculum";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
+
+import "@/lib/mediapipe/holisticRunner";
 
 type MediaPipeHands = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void> };
 type MediaPipeCamera = { start: () => void; stop: () => void };
@@ -30,8 +32,6 @@ declare global {
   interface Window {
     Hands: new (opts: { locateFile: (f: string) => string }) => MediaPipeHands;
     Camera: new (video: HTMLVideoElement, opts: { onFrame: () => Promise<void>; width: number; height: number }) => MediaPipeCamera;
-    drawConnectors: (ctx: CanvasRenderingContext2D, lm: Landmark[], conns: unknown, opts: object) => void;
-    drawLandmarks: (ctx: CanvasRenderingContext2D, lm: Landmark[], opts: object) => void;
     HAND_CONNECTIONS: unknown;
     ort: { InferenceSession: { create: (path: string, opts: object) => Promise<OrtSession> }; Tensor: OrtTensorCtor };
   }
@@ -350,7 +350,11 @@ export default function FingerspellingLetterPage() {
             <span className="rounded-full bg-panel2 px-2.5 py-1 text-xs text-muted border border-line">Target: {letter}</span>
           </div>
           <div className="relative flex aspect-[4/3] items-center justify-center bg-gradient-radial from-[#1a2350] to-[#0b1020]">
-            <span className="text-[200px] font-bold leading-none tracking-wider text-foreground/90" style={{ textShadow: "0 4px 20px rgba(124,156,255,0.4)" }}>{letter}</span>
+            <img
+              src={ASL_REF_IMAGES[letter] || ""}
+              alt={`ASL letter ${letter}: handshape reference`}
+              className="h-48 w-48 object-contain"
+            />
             <div className="absolute bottom-3 left-3 right-3 rounded-lg bg-background/70 px-3 py-2 text-sm text-muted backdrop-blur-sm">
               {LETTER_DESCRIPTIONS[letter] || ""}
             </div>
