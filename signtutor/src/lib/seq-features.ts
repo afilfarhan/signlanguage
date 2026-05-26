@@ -66,7 +66,6 @@ export function normalizeSequenceFixed(buf: Float32Array[], targetLen: number): 
 
   // Pad or trim to targetLen
   const out = new Float32Array(targetLen * N_LANDMARKS * 6);
-  const srcLen = Math.min(T, targetLen);
   for (let t = 0; t < targetLen; t++) {
     const srcT = t < T ? t : T - 1;
     for (let j = 0; j < N_LANDMARKS * 3; j++) {

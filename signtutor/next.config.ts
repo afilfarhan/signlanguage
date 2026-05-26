@@ -12,6 +12,11 @@ const lessonCSP = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "upload.wikimedia.org" },
+    ],
+  },
   async headers() {
     return [
       {

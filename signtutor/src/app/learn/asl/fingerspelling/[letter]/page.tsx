@@ -18,6 +18,7 @@ import {
   type MovementPoint,
 } from "@/lib/normalize";
 import { normalizeSequenceFixed, JZ_FRAMES } from "@/lib/seq-features";
+import Image from "next/image";
 import { LETTER_DESCRIPTIONS, STATIC_LETTERS, ASL_REF_IMAGES, MOTION_LETTERS } from "@/lib/curriculum";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
 import { loadMediaPipe, loadONNX, type MediaPipeLibs, type ONNXLibs } from "@/lib/loadExternals";
@@ -86,7 +87,6 @@ export default function FingerspellingLetterPage() {
   });
   const [mode, setMode] = useState<Mode>("ml");
   const [modelReady, setModelReady] = useState(false);
-  const [modelLabels, setModelLabels] = useState<string[]>([]);
   const [running, setRunning] = useState(false);
   const [detected, setDetected] = useState("—");
   const [confidence, setConfidence] = useState("—");
@@ -272,7 +272,6 @@ export default function FingerspellingLetterPage() {
     sessionRef.current = session;
     modelLabelsRef.current = labels;
     if (featureDim) featureDimRef.current = featureDim;
-    setModelLabels(labels);
     setModelReady(true);
     setModelBadge(`MLP · ${labels.length} classes`);
   }, []);
@@ -377,7 +376,7 @@ export default function FingerspellingLetterPage() {
     } finally {
       setLoadingExternals(false);
     }
-  }, [running, onResults, modelReady, onModelLoaded, onModelError]);
+  }, [running, onResults, modelReady, onModelLoaded, onModelError, loadingExternals]);
 
   const stop = useCallback(() => {
     try { cameraRef.current?.stop(); } catch {}
@@ -502,10 +501,13 @@ export default function FingerspellingLetterPage() {
             }}
           >
             {ASL_REF_IMAGES[letter] ? (
-              <img
+              <Image
                 src={ASL_REF_IMAGES[letter]}
                 alt={`ASL letter ${letter} handshape reference`}
+                width={208}
+                height={208}
                 className="h-52 w-52 object-contain transition-transform duration-300 hover:scale-105"
+                unoptimized
               />
             ) : (
               <div className="flex h-52 w-52 items-center justify-center rounded-2xl border border-dashed border-line text-6xl font-display font-bold text-dim">

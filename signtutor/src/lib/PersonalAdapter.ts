@@ -96,7 +96,7 @@ export function saveAdapter(adapter: PersonalAdapter): void {
   } catch {}
 }
 
-export function loadAdapter(nClasses: number): PersonalAdapter | null {
+export function loadAdapter(_nClasses: number): PersonalAdapter | null {
   try {
     const raw = localStorage.getItem(ADAPTER_KEY);
     if (raw) return PersonalAdapter.deserialize(raw);

@@ -87,8 +87,8 @@ function shouldAllowRequest(
 /** Install global fetch/XHR interceptors. Safe to call multiple times. */
 export function installPrivacyGate() {
   if (typeof window === "undefined") return;
-  if ((window as any).__privacyGateInstalled) return;
-  (window as any).__privacyGateInstalled = true;
+  if ((window as unknown as Record<string, unknown>).__privacyGateInstalled) return;
+  (window as unknown as Record<string, unknown>).__privacyGateInstalled = true;
 
   const nativeFetch = window.fetch.bind(window);
 

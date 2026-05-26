@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { normalizeSequence, T_FRAMES, N_LANDMARKS, FEATURE_DIM } from "@/lib/seq-features";
 import { DYNAMIC_SIGNS, SIGN_DESCRIPTIONS } from "@/lib/curriculum";
-import { VOCABULARY_200, getSignById } from "@/lib/vocabulary_200";
+import { getSignById } from "@/lib/vocabulary_200";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
 import { loadMediaPipe, loadONNX, type MediaPipeLibs, type ONNXLibs } from "@/lib/loadExternals";
 
@@ -43,14 +43,13 @@ export default function DynamicSignPage() {
   const isMLSign = ML_SIGNS.has(slug.toUpperCase());
   const signGloss = vocabSign ? vocabSign.gloss : slug.toUpperCase();
   const signDescription = vocabSign ? vocabSign.description : (SIGN_DESCRIPTIONS[signGloss as keyof typeof SIGN_DESCRIPTIONS] || "");
-  const signCategory = vocabSign ? vocabSign.category : "";
+  
 
   const [prefs, setPrefs] = useState<Prefs>(() => {
     if (typeof window === "undefined") return { language: "asl", handedness: "right", mirror: true };
     return loadPrefs();
   });
   const [modelReady, setModelReady] = useState(false);
-  const [modelLabels, setModelLabels] = useState<string[]>([]);
   const [running, setRunning] = useState(false);
   const [recording, setRecording] = useState(false);
   const [continuous, setContinuous] = useState(false);
@@ -176,7 +175,6 @@ export default function DynamicSignPage() {
   const onModelLoaded = useCallback((labels: string[], session: OrtSession, seqLen: number) => {
     sessionRef.current = session;
     modelLabelsRef.current = labels;
-    setModelLabels(labels);
     setModelReady(true);
     setModelBadge(`Transformer · ${labels.length} signs · seq=${seqLen}`);
   }, []);
@@ -258,7 +256,7 @@ export default function DynamicSignPage() {
     } finally {
       setLoadingExternals(false);
     }
-  }, [running, onResults, runInference, modelReady, onModelLoaded, onModelError]);
+  }, [running, onResults, runInference, modelReady, onModelLoaded, onModelError, loadingExternals]);
 
   const stop = useCallback(() => {
     try { cameraRef.current?.stop(); } catch {}
@@ -354,7 +352,7 @@ export default function DynamicSignPage() {
 
               <div className="mt-5 rounded-xl border border-dashed border-line bg-accent/5 p-3 text-xs text-muted">
                 <p className="font-medium text-foreground mb-1">Reference Only</p>
-                <p>This sign doesn't have real-time ML feedback yet. Practice with the <Link href="/learn/asl/words/hello" className="text-accent hover:underline">8 ML-enabled signs</Link> for interactive practice.</p>
+                <p>This sign doesn&apos;t have real-time ML feedback yet. Practice with the <Link href="/learn/asl/words/hello" className="text-accent hover:underline">8 ML-enabled signs</Link> for interactive practice.</p>
               </div>
             </div>
           </div>

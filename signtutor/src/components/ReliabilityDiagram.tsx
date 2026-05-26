@@ -1,7 +1,6 @@
 "use client";
 
-import { useState } from "react";
-import { CalibrationLayer, computeECE } from "@/lib/calibration";
+import { computeECE } from "@/lib/calibration";
 
 interface CalibrationData {
   bins: number;
