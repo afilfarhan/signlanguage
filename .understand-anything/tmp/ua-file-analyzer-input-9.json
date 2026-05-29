@@ -1,0 +1,53 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "BUILD_PROMPT.md",
+                           "language":  "markdown",
+                           "sizeLines":  237,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "BUILD_PROMPT_ML_EXTENSION.md",
+                           "language":  "markdown",
+                           "sizeLines":  437,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "README.md",
+                           "language":  "markdown",
+                           "sizeLines":  79,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "package.json",
+                           "language":  "json",
+                           "sizeLines":  24,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "requirements.txt",
+                           "language":  "txt",
+                           "sizeLines":  28,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor-redesign-prompt.md",
+                           "language":  "markdown",
+                           "sizeLines":  430,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "skills-lock.json",
+                           "language":  "json",
+                           "sizeLines":  11,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "vercel.json",
+                           "language":  "json",
+                           "sizeLines":  2,
+                           "fileCategory":  "config"
+                       }
+                   ]
+}

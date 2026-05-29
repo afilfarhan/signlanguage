@@ -1,0 +1,1030 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "files":  [
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/agents/impeccable-asset-producer.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/adapt.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/animate.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/audit.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/bolder.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/brand.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/clarify.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/codex.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/cognitive-load.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/color-and-contrast.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/colorize.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/craft.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/critique.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/delight.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/distill.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/document.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/extract.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/harden.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/heuristics-scoring.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/interaction-design.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/layout.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/live.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/motion-design.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/onboard.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/optimize.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/overdrive.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/personas.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/polish.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/product.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/quieter.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/responsive-design.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/shape.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/spatial-design.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/teach.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/typeset.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/typography.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/reference/ux-writing.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  ".agents/skills/impeccable/scripts/command-metadata.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/critique-storage.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/design-parser.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/detect-csp.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/detect.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/is-generated.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-accept.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-browser-session.js",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-complete.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-completion.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-inject.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-poll.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-resume.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-server.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-session-store.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-status.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live-wrap.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/live.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/load-context.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/modern-screenshot.umd.js",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".agents/skills/impeccable/scripts/pin.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  ".agents/skills/impeccable/SKILL.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "infra",
+                      "path":  ".github/workflows/ml-gate.yml",
+                      "language":  "yaml"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".understand-anything/.understandignore",
+                      "language":  "unknown"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  ".understand-anything/config.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  ".understand-anything/knowledge-graph.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  ".vercelignore",
+                      "language":  "unknown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "BUILD_PROMPT_ML_EXTENSION.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "BUILD_PROMPT.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ci/check_nfr.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ci/run_parity.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "generate-asl-svgs.js",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/data/__init__.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/data/chicago_fs.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/data/in_house.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "ml/data/LICENSES.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/data/msasl.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/data/wlasl.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/eval_robustness.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/features.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/hand_gesture_detector.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "ml/models/dynamic_eval_report.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "ml/models/dynamic_labels.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "ml/models/dynamic_robustness_report_AFTER.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "ml/models/dynamic_robustness_report_BEFORE.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "ml/models/dynamic_robustness_report.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/models/dynamic_signs_transformer_AFTER.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/models/dynamic_signs_transformer_BEFORE.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/models/dynamic_signs_transformer.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "ml/models/eval_report_v2.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "ml/models/eval_report.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/models/fingerspell_mlp_v2.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/models/fingerspell_mlp.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/models/jz_classifier.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/models/jz_classifier.onnx.data",
+                      "language":  "data"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "ml/models/jz_eval_report.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "ml/models/jz_labels.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "ml/models/labels_v2.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "ml/models/labels.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "ml/ROBUSTNESS_GATE_DEMO.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/seq_features.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/synth_jz_sequences.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/synth_landmarks.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/synth_sequences.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/train_export_v2.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/train_export.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/train_jz_classifier.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/train_transformer_v2.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "ml/train_transformer.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "package.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "pdr-review/01-PDR-Review.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "pdr-review/02-PDR-v2-Refined.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "markup",
+                      "path":  "pdr-review/03-PDR-summary.html",
+                      "language":  "html"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "pdr-review/04-Epics-and-Stories.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "markup",
+                      "path":  "prototype/dynamic.html",
+                      "language":  "html"
+                  },
+                  {
+                      "fileCategory":  "markup",
+                      "path":  "prototype/educator.html",
+                      "language":  "html"
+                  },
+                  {
+                      "fileCategory":  "markup",
+                      "path":  "prototype/home.html",
+                      "language":  "html"
+                  },
+                  {
+                      "fileCategory":  "markup",
+                      "path":  "prototype/index.html",
+                      "language":  "html"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "prototype/models/dynamic_labels.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "prototype/models/dynamic_signs_transformer.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "prototype/models/fingerspell_mlp.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "prototype/models/labels.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "prototype/models/parity_samples.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "prototype/README.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "markup",
+                      "path":  "prototype/wizard.html",
+                      "language":  "html"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "README.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "requirements.txt",
+                      "language":  "txt"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "screenshot-test.js",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "screenshot.js",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor-redesign-prompt.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/__tests__/curriculum-v2.test.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/__tests__/lib.test.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/__tests__/parity.test.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/__tests__/privacy.test.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/.github/workflows/ml-gate.yml",
+                      "language":  "yaml"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/ci/check_ece.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/ci/check_licenses.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/ci/check_signer_disjoint.py",
+                      "language":  "python"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/DESIGN.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/docs/ADR-002-dataset-choice.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/docs/ADR-003-signer-disjoint-splits.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/docs/ADR-004-calibration.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/docs/ADR-005-personalization.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/docs/ADR-006-nmm-fusion.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/docs/ADR-007-continuous-slr.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/docs/ADR-008-language-bundles.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/docs/ADR-009-reference-media.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/docs/ARCHITECTURE.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/e2e/dynamic-lesson.spec.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/e2e/static-lesson.spec.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/eslint.config.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/IMPLEMENTATION_STATUS.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/ml/data/LICENSES.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/next.config.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/package.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/playwright.config.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/pnpm-workspace.yaml",
+                      "language":  "yaml"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/postcss.config.mjs",
+                      "language":  "javascript"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/PRODUCT.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/public/models/dynamic_labels.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/public/models/dynamic_signs_transformer.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/public/models/fingerspell_mlp_v2.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/public/models/fingerspell_mlp.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/public/models/jz_classifier.onnx",
+                      "language":  "onnx"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/public/models/jz_labels.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/public/models/labels_v2.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/public/models/labels.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/public/models/parity_samples.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/README.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "docs",
+                      "path":  "signtutor/signtutor/data/REFERENCE_LICENSES.md",
+                      "language":  "markdown"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/about/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "markup",
+                      "path":  "signtutor/src/app/globals.css",
+                      "language":  "css"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/layout.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/learn/asl/settings/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/learn/asl/words/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/learn/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/practice/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/privacy/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/research/continuous/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/research/continuous/ResearchClient.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/app/setup/page.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/components/Header.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/components/PrivacyGateWrapper.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/components/ReliabilityDiagram.tsx",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/calibration.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/curriculum-v2.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/curriculum.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/language-bundles.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/loadExternals.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/mediapipe/holisticRunner.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/normalize.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/PersonalAdapter.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/privacyGate.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/seq-features.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/storage.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/src/lib/vocabulary_200.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/test-results/.last-run.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "signtutor/tsconfig.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "code",
+                      "path":  "signtutor/vitest.config.ts",
+                      "language":  "typescript"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "skills-lock.json",
+                      "language":  "json"
+                  },
+                  {
+                      "fileCategory":  "config",
+                      "path":  "vercel.json",
+                      "language":  "json"
+                  }
+              ]
+}

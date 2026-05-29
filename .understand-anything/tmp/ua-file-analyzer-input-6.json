@@ -1,0 +1,11 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  ".github/workflows/ml-gate.yml",
+                           "language":  "yaml",
+                           "sizeLines":  169,
+                           "fileCategory":  "infra"
+                       }
+                   ]
+}

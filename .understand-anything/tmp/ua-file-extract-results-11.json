@@ -1,0 +1,763 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "pdr-review/01-PDR-Review.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 139,
+      "nonEmptyLines": 107,
+      "sections": [
+        {
+          "heading": "PDR Review — Sign Language Learning Web Platform",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "1. Executive Summary",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "2. Strengths",
+          "level": 2,
+          "line": 19
+        },
+        {
+          "heading": "3. Section-by-Section Critique",
+          "level": 2,
+          "line": 30
+        },
+        {
+          "heading": "§1 Product Objective",
+          "level": 3,
+          "line": 32
+        },
+        {
+          "heading": "§2 Target Content & Curriculum",
+          "level": 3,
+          "line": 37
+        },
+        {
+          "heading": "§3 Key Technical Features",
+          "level": 3,
+          "line": 44
+        },
+        {
+          "heading": "§4 UI Requirements",
+          "level": 3,
+          "line": 50
+        },
+        {
+          "heading": "§5 Technical Specifications",
+          "level": 3,
+          "line": 56
+        },
+        {
+          "heading": "4. Cross-Cutting Gaps",
+          "level": 2,
+          "line": 65
+        },
+        {
+          "heading": "5. Recommendations (Prioritized)",
+          "level": 2,
+          "line": 84
+        },
+        {
+          "heading": "6. Risks & Open Questions",
+          "level": 2,
+          "line": 108
+        },
+        {
+          "heading": "7. What Changed in the Refined PDR (v2)",
+          "level": 2,
+          "line": 128
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 13
+      }
+    },
+    {
+      "path": "pdr-review/02-PDR-v2-Refined.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 254,
+      "nonEmptyLines": 192,
+      "sections": [
+        {
+          "heading": "Product Design Requirement (PDR) v2",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Interactive Vision-Based Sign Language Learning Platform",
+          "level": 2,
+          "line": 2
+        },
+        {
+          "heading": "0. TL;DR",
+          "level": 2,
+          "line": 11
+        },
+        {
+          "heading": "1. Background & Problem",
+          "level": 2,
+          "line": 17
+        },
+        {
+          "heading": "2. Goals & Non-Goals",
+          "level": 2,
+          "line": 21
+        },
+        {
+          "heading": "Goals (v1)",
+          "level": 3,
+          "line": 23
+        },
+        {
+          "heading": "Non-Goals (v1)",
+          "level": 3,
+          "line": 30
+        },
+        {
+          "heading": "3. Personas & Primary User Stories",
+          "level": 2,
+          "line": 38
+        },
+        {
+          "heading": "Personas",
+          "level": 3,
+          "line": 40
+        },
+        {
+          "heading": "User stories (MVP)",
+          "level": 3,
+          "line": 45
+        },
+        {
+          "heading": "4. Scope by Release",
+          "level": 2,
+          "line": 55
+        },
+        {
+          "heading": "5. Functional Requirements",
+          "level": 2,
+          "line": 73
+        },
+        {
+          "heading": "5.1 Onboarding & Camera Setup",
+          "level": 3,
+          "line": 75
+        },
+        {
+          "heading": "5.2 Lesson Player",
+          "level": 3,
+          "line": 80
+        },
+        {
+          "heading": "5.3 Recognition & Feedback",
+          "level": 3,
+          "line": 86
+        },
+        {
+          "heading": "5.4 Progression & Practice",
+          "level": 3,
+          "line": 98
+        },
+        {
+          "heading": "5.5 Accessibility (this is a feature, not a chore)",
+          "level": 3,
+          "line": 104
+        },
+        {
+          "heading": "6. Non-Functional Requirements",
+          "level": 2,
+          "line": 115
+        },
+        {
+          "heading": "7. Technical Architecture",
+          "level": 2,
+          "line": 132
+        },
+        {
+          "heading": "7.1 Client (browser)",
+          "level": 3,
+          "line": 134
+        },
+        {
+          "heading": "7.2 Server (minimal)",
+          "level": 3,
+          "line": 144
+        },
+        {
+          "heading": "7.3 Why not HMMs as the headline model",
+          "level": 3,
+          "line": 150
+        },
+        {
+          "heading": "8. Data Strategy",
+          "level": 2,
+          "line": 155
+        },
+        {
+          "heading": "8.1 Sources",
+          "level": 3,
+          "line": 157
+        },
+        {
+          "heading": "8.2 Annotation",
+          "level": 3,
+          "line": 162
+        },
+        {
+          "heading": "8.3 Evaluation",
+          "level": 3,
+          "line": 165
+        },
+        {
+          "heading": "9. Privacy & Security",
+          "level": 2,
+          "line": 172
+        },
+        {
+          "heading": "10. Accessibility & Inclusion",
+          "level": 2,
+          "line": 182
+        },
+        {
+          "heading": "11. Success Metrics",
+          "level": 2,
+          "line": 192
+        },
+        {
+          "heading": "Activation",
+          "level": 3,
+          "line": 194
+        },
+        {
+          "heading": "Learning efficacy",
+          "level": 3,
+          "line": 198
+        },
+        {
+          "heading": "Quality",
+          "level": 3,
+          "line": 203
+        },
+        {
+          "heading": "Trust",
+          "level": 3,
+          "line": 208
+        },
+        {
+          "heading": "12. Roadmap (Indicative)",
+          "level": 2,
+          "line": 213
+        },
+        {
+          "heading": "13. Risks & Mitigations",
+          "level": 2,
+          "line": 226
+        },
+        {
+          "heading": "14. Open Questions",
+          "level": 2,
+          "line": 236
+        },
+        {
+          "heading": "15. Glossary",
+          "level": 2,
+          "line": 246
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 37
+      }
+    },
+    {
+      "path": "pdr-review/03-PDR-summary.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 239,
+      "nonEmptyLines": 227,
+      "metrics": {}
+    },
+    {
+      "path": "pdr-review/04-Epics-and-Stories.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 271,
+      "nonEmptyLines": 194,
+      "sections": [
+        {
+          "heading": "Epics & User Stories — Jira-Ready Backlog",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Release plan",
+          "level": 2,
+          "line": 14
+        },
+        {
+          "heading": "EPIC-01 — Camera & on-device runtime",
+          "level": 2,
+          "line": 26
+        },
+        {
+          "heading": "S-01 · Camera permission & setup wizard · 5 pts",
+          "level": 3,
+          "line": 30
+        },
+        {
+          "heading": "S-02 · MediaPipe Hands landmark pipeline · 5 pts",
+          "level": 3,
+          "line": 39
+        },
+        {
+          "heading": "S-03 · Browser support matrix · 3 pts",
+          "level": 3,
+          "line": 44
+        },
+        {
+          "heading": "SPK-01 · WebGPU vs. WASM benchmark · 3 pts",
+          "level": 3,
+          "line": 47
+        },
+        {
+          "heading": "EPIC-02 — Recognition & structured feedback",
+          "level": 2,
+          "line": 52
+        },
+        {
+          "heading": "S-04 · Static fingerspelling classifier (MVP, rule-based) · 5 pts",
+          "level": 3,
+          "line": 56
+        },
+        {
+          "heading": "S-05 · Static fingerspelling classifier (v1, learned MLP via ONNX) · 8 pts",
+          "level": 3,
+          "line": 59
+        },
+        {
+          "heading": "S-06 · Dynamic isolated-sign classifier (Transformer over landmark windows) · 13 pts",
+          "level": 3,
+          "line": 62
+        },
+        {
+          "heading": "S-07 · Structured feedback taxonomy engine · 5 pts",
+          "level": 3,
+          "line": 65
+        },
+        {
+          "heading": "S-08 · Confidence-gated verdict · 3 pts",
+          "level": 3,
+          "line": 68
+        },
+        {
+          "heading": "S-09 · Most-actionable single tip · 3 pts",
+          "level": 3,
+          "line": 71
+        },
+        {
+          "heading": "SPK-02 · Calibration of confidence thresholds · 3 pts",
+          "level": 3,
+          "line": 74
+        },
+        {
+          "heading": "EPIC-03 — Lesson player UI",
+          "level": 2,
+          "line": 79
+        },
+        {
+          "heading": "S-10 · Split-screen layout · 3 pts",
+          "level": 3,
+          "line": 83
+        },
+        {
+          "heading": "S-11 · Demo player controls · 5 pts",
+          "level": 3,
+          "line": 86
+        },
+        {
+          "heading": "S-12 · Multi-angle demo support · 3 pts",
+          "level": 3,
+          "line": 89
+        },
+        {
+          "heading": "S-13 · Per-sign description panel · 2 pts",
+          "level": 3,
+          "line": 92
+        },
+        {
+          "heading": "EPIC-04 — Curriculum & content",
+          "level": 2,
+          "line": 97
+        },
+        {
+          "heading": "S-14 · Curriculum data model · 3 pts",
+          "level": 3,
+          "line": 101
+        },
+        {
+          "heading": "S-15 · Mastery model · 5 pts",
+          "level": 3,
+          "line": 104
+        },
+        {
+          "heading": "S-16 · Spaced-repetition review queue (FSRS) · 5 pts",
+          "level": 3,
+          "line": 107
+        },
+        {
+          "heading": "S-17 · \"Free practice\" unscored mode · 2 pts",
+          "level": 3,
+          "line": 110
+        },
+        {
+          "heading": "S-18 · Native-signer recording sprint (alphabet + 25 signs) · 13 pts",
+          "level": 3,
+          "line": 113
+        },
+        {
+          "heading": "S-19 · Native-signer recording sprint (200 signs, v1) · 13 pts",
+          "level": 3,
+          "line": 116
+        },
+        {
+          "heading": "EPIC-05 — Multi-language scaffolding",
+          "level": 2,
+          "line": 121
+        },
+        {
+          "heading": "S-20 · Language selector with i18n · 3 pts",
+          "level": 3,
+          "line": 125
+        },
+        {
+          "heading": "S-21 · Per-language curriculum loader · 3 pts",
+          "level": 3,
+          "line": 128
+        },
+        {
+          "heading": "EPIC-06 — Accessibility (WCAG 2.2 AA)",
+          "level": 2,
+          "line": 133
+        },
+        {
+          "heading": "S-22 · Keyboard-only navigation · 3 pts",
+          "level": 3,
+          "line": 137
+        },
+        {
+          "heading": "S-23 · Focus rings & ARIA labels audit · 3 pts",
+          "level": 3,
+          "line": 138
+        },
+        {
+          "heading": "S-24 · Captions & transcripts on every video · 5 pts",
+          "level": 3,
+          "line": 139
+        },
+        {
+          "heading": "S-25 · Reduced-motion mode · 2 pts",
+          "level": 3,
+          "line": 140
+        },
+        {
+          "heading": "S-26 · High-contrast theme · 2 pts",
+          "level": 3,
+          "line": 141
+        },
+        {
+          "heading": "S-27 · Mirroring toggle (default ON) · 2 pts",
+          "level": 3,
+          "line": 142
+        },
+        {
+          "heading": "S-28 · Left-handed mode (flips demo + recognition) · 5 pts",
+          "level": 3,
+          "line": 143
+        },
+        {
+          "heading": "S-29 · Lighthouse a11y score ≥ 95 (release gate) · 3 pts",
+          "level": 3,
+          "line": 144
+        },
+        {
+          "heading": "EPIC-07 — Privacy & security",
+          "level": 2,
+          "line": 148
+        },
+        {
+          "heading": "S-30 · \"🔒 On-device\" persistent UI indicator · 1 pt",
+          "level": 3,
+          "line": 152
+        },
+        {
+          "heading": "S-31 · CSP that forbids outbound connections during practice · 3 pts",
+          "level": 3,
+          "line": 153
+        },
+        {
+          "heading": "S-32 · Threat-model document & 3rd-party privacy review · 5 pts",
+          "level": 3,
+          "line": 154
+        },
+        {
+          "heading": "S-33 · One-click account & data deletion · 3 pts",
+          "level": 3,
+          "line": 155
+        },
+        {
+          "heading": "S-34 · COPPA/FERPA-ready flow for minors · 8 pts (deferred to v1)",
+          "level": 3,
+          "line": 156
+        },
+        {
+          "heading": "EPIC-08 — Onboarding & frictionless first session",
+          "level": 2,
+          "line": 160
+        },
+        {
+          "heading": "S-35 · No-account-required first lesson · 2 pts",
+          "level": 3,
+          "line": 164
+        },
+        {
+          "heading": "S-36 · Progress autosave to localStorage · 2 pts",
+          "level": 3,
+          "line": 165
+        },
+        {
+          "heading": "S-37 · Optional account & cross-device sync · 5 pts (v1)",
+          "level": 3,
+          "line": 166
+        },
+        {
+          "heading": "EPIC-09 — Data & model evaluation",
+          "level": 2,
+          "line": 170
+        },
+        {
+          "heading": "S-38 · Held-out-signer eval split · 3 pts",
+          "level": 3,
+          "line": 174
+        },
+        {
+          "heading": "S-39 · Per-class confusion-matrix dashboard · 3 pts",
+          "level": 3,
+          "line": 175
+        },
+        {
+          "heading": "S-40 · Fairness slices (skin tone, handedness, lighting, angle) · 5 pts",
+          "level": 3,
+          "line": 176
+        },
+        {
+          "heading": "S-41 · Fairness gate as release blocker · 2 pts",
+          "level": 3,
+          "line": 177
+        },
+        {
+          "heading": "SPK-03 · Dataset license review (WLASL, MS-ASL, How2Sign, AUTSL, INCLUDE, KArSL) · 5 pts",
+          "level": 3,
+          "line": 178
+        },
+        {
+          "heading": "EPIC-10 — Trust & verdict UX",
+          "level": 2,
+          "line": 182
+        },
+        {
+          "heading": "S-42 · Verdict states (match / close / miss / no-read) with copy review · 2 pts",
+          "level": 3,
+          "line": 185
+        },
+        {
+          "heading": "S-43 · \"Was this correction helpful?\" thumbs · 2 pts",
+          "level": 3,
+          "line": 186
+        },
+        {
+          "heading": "S-44 · Per-attempt confidence visualization · 2 pts",
+          "level": 3,
+          "line": 187
+        },
+        {
+          "heading": "EPIC-11 — Telemetry & analytics",
+          "level": 2,
+          "line": 191
+        },
+        {
+          "heading": "S-45 · Anonymous, opt-in event telemetry (no video, no landmarks) · 3 pts",
+          "level": 3,
+          "line": 194
+        },
+        {
+          "heading": "S-46 · Activation funnel dashboard · 3 pts",
+          "level": 3,
+          "line": 195
+        },
+        {
+          "heading": "S-47 · Learning-efficacy dashboard (mastery rate, D7/D30 retention) · 5 pts",
+          "level": 3,
+          "line": 196
+        },
+        {
+          "heading": "EPIC-12 — Closed beta",
+          "level": 2,
+          "line": 200
+        },
+        {
+          "heading": "S-48 · Recruit 50 learners (≥30 % from Deaf-adjacent communities) · 3 pts",
+          "level": 3,
+          "line": 201
+        },
+        {
+          "heading": "S-49 · In-app feedback widget · 2 pts",
+          "level": 3,
+          "line": 202
+        },
+        {
+          "heading": "S-50 · Beta exit-criteria report · 3 pts",
+          "level": 3,
+          "line": 203
+        },
+        {
+          "heading": "EPIC-13 — Marketing site & launch",
+          "level": 2,
+          "line": 207
+        },
+        {
+          "heading": "S-51 · Landing page (a11y-first) · 5 pts",
+          "level": 3,
+          "line": 208
+        },
+        {
+          "heading": "S-52 · Pricing & plans (if applicable) · 3 pts",
+          "level": 3,
+          "line": 209
+        },
+        {
+          "heading": "S-53 · Help center · 5 pts",
+          "level": 3,
+          "line": 210
+        },
+        {
+          "heading": "EPIC-14 — Non-manual marker (NMM) scoring (v2)",
+          "level": 2,
+          "line": 214
+        },
+        {
+          "heading": "S-54 · MediaPipe FaceMesh integration · 5 pts",
+          "level": 3,
+          "line": 217
+        },
+        {
+          "heading": "S-55 · Brow / mouth / head-tilt feature extractors · 5 pts",
+          "level": 3,
+          "line": 218
+        },
+        {
+          "heading": "S-56 · NMM rule layer for question vs. statement, negation · 8 pts",
+          "level": 3,
+          "line": 219
+        },
+        {
+          "heading": "S-57 · Opt-in feature flag for NMM scoring · 2 pts",
+          "level": 3,
+          "line": 220
+        },
+        {
+          "heading": "EPIC-15 — Educator dashboard (v2)",
+          "level": 2,
+          "line": 224
+        },
+        {
+          "heading": "S-58 · Class roster & invites · 5 pts",
+          "level": 3,
+          "line": 225
+        },
+        {
+          "heading": "S-59 · Assignment creation · 5 pts",
+          "level": 3,
+          "line": 226
+        },
+        {
+          "heading": "S-60 · Per-student progress view (privacy-respecting) · 5 pts",
+          "level": 3,
+          "line": 227
+        },
+        {
+          "heading": "EPIC-16 — PWA / offline (v2)",
+          "level": 2,
+          "line": 231
+        },
+        {
+          "heading": "S-61 · Service worker for static assets + curriculum · 5 pts",
+          "level": 3,
+          "line": 232
+        },
+        {
+          "heading": "S-62 · Cached model files for offline practice · 5 pts",
+          "level": 3,
+          "line": 233
+        },
+        {
+          "heading": "S-63 · Install prompt & home-screen icon · 2 pts",
+          "level": 3,
+          "line": 234
+        },
+        {
+          "heading": "EPIC-17 — Continuous SLR research preview (v2)",
+          "level": 2,
+          "line": 238
+        },
+        {
+          "heading": "S-64 · Encoder-decoder Transformer (CTC) over landmark sequences · 13 pts",
+          "level": 3,
+          "line": 239
+        },
+        {
+          "heading": "S-65 · \"Research preview\" UX with explicit accuracy disclaimer · 2 pts",
+          "level": 3,
+          "line": 240
+        },
+        {
+          "heading": "Cross-cutting tasks (every release)",
+          "level": 2,
+          "line": 244
+        },
+        {
+          "heading": "Definition of Ready (per story)",
+          "level": 2,
+          "line": 257
+        },
+        {
+          "heading": "Definition of Done (per story)",
+          "level": 2,
+          "line": 265
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 90
+      }
+    }
+  ]
+}

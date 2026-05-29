@@ -1,0 +1,1709 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 7,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "ml/eval_robustness.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 142,
+      "nonEmptyLines": 116,
+      "functions": [
+        {
+          "name": "evaluate",
+          "startLine": 41,
+          "endLine": 47,
+          "params": [
+            "X_raw_slice",
+            "name"
+          ]
+        },
+        {
+          "name": "rotate_clip",
+          "startLine": 72,
+          "endLine": 79,
+          "params": [
+            "clip",
+            "deg"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "evaluate",
+          "line": 41,
+          "isDefault": false
+        },
+        {
+          "name": "rotate_clip",
+          "line": 72,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "evaluate",
+          "callee": "normalize_batch(X_raw_slice).astype",
+          "lineNumber": 42
+        },
+        {
+          "caller": "evaluate",
+          "callee": "normalize_batch",
+          "lineNumber": 42
+        },
+        {
+          "caller": "evaluate",
+          "callee": "sess.run",
+          "lineNumber": 43
+        },
+        {
+          "caller": "evaluate",
+          "callee": "logits.argmax",
+          "lineNumber": 44
+        },
+        {
+          "caller": "evaluate",
+          "callee": "accuracy_score",
+          "lineNumber": 45
+        },
+        {
+          "caller": "evaluate",
+          "callee": "print",
+          "lineNumber": 46
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.deg2rad",
+          "lineNumber": 73
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.array",
+          "lineNumber": 74
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.cos",
+          "lineNumber": 74
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.sin",
+          "lineNumber": 74
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.sin",
+          "lineNumber": 75
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.cos",
+          "lineNumber": 75
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "clip[0:1, 0:1, :].copy",
+          "lineNumber": 78
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "ml/seq_features.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 55,
+      "nonEmptyLines": 44,
+      "functions": [
+        {
+          "name": "normalize_sequence",
+          "startLine": 29,
+          "endLine": 51,
+          "params": [
+            "seq"
+          ]
+        },
+        {
+          "name": "normalize_batch",
+          "startLine": 53,
+          "endLine": 55,
+          "params": [
+            "X"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "normalize_sequence",
+          "line": 29,
+          "isDefault": false
+        },
+        {
+          "name": "normalize_batch",
+          "line": 53,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "normalize_sequence",
+          "callee": "seq.astype(np.float32).copy",
+          "lineNumber": 32
+        },
+        {
+          "caller": "normalize_sequence",
+          "callee": "seq.astype",
+          "lineNumber": 32
+        },
+        {
+          "caller": "normalize_sequence",
+          "callee": "pos[0, WRIST:WRIST+1, :].copy",
+          "lineNumber": 35
+        },
+        {
+          "caller": "normalize_sequence",
+          "callee": "np.linalg.norm",
+          "lineNumber": 39
+        },
+        {
+          "caller": "normalize_sequence",
+          "callee": "np.zeros_like",
+          "lineNumber": 45
+        },
+        {
+          "caller": "normalize_sequence",
+          "callee": "np.concatenate(\n        [pos.reshape(T, -1), vel.reshape(T, -1)], axis=1\n    ).astype",
+          "lineNumber": 48
+        },
+        {
+          "caller": "normalize_sequence",
+          "callee": "np.concatenate",
+          "lineNumber": 48
+        },
+        {
+          "caller": "normalize_sequence",
+          "callee": "pos.reshape",
+          "lineNumber": 49
+        },
+        {
+          "caller": "normalize_sequence",
+          "callee": "vel.reshape",
+          "lineNumber": 49
+        },
+        {
+          "caller": "normalize_batch",
+          "callee": "np.stack",
+          "lineNumber": 55
+        },
+        {
+          "caller": "normalize_batch",
+          "callee": "normalize_sequence",
+          "lineNumber": 55
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "ml/synth_jz_sequences.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 213,
+      "nonEmptyLines": 187,
+      "functions": [
+        {
+          "name": "_open_hand",
+          "startLine": 24,
+          "endLine": 45,
+          "params": [
+            "scale"
+          ]
+        },
+        {
+          "name": "_closed_fist",
+          "startLine": 47,
+          "endLine": 52,
+          "params": [
+            "scale"
+          ]
+        },
+        {
+          "name": "_j_handshape",
+          "startLine": 54,
+          "endLine": 61,
+          "params": [
+            "scale"
+          ]
+        },
+        {
+          "name": "_z_handshape",
+          "startLine": 63,
+          "endLine": 74,
+          "params": [
+            "scale"
+          ]
+        },
+        {
+          "name": "_j_trajectory",
+          "startLine": 78,
+          "endLine": 97,
+          "params": [
+            "t",
+            "T",
+            "base_tip"
+          ]
+        },
+        {
+          "name": "_z_trajectory",
+          "startLine": 99,
+          "endLine": 119,
+          "params": [
+            "t",
+            "T",
+            "base_tip"
+          ]
+        },
+        {
+          "name": "_apply_noise",
+          "startLine": 123,
+          "endLine": 141,
+          "params": [
+            "landmarks",
+            "rng",
+            "jitter",
+            "rotation_deg",
+            "scale_var"
+          ]
+        },
+        {
+          "name": "_generate_j_sequence",
+          "startLine": 143,
+          "endLine": 162,
+          "params": [
+            "rng",
+            "T"
+          ]
+        },
+        {
+          "name": "_generate_z_sequence",
+          "startLine": 164,
+          "endLine": 183,
+          "params": [
+            "rng",
+            "T"
+          ]
+        },
+        {
+          "name": "make_dataset",
+          "startLine": 185,
+          "endLine": 206,
+          "params": [
+            "n_per_class",
+            "T",
+            "seed"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_open_hand",
+          "line": 24,
+          "isDefault": false
+        },
+        {
+          "name": "_closed_fist",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "_j_handshape",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "_z_handshape",
+          "line": 63,
+          "isDefault": false
+        },
+        {
+          "name": "_j_trajectory",
+          "line": 78,
+          "isDefault": false
+        },
+        {
+          "name": "_z_trajectory",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "_apply_noise",
+          "line": 123,
+          "isDefault": false
+        },
+        {
+          "name": "_generate_j_sequence",
+          "line": 143,
+          "isDefault": false
+        },
+        {
+          "name": "_generate_z_sequence",
+          "line": 164,
+          "isDefault": false
+        },
+        {
+          "name": "make_dataset",
+          "line": 185,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_open_hand",
+          "callee": "np.zeros",
+          "lineNumber": 26
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 40
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 41
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 42
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 43
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 44
+        },
+        {
+          "caller": "_closed_fist",
+          "callee": "_open_hand(scale).copy",
+          "lineNumber": 49
+        },
+        {
+          "caller": "_closed_fist",
+          "callee": "_open_hand",
+          "lineNumber": 49
+        },
+        {
+          "caller": "_j_handshape",
+          "callee": "_closed_fist(scale).copy",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_j_handshape",
+          "callee": "_closed_fist",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_j_handshape",
+          "callee": "np.array",
+          "lineNumber": 58
+        },
+        {
+          "caller": "_j_handshape",
+          "callee": "np.array",
+          "lineNumber": 59
+        },
+        {
+          "caller": "_j_handshape",
+          "callee": "np.array",
+          "lineNumber": 60
+        },
+        {
+          "caller": "_z_handshape",
+          "callee": "_closed_fist(scale).copy",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_z_handshape",
+          "callee": "_closed_fist",
+          "lineNumber": 65
+        },
+        {
+          "caller": "_z_handshape",
+          "callee": "np.array",
+          "lineNumber": 67
+        },
+        {
+          "caller": "_z_handshape",
+          "callee": "np.array",
+          "lineNumber": 68
+        },
+        {
+          "caller": "_z_handshape",
+          "callee": "np.array",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_z_handshape",
+          "callee": "np.array",
+          "lineNumber": 71
+        },
+        {
+          "caller": "_z_handshape",
+          "callee": "np.array",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_z_handshape",
+          "callee": "np.array",
+          "lineNumber": 73
+        },
+        {
+          "caller": "_j_trajectory",
+          "callee": "max",
+          "lineNumber": 84
+        },
+        {
+          "caller": "_j_trajectory",
+          "callee": "np.array",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_j_trajectory",
+          "callee": "np.sin",
+          "lineNumber": 94
+        },
+        {
+          "caller": "_j_trajectory",
+          "callee": "np.sin",
+          "lineNumber": 95
+        },
+        {
+          "caller": "_j_trajectory",
+          "callee": "np.array",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_z_trajectory",
+          "callee": "max",
+          "lineNumber": 106
+        },
+        {
+          "caller": "_z_trajectory",
+          "callee": "np.array",
+          "lineNumber": 110
+        },
+        {
+          "caller": "_z_trajectory",
+          "callee": "np.array",
+          "lineNumber": 114
+        },
+        {
+          "caller": "_z_trajectory",
+          "callee": "np.array",
+          "lineNumber": 118
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "landmarks.copy",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "rng.uniform",
+          "lineNumber": 129
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "np.deg2rad",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "np.array",
+          "lineNumber": 131
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "np.cos",
+          "lineNumber": 131
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "np.sin",
+          "lineNumber": 131
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "np.sin",
+          "lineNumber": 132
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "np.cos",
+          "lineNumber": 132
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "pts[0:1, :].copy",
+          "lineNumber": 134
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "rng.uniform",
+          "lineNumber": 137
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "rng.normal(0, jitter, pts.shape).astype",
+          "lineNumber": 140
+        },
+        {
+          "caller": "_apply_noise",
+          "callee": "rng.normal",
+          "lineNumber": 140
+        },
+        {
+          "caller": "_generate_j_sequence",
+          "callee": "_j_handshape",
+          "lineNumber": 145
+        },
+        {
+          "caller": "_generate_j_sequence",
+          "callee": "base[20].copy",
+          "lineNumber": 146
+        },
+        {
+          "caller": "_generate_j_sequence",
+          "callee": "np.zeros",
+          "lineNumber": 147
+        },
+        {
+          "caller": "_generate_j_sequence",
+          "callee": "range",
+          "lineNumber": 149
+        },
+        {
+          "caller": "_generate_j_sequence",
+          "callee": "base.copy",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_generate_j_sequence",
+          "callee": "_j_trajectory",
+          "lineNumber": 152
+        },
+        {
+          "caller": "_generate_j_sequence",
+          "callee": "_apply_noise",
+          "lineNumber": 157
+        },
+        {
+          "caller": "_generate_j_sequence",
+          "callee": "rng.uniform",
+          "lineNumber": 159
+        },
+        {
+          "caller": "_generate_j_sequence",
+          "callee": "rng.uniform",
+          "lineNumber": 160
+        },
+        {
+          "caller": "_generate_z_sequence",
+          "callee": "_z_handshape",
+          "lineNumber": 166
+        },
+        {
+          "caller": "_generate_z_sequence",
+          "callee": "base[8].copy",
+          "lineNumber": 167
+        },
+        {
+          "caller": "_generate_z_sequence",
+          "callee": "np.zeros",
+          "lineNumber": 168
+        },
+        {
+          "caller": "_generate_z_sequence",
+          "callee": "range",
+          "lineNumber": 170
+        },
+        {
+          "caller": "_generate_z_sequence",
+          "callee": "base.copy",
+          "lineNumber": 171
+        },
+        {
+          "caller": "_generate_z_sequence",
+          "callee": "_z_trajectory",
+          "lineNumber": 173
+        },
+        {
+          "caller": "_generate_z_sequence",
+          "callee": "_apply_noise",
+          "lineNumber": 178
+        },
+        {
+          "caller": "_generate_z_sequence",
+          "callee": "rng.uniform",
+          "lineNumber": 180
+        },
+        {
+          "caller": "_generate_z_sequence",
+          "callee": "rng.uniform",
+          "lineNumber": 181
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.random.default_rng",
+          "lineNumber": 194
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "range",
+          "lineNumber": 198
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "sequences.append",
+          "lineNumber": 199
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "_generate_j_sequence",
+          "lineNumber": 199
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "labels_arr.append",
+          "lineNumber": 200
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "sequences.append",
+          "lineNumber": 201
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "_generate_z_sequence",
+          "lineNumber": 201
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "labels_arr.append",
+          "lineNumber": 202
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.stack",
+          "lineNumber": 204
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.array",
+          "lineNumber": 205
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 10,
+        "functionCount": 10,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "ml/synth_sequences.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 182,
+      "nonEmptyLines": 166,
+      "functions": [
+        {
+          "name": "_open_hand",
+          "startLine": 35,
+          "endLine": 57,
+          "params": [
+            "scale"
+          ]
+        },
+        {
+          "name": "_closed_fist",
+          "startLine": 59,
+          "endLine": 64,
+          "params": [
+            "scale"
+          ]
+        },
+        {
+          "name": "_index_middle_extended",
+          "startLine": 66,
+          "endLine": 73,
+          "params": [
+            "scale"
+          ]
+        },
+        {
+          "name": "_flat_hand",
+          "startLine": 75,
+          "endLine": 77,
+          "params": [
+            "scale"
+          ]
+        },
+        {
+          "name": "_interp",
+          "startLine": 80,
+          "endLine": 81,
+          "params": [
+            "a",
+            "b",
+            "alpha"
+          ]
+        },
+        {
+          "name": "_wrist_path",
+          "startLine": 83,
+          "endLine": 121,
+          "params": [
+            "name",
+            "t"
+          ]
+        },
+        {
+          "name": "_hand_shape_for_frame",
+          "startLine": 123,
+          "endLine": 146,
+          "params": [
+            "name",
+            "alpha"
+          ]
+        },
+        {
+          "name": "_synthesize_one",
+          "startLine": 149,
+          "endLine": 166,
+          "params": [
+            "name",
+            "rng"
+          ]
+        },
+        {
+          "name": "make_dataset",
+          "startLine": 168,
+          "endLine": 177,
+          "params": [
+            "n_per_class",
+            "seed"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_open_hand",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "_closed_fist",
+          "line": 59,
+          "isDefault": false
+        },
+        {
+          "name": "_index_middle_extended",
+          "line": 66,
+          "isDefault": false
+        },
+        {
+          "name": "_flat_hand",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "_interp",
+          "line": 80,
+          "isDefault": false
+        },
+        {
+          "name": "_wrist_path",
+          "line": 83,
+          "isDefault": false
+        },
+        {
+          "name": "_hand_shape_for_frame",
+          "line": 123,
+          "isDefault": false
+        },
+        {
+          "name": "_synthesize_one",
+          "line": 149,
+          "isDefault": false
+        },
+        {
+          "name": "make_dataset",
+          "line": 168,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_open_hand",
+          "callee": "np.zeros",
+          "lineNumber": 37
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 52
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 53
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 54
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 55
+        },
+        {
+          "caller": "_open_hand",
+          "callee": "np.array",
+          "lineNumber": 56
+        },
+        {
+          "caller": "_closed_fist",
+          "callee": "_open_hand(scale).copy",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_closed_fist",
+          "callee": "_open_hand",
+          "lineNumber": 61
+        },
+        {
+          "caller": "_index_middle_extended",
+          "callee": "_closed_fist(scale).copy",
+          "lineNumber": 68
+        },
+        {
+          "caller": "_index_middle_extended",
+          "callee": "_closed_fist",
+          "lineNumber": 68
+        },
+        {
+          "caller": "_index_middle_extended",
+          "callee": "np.array",
+          "lineNumber": 69
+        },
+        {
+          "caller": "_index_middle_extended",
+          "callee": "np.array",
+          "lineNumber": 70
+        },
+        {
+          "caller": "_index_middle_extended",
+          "callee": "np.array",
+          "lineNumber": 71
+        },
+        {
+          "caller": "_index_middle_extended",
+          "callee": "np.array",
+          "lineNumber": 72
+        },
+        {
+          "caller": "_flat_hand",
+          "callee": "_open_hand",
+          "lineNumber": 77
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "_interp",
+          "lineNumber": 88
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "_interp",
+          "lineNumber": 89
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.sin",
+          "lineNumber": 92
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.sin",
+          "lineNumber": 93
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.sin",
+          "lineNumber": 96
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.sin",
+          "lineNumber": 97
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.sin",
+          "lineNumber": 100
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.sin",
+          "lineNumber": 101
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.cos",
+          "lineNumber": 104
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.sin",
+          "lineNumber": 105
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "_interp",
+          "lineNumber": 108
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "_interp",
+          "lineNumber": 109
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.cos",
+          "lineNumber": 112
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.sin",
+          "lineNumber": 113
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "_interp",
+          "lineNumber": 117
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "ValueError",
+          "lineNumber": 119
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.zeros_like",
+          "lineNumber": 120
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.stack([x, y, z], axis=-1).astype",
+          "lineNumber": 121
+        },
+        {
+          "caller": "_wrist_path",
+          "callee": "np.stack",
+          "lineNumber": 121
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_flat_hand",
+          "lineNumber": 126
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "np.sin",
+          "lineNumber": 129
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_flat_hand",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_closed_fist",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_flat_hand",
+          "lineNumber": 130
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_closed_fist",
+          "lineNumber": 132
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "np.sin",
+          "lineNumber": 135
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_index_middle_extended",
+          "lineNumber": 136
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_closed_fist",
+          "lineNumber": 136
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_flat_hand",
+          "lineNumber": 138
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_flat_hand",
+          "lineNumber": 140
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_closed_fist",
+          "lineNumber": 142
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "_closed_fist",
+          "lineNumber": 145
+        },
+        {
+          "caller": "_hand_shape_for_frame",
+          "callee": "ValueError",
+          "lineNumber": 146
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.linspace",
+          "lineNumber": 150
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "_wrist_path",
+          "lineNumber": 151
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 153
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 154
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.deg2rad",
+          "lineNumber": 155
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.array",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.cos",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.sin",
+          "lineNumber": 156
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.sin",
+          "lineNumber": 157
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.cos",
+          "lineNumber": 157
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal(0, 0.01, size=(1, 3)).astype",
+          "lineNumber": 159
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 159
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.zeros",
+          "lineNumber": 160
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "range",
+          "lineNumber": 161
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "_hand_shape_for_frame",
+          "lineNumber": 162
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal(0, 0.003, size=local.shape).astype",
+          "lineNumber": 164
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 164
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.random.default_rng",
+          "lineNumber": 169
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "enumerate",
+          "lineNumber": 171
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "range",
+          "lineNumber": 172
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "X.append",
+          "lineNumber": 173
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "_synthesize_one",
+          "lineNumber": 173
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "y.append",
+          "lineNumber": 174
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.stack(X).astype",
+          "lineNumber": 175
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.stack",
+          "lineNumber": 175
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.array",
+          "lineNumber": 176
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 9,
+        "functionCount": 9,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "ml/train_jz_classifier.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 213,
+      "nonEmptyLines": 178,
+      "classes": [
+        {
+          "name": "JZClassifier",
+          "startLine": 56,
+          "endLine": 83,
+          "methods": [
+            "__init__",
+            "forward"
+          ],
+          "properties": []
+        },
+        {
+          "name": "JZClassifierForExport",
+          "startLine": 155,
+          "endLine": 162,
+          "methods": [
+            "__init__",
+            "forward"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "JZClassifier",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "JZClassifierForExport",
+          "line": 155,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 60
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 60
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Linear",
+          "lineNumber": 61
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.LSTM",
+          "lineNumber": 62
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Sequential",
+          "lineNumber": 70
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Linear",
+          "lineNumber": 71
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.ReLU",
+          "lineNumber": 72
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Dropout",
+          "lineNumber": 73
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Linear",
+          "lineNumber": 74
+        },
+        {
+          "caller": "forward",
+          "callee": "self.input_proj",
+          "lineNumber": 79
+        },
+        {
+          "caller": "forward",
+          "callee": "self.lstm",
+          "lineNumber": 80
+        },
+        {
+          "caller": "forward",
+          "callee": "self.classifier",
+          "lineNumber": 83
+        },
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 158
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 158
+        },
+        {
+          "caller": "forward",
+          "callee": "self.model",
+          "lineNumber": 162
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 0,
+        "classCount": 2
+      }
+    },
+    {
+      "path": "ml/train_transformer.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 279,
+      "nonEmptyLines": 236,
+      "functions": [
+        {
+          "name": "rotate_clip",
+          "startLine": 57,
+          "endLine": 64,
+          "params": [
+            "clip",
+            "deg"
+          ]
+        },
+        {
+          "name": "cm_md",
+          "startLine": 204,
+          "endLine": 211,
+          "params": [
+            "cm",
+            "labels"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "SignTransformer",
+          "startLine": 88,
+          "endLine": 111,
+          "methods": [
+            "__init__",
+            "forward"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "rotate_clip",
+          "line": 57,
+          "isDefault": false
+        },
+        {
+          "name": "SignTransformer",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "cm_md",
+          "line": 204,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "rotate_clip",
+          "callee": "np.deg2rad",
+          "lineNumber": 59
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.array",
+          "lineNumber": 60
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.cos",
+          "lineNumber": 60
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.sin",
+          "lineNumber": 60
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.sin",
+          "lineNumber": 61
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "np.cos",
+          "lineNumber": 61
+        },
+        {
+          "caller": "rotate_clip",
+          "callee": "clip[0:1, 0:1, :].copy",
+          "lineNumber": 63
+        },
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 93
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 93
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Linear",
+          "lineNumber": 94
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Parameter",
+          "lineNumber": 96
+        },
+        {
+          "caller": "__init__",
+          "callee": "torch.zeros",
+          "lineNumber": 96
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.init.trunc_normal_",
+          "lineNumber": 97
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.TransformerEncoderLayer",
+          "lineNumber": 98
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.TransformerEncoder",
+          "lineNumber": 103
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.LayerNorm",
+          "lineNumber": 104
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Linear",
+          "lineNumber": 105
+        },
+        {
+          "caller": "forward",
+          "callee": "self.input_proj",
+          "lineNumber": 108
+        },
+        {
+          "caller": "forward",
+          "callee": "self.encoder",
+          "lineNumber": 109
+        },
+        {
+          "caller": "forward",
+          "callee": "self.norm",
+          "lineNumber": 110
+        },
+        {
+          "caller": "forward",
+          "callee": "h.mean",
+          "lineNumber": 110
+        },
+        {
+          "caller": "forward",
+          "callee": "self.head",
+          "lineNumber": 111
+        },
+        {
+          "caller": "cm_md",
+          "callee": "\" | \".join",
+          "lineNumber": 205
+        },
+        {
+          "caller": "cm_md",
+          "callee": "\"|\".join",
+          "lineNumber": 206
+        },
+        {
+          "caller": "cm_md",
+          "callee": "len",
+          "lineNumber": 206
+        },
+        {
+          "caller": "cm_md",
+          "callee": "\" | \".join",
+          "lineNumber": 208
+        },
+        {
+          "caller": "cm_md",
+          "callee": "str",
+          "lineNumber": 208
+        },
+        {
+          "caller": "cm_md",
+          "callee": "int",
+          "lineNumber": 208
+        },
+        {
+          "caller": "cm_md",
+          "callee": "range",
+          "lineNumber": 209
+        },
+        {
+          "caller": "cm_md",
+          "callee": "len",
+          "lineNumber": 209
+        },
+        {
+          "caller": "cm_md",
+          "callee": "\"\\n\".join",
+          "lineNumber": 211
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "ml/train_transformer_v2.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 269,
+      "nonEmptyLines": 228,
+      "classes": [
+        {
+          "name": "DynamicTransformerV2",
+          "startLine": 82,
+          "endLine": 114,
+          "methods": [
+            "__init__",
+            "forward"
+          ],
+          "properties": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "DynamicTransformerV2",
+          "line": 82,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "__init__",
+          "callee": "super().__init__",
+          "lineNumber": 88
+        },
+        {
+          "caller": "__init__",
+          "callee": "super",
+          "lineNumber": 88
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Linear",
+          "lineNumber": 90
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Embedding",
+          "lineNumber": 91
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.TransformerEncoderLayer",
+          "lineNumber": 93
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.TransformerEncoder",
+          "lineNumber": 99
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.AdaptiveAvgPool1d",
+          "lineNumber": 100
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.Linear",
+          "lineNumber": 101
+        },
+        {
+          "caller": "__init__",
+          "callee": "nn.init.trunc_normal_",
+          "lineNumber": 104
+        },
+        {
+          "caller": "forward",
+          "callee": "torch.arange",
+          "lineNumber": 107
+        },
+        {
+          "caller": "forward",
+          "callee": "x.size",
+          "lineNumber": 107
+        },
+        {
+          "caller": "forward",
+          "callee": "self.input_proj",
+          "lineNumber": 108
+        },
+        {
+          "caller": "forward",
+          "callee": "self.pos_emb",
+          "lineNumber": 108
+        },
+        {
+          "caller": "forward",
+          "callee": "self.encoder",
+          "lineNumber": 109
+        },
+        {
+          "caller": "forward",
+          "callee": "self.pool(h.transpose(1, 2)).squeeze",
+          "lineNumber": 110
+        },
+        {
+          "caller": "forward",
+          "callee": "self.pool",
+          "lineNumber": 110
+        },
+        {
+          "caller": "forward",
+          "callee": "h.transpose",
+          "lineNumber": 110
+        },
+        {
+          "caller": "forward",
+          "callee": "self.classifier",
+          "lineNumber": 111
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 0,
+        "classCount": 1
+      }
+    }
+  ]
+}

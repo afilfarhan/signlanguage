@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "description": "Top-100 ASL conversational words for word-level recognition v1",
+  "source": "Curated from ASL Citizen / WLASL most-frequent signs, filtered for availability in both datasets",
+  "words": [
+    "HELLO", "GOODBYE", "YES", "NO", "PLEASE", "THANKS", "SORRY", "HELP",
+    "WANT", "NEED", "LIKE", "LOVE", "KNOW", "THINK", "FEEL", "SEE",
+    "HEAR", "SAY", "TELL", "ASK", "GIVE", "TAKE", "COME", "GO",
+    "EAT", "DRINK", "SLEEP", "WORK", "PLAY", "LEARN", "TEACH", "READ",
+    "WRITE", "BUY", "PAY", "OPEN", "CLOSE", "STOP", "START", "WAIT",
+    "FRIEND", "FAMILY", "MOTHER", "FATHER", "BABY", "HOME", "SCHOOL",
+    "FOOD", "WATER", "GOOD", "BAD", "HAPPY", "SAD", "ANGRY", "SCARED",
+    "BIG", "SMALL", "NEW", "OLD", "FAST", "SLOW", "HOT", "COLD",
+    "MAN", "WOMAN", "BOY", "GIRL", "PERSON", "NAME", "WHAT", "WHERE",
+    "WHEN", "WHO", "HOW", "WHY", "HOW-MUCH", "HOW-MANY", "MORE", "LESS",
+    "ALL", "NONE", "EVERY", "SAME", "DIFFERENT", "MAYBE", "ALWAYS", "NEVER",
+    "TODAY", "TOMORROW", "YESTERDAY", "NOW", "BEFORE", "AFTER", "WITH", "WITHOUT",
+    "CAN", "CANNOT", "MUST", "SHOULD", "TRY", "FINISH"
+  ]
+}

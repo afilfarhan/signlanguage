@@ -1,0 +1,890 @@
+﻿{
+    "edges":  [
+                  {
+                      "target":  "node:fs",
+                      "source":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "type":  "imports"
+                  },
+                  {
+                      "target":  "node:path",
+                      "source":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "type":  "imports"
+                  },
+                  {
+                      "target":  "node:fs",
+                      "source":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "type":  "imports"
+                  },
+                  {
+                      "target":  "node:path",
+                      "source":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "type":  "imports"
+                  },
+                  {
+                      "target":  "imp-paths:getDesignSidecarCandidates",
+                      "source":  "imp-paths:resolveDesignSidecarPath",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:firstExisting",
+                      "source":  "imp-paths:resolveDesignSidecarPath",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLiveConfigPath",
+                      "source":  "imp-paths:resolveLiveConfigPath",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLegacyLiveConfigPath",
+                      "source":  "imp-paths:resolveLiveConfigPath",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLiveServerPath",
+                      "source":  "imp-paths:readLiveServerInfo",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLegacyLiveServerPath",
+                      "source":  "imp-paths:readLiveServerInfo",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLiveServerPath",
+                      "source":  "imp-paths:writeLiveServerInfo",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLiveServerPath",
+                      "source":  "imp-paths:removeLiveServerInfo",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLegacyLiveServerPath",
+                      "source":  "imp-paths:removeLiveServerInfo",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getImpeccableDir",
+                      "source":  "imp-paths:getDesignSidecarPath",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getDesignSidecarPath",
+                      "source":  "imp-paths:getDesignSidecarCandidates",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getImpeccableDir",
+                      "source":  "imp-paths:getLiveDir",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLiveDir",
+                      "source":  "imp-paths:getLiveConfigPath",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLiveDir",
+                      "source":  "imp-paths:getLiveServerPath",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLiveDir",
+                      "source":  "imp-paths:getLiveSessionsDir",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getLiveDir",
+                      "source":  "imp-paths:getLiveAnnotationsDir",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "imp-paths:getImpeccableDir",
+                      "source":  "imp-paths:getCritiqueDir",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "cleanup:loadLock",
+                      "source":  "cleanup:cleanup",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "cleanup:removeDeprecatedSkills",
+                      "source":  "cleanup:cleanup",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "cleanup:cleanSkillsLock",
+                      "source":  "cleanup:cleanup",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "cleanup:buildTargetNames",
+                      "source":  "cleanup:removeDeprecatedSkills",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "cleanup:findSkillsDirs",
+                      "source":  "cleanup:removeDeprecatedSkills",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "cleanup:isImpeccableSkill",
+                      "source":  "cleanup:removeDeprecatedSkills",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "cleanup:buildTargetNames",
+                      "source":  "cleanup:cleanSkillsLock",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "cleanup:loadLock",
+                      "source":  "cleanup:isImpeccableSkill",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:own",
+                      "source":  "live:initHighlight",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:desc",
+                      "source":  "live:showHighlight",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:own",
+                      "source":  "live:initAnnotOverlay",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:own",
+                      "source":  "live:showAnnotOverlay",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:localCoords",
+                      "source":  "live:onAnnotDown",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:own",
+                      "source":  "live:onAnnotDown",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:localCoords",
+                      "source":  "live:onAnnotMove",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:pointsToPath",
+                      "source":  "live:onAnnotUp",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:renderAllPins",
+                      "source":  "live:onAnnotUp",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:extractContext",
+                      "source":  "live:buildAnnotationsForCapture",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:own",
+                      "source":  "live:initBar",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:buildConfigureRow",
+                      "source":  "live:showBar",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:buildGeneratingRow",
+                      "source":  "live:showBar",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:buildCyclingRow",
+                      "source":  "live:showBar",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:updateBarContent",
+                      "source":  "live:showBar",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:positionBar",
+                      "source":  "live:showBar",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:hideActionPicker",
+                      "source":  "live:hideBar",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:hideParamsPanel",
+                      "source":  "live:hideBar",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:initActionPicker",
+                      "source":  "live:buildConfigureRow",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:initParamsPanel",
+                      "source":  "live:buildConfigureRow",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:showVariantInDOM",
+                      "source":  "live:injectVariantsFromSource",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:startScrollLock",
+                      "source":  "live:injectVariantsFromSource",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:startVariantObserver",
+                      "source":  "live:injectVariantsFromSource",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:updateSelectedElement",
+                      "source":  "live:injectVariantsFromSource",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:sendEvent",
+                      "source":  "live:injectVariantsFromSource",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:showVariantInDOM",
+                      "source":  "live:cycleVariant",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:refreshParamsPanel",
+                      "source":  "live:cycleVariant",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:hideHighlight",
+                      "source":  "live:cycleVariant",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:sendEvent",
+                      "source":  "live:connectSSE",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:connectSSE",
+                      "source":  "live:handleServerLost",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:writeScrollY",
+                      "source":  "live:startScrollTracking",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:writeScrollY",
+                      "source":  "live:stopScrollTracking",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:positionParamsPanel",
+                      "source":  "live:showParamsPanel",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:own",
+                      "source":  "live:initParamsPanel",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:getVisibleVariantEl",
+                      "source":  "live:refreshParamsPanel",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:parseVariantParams",
+                      "source":  "live:refreshParamsPanel",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:buildParamsPanel",
+                      "source":  "live:refreshParamsPanel",
+                      "type":  "calls"
+                  },
+                  {
+                      "target":  "live:hideParamsPanel",
+                      "source":  "live:toggleActionPicker",
+                      "type":  "calls"
+                  }
+              ],
+    "nodes":  [
+                  {
+                      "id":  "ml/models/dynamic_signs_transformer_BEFORE.onnx",
+                      "label":  "dynamic_signs_transformer_BEFORE.onnx",
+                      "description":  "Large Transformer ONNX model for dynamic sign recognition (backup/pre-optimization)",
+                      "filePath":  "ml/models/dynamic_signs_transformer_BEFORE.onnx",
+                      "type":  "data",
+                      "category":  "onnx_model",
+                      "lines":  2068
+                  },
+                  {
+                      "id":  ".agents/skills/impeccable/scripts/command-metadata.json",
+                      "label":  "command-metadata.json",
+                      "description":  "Impeccable skill command metadata — 22 commands with descriptions and argument hints",
+                      "filePath":  ".agents/skills/impeccable/scripts/command-metadata.json",
+                      "type":  "config",
+                      "category":  "json_config"
+                  },
+                  {
+                      "id":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "label":  "impeccable-paths.mjs",
+                      "description":  "Path resolution utilities for Impeccable skill directories, live config, sessions, and design sidecar",
+                      "filePath":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "type":  "file_module",
+                      "category":  "javascript_module",
+                      "lines":  110
+                  },
+                  {
+                      "label":  "IMPECCABLE_DIR",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Constant: \u0027.impeccable\u0027",
+                      "id":  "imp-paths:IMPECCABLE_DIR",
+                      "type":  "const"
+                  },
+                  {
+                      "label":  "LIVE_DIR",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Constant: \u0027live\u0027",
+                      "id":  "imp-paths:LIVE_DIR",
+                      "type":  "const"
+                  },
+                  {
+                      "label":  "CRITIQUE_DIR",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Constant: \u0027critique\u0027",
+                      "id":  "imp-paths:CRITIQUE_DIR",
+                      "type":  "const"
+                  },
+                  {
+                      "label":  "getImpeccableDir()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns path to .impeccable dir",
+                      "id":  "imp-paths:getImpeccableDir",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getDesignSidecarPath()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns path to design.json",
+                      "id":  "imp-paths:getDesignSidecarPath",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getDesignSidecarCandidates()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns array of candidate sidecar paths",
+                      "id":  "imp-paths:getDesignSidecarCandidates",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "resolveDesignSidecarPath()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Resolves first existing sidecar path",
+                      "id":  "imp-paths:resolveDesignSidecarPath",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getLiveDir()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns path to live dir under .impeccable",
+                      "id":  "imp-paths:getLiveDir",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getLiveConfigPath()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns path to live/config.json",
+                      "id":  "imp-paths:getLiveConfigPath",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getLegacyLiveConfigPath()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns legacy config path",
+                      "id":  "imp-paths:getLegacyLiveConfigPath",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "resolveLiveConfigPath()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Resolves live config path with env var / primary / legacy fallback",
+                      "id":  "imp-paths:resolveLiveConfigPath",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getLiveServerPath()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns path to live/server.json",
+                      "id":  "imp-paths:getLiveServerPath",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getLegacyLiveServerPath()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns legacy server path",
+                      "id":  "imp-paths:getLegacyLiveServerPath",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "readLiveServerInfo()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Reads server info JSON, tries primary then legacy",
+                      "id":  "imp-paths:readLiveServerInfo",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "writeLiveServerInfo()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Writes server info JSON",
+                      "id":  "imp-paths:writeLiveServerInfo",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "removeLiveServerInfo()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Removes server info files (primary + legacy)",
+                      "id":  "imp-paths:removeLiveServerInfo",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getLiveSessionsDir()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns path to live/sessions dir",
+                      "id":  "imp-paths:getLiveSessionsDir",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getLegacyLiveSessionsDir()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns legacy sessions dir",
+                      "id":  "imp-paths:getLegacyLiveSessionsDir",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getLiveAnnotationsDir()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns path to live/annotations dir",
+                      "id":  "imp-paths:getLiveAnnotationsDir",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getCritiqueDir()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns path to critique dir",
+                      "id":  "imp-paths:getCritiqueDir",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "getLegacyLiveAnnotationsDir()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Returns legacy annotations dir",
+                      "id":  "imp-paths:getLegacyLiveAnnotationsDir",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "firstExisting()",
+                      "parent":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "description":  "Internal: returns first existing path from array",
+                      "id":  "imp-paths:firstExisting",
+                      "type":  "function"
+                  },
+                  {
+                      "id":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "label":  "cleanup-deprecated.mjs",
+                      "description":  "CLI tool to remove deprecated Impeccable skill directories, symlinks, and skills-lock.json entries",
+                      "filePath":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "type":  "file_module",
+                      "category":  "javascript_module_cli",
+                      "lines":  284
+                  },
+                  {
+                      "label":  "findProjectRoot()",
+                      "parent":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "description":  "Walks up to find project root (package.json/.git/skills-lock.json)",
+                      "id":  "cleanup:findProjectRoot",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "loadLock()",
+                      "parent":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "description":  "Loads skills-lock.json from project root",
+                      "id":  "cleanup:loadLock",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "isImpeccableSkill()",
+                      "parent":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "description":  "Checks if a skill dir belongs to Impeccable via lock/skill.md/fingerprint",
+                      "id":  "cleanup:isImpeccableSkill",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "buildTargetNames()",
+                      "parent":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "description":  "Builds list of deprecated names + i-prefixed variants",
+                      "id":  "cleanup:buildTargetNames",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "findSkillsDirs()",
+                      "parent":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "description":  "Finds all skills dirs across harness directories",
+                      "id":  "cleanup:findSkillsDirs",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "removeDeprecatedSkills()",
+                      "parent":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "description":  "Removes deprecated skill directories/symlinks",
+                      "id":  "cleanup:removeDeprecatedSkills",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "cleanSkillsLock()",
+                      "parent":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "description":  "Removes deprecated entries from skills-lock.json",
+                      "id":  "cleanup:cleanSkillsLock",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "cleanup()",
+                      "parent":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "description":  "Runs full cleanup: remove dirs then clean lock",
+                      "id":  "cleanup:cleanup",
+                      "type":  "function"
+                  },
+                  {
+                      "id":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "label":  "live-browser.js",
+                      "description":  "Impeccable Live Variant Mode — browser-injected IIFE with floating bar UI, element highlighting, annotation overlays, variant cycling, SSE connection, scroll locking, and params tuning",
+                      "filePath":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "type":  "file_script",
+                      "category":  "javascript_iife_browser",
+                      "lines":  4860
+                  },
+                  {
+                      "label":  "own(el)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Checks if element belongs to impeccable UI",
+                      "id":  "live:own",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "pickable(el)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Checks if element is pickable for design actions",
+                      "id":  "live:pickable",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "desc(el)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Generates CSS-selector description for element",
+                      "id":  "live:desc",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "id8()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Generates 8-char random ID",
+                      "id":  "live:id8",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "defangOutsideHandlers()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Disables pointer events on elements outside the target",
+                      "id":  "live:defangOutsideHandlers",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "initHighlight()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Creates highlight overlay element",
+                      "id":  "live:initHighlight",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "showHighlight(el)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Positions and shows highlight over element",
+                      "id":  "live:showHighlight",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "hideHighlight()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Hides highlight overlay",
+                      "id":  "live:hideHighlight",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "initAnnotOverlay()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Creates annotation overlay SVG canvas",
+                      "id":  "live:initAnnotOverlay",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "showAnnotOverlay(el)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Shows annotation overlay for element",
+                      "id":  "live:showAnnotOverlay",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "hideAnnotOverlay()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Hides annotation overlay",
+                      "id":  "live:hideAnnotOverlay",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "onAnnotDown(e)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Handles annotation pointer-down — starts drawing stroke",
+                      "id":  "live:onAnnotDown",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "onAnnotMove(e)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Handles annotation pointer-move — extends stroke",
+                      "id":  "live:onAnnotMove",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "onAnnotUp(e)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Handles annotation pointer-up — finalizes stroke",
+                      "id":  "live:onAnnotUp",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "clearAnnotations()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Clears all annotation strokes and pins",
+                      "id":  "live:clearAnnotations",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "buildAnnotationsForCapture()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Serializes annotations for capture payload",
+                      "id":  "live:buildAnnotationsForCapture",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "initBar()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Creates floating bar DOM element",
+                      "id":  "live:initBar",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "positionBar()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Positions bar relative to selected element",
+                      "id":  "live:positionBar",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "showBar(mode)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Shows bar in configure/generating/cycling state",
+                      "id":  "live:showBar",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "hideBar()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Hides floating bar",
+                      "id":  "live:hideBar",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "buildConfigureRow()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Builds configure-mode bar UI (action picker + go button)",
+                      "id":  "live:buildConfigureRow",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "buildGeneratingRow()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Builds generating-mode bar UI (progressive dots)",
+                      "id":  "live:buildGeneratingRow",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "buildCyclingRow()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Builds cycling-mode bar UI (prev/next + accept/discard + dots)",
+                      "id":  "live:buildCyclingRow",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "initActionPicker()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Creates action picker popover with design action chips",
+                      "id":  "live:initActionPicker",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "toggleActionPicker()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Toggles action picker visibility",
+                      "id":  "live:toggleActionPicker",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "injectVariantsFromSource()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Injects variant HTML into DOM via iframe proxy",
+                      "id":  "live:injectVariantsFromSource",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "showVariantInDOM()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Swaps which variant is visible in DOM",
+                      "id":  "live:showVariantInDOM",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "cycleVariant(dir)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Cycles to next/prev variant",
+                      "id":  "live:cycleVariant",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "startScrollLock()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Locks scroll position during variant swap",
+                      "id":  "live:startScrollLock",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "stopScrollLock()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Releases scroll lock",
+                      "id":  "live:stopScrollLock",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "startVariantObserver()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Starts MutationObserver to track variant injection",
+                      "id":  "live:startVariantObserver",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "initParamsPanel()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Creates variant param tuning panel",
+                      "id":  "live:initParamsPanel",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "buildParamsPanel()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Builds param controls (sliders, selects, toggles)",
+                      "id":  "live:buildParamsPanel",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "showParamsPanel()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Shows params panel",
+                      "id":  "live:showParamsPanel",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "hideParamsPanel()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Hides params panel",
+                      "id":  "live:hideParamsPanel",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "connectSSE()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Connects to SSE endpoint for variant streaming",
+                      "id":  "live:connectSSE",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "sendEvent()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Sends event to impeccable server",
+                      "id":  "live:sendEvent",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "handleServerLost()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Handles SSE disconnect with reconnection",
+                      "id":  "live:handleServerLost",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "extractContext(el)",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Extracts design context from selected element and computed styles",
+                      "id":  "live:extractContext",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "startScrollTracking()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Starts RAF-based scroll tracking",
+                      "id":  "live:startScrollTracking",
+                      "type":  "function"
+                  },
+                  {
+                      "label":  "stopScrollTracking()",
+                      "parent":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "description":  "Stops scroll tracking",
+                      "id":  "live:stopScrollTracking",
+                      "type":  "function"
+                  },
+                  {
+                      "id":  ".agents/skills/impeccable/reference/design-system-builder.md",
+                      "label":  "design-system-builder.md",
+                      "description":  "File referenced in batch listing but does not exist on disk",
+                      "filePath":  ".agents/skills/impeccable/reference/design-system-builder.md",
+                      "type":  "missing",
+                      "category":  "markdown_docs_missing"
+                  }
+              ]
+}

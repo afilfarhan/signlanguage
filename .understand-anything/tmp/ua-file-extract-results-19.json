@@ -1,0 +1,1429 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 23,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "signtutor/public/models/fingerspell_mlp_v2.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 1065,
+      "nonEmptyLines": 1057,
+      "metrics": {}
+    },
+    {
+      "path": "signtutor/public/models/fingerspell_mlp.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 322,
+      "nonEmptyLines": 315,
+      "metrics": {}
+    },
+    {
+      "path": "signtutor/public/models/jz_classifier.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 1511,
+      "nonEmptyLines": 1496,
+      "metrics": {}
+    },
+    {
+      "path": "signtutor/signtutor/data/REFERENCE_LICENSES.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 25,
+      "nonEmptyLines": 21,
+      "sections": [
+        {
+          "heading": "Sign Reference Licences",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Fingerspelling References (A–Z)",
+          "level": 2,
+          "line": 5
+        },
+        {
+          "heading": "Dynamic Sign References",
+          "level": 2,
+          "line": 16
+        },
+        {
+          "heading": "CI Enforcement",
+          "level": 2,
+          "line": 23
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "signtutor/src/app/about/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 165,
+      "nonEmptyLines": 157,
+      "functions": [
+        {
+          "name": "AboutPage",
+          "startLine": 38,
+          "endLine": 165,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "metadata",
+          "line": 1,
+          "isDefault": false
+        },
+        {
+          "name": "AboutPage",
+          "line": 38,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "AboutPage",
+          "callee": "timeline.map",
+          "lineNumber": 63
+        },
+        {
+          "caller": "AboutPage",
+          "callee": "techStack.map",
+          "lineNumber": 142
+        },
+        {
+          "caller": "AboutPage",
+          "callee": "group.items.map",
+          "lineNumber": 148
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/globals.css",
+      "language": "css",
+      "fileCategory": "markup",
+      "totalLines": 123,
+      "nonEmptyLines": 102,
+      "metrics": {}
+    },
+    {
+      "path": "signtutor/src/app/layout.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 32,
+      "nonEmptyLines": 30,
+      "functions": [
+        {
+          "name": "RootLayout",
+          "startLine": 11,
+          "endLine": 32,
+          "params": [
+            "{\n  children,\n}"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "metadata",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "RootLayout",
+          "line": 11,
+          "isDefault": true
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/learn/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 149,
+      "nonEmptyLines": 143,
+      "functions": [
+        {
+          "name": "LearnPage",
+          "startLine": 32,
+          "endLine": 149,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "metadata",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "LearnPage",
+          "line": 32,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "LearnPage",
+          "callee": "modules.map",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 196,
+      "nonEmptyLines": 187,
+      "functions": [
+        {
+          "name": "Home",
+          "startLine": 30,
+          "endLine": 196,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Home",
+          "line": 30,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Home",
+          "callee": "[\n          { label: \"On-device by default\", icon: \"🔒\" },\n          { label: \"MediaPipe Hands\", icon: \"✋\" },\n          { label: \"ONNX ML\", icon: \"🧠\" },\n          { label: \"WCAG 2.2 AA\", icon: \"♿\" },\n        ].map",
+          "lineNumber": 103
+        },
+        {
+          "caller": "Home",
+          "callee": "features.map",
+          "lineNumber": 125
+        },
+        {
+          "caller": "Home",
+          "callee": "new Date().getFullYear",
+          "lineNumber": 165
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/privacy/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 57,
+      "functions": [
+        {
+          "name": "PrivacyPage",
+          "startLine": 3,
+          "endLine": 64,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "metadata",
+          "line": 1,
+          "isDefault": false
+        },
+        {
+          "name": "PrivacyPage",
+          "line": 3,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PrivacyPage",
+          "callee": "new Date().toLocaleDateString",
+          "lineNumber": 7
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/research/continuous/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 11,
+      "nonEmptyLines": 9,
+      "functions": [
+        {
+          "name": "ContinuousResearchPage",
+          "startLine": 9,
+          "endLine": 11,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "metadata",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "ContinuousResearchPage",
+          "line": 9,
+          "isDefault": true
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 2,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/research/continuous/ResearchClient.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 102,
+      "nonEmptyLines": 93,
+      "functions": [
+        {
+          "name": "ResearchClient",
+          "startLine": 6,
+          "endLine": 102,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "ResearchClient",
+          "line": 6,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ResearchClient",
+          "callee": "useState",
+          "lineNumber": 7
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "useState",
+          "lineNumber": 8
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "useState",
+          "lineNumber": 9
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "useRef",
+          "lineNumber": 10
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "useRef",
+          "lineNumber": 11
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "useEffect",
+          "lineNumber": 13
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "setInterval",
+          "lineNumber": 14
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "setReadTime",
+          "lineNumber": 15
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "clearInterval",
+          "lineNumber": 17
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "clearInterval",
+          "lineNumber": 25
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "useCallback",
+          "lineNumber": 29
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "setScrolled",
+          "lineNumber": 33
+        },
+        {
+          "caller": "ResearchClient",
+          "callee": "setAgreed",
+          "lineNumber": 60
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/components/Header.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 152,
+      "nonEmptyLines": 144,
+      "functions": [
+        {
+          "name": "Header",
+          "startLine": 16,
+          "endLine": 152,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "Header",
+          "line": 16,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Header",
+          "callee": "useState",
+          "lineNumber": 17
+        },
+        {
+          "caller": "Header",
+          "callee": "usePathname",
+          "lineNumber": 18
+        },
+        {
+          "caller": "Header",
+          "callee": "links.map",
+          "lineNumber": 51
+        },
+        {
+          "caller": "Header",
+          "callee": "setOpen",
+          "lineNumber": 86
+        },
+        {
+          "caller": "Header",
+          "callee": "links.map",
+          "lineNumber": 122
+        },
+        {
+          "caller": "Header",
+          "callee": "setOpen",
+          "lineNumber": 128
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/components/PrivacyGateWrapper.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 16,
+      "nonEmptyLines": 13,
+      "functions": [
+        {
+          "name": "PrivacyGateWrapper",
+          "startLine": 6,
+          "endLine": 16,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "PrivacyGateWrapper",
+          "line": 6,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PrivacyGateWrapper",
+          "callee": "useEffect",
+          "lineNumber": 7
+        },
+        {
+          "caller": "PrivacyGateWrapper",
+          "callee": "installPrivacyGate",
+          "lineNumber": 8
+        },
+        {
+          "caller": "PrivacyGateWrapper",
+          "callee": "setLeakCallback",
+          "lineNumber": 9
+        },
+        {
+          "caller": "PrivacyGateWrapper",
+          "callee": "console.error",
+          "lineNumber": 10
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/components/ReliabilityDiagram.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 149,
+      "nonEmptyLines": 135,
+      "functions": [
+        {
+          "name": "ReliabilityDiagram",
+          "startLine": 23,
+          "endLine": 149,
+          "params": [
+            "{ data, threshold = 0.05 }"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "ReliabilityDiagram",
+          "line": 23,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "binData.push",
+          "lineNumber": 34
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "Math.min",
+          "lineNumber": 38
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "Math.floor",
+          "lineNumber": 38
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "binData.map",
+          "lineNumber": 44
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "computeECE",
+          "lineNumber": 54
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "ece.toFixed",
+          "lineNumber": 62
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "[0, 0.2, 0.4, 0.6, 0.8, 1].map",
+          "lineNumber": 68
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "bars.map",
+          "lineNumber": 92
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "Math.min",
+          "lineNumber": 96
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "Math.abs",
+          "lineNumber": 98
+        },
+        {
+          "caller": "ReliabilityDiagram",
+          "callee": "Math.abs",
+          "lineNumber": 99
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/calibration.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 96,
+      "nonEmptyLines": 81,
+      "functions": [
+        {
+          "name": "computeECE",
+          "startLine": 34,
+          "endLine": 62,
+          "params": [
+            "confidences",
+            "accuracies",
+            "nBins"
+          ]
+        },
+        {
+          "name": "fitTemperature",
+          "startLine": 65,
+          "endLine": 96,
+          "params": [
+            "logits",
+            "labels"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "CalibrationLayer",
+          "startLine": 11,
+          "endLine": 31,
+          "methods": [
+            "constructor",
+            "calibrate",
+            "setTemperature",
+            "getTemperature"
+          ],
+          "properties": [
+            "T"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "CalibrationLayer",
+          "line": 11,
+          "isDefault": false
+        },
+        {
+          "name": "computeECE",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "fitTemperature",
+          "line": 65,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "calibrate",
+          "callee": "Array.from",
+          "lineNumber": 20
+        },
+        {
+          "caller": "computeECE",
+          "callee": "Array.from",
+          "lineNumber": 39
+        },
+        {
+          "caller": "computeECE",
+          "callee": "Math.min",
+          "lineNumber": 45
+        },
+        {
+          "caller": "computeECE",
+          "callee": "Math.floor",
+          "lineNumber": 45
+        },
+        {
+          "caller": "computeECE",
+          "callee": "Math.abs",
+          "lineNumber": 57
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "Array.from",
+          "lineNumber": 77
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "Math.max",
+          "lineNumber": 78
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "cal.map",
+          "lineNumber": 79
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "Math.exp",
+          "lineNumber": 79
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "exps.reduce",
+          "lineNumber": 80
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "exps.map",
+          "lineNumber": 81
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "probs.indexOf",
+          "lineNumber": 82
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "Math.max",
+          "lineNumber": 82
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "Math.max",
+          "lineNumber": 83
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "confidences.push",
+          "lineNumber": 84
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "accuracies.push",
+          "lineNumber": 85
+        },
+        {
+          "caller": "fitTemperature",
+          "callee": "computeECE",
+          "lineNumber": 88
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 2,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "signtutor/src/lib/curriculum-v2.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 149,
+      "nonEmptyLines": 134,
+      "functions": [
+        {
+          "name": "isMotionLetter",
+          "startLine": 10,
+          "endLine": 12,
+          "params": [
+            "letter"
+          ]
+        },
+        {
+          "name": "getStaticLetter",
+          "startLine": 139,
+          "endLine": 141,
+          "params": [
+            "letter"
+          ]
+        },
+        {
+          "name": "getMotionLetter",
+          "startLine": 143,
+          "endLine": 145,
+          "params": [
+            "letter"
+          ]
+        },
+        {
+          "name": "getDynamicSign",
+          "startLine": 147,
+          "endLine": 149,
+          "params": [
+            "slug"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "STATIC_LETTERS",
+          "line": 3,
+          "isDefault": false
+        },
+        {
+          "name": "MOTION_LETTERS",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "isMotionLetter",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "ASL_REF_IMAGES",
+          "line": 18,
+          "isDefault": false
+        },
+        {
+          "name": "LETTER_DESCRIPTIONS",
+          "line": 47,
+          "isDefault": false
+        },
+        {
+          "name": "MOTION_DESCRIPTIONS",
+          "line": 74,
+          "isDefault": false
+        },
+        {
+          "name": "DYNAMIC_SIGNS",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "SIGN_DESCRIPTIONS",
+          "line": 92,
+          "isDefault": false
+        },
+        {
+          "name": "CURRICULUM",
+          "line": 112,
+          "isDefault": false
+        },
+        {
+          "name": "getStaticLetter",
+          "line": 139,
+          "isDefault": false
+        },
+        {
+          "name": "getMotionLetter",
+          "line": 143,
+          "isDefault": false
+        },
+        {
+          "name": "getDynamicSign",
+          "line": 147,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "isMotionLetter",
+          "callee": "MOTION_LETTERS.includes",
+          "lineNumber": 11
+        },
+        {
+          "caller": "getStaticLetter",
+          "callee": "CURRICULUM.find",
+          "lineNumber": 140
+        },
+        {
+          "caller": "getStaticLetter",
+          "callee": "letter.toUpperCase",
+          "lineNumber": 140
+        },
+        {
+          "caller": "getMotionLetter",
+          "callee": "CURRICULUM.find",
+          "lineNumber": 144
+        },
+        {
+          "caller": "getMotionLetter",
+          "callee": "letter.toUpperCase",
+          "lineNumber": 144
+        },
+        {
+          "caller": "getMotionLetter",
+          "callee": "isMotionLetter",
+          "lineNumber": 144
+        },
+        {
+          "caller": "getDynamicSign",
+          "callee": "CURRICULUM.find",
+          "lineNumber": 148
+        },
+        {
+          "caller": "getDynamicSign",
+          "callee": "slug.toLowerCase",
+          "lineNumber": 148
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 12,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/language-bundles.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 64,
+      "nonEmptyLines": 58,
+      "functions": [
+        {
+          "name": "getLanguageBundle",
+          "startLine": 54,
+          "endLine": 56,
+          "params": [
+            "lang"
+          ]
+        },
+        {
+          "name": "isBetaLanguage",
+          "startLine": 58,
+          "endLine": 60,
+          "params": [
+            "lang"
+          ]
+        },
+        {
+          "name": "getAllLanguages",
+          "startLine": 62,
+          "endLine": 64,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "LANGUAGE_BUNDLES",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "getLanguageBundle",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "isBetaLanguage",
+          "line": 58,
+          "isDefault": false
+        },
+        {
+          "name": "getAllLanguages",
+          "line": 62,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getAllLanguages",
+          "callee": "Object.values",
+          "lineNumber": 63
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 4,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/mediapipe/holisticRunner.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 110,
+      "nonEmptyLines": 98,
+      "functions": [
+        {
+          "name": "createHolisticRunner",
+          "startLine": 43,
+          "endLine": 65,
+          "params": [
+            "locateFile"
+          ]
+        },
+        {
+          "name": "extractNMMFeatures",
+          "startLine": 70,
+          "endLine": 110,
+          "params": [
+            "faceLandmarks"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "createHolisticRunner",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "extractNMMFeatures",
+          "line": 70,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createHolisticRunner",
+          "callee": "holistic.setOptions",
+          "lineNumber": 54
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/PersonalAdapter.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 105,
+      "nonEmptyLines": 91,
+      "functions": [
+        {
+          "name": "softmax",
+          "startLine": 16,
+          "endLine": 21,
+          "params": [
+            "logits"
+          ]
+        },
+        {
+          "name": "saveAdapter",
+          "startLine": 93,
+          "endLine": 97,
+          "params": [
+            "adapter"
+          ]
+        },
+        {
+          "name": "loadAdapter",
+          "startLine": 99,
+          "endLine": 105,
+          "params": [
+            "_nClasses"
+          ]
+        }
+      ],
+      "classes": [
+        {
+          "name": "PersonalAdapter",
+          "startLine": 23,
+          "endLine": 89,
+          "methods": [
+            "constructor",
+            "predict",
+            "update",
+            "serialize",
+            "deserialize",
+            "getAttempts",
+            "getModelSizeBytes"
+          ],
+          "properties": [
+            "W",
+            "b",
+            "lr",
+            "attempts"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "PersonalAdapter",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "saveAdapter",
+          "line": 93,
+          "isDefault": false
+        },
+        {
+          "name": "loadAdapter",
+          "line": 99,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "softmax",
+          "callee": "Math.max",
+          "lineNumber": 17
+        },
+        {
+          "caller": "softmax",
+          "callee": "Array.from",
+          "lineNumber": 18
+        },
+        {
+          "caller": "softmax",
+          "callee": "Math.exp",
+          "lineNumber": 18
+        },
+        {
+          "caller": "softmax",
+          "callee": "exps.reduce",
+          "lineNumber": 19
+        },
+        {
+          "caller": "softmax",
+          "callee": "exps.map",
+          "lineNumber": 20
+        },
+        {
+          "caller": "constructor",
+          "callee": "new Float32Array(embDim * nClasses).fill",
+          "lineNumber": 31
+        },
+        {
+          "caller": "constructor",
+          "callee": "new Float32Array(nClasses).fill",
+          "lineNumber": 32
+        },
+        {
+          "caller": "update",
+          "callee": "this.predict",
+          "lineNumber": 49
+        },
+        {
+          "caller": "update",
+          "callee": "softmax",
+          "lineNumber": 50
+        },
+        {
+          "caller": "serialize",
+          "callee": "JSON.stringify",
+          "lineNumber": 64
+        },
+        {
+          "caller": "serialize",
+          "callee": "Array.from",
+          "lineNumber": 65
+        },
+        {
+          "caller": "serialize",
+          "callee": "Array.from",
+          "lineNumber": 66
+        },
+        {
+          "caller": "deserialize",
+          "callee": "JSON.parse",
+          "lineNumber": 72
+        },
+        {
+          "caller": "saveAdapter",
+          "callee": "localStorage.setItem",
+          "lineNumber": 95
+        },
+        {
+          "caller": "saveAdapter",
+          "callee": "adapter.serialize",
+          "lineNumber": 95
+        },
+        {
+          "caller": "loadAdapter",
+          "callee": "localStorage.getItem",
+          "lineNumber": 101
+        },
+        {
+          "caller": "loadAdapter",
+          "callee": "PersonalAdapter.deserialize",
+          "lineNumber": 102
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 1
+      }
+    },
+    {
+      "path": "signtutor/src/lib/privacyGate.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 132,
+      "nonEmptyLines": 114,
+      "functions": [
+        {
+          "name": "setLeakCallback",
+          "startLine": 17,
+          "endLine": 19,
+          "params": [
+            "cb"
+          ]
+        },
+        {
+          "name": "isSuspicious",
+          "startLine": 39,
+          "endLine": 49,
+          "params": [
+            "value"
+          ]
+        },
+        {
+          "name": "reportLeak",
+          "startLine": 51,
+          "endLine": 54,
+          "params": [
+            "reason",
+            "detail"
+          ]
+        },
+        {
+          "name": "shouldAllowRequest",
+          "startLine": 56,
+          "endLine": 85,
+          "params": [
+            "url",
+            "init"
+          ]
+        },
+        {
+          "name": "installPrivacyGate",
+          "startLine": 88,
+          "endLine": 132,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "setLeakCallback",
+          "line": 17,
+          "isDefault": false
+        },
+        {
+          "name": "installPrivacyGate",
+          "line": 88,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "isSuspicious",
+          "callee": "value.toLowerCase().includes",
+          "lineNumber": 43
+        },
+        {
+          "caller": "isSuspicious",
+          "callee": "value.toLowerCase",
+          "lineNumber": 43
+        },
+        {
+          "caller": "isSuspicious",
+          "callee": "re.test",
+          "lineNumber": 46
+        },
+        {
+          "caller": "isSuspicious",
+          "callee": "re.toString",
+          "lineNumber": 46
+        },
+        {
+          "caller": "reportLeak",
+          "callee": "console.error",
+          "lineNumber": 52
+        },
+        {
+          "caller": "reportLeak",
+          "callee": "onLeakDetected",
+          "lineNumber": 53
+        },
+        {
+          "caller": "shouldAllowRequest",
+          "callee": "href.startsWith",
+          "lineNumber": 62
+        },
+        {
+          "caller": "shouldAllowRequest",
+          "callee": "href.startsWith",
+          "lineNumber": 62
+        },
+        {
+          "caller": "shouldAllowRequest",
+          "callee": "Object.entries",
+          "lineNumber": 68
+        },
+        {
+          "caller": "shouldAllowRequest",
+          "callee": "isSuspicious",
+          "lineNumber": 69
+        },
+        {
+          "caller": "shouldAllowRequest",
+          "callee": "String",
+          "lineNumber": 69
+        },
+        {
+          "caller": "shouldAllowRequest",
+          "callee": "String",
+          "lineNumber": 75
+        },
+        {
+          "caller": "shouldAllowRequest",
+          "callee": "isSuspicious",
+          "lineNumber": 76
+        },
+        {
+          "caller": "shouldAllowRequest",
+          "callee": "isSuspicious",
+          "lineNumber": 81
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "window.fetch.bind",
+          "lineNumber": 93
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "shouldAllowRequest",
+          "lineNumber": 97
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "reportLeak",
+          "lineNumber": 99
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "nativeFetch",
+          "lineNumber": 102
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "shouldAllowRequest",
+          "lineNumber": 113
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "reportLeak",
+          "lineNumber": 115
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "nativeOpen.call",
+          "lineNumber": 118
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "isSuspicious",
+          "lineNumber": 124
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "String",
+          "lineNumber": 124
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "reportLeak",
+          "lineNumber": 126
+        },
+        {
+          "caller": "installPrivacyGate",
+          "callee": "nativeSend.call",
+          "lineNumber": 130
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/test-results/.last-run.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 4,
+      "nonEmptyLines": 4,
+      "sections": [
+        {
+          "heading": "status",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "failedTests",
+          "level": 1,
+          "line": 3
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "signtutor/vitest.config.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 17,
+      "nonEmptyLines": 16,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    }
+  ]
+}

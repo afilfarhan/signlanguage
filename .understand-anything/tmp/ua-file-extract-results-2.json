@@ -1,0 +1,7290 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 13,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": ".agents/skills/impeccable/scripts/critique-storage.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 242,
+      "nonEmptyLines": 225,
+      "functions": [
+        {
+          "name": "slugFromTarget",
+          "startLine": 43,
+          "endLine": 68,
+          "params": [
+            "resolved"
+          ]
+        },
+        {
+          "name": "kebab",
+          "startLine": 70,
+          "endLine": 81,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "nowFilenameStamp",
+          "startLine": 87,
+          "endLine": 90,
+          "params": []
+        },
+        {
+          "name": "writeSnapshot",
+          "startLine": 99,
+          "endLine": 112,
+          "params": []
+        },
+        {
+          "name": "serializeFrontmatter",
+          "startLine": 114,
+          "endLine": 125,
+          "params": [
+            "obj"
+          ]
+        },
+        {
+          "name": "parseFrontmatter",
+          "startLine": 127,
+          "endLine": 144,
+          "params": [
+            "text"
+          ]
+        },
+        {
+          "name": "listSnapshotsForSlug",
+          "startLine": 149,
+          "endLine": 157,
+          "params": [
+            "slug",
+            "cwd"
+          ]
+        },
+        {
+          "name": "readLatestSnapshot",
+          "startLine": 163,
+          "endLine": 169,
+          "params": [
+            "slug"
+          ]
+        },
+        {
+          "name": "readTrend",
+          "startLine": 175,
+          "endLine": 179,
+          "params": [
+            "slug"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 183,
+          "endLine": 223,
+          "params": [
+            "argv"
+          ]
+        },
+        {
+          "name": "isMainModule",
+          "startLine": 225,
+          "endLine": 234,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "slugFromTarget",
+          "line": 43,
+          "isDefault": false
+        },
+        {
+          "name": "nowFilenameStamp",
+          "line": 87,
+          "isDefault": false
+        },
+        {
+          "name": "writeSnapshot",
+          "line": 99,
+          "isDefault": false
+        },
+        {
+          "name": "readLatestSnapshot",
+          "line": 163,
+          "isDefault": false
+        },
+        {
+          "name": "readTrend",
+          "line": 175,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "slugFromTarget",
+          "callee": "process.cwd",
+          "lineNumber": 43
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "resolved.trim",
+          "lineNumber": 45
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "/^https?:\\/\\//i.test",
+          "lineNumber": 49
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "kebab",
+          "lineNumber": 53
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "path.isAbsolute",
+          "lineNumber": 58
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "path.resolve",
+          "lineNumber": 58
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "path.relative",
+          "lineNumber": 59
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "rel.startsWith",
+          "lineNumber": 63
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "path.isAbsolute",
+          "lineNumber": 63
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "path.basename",
+          "lineNumber": 64
+        },
+        {
+          "caller": "slugFromTarget",
+          "callee": "kebab",
+          "lineNumber": 67
+        },
+        {
+          "caller": "kebab",
+          "callee": "s\r\n    .toLowerCase()\r\n    .replace(/[/\\\\.]+/g, '-')\r\n    .replace(/[^a-z0-9-]+/g, '-')\r\n    .replace(/-+/g, '-')\r\n    .replace",
+          "lineNumber": 71
+        },
+        {
+          "caller": "kebab",
+          "callee": "s\r\n    .toLowerCase()\r\n    .replace(/[/\\\\.]+/g, '-')\r\n    .replace(/[^a-z0-9-]+/g, '-')\r\n    .replace",
+          "lineNumber": 71
+        },
+        {
+          "caller": "kebab",
+          "callee": "s\r\n    .toLowerCase()\r\n    .replace(/[/\\\\.]+/g, '-')\r\n    .replace",
+          "lineNumber": 71
+        },
+        {
+          "caller": "kebab",
+          "callee": "s\r\n    .toLowerCase()\r\n    .replace",
+          "lineNumber": 71
+        },
+        {
+          "caller": "kebab",
+          "callee": "s\r\n    .toLowerCase",
+          "lineNumber": 71
+        },
+        {
+          "caller": "kebab",
+          "callee": "slug.slice(slug.length - SLUG_MAX).replace",
+          "lineNumber": 80
+        },
+        {
+          "caller": "kebab",
+          "callee": "slug.slice",
+          "lineNumber": 80
+        },
+        {
+          "caller": "nowFilenameStamp",
+          "callee": "date.toISOString",
+          "lineNumber": 88
+        },
+        {
+          "caller": "nowFilenameStamp",
+          "callee": "iso.replace(/[:.]/g, '-').replace",
+          "lineNumber": 89
+        },
+        {
+          "caller": "nowFilenameStamp",
+          "callee": "iso.replace",
+          "lineNumber": 89
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "process.cwd",
+          "lineNumber": 99
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "getCritiqueDir",
+          "lineNumber": 101
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "fs.mkdirSync",
+          "lineNumber": 102
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "nowFilenameStamp",
+          "lineNumber": 103
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "path.join",
+          "lineNumber": 104
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "serializeFrontmatter",
+          "lineNumber": 109
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "fs.writeFileSync",
+          "lineNumber": 110
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "body.trim",
+          "lineNumber": 110
+        },
+        {
+          "caller": "serializeFrontmatter",
+          "callee": "Object.entries",
+          "lineNumber": 116
+        },
+        {
+          "caller": "serializeFrontmatter",
+          "callee": "String",
+          "lineNumber": 118
+        },
+        {
+          "caller": "serializeFrontmatter",
+          "callee": "/[:#]/.test",
+          "lineNumber": 120
+        },
+        {
+          "caller": "serializeFrontmatter",
+          "callee": "lines.push",
+          "lineNumber": 121
+        },
+        {
+          "caller": "serializeFrontmatter",
+          "callee": "JSON.stringify",
+          "lineNumber": 121
+        },
+        {
+          "caller": "serializeFrontmatter",
+          "callee": "lines.push",
+          "lineNumber": 123
+        },
+        {
+          "caller": "serializeFrontmatter",
+          "callee": "lines.join",
+          "lineNumber": 124
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "text.match",
+          "lineNumber": 128
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "match[1].split",
+          "lineNumber": 131
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "line.indexOf",
+          "lineNumber": 132
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "line.slice(0, colon).trim",
+          "lineNumber": 134
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "line.slice",
+          "lineNumber": 134
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "line.slice(colon + 1).trim",
+          "lineNumber": 135
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "line.slice",
+          "lineNumber": 135
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "/^\".*\"$/.test",
+          "lineNumber": 136
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "JSON.parse",
+          "lineNumber": 137
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "/^-?\\d+$/.test",
+          "lineNumber": 138
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "Number",
+          "lineNumber": 139
+        },
+        {
+          "caller": "listSnapshotsForSlug",
+          "callee": "getCritiqueDir",
+          "lineNumber": 150
+        },
+        {
+          "caller": "listSnapshotsForSlug",
+          "callee": "fs.existsSync",
+          "lineNumber": 151
+        },
+        {
+          "caller": "listSnapshotsForSlug",
+          "callee": "fs.readdirSync(dir)\r\n    .filter((f) => f.endsWith(suffix))\r\n    .sort()\r\n    .map",
+          "lineNumber": 153
+        },
+        {
+          "caller": "listSnapshotsForSlug",
+          "callee": "fs.readdirSync(dir)\r\n    .filter((f) => f.endsWith(suffix))\r\n    .sort",
+          "lineNumber": 153
+        },
+        {
+          "caller": "listSnapshotsForSlug",
+          "callee": "fs.readdirSync(dir)\r\n    .filter",
+          "lineNumber": 153
+        },
+        {
+          "caller": "listSnapshotsForSlug",
+          "callee": "fs.readdirSync",
+          "lineNumber": 153
+        },
+        {
+          "caller": "listSnapshotsForSlug",
+          "callee": "f.endsWith",
+          "lineNumber": 154
+        },
+        {
+          "caller": "listSnapshotsForSlug",
+          "callee": "path.join",
+          "lineNumber": 156
+        },
+        {
+          "caller": "readLatestSnapshot",
+          "callee": "process.cwd",
+          "lineNumber": 163
+        },
+        {
+          "caller": "readLatestSnapshot",
+          "callee": "listSnapshotsForSlug",
+          "lineNumber": 164
+        },
+        {
+          "caller": "readLatestSnapshot",
+          "callee": "fs.readFileSync",
+          "lineNumber": 167
+        },
+        {
+          "caller": "readLatestSnapshot",
+          "callee": "parseFrontmatter",
+          "lineNumber": 168
+        },
+        {
+          "caller": "readTrend",
+          "callee": "process.cwd",
+          "lineNumber": 175
+        },
+        {
+          "caller": "readTrend",
+          "callee": "listSnapshotsForSlug",
+          "lineNumber": 176
+        },
+        {
+          "caller": "readTrend",
+          "callee": "all.slice",
+          "lineNumber": 177
+        },
+        {
+          "caller": "readTrend",
+          "callee": "slice.map",
+          "lineNumber": 178
+        },
+        {
+          "caller": "readTrend",
+          "callee": "parseFrontmatter",
+          "lineNumber": 178
+        },
+        {
+          "caller": "readTrend",
+          "callee": "fs.readFileSync",
+          "lineNumber": 178
+        },
+        {
+          "caller": "main",
+          "callee": "slugFromTarget",
+          "lineNumber": 187
+        },
+        {
+          "caller": "main",
+          "callee": "process.stderr.write",
+          "lineNumber": 188
+        },
+        {
+          "caller": "main",
+          "callee": "process.exit",
+          "lineNumber": 188
+        },
+        {
+          "caller": "main",
+          "callee": "process.stdout.write",
+          "lineNumber": 189
+        },
+        {
+          "caller": "main",
+          "callee": "process.stderr.write",
+          "lineNumber": 194
+        },
+        {
+          "caller": "main",
+          "callee": "process.exit",
+          "lineNumber": 194
+        },
+        {
+          "caller": "main",
+          "callee": "fs.readFileSync",
+          "lineNumber": 195
+        },
+        {
+          "caller": "main",
+          "callee": "JSON.parse",
+          "lineNumber": 202
+        },
+        {
+          "caller": "main",
+          "callee": "writeSnapshot",
+          "lineNumber": 204
+        },
+        {
+          "caller": "main",
+          "callee": "process.stdout.write",
+          "lineNumber": 205
+        },
+        {
+          "caller": "main",
+          "callee": "readLatestSnapshot",
+          "lineNumber": 209
+        },
+        {
+          "caller": "main",
+          "callee": "process.exit",
+          "lineNumber": 210
+        },
+        {
+          "caller": "main",
+          "callee": "process.stdout.write",
+          "lineNumber": 211
+        },
+        {
+          "caller": "main",
+          "callee": "readTrend",
+          "lineNumber": 215
+        },
+        {
+          "caller": "main",
+          "callee": "Number",
+          "lineNumber": 215
+        },
+        {
+          "caller": "main",
+          "callee": "process.stdout.write",
+          "lineNumber": 216
+        },
+        {
+          "caller": "main",
+          "callee": "JSON.stringify",
+          "lineNumber": 216
+        },
+        {
+          "caller": "main",
+          "callee": "process.stderr.write",
+          "lineNumber": 220
+        },
+        {
+          "caller": "main",
+          "callee": "process.exit",
+          "lineNumber": 221
+        },
+        {
+          "caller": "isMainModule",
+          "callee": "fs.realpathSync",
+          "lineNumber": 228
+        },
+        {
+          "caller": "isMainModule",
+          "callee": "fileURLToPath",
+          "lineNumber": 228
+        },
+        {
+          "caller": "isMainModule",
+          "callee": "fs.realpathSync",
+          "lineNumber": 228
+        },
+        {
+          "caller": "isMainModule",
+          "callee": "pathToFileURL",
+          "lineNumber": 232
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 5,
+        "functionCount": 11,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/design-parser.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 820,
+      "nonEmptyLines": 720,
+      "functions": [
+        {
+          "name": "parseFrontmatter",
+          "startLine": 20,
+          "endLine": 37,
+          "params": [
+            "md"
+          ]
+        },
+        {
+          "name": "parseYamlSubset",
+          "startLine": 44,
+          "endLine": 79,
+          "params": [
+            "yaml"
+          ]
+        },
+        {
+          "name": "findTopLevelColon",
+          "startLine": 81,
+          "endLine": 94,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "parseScalar",
+          "startLine": 96,
+          "endLine": 107,
+          "params": [
+            "raw"
+          ]
+        },
+        {
+          "name": "splitSections",
+          "startLine": 117,
+          "endLine": 150,
+          "params": [
+            "md"
+          ]
+        },
+        {
+          "name": "normalizeApostrophes",
+          "startLine": 152,
+          "endLine": 154,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "matchCanonicalSection",
+          "startLine": 156,
+          "endLine": 170,
+          "params": [
+            "name"
+          ]
+        },
+        {
+          "name": "splitSubsections",
+          "startLine": 174,
+          "endLine": 190,
+          "params": [
+            "lines"
+          ]
+        },
+        {
+          "name": "collectParagraphs",
+          "startLine": 194,
+          "endLine": 213,
+          "params": [
+            "lines"
+          ]
+        },
+        {
+          "name": "collectBullets",
+          "startLine": 215,
+          "endLine": 238,
+          "params": [
+            "lines"
+          ]
+        },
+        {
+          "name": "stripBold",
+          "startLine": 240,
+          "endLine": 242,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "extractNamedRules",
+          "startLine": 244,
+          "endLine": 303,
+          "params": [
+            "lines"
+          ]
+        },
+        {
+          "name": "extractOverview",
+          "startLine": 307,
+          "endLine": 333,
+          "params": [
+            "section"
+          ]
+        },
+        {
+          "name": "extractColors",
+          "startLine": 335,
+          "endLine": 389,
+          "params": [
+            "section"
+          ]
+        },
+        {
+          "name": "parseColorBullet",
+          "startLine": 391,
+          "endLine": 418,
+          "params": [
+            "bullet"
+          ]
+        },
+        {
+          "name": "extractParenGroup",
+          "startLine": 420,
+          "endLine": 431,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "buildColor",
+          "startLine": 433,
+          "endLine": 443,
+          "params": [
+            "name",
+            "rawValue",
+            "description"
+          ]
+        },
+        {
+          "name": "collectColorValues",
+          "startLine": 445,
+          "endLine": 456,
+          "params": [
+            "s"
+          ]
+        },
+        {
+          "name": "detectFormat",
+          "startLine": 458,
+          "endLine": 464,
+          "params": [
+            "v"
+          ]
+        },
+        {
+          "name": "scanInlineColors",
+          "startLine": 466,
+          "endLine": 475,
+          "params": [
+            "lines"
+          ]
+        },
+        {
+          "name": "parseStitchInlineGroups",
+          "startLine": 477,
+          "endLine": 494,
+          "params": [
+            "lines"
+          ]
+        },
+        {
+          "name": "extractTypography",
+          "startLine": 496,
+          "endLine": 555,
+          "params": [
+            "section"
+          ]
+        },
+        {
+          "name": "normalizeFontRole",
+          "startLine": 557,
+          "endLine": 568,
+          "params": [
+            "raw"
+          ]
+        },
+        {
+          "name": "parseTypeBullet",
+          "startLine": 570,
+          "endLine": 581,
+          "params": [
+            "bullet"
+          ]
+        },
+        {
+          "name": "extractElevation",
+          "startLine": 583,
+          "endLine": 618,
+          "params": [
+            "section"
+          ]
+        },
+        {
+          "name": "extractInlineShadows",
+          "startLine": 620,
+          "endLine": 651,
+          "params": [
+            "text"
+          ]
+        },
+        {
+          "name": "parseShadowBullet",
+          "startLine": 653,
+          "endLine": 671,
+          "params": [
+            "bullet"
+          ]
+        },
+        {
+          "name": "extractComponents",
+          "startLine": 673,
+          "endLine": 715,
+          "params": [
+            "section"
+          ]
+        },
+        {
+          "name": "extractDosDonts",
+          "startLine": 717,
+          "endLine": 745,
+          "params": [
+            "section"
+          ]
+        },
+        {
+          "name": "assessCoverage",
+          "startLine": 749,
+          "endLine": 800,
+          "params": [
+            "model"
+          ]
+        },
+        {
+          "name": "parseDesignMd",
+          "startLine": 804,
+          "endLine": 818,
+          "params": [
+            "md"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "parseDesignMd",
+          "line": 804,
+          "isDefault": false
+        },
+        {
+          "name": "assessCoverage",
+          "line": 820,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseFrontmatter",
+          "callee": "md.split",
+          "lineNumber": 21
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "lines[0]?.trim",
+          "lineNumber": 22
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "lines[i].trim",
+          "lineNumber": 26
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "lines.slice(1, end).join",
+          "lineNumber": 30
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "lines.slice",
+          "lineNumber": 30
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "lines.slice(end + 1).join",
+          "lineNumber": 31
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "lines.slice",
+          "lineNumber": 31
+        },
+        {
+          "caller": "parseFrontmatter",
+          "callee": "parseYamlSubset",
+          "lineNumber": 33
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "yaml.split",
+          "lineNumber": 45
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "raw.trim",
+          "lineNumber": 53
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "/^\\s*#/.test",
+          "lineNumber": 53
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "raw.match",
+          "lineNumber": 55
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "raw.slice",
+          "lineNumber": 56
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "findTopLevelColon",
+          "lineNumber": 58
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "stack.pop",
+          "lineNumber": 62
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "content.slice(0, colonIdx).trim",
+          "lineNumber": 65
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "content.slice",
+          "lineNumber": 65
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "content.slice(colonIdx + 1).trim",
+          "lineNumber": 66
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "content.slice",
+          "lineNumber": 66
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "stack.push",
+          "lineNumber": 72
+        },
+        {
+          "caller": "parseYamlSubset",
+          "callee": "parseScalar",
+          "lineNumber": 74
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "raw.trim",
+          "lineNumber": 97
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "s.startsWith",
+          "lineNumber": 98
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "s.endsWith",
+          "lineNumber": 98
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "s.startsWith",
+          "lineNumber": 98
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "s.endsWith",
+          "lineNumber": 98
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "s.slice",
+          "lineNumber": 99
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "/^-?\\d+$/.test",
+          "lineNumber": 104
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "Number",
+          "lineNumber": 104
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "/^-?\\d*\\.\\d+$/.test",
+          "lineNumber": 105
+        },
+        {
+          "caller": "parseScalar",
+          "callee": "Number",
+          "lineNumber": 105
+        },
+        {
+          "caller": "splitSections",
+          "callee": "md.split",
+          "lineNumber": 118
+        },
+        {
+          "caller": "splitSections",
+          "callee": "raw.trimEnd",
+          "lineNumber": 124
+        },
+        {
+          "caller": "splitSections",
+          "callee": "line.startsWith",
+          "lineNumber": 126
+        },
+        {
+          "caller": "splitSections",
+          "callee": "line.startsWith",
+          "lineNumber": 126
+        },
+        {
+          "caller": "splitSections",
+          "callee": "line.replace(/^#\\s+/, '').trim",
+          "lineNumber": 127
+        },
+        {
+          "caller": "splitSections",
+          "callee": "line.replace",
+          "lineNumber": 127
+        },
+        {
+          "caller": "splitSections",
+          "callee": "line.match",
+          "lineNumber": 131
+        },
+        {
+          "caller": "splitSections",
+          "callee": "normalizeApostrophes",
+          "lineNumber": 133
+        },
+        {
+          "caller": "splitSections",
+          "callee": "h2[1].trim",
+          "lineNumber": 133
+        },
+        {
+          "caller": "splitSections",
+          "callee": "h2[2].trim",
+          "lineNumber": 134
+        },
+        {
+          "caller": "splitSections",
+          "callee": "matchCanonicalSection",
+          "lineNumber": 135
+        },
+        {
+          "caller": "splitSections",
+          "callee": "current.lines.push",
+          "lineNumber": 146
+        },
+        {
+          "caller": "normalizeApostrophes",
+          "callee": "s.replace",
+          "lineNumber": 153
+        },
+        {
+          "caller": "matchCanonicalSection",
+          "callee": "normalizeApostrophes(name).toLowerCase",
+          "lineNumber": 157
+        },
+        {
+          "caller": "matchCanonicalSection",
+          "callee": "normalizeApostrophes",
+          "lineNumber": 157
+        },
+        {
+          "caller": "matchCanonicalSection",
+          "callee": "normalizeApostrophes(c).toLowerCase",
+          "lineNumber": 160
+        },
+        {
+          "caller": "matchCanonicalSection",
+          "callee": "normalizeApostrophes",
+          "lineNumber": 160
+        },
+        {
+          "caller": "matchCanonicalSection",
+          "callee": "normalizeApostrophes(c).toLowerCase",
+          "lineNumber": 165
+        },
+        {
+          "caller": "matchCanonicalSection",
+          "callee": "normalizeApostrophes",
+          "lineNumber": 165
+        },
+        {
+          "caller": "matchCanonicalSection",
+          "callee": "key.replace",
+          "lineNumber": 166
+        },
+        {
+          "caller": "matchCanonicalSection",
+          "callee": "pattern.test",
+          "lineNumber": 167
+        },
+        {
+          "caller": "splitSubsections",
+          "callee": "subs.push",
+          "lineNumber": 177
+        },
+        {
+          "caller": "splitSubsections",
+          "callee": "raw.match",
+          "lineNumber": 180
+        },
+        {
+          "caller": "splitSubsections",
+          "callee": "h3[1].trim",
+          "lineNumber": 182
+        },
+        {
+          "caller": "splitSubsections",
+          "callee": "subs.push",
+          "lineNumber": 183
+        },
+        {
+          "caller": "splitSubsections",
+          "callee": "current.lines.push",
+          "lineNumber": 186
+        },
+        {
+          "caller": "flush",
+          "callee": "paragraphs.push",
+          "lineNumber": 199
+        },
+        {
+          "caller": "flush",
+          "callee": "buf.join(' ').trim",
+          "lineNumber": 199
+        },
+        {
+          "caller": "flush",
+          "callee": "buf.join",
+          "lineNumber": 199
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "raw.trim",
+          "lineNumber": 204
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "flush",
+          "lineNumber": 205
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "/^(?:-{3,}|\\*{3,}|_{3,})$/.test",
+          "lineNumber": 207
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "flush",
+          "lineNumber": 207
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "raw.startsWith",
+          "lineNumber": 208
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "raw.match",
+          "lineNumber": 208
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "flush",
+          "lineNumber": 208
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "buf.push",
+          "lineNumber": 209
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "flush",
+          "lineNumber": 211
+        },
+        {
+          "caller": "collectParagraphs",
+          "callee": "paragraphs.filter",
+          "lineNumber": 212
+        },
+        {
+          "caller": "collectBullets",
+          "callee": "raw.match",
+          "lineNumber": 219
+        },
+        {
+          "caller": "collectBullets",
+          "callee": "bullets.push",
+          "lineNumber": 221
+        },
+        {
+          "caller": "collectBullets",
+          "callee": "raw.match",
+          "lineNumber": 226
+        },
+        {
+          "caller": "collectBullets",
+          "callee": "raw.trim",
+          "lineNumber": 227
+        },
+        {
+          "caller": "collectBullets",
+          "callee": "raw.trim",
+          "lineNumber": 231
+        },
+        {
+          "caller": "collectBullets",
+          "callee": "bullets.push",
+          "lineNumber": 232
+        },
+        {
+          "caller": "collectBullets",
+          "callee": "bullets.push",
+          "lineNumber": 236
+        },
+        {
+          "caller": "stripBold",
+          "callee": "s.replace",
+          "lineNumber": 241
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "lines.join",
+          "lineNumber": 249
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "inlineStart.exec",
+          "lineNumber": 253
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "inlineMatches.push",
+          "lineNumber": 254
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "joined\r\n      .slice(mm.end, bodyEnd)\r\n      .replace(/\\n##[^\\n]*$/s, '')\r\n      .replace(/\\n###[^\\n]*$/s, '')\r\n      .trim",
+          "lineNumber": 259
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "joined\r\n      .slice(mm.end, bodyEnd)\r\n      .replace(/\\n##[^\\n]*$/s, '')\r\n      .replace",
+          "lineNumber": 259
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "joined\r\n      .slice(mm.end, bodyEnd)\r\n      .replace",
+          "lineNumber": 259
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "joined\r\n      .slice",
+          "lineNumber": 259
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold(mm.name).trim",
+          "lineNumber": 264
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold",
+          "lineNumber": 264
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "seen.add",
+          "lineNumber": 265
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "name.toLowerCase",
+          "lineNumber": 265
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "rules.push",
+          "lineNumber": 266
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold",
+          "lineNumber": 266
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "lines[i].match",
+          "lineNumber": 272
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold(h3[1]).replace(/[\"“”]/g, '').trim",
+          "lineNumber": 274
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold(h3[1]).replace",
+          "lineNumber": 274
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold",
+          "lineNumber": 274
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "/^The\\b.*\\b(Rule|Fallback|Principle)\\b/i.test",
+          "lineNumber": 275
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "seen.has",
+          "lineNumber": 276
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "headerName.toLowerCase",
+          "lineNumber": 276
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "/^##\\s|^###\\s/.test",
+          "lineNumber": 280
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "bodyLines.push",
+          "lineNumber": 281
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold(bodyLines.join('\\n').replace(/\\n+/g, ' ')).trim",
+          "lineNumber": 283
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold",
+          "lineNumber": 283
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "bodyLines.join('\\n').replace",
+          "lineNumber": 283
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "bodyLines.join",
+          "lineNumber": 283
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "seen.add",
+          "lineNumber": 285
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "headerName.toLowerCase",
+          "lineNumber": 285
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "rules.push",
+          "lineNumber": 286
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "collectBullets",
+          "lineNumber": 292
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "b.match",
+          "lineNumber": 293
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "mm[1].replace(/[.:]\\s*$/, '').replace(/[\"“”]/g, '').trim",
+          "lineNumber": 295
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "mm[1].replace(/[.:]\\s*$/, '').replace",
+          "lineNumber": 295
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "mm[1].replace",
+          "lineNumber": 295
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "/^The\\b.+\\b(Rule|Fallback|Principle)$/i.test",
+          "lineNumber": 296
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "seen.has",
+          "lineNumber": 297
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "nameRaw.toLowerCase",
+          "lineNumber": 297
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "seen.add",
+          "lineNumber": 298
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "nameRaw.toLowerCase",
+          "lineNumber": 298
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "rules.push",
+          "lineNumber": 299
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold(mm[2]).trim",
+          "lineNumber": 299
+        },
+        {
+          "caller": "extractNamedRules",
+          "callee": "stripBold",
+          "lineNumber": 299
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "section.lines.join",
+          "lineNumber": 309
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "text.match",
+          "lineNumber": 310
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "text.match",
+          "lineNumber": 312
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "keyCharMatch[1].split",
+          "lineNumber": 314
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "line.match",
+          "lineNumber": 315
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "keyChars.push",
+          "lineNumber": 316
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "stripBold",
+          "lineNumber": 316
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "m[1].trim",
+          "lineNumber": 316
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "collectParagraphs(section.lines).filter",
+          "lineNumber": 321
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "collectParagraphs",
+          "lineNumber": 321
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "p.startsWith",
+          "lineNumber": 323
+        },
+        {
+          "caller": "extractOverview",
+          "callee": "p.startsWith",
+          "lineNumber": 324
+        },
+        {
+          "caller": "extractColors",
+          "callee": "splitSubsections",
+          "lineNumber": 337
+        },
+        {
+          "caller": "extractColors",
+          "callee": "collectParagraphs(subs[0].lines).join",
+          "lineNumber": 339
+        },
+        {
+          "caller": "extractColors",
+          "callee": "collectParagraphs",
+          "lineNumber": 339
+        },
+        {
+          "caller": "extractColors",
+          "callee": "subs.slice",
+          "lineNumber": 343
+        },
+        {
+          "caller": "extractColors",
+          "callee": "/Named Rules?/i.test",
+          "lineNumber": 344
+        },
+        {
+          "caller": "extractColors",
+          "callee": "/^The\\s/i.test",
+          "lineNumber": 344
+        },
+        {
+          "caller": "extractColors",
+          "callee": "collectBullets",
+          "lineNumber": 346
+        },
+        {
+          "caller": "extractColors",
+          "callee": "bullets.map((b) => parseColorBullet(b)).filter",
+          "lineNumber": 347
+        },
+        {
+          "caller": "extractColors",
+          "callee": "bullets.map",
+          "lineNumber": 347
+        },
+        {
+          "caller": "extractColors",
+          "callee": "parseColorBullet",
+          "lineNumber": 347
+        },
+        {
+          "caller": "extractColors",
+          "callee": "parsed.every",
+          "lineNumber": 353
+        },
+        {
+          "caller": "extractColors",
+          "callee": "ROLE_KEYWORDS.test",
+          "lineNumber": 353
+        },
+        {
+          "caller": "extractColors",
+          "callee": "groups.push",
+          "lineNumber": 357
+        },
+        {
+          "caller": "extractColors",
+          "callee": "groups.push",
+          "lineNumber": 360
+        },
+        {
+          "caller": "extractColors",
+          "callee": "collectBullets(section.lines)\r\n      .map((b) => parseColorBullet(b))\r\n      .filter",
+          "lineNumber": 367
+        },
+        {
+          "caller": "extractColors",
+          "callee": "collectBullets(section.lines)\r\n      .map",
+          "lineNumber": 367
+        },
+        {
+          "caller": "extractColors",
+          "callee": "collectBullets",
+          "lineNumber": 367
+        },
+        {
+          "caller": "extractColors",
+          "callee": "parseColorBullet",
+          "lineNumber": 368
+        },
+        {
+          "caller": "extractColors",
+          "callee": "ROLE_KEYWORDS.test",
+          "lineNumber": 372
+        },
+        {
+          "caller": "extractColors",
+          "callee": "groups.push",
+          "lineNumber": 373
+        },
+        {
+          "caller": "extractColors",
+          "callee": "groups.find",
+          "lineNumber": 375
+        },
+        {
+          "caller": "extractColors",
+          "callee": "fallback.colors.push",
+          "lineNumber": 376
+        },
+        {
+          "caller": "extractColors",
+          "callee": "groups.push",
+          "lineNumber": 377
+        },
+        {
+          "caller": "extractColors",
+          "callee": "extractNamedRules",
+          "lineNumber": 387
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "bullet.trim",
+          "lineNumber": 392
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "text.match",
+          "lineNumber": 395
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "bold[2].startsWith",
+          "lineNumber": 396
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "extractParenGroup",
+          "lineNumber": 397
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "bold[2].slice(value.length + 2).trimStart",
+          "lineNumber": 399
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "bold[2].slice",
+          "lineNumber": 399
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "after.startsWith",
+          "lineNumber": 400
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "buildColor",
+          "lineNumber": 401
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "after.slice(1).trim",
+          "lineNumber": 401
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "after.slice",
+          "lineNumber": 401
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "text.match",
+          "lineNumber": 407
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "buildColor",
+          "lineNumber": 409
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "stitch[1].trim",
+          "lineNumber": 409
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "collectColorValues",
+          "lineNumber": 413
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "buildColor",
+          "lineNumber": 415
+        },
+        {
+          "caller": "parseColorBullet",
+          "callee": "values.join",
+          "lineNumber": 415
+        },
+        {
+          "caller": "extractParenGroup",
+          "callee": "s.slice",
+          "lineNumber": 427
+        },
+        {
+          "caller": "buildColor",
+          "callee": "collectColorValues",
+          "lineNumber": 434
+        },
+        {
+          "caller": "buildColor",
+          "callee": "rawValue.trim",
+          "lineNumber": 435
+        },
+        {
+          "caller": "buildColor",
+          "callee": "stripBold(name).trim",
+          "lineNumber": 437
+        },
+        {
+          "caller": "buildColor",
+          "callee": "stripBold",
+          "lineNumber": 437
+        },
+        {
+          "caller": "buildColor",
+          "callee": "detectFormat",
+          "lineNumber": 440
+        },
+        {
+          "caller": "buildColor",
+          "callee": "stripBold(description || '').trim",
+          "lineNumber": 441
+        },
+        {
+          "caller": "buildColor",
+          "callee": "stripBold",
+          "lineNumber": 441
+        },
+        {
+          "caller": "collectColorValues",
+          "callee": "s.replace",
+          "lineNumber": 447
+        },
+        {
+          "caller": "collectColorValues",
+          "callee": "out.push",
+          "lineNumber": 448
+        },
+        {
+          "caller": "collectColorValues",
+          "callee": "s.replace",
+          "lineNumber": 451
+        },
+        {
+          "caller": "collectColorValues",
+          "callee": "out.push",
+          "lineNumber": 452
+        },
+        {
+          "caller": "detectFormat",
+          "callee": "v.startsWith",
+          "lineNumber": 460
+        },
+        {
+          "caller": "detectFormat",
+          "callee": "/^oklch/i.test",
+          "lineNumber": 461
+        },
+        {
+          "caller": "detectFormat",
+          "callee": "/^rgb/i.test",
+          "lineNumber": 462
+        },
+        {
+          "caller": "scanInlineColors",
+          "callee": "/^\\s*[-*]\\s/.test",
+          "lineNumber": 469
+        },
+        {
+          "caller": "scanInlineColors",
+          "callee": "line.replace",
+          "lineNumber": 470
+        },
+        {
+          "caller": "scanInlineColors",
+          "callee": "parseColorBullet",
+          "lineNumber": 471
+        },
+        {
+          "caller": "scanInlineColors",
+          "callee": "out.push",
+          "lineNumber": 472
+        },
+        {
+          "caller": "parseStitchInlineGroups",
+          "callee": "/^\\s*[-*]\\s/.test",
+          "lineNumber": 482
+        },
+        {
+          "caller": "parseStitchInlineGroups",
+          "callee": "line.replace(/^\\s*[-*]\\s+/, '').trim",
+          "lineNumber": 483
+        },
+        {
+          "caller": "parseStitchInlineGroups",
+          "callee": "line.replace",
+          "lineNumber": 483
+        },
+        {
+          "caller": "parseStitchInlineGroups",
+          "callee": "trimmed.match",
+          "lineNumber": 484
+        },
+        {
+          "caller": "parseStitchInlineGroups",
+          "callee": "buildColor",
+          "lineNumber": 489
+        },
+        {
+          "caller": "parseStitchInlineGroups",
+          "callee": "out.push",
+          "lineNumber": 490
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "section.lines.join",
+          "lineNumber": 498
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "fontLineRe.exec",
+          "lineNumber": 504
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "fm[1].trim().toLowerCase().replace",
+          "lineNumber": 505
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "fm[1].trim().toLowerCase",
+          "lineNumber": 505
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "fm[1].trim",
+          "lineNumber": 505
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "normalizeFontRole",
+          "lineNumber": 506
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "fm[2].trim",
+          "lineNumber": 508
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "fm[3].trim",
+          "lineNumber": 509
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "Object.keys",
+          "lineNumber": 514
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "stitchRe.exec",
+          "lineNumber": 517
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "sm[1]\r\n        .trim()\r\n        .toLowerCase()\r\n        .replace(/\\s*&\\s*/g, '-')\r\n        .replace",
+          "lineNumber": 518
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "sm[1]\r\n        .trim()\r\n        .toLowerCase()\r\n        .replace",
+          "lineNumber": 518
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "sm[1]\r\n        .trim()\r\n        .toLowerCase",
+          "lineNumber": 518
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "sm[1]\r\n        .trim",
+          "lineNumber": 518
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "normalizeFontRole",
+          "lineNumber": 523
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "sm[2].trim",
+          "lineNumber": 524
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "sm[3].trim",
+          "lineNumber": 524
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "text.match",
+          "lineNumber": 530
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "characterMatch[1].replace(/\\n/g, ' ').trim",
+          "lineNumber": 531
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "characterMatch[1].replace",
+          "lineNumber": 531
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "collectParagraphs(section.lines).filter",
+          "lineNumber": 533
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "collectParagraphs",
+          "lineNumber": 533
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "/^\\*\\*[\\w\\s/&]+Font/i.test",
+          "lineNumber": 534
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "/^\\*\\*[\\w\\s/&]+\\([^)]+\\)/.test",
+          "lineNumber": 534
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "splitSubsections",
+          "lineNumber": 540
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "subs.find",
+          "lineNumber": 542
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "/hierarch/i.test",
+          "lineNumber": 542
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "collectBullets",
+          "lineNumber": 544
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "bullets.map(parseTypeBullet).filter",
+          "lineNumber": 545
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "bullets.map",
+          "lineNumber": 545
+        },
+        {
+          "caller": "extractTypography",
+          "callee": "extractNamedRules",
+          "lineNumber": 553
+        },
+        {
+          "caller": "normalizeFontRole",
+          "callee": "raw.split(/[-/&\\s]+/).filter",
+          "lineNumber": 561
+        },
+        {
+          "caller": "normalizeFontRole",
+          "callee": "raw.split",
+          "lineNumber": 561
+        },
+        {
+          "caller": "normalizeFontRole",
+          "callee": "tokens.includes",
+          "lineNumber": 565
+        },
+        {
+          "caller": "parseTypeBullet",
+          "callee": "bullet.match",
+          "lineNumber": 572
+        },
+        {
+          "caller": "parseTypeBullet",
+          "callee": "m[1].trim",
+          "lineNumber": 574
+        },
+        {
+          "caller": "parseTypeBullet",
+          "callee": "m[2].split(',').map",
+          "lineNumber": 575
+        },
+        {
+          "caller": "parseTypeBullet",
+          "callee": "m[2].split",
+          "lineNumber": 575
+        },
+        {
+          "caller": "parseTypeBullet",
+          "callee": "s.trim",
+          "lineNumber": 575
+        },
+        {
+          "caller": "parseTypeBullet",
+          "callee": "stripBold(m[3] || '').trim",
+          "lineNumber": 579
+        },
+        {
+          "caller": "parseTypeBullet",
+          "callee": "stripBold",
+          "lineNumber": 579
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "splitSubsections",
+          "lineNumber": 585
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "collectParagraphs(subs[0].lines).join",
+          "lineNumber": 587
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "collectParagraphs",
+          "lineNumber": 587
+        },
+        {
+          "caller": "dedupe",
+          "callee": "seen.has",
+          "lineNumber": 593
+        },
+        {
+          "caller": "dedupe",
+          "callee": "seen.add",
+          "lineNumber": 594
+        },
+        {
+          "caller": "dedupe",
+          "callee": "shadows.push",
+          "lineNumber": 595
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "collectBullets",
+          "lineNumber": 598
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "parseShadowBullet",
+          "lineNumber": 599
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "dedupe",
+          "lineNumber": 600
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "collectParagraphs",
+          "lineNumber": 605
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "extractInlineShadows",
+          "lineNumber": 606
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "dedupe",
+          "lineNumber": 606
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "collectBullets",
+          "lineNumber": 608
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "extractInlineShadows",
+          "lineNumber": 609
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "dedupe",
+          "lineNumber": 609
+        },
+        {
+          "caller": "extractElevation",
+          "callee": "extractNamedRules",
+          "lineNumber": 616
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "re.exec",
+          "lineNumber": 626
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "m[1].replace(/[`.)]+$/, '').trim",
+          "lineNumber": 627
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "m[1].replace",
+          "lineNumber": 627
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "text.slice",
+          "lineNumber": 631
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "before.match",
+          "lineNumber": 632
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "nameMatch[1]\r\n        .replace(/^(?:use|using|apply|applying|is|are|looks? like)\\s+/i, '')\r\n        .replace(/^(?:a|an|the)\\s+/i, '')\r\n        .trim",
+          "lineNumber": 635
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "nameMatch[1]\r\n        .replace(/^(?:use|using|apply|applying|is|are|looks? like)\\s+/i, '')\r\n        .replace",
+          "lineNumber": 635
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "nameMatch[1]\r\n        .replace",
+          "lineNumber": 635
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "stripped.charAt(0).toUpperCase",
+          "lineNumber": 641
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "stripped.charAt",
+          "lineNumber": 641
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "stripped.slice",
+          "lineNumber": 641
+        },
+        {
+          "caller": "extractInlineShadows",
+          "callee": "out.push",
+          "lineNumber": 644
+        },
+        {
+          "caller": "parseShadowBullet",
+          "callee": "bullet.match",
+          "lineNumber": 658
+        },
+        {
+          "caller": "parseShadowBullet",
+          "callee": "m[2].replace(/^box-shadow:\\s*/i, '').trim",
+          "lineNumber": 660
+        },
+        {
+          "caller": "parseShadowBullet",
+          "callee": "m[2].replace",
+          "lineNumber": 660
+        },
+        {
+          "caller": "parseShadowBullet",
+          "callee": "/box-shadow|rgba?\\(|\\bpx\\b|\\brem\\b|^-?\\d+\\s/i.test",
+          "lineNumber": 662
+        },
+        {
+          "caller": "parseShadowBullet",
+          "callee": "/\\d/.test",
+          "lineNumber": 663
+        },
+        {
+          "caller": "parseShadowBullet",
+          "callee": "stripBold(m[1]).trim",
+          "lineNumber": 665
+        },
+        {
+          "caller": "parseShadowBullet",
+          "callee": "stripBold",
+          "lineNumber": 665
+        },
+        {
+          "caller": "parseShadowBullet",
+          "callee": "stripBold(m[3] || '').trim",
+          "lineNumber": 669
+        },
+        {
+          "caller": "parseShadowBullet",
+          "callee": "stripBold",
+          "lineNumber": 669
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "splitSubsections",
+          "lineNumber": 675
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "subs.slice",
+          "lineNumber": 678
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "collectBullets",
+          "lineNumber": 681
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "collectParagraphs",
+          "lineNumber": 682
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "b.match",
+          "lineNumber": 689
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "stripBold(m[1]).trim",
+          "lineNumber": 691
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "stripBold",
+          "lineNumber": 691
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "stripBold(m[2]).trim",
+          "lineNumber": 692
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "stripBold",
+          "lineNumber": 692
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "/^(primary|secondary|tertiary|ghost|hover|focus|active|disabled|default|error|selected|unselected|state)$/i.test",
+          "lineNumber": 695
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "key.split",
+          "lineNumber": 695
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "variants.push",
+          "lineNumber": 696
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "key.toLowerCase",
+          "lineNumber": 698
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "components.push",
+          "lineNumber": 703
+        },
+        {
+          "caller": "extractComponents",
+          "callee": "paragraphs.join",
+          "lineNumber": 705
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "splitSubsections",
+          "lineNumber": 719
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "subs.slice",
+          "lineNumber": 723
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "normalizeApostrophes",
+          "lineNumber": 725
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "collectBullets(sub.lines).map",
+          "lineNumber": 726
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "collectBullets",
+          "lineNumber": 726
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "stripBold(b).trim",
+          "lineNumber": 726
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "stripBold",
+          "lineNumber": 726
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "/^do'?t?:?$/i.test",
+          "lineNumber": 727
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "/^do:?$/i.test",
+          "lineNumber": 727
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "dos.push",
+          "lineNumber": 728
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "/^don'?t:?$/i.test",
+          "lineNumber": 729
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "donts.push",
+          "lineNumber": 730
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "collectBullets",
+          "lineNumber": 735
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "normalizeApostrophes",
+          "lineNumber": 736
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "stripBold(b).trim",
+          "lineNumber": 736
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "stripBold",
+          "lineNumber": 736
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "/^don'?t\\b/i.test",
+          "lineNumber": 737
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "donts.some",
+          "lineNumber": 738
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "normalizeApostrophes",
+          "lineNumber": 738
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "donts.push",
+          "lineNumber": 738
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "/^do\\b/i.test",
+          "lineNumber": 739
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "dos.some",
+          "lineNumber": 740
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "normalizeApostrophes",
+          "lineNumber": 740
+        },
+        {
+          "caller": "extractDosDonts",
+          "callee": "dos.push",
+          "lineNumber": 740
+        },
+        {
+          "caller": "assessCoverage",
+          "callee": "Boolean",
+          "lineNumber": 754
+        },
+        {
+          "caller": "assessCoverage",
+          "callee": "model.colors.groups.reduce",
+          "lineNumber": 763
+        },
+        {
+          "caller": "assessCoverage",
+          "callee": "Object.keys",
+          "lineNumber": 770
+        },
+        {
+          "caller": "assessCoverage",
+          "callee": "Boolean",
+          "lineNumber": 772
+        },
+        {
+          "caller": "assessCoverage",
+          "callee": "Boolean",
+          "lineNumber": 781
+        },
+        {
+          "caller": "assessCoverage",
+          "callee": "model.components.components.reduce",
+          "lineNumber": 788
+        },
+        {
+          "caller": "parseDesignMd",
+          "callee": "parseFrontmatter",
+          "lineNumber": 805
+        },
+        {
+          "caller": "parseDesignMd",
+          "callee": "splitSections",
+          "lineNumber": 806
+        },
+        {
+          "caller": "parseDesignMd",
+          "callee": "extractOverview",
+          "lineNumber": 811
+        },
+        {
+          "caller": "parseDesignMd",
+          "callee": "extractColors",
+          "lineNumber": 812
+        },
+        {
+          "caller": "parseDesignMd",
+          "callee": "extractTypography",
+          "lineNumber": 813
+        },
+        {
+          "caller": "parseDesignMd",
+          "callee": "extractElevation",
+          "lineNumber": 814
+        },
+        {
+          "caller": "parseDesignMd",
+          "callee": "extractComponents",
+          "lineNumber": 815
+        },
+        {
+          "caller": "parseDesignMd",
+          "callee": "extractDosDonts",
+          "lineNumber": 816
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 31,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 110,
+      "nonEmptyLines": 90,
+      "functions": [
+        {
+          "name": "getImpeccableDir",
+          "startLine": 8,
+          "endLine": 10,
+          "params": []
+        },
+        {
+          "name": "getDesignSidecarPath",
+          "startLine": 12,
+          "endLine": 14,
+          "params": []
+        },
+        {
+          "name": "getDesignSidecarCandidates",
+          "startLine": 16,
+          "endLine": 24,
+          "params": []
+        },
+        {
+          "name": "resolveDesignSidecarPath",
+          "startLine": 26,
+          "endLine": 28,
+          "params": []
+        },
+        {
+          "name": "getLiveDir",
+          "startLine": 30,
+          "endLine": 32,
+          "params": []
+        },
+        {
+          "name": "getLiveConfigPath",
+          "startLine": 34,
+          "endLine": 36,
+          "params": []
+        },
+        {
+          "name": "getLegacyLiveConfigPath",
+          "startLine": 38,
+          "endLine": 40,
+          "params": [
+            "scriptsDir"
+          ]
+        },
+        {
+          "name": "resolveLiveConfigPath",
+          "startLine": 42,
+          "endLine": 54,
+          "params": []
+        },
+        {
+          "name": "getLiveServerPath",
+          "startLine": 56,
+          "endLine": 58,
+          "params": []
+        },
+        {
+          "name": "getLegacyLiveServerPath",
+          "startLine": 60,
+          "endLine": 62,
+          "params": []
+        },
+        {
+          "name": "readLiveServerInfo",
+          "startLine": 64,
+          "endLine": 73,
+          "params": []
+        },
+        {
+          "name": "writeLiveServerInfo",
+          "startLine": 75,
+          "endLine": 80,
+          "params": [
+            "info"
+          ]
+        },
+        {
+          "name": "removeLiveServerInfo",
+          "startLine": 82,
+          "endLine": 86,
+          "params": []
+        },
+        {
+          "name": "getLiveSessionsDir",
+          "startLine": 88,
+          "endLine": 90,
+          "params": []
+        },
+        {
+          "name": "getLegacyLiveSessionsDir",
+          "startLine": 92,
+          "endLine": 94,
+          "params": []
+        },
+        {
+          "name": "getLiveAnnotationsDir",
+          "startLine": 96,
+          "endLine": 98,
+          "params": []
+        },
+        {
+          "name": "getCritiqueDir",
+          "startLine": 100,
+          "endLine": 102,
+          "params": []
+        },
+        {
+          "name": "getLegacyLiveAnnotationsDir",
+          "startLine": 104,
+          "endLine": 106,
+          "params": []
+        },
+        {
+          "name": "firstExisting",
+          "startLine": 108,
+          "endLine": 110,
+          "params": [
+            "paths"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "IMPECCABLE_DIR",
+          "line": 4,
+          "isDefault": false
+        },
+        {
+          "name": "LIVE_DIR",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "CRITIQUE_DIR",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "getImpeccableDir",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "getDesignSidecarPath",
+          "line": 12,
+          "isDefault": false
+        },
+        {
+          "name": "getDesignSidecarCandidates",
+          "line": 16,
+          "isDefault": false
+        },
+        {
+          "name": "resolveDesignSidecarPath",
+          "line": 26,
+          "isDefault": false
+        },
+        {
+          "name": "getLiveDir",
+          "line": 30,
+          "isDefault": false
+        },
+        {
+          "name": "getLiveConfigPath",
+          "line": 34,
+          "isDefault": false
+        },
+        {
+          "name": "getLegacyLiveConfigPath",
+          "line": 38,
+          "isDefault": false
+        },
+        {
+          "name": "resolveLiveConfigPath",
+          "line": 42,
+          "isDefault": false
+        },
+        {
+          "name": "getLiveServerPath",
+          "line": 56,
+          "isDefault": false
+        },
+        {
+          "name": "getLegacyLiveServerPath",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "readLiveServerInfo",
+          "line": 64,
+          "isDefault": false
+        },
+        {
+          "name": "writeLiveServerInfo",
+          "line": 75,
+          "isDefault": false
+        },
+        {
+          "name": "removeLiveServerInfo",
+          "line": 82,
+          "isDefault": false
+        },
+        {
+          "name": "getLiveSessionsDir",
+          "line": 88,
+          "isDefault": false
+        },
+        {
+          "name": "getLegacyLiveSessionsDir",
+          "line": 92,
+          "isDefault": false
+        },
+        {
+          "name": "getLiveAnnotationsDir",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "getCritiqueDir",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "getLegacyLiveAnnotationsDir",
+          "line": 104,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getImpeccableDir",
+          "callee": "process.cwd",
+          "lineNumber": 8
+        },
+        {
+          "caller": "getImpeccableDir",
+          "callee": "path.join",
+          "lineNumber": 9
+        },
+        {
+          "caller": "getDesignSidecarPath",
+          "callee": "process.cwd",
+          "lineNumber": 12
+        },
+        {
+          "caller": "getDesignSidecarPath",
+          "callee": "path.join",
+          "lineNumber": 13
+        },
+        {
+          "caller": "getDesignSidecarPath",
+          "callee": "getImpeccableDir",
+          "lineNumber": 13
+        },
+        {
+          "caller": "getDesignSidecarCandidates",
+          "callee": "process.cwd",
+          "lineNumber": 16
+        },
+        {
+          "caller": "getDesignSidecarCandidates",
+          "callee": "getDesignSidecarPath",
+          "lineNumber": 18
+        },
+        {
+          "caller": "getDesignSidecarCandidates",
+          "callee": "path.join",
+          "lineNumber": 19
+        },
+        {
+          "caller": "getDesignSidecarCandidates",
+          "callee": "path.join",
+          "lineNumber": 21
+        },
+        {
+          "caller": "getDesignSidecarCandidates",
+          "callee": "candidates.includes",
+          "lineNumber": 22
+        },
+        {
+          "caller": "getDesignSidecarCandidates",
+          "callee": "candidates.push",
+          "lineNumber": 22
+        },
+        {
+          "caller": "resolveDesignSidecarPath",
+          "callee": "process.cwd",
+          "lineNumber": 26
+        },
+        {
+          "caller": "resolveDesignSidecarPath",
+          "callee": "firstExisting",
+          "lineNumber": 27
+        },
+        {
+          "caller": "resolveDesignSidecarPath",
+          "callee": "getDesignSidecarCandidates",
+          "lineNumber": 27
+        },
+        {
+          "caller": "getLiveDir",
+          "callee": "process.cwd",
+          "lineNumber": 30
+        },
+        {
+          "caller": "getLiveDir",
+          "callee": "path.join",
+          "lineNumber": 31
+        },
+        {
+          "caller": "getLiveDir",
+          "callee": "getImpeccableDir",
+          "lineNumber": 31
+        },
+        {
+          "caller": "getLiveConfigPath",
+          "callee": "process.cwd",
+          "lineNumber": 34
+        },
+        {
+          "caller": "getLiveConfigPath",
+          "callee": "path.join",
+          "lineNumber": 35
+        },
+        {
+          "caller": "getLiveConfigPath",
+          "callee": "getLiveDir",
+          "lineNumber": 35
+        },
+        {
+          "caller": "getLegacyLiveConfigPath",
+          "callee": "path.join",
+          "lineNumber": 39
+        },
+        {
+          "caller": "resolveLiveConfigPath",
+          "callee": "process.cwd",
+          "lineNumber": 42
+        },
+        {
+          "caller": "resolveLiveConfigPath",
+          "callee": "env.IMPECCABLE_LIVE_CONFIG.trim",
+          "lineNumber": 43
+        },
+        {
+          "caller": "resolveLiveConfigPath",
+          "callee": "env.IMPECCABLE_LIVE_CONFIG.trim",
+          "lineNumber": 44
+        },
+        {
+          "caller": "resolveLiveConfigPath",
+          "callee": "path.isAbsolute",
+          "lineNumber": 45
+        },
+        {
+          "caller": "resolveLiveConfigPath",
+          "callee": "path.resolve",
+          "lineNumber": 45
+        },
+        {
+          "caller": "resolveLiveConfigPath",
+          "callee": "getLiveConfigPath",
+          "lineNumber": 47
+        },
+        {
+          "caller": "resolveLiveConfigPath",
+          "callee": "fs.existsSync",
+          "lineNumber": 48
+        },
+        {
+          "caller": "resolveLiveConfigPath",
+          "callee": "getLegacyLiveConfigPath",
+          "lineNumber": 50
+        },
+        {
+          "caller": "resolveLiveConfigPath",
+          "callee": "fs.existsSync",
+          "lineNumber": 51
+        },
+        {
+          "caller": "getLiveServerPath",
+          "callee": "process.cwd",
+          "lineNumber": 56
+        },
+        {
+          "caller": "getLiveServerPath",
+          "callee": "path.join",
+          "lineNumber": 57
+        },
+        {
+          "caller": "getLiveServerPath",
+          "callee": "getLiveDir",
+          "lineNumber": 57
+        },
+        {
+          "caller": "getLegacyLiveServerPath",
+          "callee": "process.cwd",
+          "lineNumber": 60
+        },
+        {
+          "caller": "getLegacyLiveServerPath",
+          "callee": "path.join",
+          "lineNumber": 61
+        },
+        {
+          "caller": "readLiveServerInfo",
+          "callee": "process.cwd",
+          "lineNumber": 64
+        },
+        {
+          "caller": "readLiveServerInfo",
+          "callee": "getLiveServerPath",
+          "lineNumber": 65
+        },
+        {
+          "caller": "readLiveServerInfo",
+          "callee": "getLegacyLiveServerPath",
+          "lineNumber": 65
+        },
+        {
+          "caller": "readLiveServerInfo",
+          "callee": "JSON.parse",
+          "lineNumber": 67
+        },
+        {
+          "caller": "readLiveServerInfo",
+          "callee": "fs.readFileSync",
+          "lineNumber": 67
+        },
+        {
+          "caller": "writeLiveServerInfo",
+          "callee": "process.cwd",
+          "lineNumber": 75
+        },
+        {
+          "caller": "writeLiveServerInfo",
+          "callee": "getLiveServerPath",
+          "lineNumber": 76
+        },
+        {
+          "caller": "writeLiveServerInfo",
+          "callee": "fs.mkdirSync",
+          "lineNumber": 77
+        },
+        {
+          "caller": "writeLiveServerInfo",
+          "callee": "path.dirname",
+          "lineNumber": 77
+        },
+        {
+          "caller": "writeLiveServerInfo",
+          "callee": "fs.writeFileSync",
+          "lineNumber": 78
+        },
+        {
+          "caller": "writeLiveServerInfo",
+          "callee": "JSON.stringify",
+          "lineNumber": 78
+        },
+        {
+          "caller": "removeLiveServerInfo",
+          "callee": "process.cwd",
+          "lineNumber": 82
+        },
+        {
+          "caller": "removeLiveServerInfo",
+          "callee": "getLiveServerPath",
+          "lineNumber": 83
+        },
+        {
+          "caller": "removeLiveServerInfo",
+          "callee": "getLegacyLiveServerPath",
+          "lineNumber": 83
+        },
+        {
+          "caller": "removeLiveServerInfo",
+          "callee": "fs.unlinkSync",
+          "lineNumber": 84
+        },
+        {
+          "caller": "getLiveSessionsDir",
+          "callee": "process.cwd",
+          "lineNumber": 88
+        },
+        {
+          "caller": "getLiveSessionsDir",
+          "callee": "path.join",
+          "lineNumber": 89
+        },
+        {
+          "caller": "getLiveSessionsDir",
+          "callee": "getLiveDir",
+          "lineNumber": 89
+        },
+        {
+          "caller": "getLegacyLiveSessionsDir",
+          "callee": "process.cwd",
+          "lineNumber": 92
+        },
+        {
+          "caller": "getLegacyLiveSessionsDir",
+          "callee": "path.join",
+          "lineNumber": 93
+        },
+        {
+          "caller": "getLiveAnnotationsDir",
+          "callee": "process.cwd",
+          "lineNumber": 96
+        },
+        {
+          "caller": "getLiveAnnotationsDir",
+          "callee": "path.join",
+          "lineNumber": 97
+        },
+        {
+          "caller": "getLiveAnnotationsDir",
+          "callee": "getLiveDir",
+          "lineNumber": 97
+        },
+        {
+          "caller": "getCritiqueDir",
+          "callee": "process.cwd",
+          "lineNumber": 100
+        },
+        {
+          "caller": "getCritiqueDir",
+          "callee": "path.join",
+          "lineNumber": 101
+        },
+        {
+          "caller": "getCritiqueDir",
+          "callee": "getImpeccableDir",
+          "lineNumber": 101
+        },
+        {
+          "caller": "getLegacyLiveAnnotationsDir",
+          "callee": "process.cwd",
+          "lineNumber": 104
+        },
+        {
+          "caller": "getLegacyLiveAnnotationsDir",
+          "callee": "path.join",
+          "lineNumber": 105
+        },
+        {
+          "caller": "firstExisting",
+          "callee": "paths.find",
+          "lineNumber": 109
+        },
+        {
+          "caller": "firstExisting",
+          "callee": "fs.existsSync",
+          "lineNumber": 109
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 21,
+        "functionCount": 19,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/live-complete.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 75,
+      "nonEmptyLines": 67,
+      "functions": [
+        {
+          "name": "parseArgs",
+          "startLine": 9,
+          "endLine": 21,
+          "params": [
+            "argv"
+          ]
+        },
+        {
+          "name": "completeCli",
+          "startLine": 23,
+          "endLine": 47,
+          "params": []
+        },
+        {
+          "name": "readServerInfo",
+          "startLine": 49,
+          "endLine": 51,
+          "params": []
+        },
+        {
+          "name": "completeThroughServer",
+          "startLine": 53,
+          "endLine": 70,
+          "params": [
+            "info",
+            "args"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "completeCli",
+          "line": 23,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseArgs",
+          "callee": "arg.startsWith",
+          "lineNumber": 14
+        },
+        {
+          "caller": "parseArgs",
+          "callee": "arg.slice",
+          "lineNumber": 14
+        },
+        {
+          "caller": "parseArgs",
+          "callee": "arg.startsWith",
+          "lineNumber": 17
+        },
+        {
+          "caller": "parseArgs",
+          "callee": "arg.slice",
+          "lineNumber": 17
+        },
+        {
+          "caller": "completeCli",
+          "callee": "parseArgs",
+          "lineNumber": 24
+        },
+        {
+          "caller": "completeCli",
+          "callee": "process.argv.slice",
+          "lineNumber": 24
+        },
+        {
+          "caller": "completeCli",
+          "callee": "console.log",
+          "lineNumber": 26
+        },
+        {
+          "caller": "completeCli",
+          "callee": "process.exit",
+          "lineNumber": 27
+        },
+        {
+          "caller": "completeCli",
+          "callee": "readServerInfo",
+          "lineNumber": 30
+        },
+        {
+          "caller": "completeCli",
+          "callee": "completeThroughServer",
+          "lineNumber": 31
+        },
+        {
+          "caller": "completeCli",
+          "callee": "createLiveSessionStore",
+          "lineNumber": 33
+        },
+        {
+          "caller": "completeCli",
+          "callee": "process.cwd",
+          "lineNumber": 33
+        },
+        {
+          "caller": "completeCli",
+          "callee": "store.getSnapshot",
+          "lineNumber": 34
+        },
+        {
+          "caller": "completeCli",
+          "callee": "console.log",
+          "lineNumber": 35
+        },
+        {
+          "caller": "completeCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 35
+        },
+        {
+          "caller": "completeCli",
+          "callee": "createLiveSessionStore",
+          "lineNumber": 39
+        },
+        {
+          "caller": "completeCli",
+          "callee": "process.cwd",
+          "lineNumber": 39
+        },
+        {
+          "caller": "completeCli",
+          "callee": "store.appendEvent",
+          "lineNumber": 45
+        },
+        {
+          "caller": "completeCli",
+          "callee": "console.log",
+          "lineNumber": 46
+        },
+        {
+          "caller": "completeCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 46
+        },
+        {
+          "caller": "readServerInfo",
+          "callee": "readLiveServerInfo",
+          "lineNumber": 50
+        },
+        {
+          "caller": "readServerInfo",
+          "callee": "process.cwd",
+          "lineNumber": 50
+        },
+        {
+          "caller": "completeThroughServer",
+          "callee": "fetch",
+          "lineNumber": 60
+        },
+        {
+          "caller": "completeThroughServer",
+          "callee": "JSON.stringify",
+          "lineNumber": 63
+        },
+        {
+          "caller": "completeThroughServer",
+          "callee": "res.json",
+          "lineNumber": 66
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/live-completion.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 18,
+      "nonEmptyLines": 17,
+      "functions": [
+        {
+          "name": "completionTypeForAcceptResult",
+          "startLine": 1,
+          "endLine": 7,
+          "params": [
+            "eventType",
+            "acceptResult"
+          ]
+        },
+        {
+          "name": "completionAckForAcceptResult",
+          "startLine": 9,
+          "endLine": 18,
+          "params": [
+            "eventId",
+            "completionType",
+            "acceptResult"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "completionTypeForAcceptResult",
+          "line": 1,
+          "isDefault": false
+        },
+        {
+          "name": "completionAckForAcceptResult",
+          "line": 9,
+          "isDefault": false
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/live-inject.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 446,
+      "nonEmptyLines": 404,
+      "functions": [
+        {
+          "name": "injectCli",
+          "startLine": 36,
+          "endLine": 134,
+          "params": []
+        },
+        {
+          "name": "resolveFiles",
+          "startLine": 143,
+          "endLine": 182,
+          "params": [
+            "rootDir",
+            "config"
+          ]
+        },
+        {
+          "name": "globToRegex",
+          "startLine": 191,
+          "endLine": 223,
+          "params": [
+            "pattern"
+          ]
+        },
+        {
+          "name": "validateConfig",
+          "startLine": 229,
+          "endLine": 254,
+          "params": [
+            "cfg"
+          ]
+        },
+        {
+          "name": "commentOpen",
+          "startLine": 256,
+          "endLine": 256,
+          "params": [
+            "syntax"
+          ]
+        },
+        {
+          "name": "commentClose",
+          "startLine": 257,
+          "endLine": 257,
+          "params": [
+            "syntax"
+          ]
+        },
+        {
+          "name": "buildTagBlock",
+          "startLine": 259,
+          "endLine": 267,
+          "params": [
+            "syntax",
+            "port"
+          ]
+        },
+        {
+          "name": "insertTag",
+          "startLine": 269,
+          "endLine": 287,
+          "params": [
+            "content",
+            "config",
+            "port"
+          ]
+        },
+        {
+          "name": "removeTag",
+          "startLine": 300,
+          "endLine": 310,
+          "params": [
+            "content",
+            "_syntax"
+          ]
+        },
+        {
+          "name": "findCspMetaTags",
+          "startLine": 334,
+          "endLine": 344,
+          "params": [
+            "content"
+          ]
+        },
+        {
+          "name": "getAttr",
+          "startLine": 346,
+          "endLine": 350,
+          "params": [
+            "attrs",
+            "name"
+          ]
+        },
+        {
+          "name": "appendOriginToDirective",
+          "startLine": 352,
+          "endLine": 364,
+          "params": [
+            "csp",
+            "directive",
+            "origin"
+          ]
+        },
+        {
+          "name": "patchCspMeta",
+          "startLine": 366,
+          "endLine": 407,
+          "params": [
+            "content",
+            "port"
+          ]
+        },
+        {
+          "name": "revertCspMeta",
+          "startLine": 409,
+          "endLine": 434,
+          "params": [
+            "content"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "injectCli",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "resolveFiles",
+          "line": 143,
+          "isDefault": false
+        },
+        {
+          "name": "patchCspMeta",
+          "line": 366,
+          "isDefault": false
+        },
+        {
+          "name": "revertCspMeta",
+          "line": 409,
+          "isDefault": false
+        },
+        {
+          "name": "insertTag",
+          "line": 445,
+          "isDefault": false
+        },
+        {
+          "name": "removeTag",
+          "line": 445,
+          "isDefault": false
+        },
+        {
+          "name": "validateConfig",
+          "line": 445,
+          "isDefault": false
+        },
+        {
+          "name": "buildTagBlock",
+          "line": 445,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "injectCli",
+          "callee": "process.argv.slice",
+          "lineNumber": 37
+        },
+        {
+          "caller": "injectCli",
+          "callee": "args.includes",
+          "lineNumber": 39
+        },
+        {
+          "caller": "injectCli",
+          "callee": "args.includes",
+          "lineNumber": 39
+        },
+        {
+          "caller": "injectCli",
+          "callee": "console.log",
+          "lineNumber": 40
+        },
+        {
+          "caller": "injectCli",
+          "callee": "process.exit",
+          "lineNumber": 52
+        },
+        {
+          "caller": "injectCli",
+          "callee": "args.includes",
+          "lineNumber": 55
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.existsSync",
+          "lineNumber": 56
+        },
+        {
+          "caller": "injectCli",
+          "callee": "console.log",
+          "lineNumber": 57
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 57
+        },
+        {
+          "caller": "injectCli",
+          "callee": "process.exit",
+          "lineNumber": 58
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.parse",
+          "lineNumber": 62
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.readFileSync",
+          "lineNumber": 62
+        },
+        {
+          "caller": "injectCli",
+          "callee": "console.log",
+          "lineNumber": 64
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 64
+        },
+        {
+          "caller": "injectCli",
+          "callee": "validateConfig",
+          "lineNumber": 68
+        },
+        {
+          "caller": "injectCli",
+          "callee": "console.log",
+          "lineNumber": 70
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 70
+        },
+        {
+          "caller": "injectCli",
+          "callee": "console.log",
+          "lineNumber": 73
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 73
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.existsSync",
+          "lineNumber": 78
+        },
+        {
+          "caller": "injectCli",
+          "callee": "console.error",
+          "lineNumber": 79
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 79
+        },
+        {
+          "caller": "injectCli",
+          "callee": "process.exit",
+          "lineNumber": 80
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.parse",
+          "lineNumber": 82
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.readFileSync",
+          "lineNumber": 82
+        },
+        {
+          "caller": "injectCli",
+          "callee": "validateConfig",
+          "lineNumber": 83
+        },
+        {
+          "caller": "injectCli",
+          "callee": "resolveFiles",
+          "lineNumber": 85
+        },
+        {
+          "caller": "injectCli",
+          "callee": "process.cwd",
+          "lineNumber": 85
+        },
+        {
+          "caller": "injectCli",
+          "callee": "args.includes",
+          "lineNumber": 87
+        },
+        {
+          "caller": "injectCli",
+          "callee": "resolvedFiles.map",
+          "lineNumber": 88
+        },
+        {
+          "caller": "injectCli",
+          "callee": "path.resolve",
+          "lineNumber": 89
+        },
+        {
+          "caller": "injectCli",
+          "callee": "process.cwd",
+          "lineNumber": 89
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.existsSync",
+          "lineNumber": 90
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.readFileSync",
+          "lineNumber": 91
+        },
+        {
+          "caller": "injectCli",
+          "callee": "removeTag",
+          "lineNumber": 92
+        },
+        {
+          "caller": "injectCli",
+          "callee": "revertCspMeta",
+          "lineNumber": 93
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.writeFileSync",
+          "lineNumber": 95
+        },
+        {
+          "caller": "injectCli",
+          "callee": "console.log",
+          "lineNumber": 102
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 102
+        },
+        {
+          "caller": "injectCli",
+          "callee": "args.indexOf",
+          "lineNumber": 107
+        },
+        {
+          "caller": "injectCli",
+          "callee": "parseInt",
+          "lineNumber": 108
+        },
+        {
+          "caller": "injectCli",
+          "callee": "Number.isFinite",
+          "lineNumber": 109
+        },
+        {
+          "caller": "injectCli",
+          "callee": "console.error",
+          "lineNumber": 110
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 110
+        },
+        {
+          "caller": "injectCli",
+          "callee": "process.exit",
+          "lineNumber": 111
+        },
+        {
+          "caller": "injectCli",
+          "callee": "resolvedFiles.map",
+          "lineNumber": 114
+        },
+        {
+          "caller": "injectCli",
+          "callee": "path.resolve",
+          "lineNumber": 115
+        },
+        {
+          "caller": "injectCli",
+          "callee": "process.cwd",
+          "lineNumber": 115
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.existsSync",
+          "lineNumber": 116
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.readFileSync",
+          "lineNumber": 117
+        },
+        {
+          "caller": "injectCli",
+          "callee": "revertCspMeta",
+          "lineNumber": 118
+        },
+        {
+          "caller": "injectCli",
+          "callee": "removeTag",
+          "lineNumber": 118
+        },
+        {
+          "caller": "injectCli",
+          "callee": "insertTag",
+          "lineNumber": 119
+        },
+        {
+          "caller": "injectCli",
+          "callee": "patchCspMeta",
+          "lineNumber": 123
+        },
+        {
+          "caller": "injectCli",
+          "callee": "fs.writeFileSync",
+          "lineNumber": 124
+        },
+        {
+          "caller": "injectCli",
+          "callee": "results.some",
+          "lineNumber": 131
+        },
+        {
+          "caller": "injectCli",
+          "callee": "console.log",
+          "lineNumber": 132
+        },
+        {
+          "caller": "injectCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 132
+        },
+        {
+          "caller": "injectCli",
+          "callee": "process.exit",
+          "lineNumber": 133
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "Array.isArray",
+          "lineNumber": 145
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "allExcludes.map",
+          "lineNumber": 147
+        },
+        {
+          "caller": "isExcluded",
+          "callee": "excludeRegexes.some",
+          "lineNumber": 149
+        },
+        {
+          "caller": "isExcluded",
+          "callee": "re.test",
+          "lineNumber": 149
+        },
+        {
+          "caller": "isGlob",
+          "callee": "/[*?[]/.test",
+          "lineNumber": 150
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "isGlob",
+          "lineNumber": 155
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "seen.has",
+          "lineNumber": 159
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "seen.add",
+          "lineNumber": 160
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "out.push",
+          "lineNumber": 161
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "fs.globSync",
+          "lineNumber": 167
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "ent.isFile",
+          "lineNumber": 172
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "path.join",
+          "lineNumber": 173
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "path.relative(rootDir, abs).split(path.sep).join",
+          "lineNumber": 174
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "path.relative(rootDir, abs).split",
+          "lineNumber": 174
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "path.relative",
+          "lineNumber": 174
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "isExcluded",
+          "lineNumber": 175
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "seen.has",
+          "lineNumber": 176
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "seen.add",
+          "lineNumber": 177
+        },
+        {
+          "caller": "resolveFiles",
+          "callee": "out.push",
+          "lineNumber": 178
+        },
+        {
+          "caller": "globToRegex",
+          "callee": "/[.+^${}()|[\\]\\\\]/.test",
+          "lineNumber": 214
+        },
+        {
+          "caller": "validateConfig",
+          "callee": "Array.isArray",
+          "lineNumber": 231
+        },
+        {
+          "caller": "validateConfig",
+          "callee": "cfg.files.every",
+          "lineNumber": 234
+        },
+        {
+          "caller": "validateConfig",
+          "callee": "Array.isArray",
+          "lineNumber": 238
+        },
+        {
+          "caller": "validateConfig",
+          "callee": "cfg.exclude.every",
+          "lineNumber": 241
+        },
+        {
+          "caller": "buildTagBlock",
+          "callee": "commentOpen",
+          "lineNumber": 260
+        },
+        {
+          "caller": "buildTagBlock",
+          "callee": "commentClose",
+          "lineNumber": 261
+        },
+        {
+          "caller": "insertTag",
+          "callee": "buildTagBlock",
+          "lineNumber": 270
+        },
+        {
+          "caller": "insertTag",
+          "callee": "content.lastIndexOf",
+          "lineNumber": 275
+        },
+        {
+          "caller": "insertTag",
+          "callee": "content.slice",
+          "lineNumber": 277
+        },
+        {
+          "caller": "insertTag",
+          "callee": "content.slice",
+          "lineNumber": 277
+        },
+        {
+          "caller": "insertTag",
+          "callee": "content.indexOf",
+          "lineNumber": 281
+        },
+        {
+          "caller": "insertTag",
+          "callee": "content.slice",
+          "lineNumber": 285
+        },
+        {
+          "caller": "insertTag",
+          "callee": "content.slice",
+          "lineNumber": 285
+        },
+        {
+          "caller": "insertTag",
+          "callee": "content.slice",
+          "lineNumber": 286
+        },
+        {
+          "caller": "removeTag",
+          "callee": "content.replace",
+          "lineNumber": 306
+        },
+        {
+          "caller": "findCspMetaTags",
+          "callee": "tagRe.exec",
+          "lineNumber": 338
+        },
+        {
+          "caller": "findCspMetaTags",
+          "callee": "/(http-equiv|httpEquiv)\\s*=\\s*(['\"])Content-Security-Policy\\2/i.test",
+          "lineNumber": 340
+        },
+        {
+          "caller": "findCspMetaTags",
+          "callee": "out.push",
+          "lineNumber": 341
+        },
+        {
+          "caller": "getAttr",
+          "callee": "attrs.match",
+          "lineNumber": 348
+        },
+        {
+          "caller": "appendOriginToDirective",
+          "callee": "csp.match",
+          "lineNumber": 354
+        },
+        {
+          "caller": "appendOriginToDirective",
+          "callee": "m[4].trim().split",
+          "lineNumber": 356
+        },
+        {
+          "caller": "appendOriginToDirective",
+          "callee": "m[4].trim",
+          "lineNumber": 356
+        },
+        {
+          "caller": "appendOriginToDirective",
+          "callee": "tokens.includes",
+          "lineNumber": 357
+        },
+        {
+          "caller": "appendOriginToDirective",
+          "callee": "csp.replace",
+          "lineNumber": 358
+        },
+        {
+          "caller": "appendOriginToDirective",
+          "callee": "[...tokens, origin].join",
+          "lineNumber": 358
+        },
+        {
+          "caller": "appendOriginToDirective",
+          "callee": "csp.trim().replace",
+          "lineNumber": 363
+        },
+        {
+          "caller": "appendOriginToDirective",
+          "callee": "csp.trim",
+          "lineNumber": 363
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "findCspMetaTags",
+          "lineNumber": 367
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "getAttr",
+          "lineNumber": 376
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "getAttr",
+          "lineNumber": 377
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "appendOriginToDirective",
+          "lineNumber": 382
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "appendOriginToDirective",
+          "lineNumber": 383
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "appendOriginToDirective",
+          "lineNumber": 387
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "Buffer.from(original, 'utf-8').toString",
+          "lineNumber": 391
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "Buffer.from",
+          "lineNumber": 391
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "attrs.match",
+          "lineNumber": 399
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "attrs.slice",
+          "lineNumber": 400
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "attrsBody.replace",
+          "lineNumber": 401
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "tag.full.replace",
+          "lineNumber": 402
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "result.slice",
+          "lineNumber": 404
+        },
+        {
+          "caller": "patchCspMeta",
+          "callee": "result.slice",
+          "lineNumber": 404
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "findCspMetaTags",
+          "lineNumber": 410
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "getAttr",
+          "lineNumber": 416
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "getAttr",
+          "lineNumber": 418
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "Buffer.from(origAttr.value, 'base64').toString",
+          "lineNumber": 422
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "Buffer.from",
+          "lineNumber": 422
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "tag.attrs.replace",
+          "lineNumber": 426
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "newAttrs.replace",
+          "lineNumber": 428
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "tag.full.replace",
+          "lineNumber": 429
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "result.slice",
+          "lineNumber": 431
+        },
+        {
+          "caller": "revertCspMeta",
+          "callee": "result.slice",
+          "lineNumber": 431
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 8,
+        "functionCount": 14,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/live-poll.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 200,
+      "nonEmptyLines": 175,
+      "functions": [
+        {
+          "name": "readServerInfo",
+          "startLine": 23,
+          "endLine": 30,
+          "params": []
+        },
+        {
+          "name": "buildPollReplyPayload",
+          "startLine": 32,
+          "endLine": 34,
+          "params": [
+            "token"
+          ]
+        },
+        {
+          "name": "postReply",
+          "startLine": 36,
+          "endLine": 46,
+          "params": [
+            "base",
+            "token",
+            "reply"
+          ]
+        },
+        {
+          "name": "pollCli",
+          "startLine": 48,
+          "endLine": 194,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "buildPollReplyPayload",
+          "line": 32,
+          "isDefault": false
+        },
+        {
+          "name": "pollCli",
+          "line": 48,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "readServerInfo",
+          "callee": "readLiveServerInfo",
+          "lineNumber": 24
+        },
+        {
+          "caller": "readServerInfo",
+          "callee": "process.cwd",
+          "lineNumber": 24
+        },
+        {
+          "caller": "readServerInfo",
+          "callee": "console.error",
+          "lineNumber": 26
+        },
+        {
+          "caller": "readServerInfo",
+          "callee": "process.exit",
+          "lineNumber": 27
+        },
+        {
+          "caller": "postReply",
+          "callee": "fetch",
+          "lineNumber": 37
+        },
+        {
+          "caller": "postReply",
+          "callee": "JSON.stringify",
+          "lineNumber": 40
+        },
+        {
+          "caller": "postReply",
+          "callee": "buildPollReplyPayload",
+          "lineNumber": 40
+        },
+        {
+          "caller": "postReply",
+          "callee": "res.json().catch",
+          "lineNumber": 43
+        },
+        {
+          "caller": "postReply",
+          "callee": "res.json",
+          "lineNumber": 43
+        },
+        {
+          "caller": "pollCli",
+          "callee": "process.argv.slice",
+          "lineNumber": 49
+        },
+        {
+          "caller": "pollCli",
+          "callee": "args.includes",
+          "lineNumber": 51
+        },
+        {
+          "caller": "pollCli",
+          "callee": "args.includes",
+          "lineNumber": 51
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.log",
+          "lineNumber": 52
+        },
+        {
+          "caller": "pollCli",
+          "callee": "process.exit",
+          "lineNumber": 64
+        },
+        {
+          "caller": "pollCli",
+          "callee": "readServerInfo",
+          "lineNumber": 67
+        },
+        {
+          "caller": "pollCli",
+          "callee": "args.indexOf",
+          "lineNumber": 71
+        },
+        {
+          "caller": "pollCli",
+          "callee": "args.indexOf",
+          "lineNumber": 75
+        },
+        {
+          "caller": "pollCli",
+          "callee": "args.find",
+          "lineNumber": 78
+        },
+        {
+          "caller": "pollCli",
+          "callee": "a.startsWith",
+          "lineNumber": 78
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.error",
+          "lineNumber": 81
+        },
+        {
+          "caller": "pollCli",
+          "callee": "process.exit",
+          "lineNumber": 82
+        },
+        {
+          "caller": "pollCli",
+          "callee": "postReply",
+          "lineNumber": 86
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.error",
+          "lineNumber": 91
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.error",
+          "lineNumber": 93
+        },
+        {
+          "caller": "pollCli",
+          "callee": "process.exit",
+          "lineNumber": 95
+        },
+        {
+          "caller": "pollCli",
+          "callee": "args.find",
+          "lineNumber": 104
+        },
+        {
+          "caller": "pollCli",
+          "callee": "a.startsWith",
+          "lineNumber": 104
+        },
+        {
+          "caller": "pollCli",
+          "callee": "parseInt",
+          "lineNumber": 105
+        },
+        {
+          "caller": "pollCli",
+          "callee": "timeoutArg.split",
+          "lineNumber": 105
+        },
+        {
+          "caller": "pollCli",
+          "callee": "Date.now",
+          "lineNumber": 107
+        },
+        {
+          "caller": "pollCli",
+          "callee": "Date.now",
+          "lineNumber": 111
+        },
+        {
+          "caller": "pollCli",
+          "callee": "Math.min",
+          "lineNumber": 116
+        },
+        {
+          "caller": "pollCli",
+          "callee": "fetch",
+          "lineNumber": 117
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.error",
+          "lineNumber": 120
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.error",
+          "lineNumber": 121
+        },
+        {
+          "caller": "pollCli",
+          "callee": "process.exit",
+          "lineNumber": 122
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.error",
+          "lineNumber": 126
+        },
+        {
+          "caller": "pollCli",
+          "callee": "process.exit",
+          "lineNumber": 127
+        },
+        {
+          "caller": "pollCli",
+          "callee": "res.json",
+          "lineNumber": 130
+        },
+        {
+          "caller": "pollCli",
+          "callee": "Date.now",
+          "lineNumber": 134
+        },
+        {
+          "caller": "pollCli",
+          "callee": "path.dirname",
+          "lineNumber": 141
+        },
+        {
+          "caller": "pollCli",
+          "callee": "fileURLToPath",
+          "lineNumber": 141
+        },
+        {
+          "caller": "pollCli",
+          "callee": "path.join",
+          "lineNumber": 142
+        },
+        {
+          "caller": "pollCli",
+          "callee": "Object.keys",
+          "lineNumber": 146
+        },
+        {
+          "caller": "pollCli",
+          "callee": "scriptArgs.push",
+          "lineNumber": 147
+        },
+        {
+          "caller": "pollCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 147
+        },
+        {
+          "caller": "pollCli",
+          "callee": "execFileSync",
+          "lineNumber": 150
+        },
+        {
+          "caller": "pollCli",
+          "callee": "process.cwd",
+          "lineNumber": 153
+        },
+        {
+          "caller": "pollCli",
+          "callee": "JSON.parse",
+          "lineNumber": 155
+        },
+        {
+          "caller": "pollCli",
+          "callee": "out.trim",
+          "lineNumber": 155
+        },
+        {
+          "caller": "pollCli",
+          "callee": "completionTypeForAcceptResult",
+          "lineNumber": 160
+        },
+        {
+          "caller": "pollCli",
+          "callee": "postReply",
+          "lineNumber": 162
+        },
+        {
+          "caller": "pollCli",
+          "callee": "completionAckForAcceptResult",
+          "lineNumber": 173
+        },
+        {
+          "caller": "pollCli",
+          "callee": "process.stderr.write",
+          "lineNumber": 181
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.log",
+          "lineNumber": 185
+        },
+        {
+          "caller": "pollCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 185
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.error",
+          "lineNumber": 188
+        },
+        {
+          "caller": "pollCli",
+          "callee": "console.error",
+          "lineNumber": 190
+        },
+        {
+          "caller": "pollCli",
+          "callee": "process.exit",
+          "lineNumber": 192
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 2,
+        "functionCount": 4,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/live-resume.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 48,
+      "nonEmptyLines": 41,
+      "functions": [
+        {
+          "name": "parseArgs",
+          "startLine": 8,
+          "endLine": 17,
+          "params": [
+            "argv"
+          ]
+        },
+        {
+          "name": "resumeCli",
+          "startLine": 19,
+          "endLine": 43,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "resumeCli",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "parseArgs",
+          "callee": "arg.startsWith",
+          "lineNumber": 13
+        },
+        {
+          "caller": "parseArgs",
+          "callee": "arg.slice",
+          "lineNumber": 13
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "parseArgs",
+          "lineNumber": 20
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "process.argv.slice",
+          "lineNumber": 20
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "console.log",
+          "lineNumber": 22
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "createLiveSessionStore",
+          "lineNumber": 26
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "process.cwd",
+          "lineNumber": 26
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "store.getSnapshot",
+          "lineNumber": 27
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "store.listActiveSessions",
+          "lineNumber": 27
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "console.log",
+          "lineNumber": 29
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 29
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "console.log",
+          "lineNumber": 42
+        },
+        {
+          "caller": "resumeCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 42
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/live-server.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 838,
+      "nonEmptyLines": 766,
+      "functions": [
+        {
+          "name": "findOpenPort",
+          "startLine": 47,
+          "endLine": 56,
+          "params": []
+        },
+        {
+          "name": "enqueueEvent",
+          "startLine": 78,
+          "endLine": 82,
+          "params": [
+            "event"
+          ]
+        },
+        {
+          "name": "restorePendingEventsFromStore",
+          "startLine": 84,
+          "endLine": 89,
+          "params": []
+        },
+        {
+          "name": "findAvailablePendingEvent",
+          "startLine": 91,
+          "endLine": 93,
+          "params": []
+        },
+        {
+          "name": "leaseEvent",
+          "startLine": 95,
+          "endLine": 103,
+          "params": [
+            "entry",
+            "leaseMs"
+          ]
+        },
+        {
+          "name": "acknowledgePendingEvent",
+          "startLine": 105,
+          "endLine": 112,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "scheduleLeaseFlush",
+          "startLine": 114,
+          "endLine": 130,
+          "params": []
+        },
+        {
+          "name": "flushPendingPolls",
+          "startLine": 132,
+          "endLine": 143,
+          "params": []
+        },
+        {
+          "name": "broadcast",
+          "startLine": 146,
+          "endLine": 151,
+          "params": [
+            "msg"
+          ]
+        },
+        {
+          "name": "loadBrowserScripts",
+          "startLine": 157,
+          "endLine": 185,
+          "params": []
+        },
+        {
+          "name": "hasProjectContext",
+          "startLine": 187,
+          "endLine": 196,
+          "params": []
+        },
+        {
+          "name": "statOrNull",
+          "startLine": 198,
+          "endLine": 200,
+          "params": [
+            "filePath"
+          ]
+        },
+        {
+          "name": "isValidId",
+          "startLine": 218,
+          "endLine": 218,
+          "params": [
+            "v"
+          ]
+        },
+        {
+          "name": "isValidVariantId",
+          "startLine": 219,
+          "endLine": 219,
+          "params": [
+            "v"
+          ]
+        },
+        {
+          "name": "validateEvent",
+          "startLine": 221,
+          "endLine": 260,
+          "params": [
+            "msg"
+          ]
+        },
+        {
+          "name": "createRequestHandler",
+          "startLine": 266,
+          "endLine": 592,
+          "params": []
+        },
+        {
+          "name": "handlePollGet",
+          "startLine": 598,
+          "endLine": 632,
+          "params": [
+            "req",
+            "res",
+            "url"
+          ]
+        },
+        {
+          "name": "handlePollPost",
+          "startLine": 634,
+          "endLine": 674,
+          "params": [
+            "req",
+            "res"
+          ]
+        },
+        {
+          "name": "shutdown",
+          "startLine": 682,
+          "endLine": 695,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "findOpenPort",
+          "callee": "net.createServer",
+          "lineNumber": 49
+        },
+        {
+          "caller": "findOpenPort",
+          "callee": "srv.listen",
+          "lineNumber": 50
+        },
+        {
+          "caller": "findOpenPort",
+          "callee": "srv.address",
+          "lineNumber": 51
+        },
+        {
+          "caller": "findOpenPort",
+          "callee": "srv.close",
+          "lineNumber": 52
+        },
+        {
+          "caller": "findOpenPort",
+          "callee": "resolve",
+          "lineNumber": 52
+        },
+        {
+          "caller": "findOpenPort",
+          "callee": "srv.on",
+          "lineNumber": 54
+        },
+        {
+          "caller": "findOpenPort",
+          "callee": "resolve",
+          "lineNumber": 54
+        },
+        {
+          "caller": "findOpenPort",
+          "callee": "findOpenPort",
+          "lineNumber": 54
+        },
+        {
+          "caller": "enqueueEvent",
+          "callee": "state.pendingEvents.some",
+          "lineNumber": 79
+        },
+        {
+          "caller": "enqueueEvent",
+          "callee": "state.pendingEvents.push",
+          "lineNumber": 80
+        },
+        {
+          "caller": "enqueueEvent",
+          "callee": "flushPendingPolls",
+          "lineNumber": 81
+        },
+        {
+          "caller": "restorePendingEventsFromStore",
+          "callee": "state.sessionStore.listActiveSessions",
+          "lineNumber": 86
+        },
+        {
+          "caller": "restorePendingEventsFromStore",
+          "callee": "enqueueEvent",
+          "lineNumber": 87
+        },
+        {
+          "caller": "findAvailablePendingEvent",
+          "callee": "Date.now",
+          "lineNumber": 91
+        },
+        {
+          "caller": "findAvailablePendingEvent",
+          "callee": "state.pendingEvents.find",
+          "lineNumber": 92
+        },
+        {
+          "caller": "leaseEvent",
+          "callee": "state.pendingEvents.indexOf",
+          "lineNumber": 97
+        },
+        {
+          "caller": "leaseEvent",
+          "callee": "state.pendingEvents.splice",
+          "lineNumber": 98
+        },
+        {
+          "caller": "leaseEvent",
+          "callee": "Date.now",
+          "lineNumber": 101
+        },
+        {
+          "caller": "acknowledgePendingEvent",
+          "callee": "state.pendingEvents.findIndex",
+          "lineNumber": 107
+        },
+        {
+          "caller": "acknowledgePendingEvent",
+          "callee": "state.pendingEvents.splice",
+          "lineNumber": 109
+        },
+        {
+          "caller": "acknowledgePendingEvent",
+          "callee": "scheduleLeaseFlush",
+          "lineNumber": 110
+        },
+        {
+          "caller": "scheduleLeaseFlush",
+          "callee": "clearTimeout",
+          "lineNumber": 116
+        },
+        {
+          "caller": "scheduleLeaseFlush",
+          "callee": "Date.now",
+          "lineNumber": 120
+        },
+        {
+          "caller": "scheduleLeaseFlush",
+          "callee": "state.pendingEvents\r\n    .map((entry) => entry.leaseUntil || 0)\r\n    .filter((leaseUntil) => leaseUntil > now)\r\n    .sort",
+          "lineNumber": 121
+        },
+        {
+          "caller": "scheduleLeaseFlush",
+          "callee": "state.pendingEvents\r\n    .map((entry) => entry.leaseUntil || 0)\r\n    .filter",
+          "lineNumber": 121
+        },
+        {
+          "caller": "scheduleLeaseFlush",
+          "callee": "state.pendingEvents\r\n    .map",
+          "lineNumber": 121
+        },
+        {
+          "caller": "scheduleLeaseFlush",
+          "callee": "setTimeout",
+          "lineNumber": 126
+        },
+        {
+          "caller": "scheduleLeaseFlush",
+          "callee": "flushPendingPolls",
+          "lineNumber": 128
+        },
+        {
+          "caller": "scheduleLeaseFlush",
+          "callee": "Math.max",
+          "lineNumber": 129
+        },
+        {
+          "caller": "flushPendingPolls",
+          "callee": "findAvailablePendingEvent",
+          "lineNumber": 134
+        },
+        {
+          "caller": "flushPendingPolls",
+          "callee": "scheduleLeaseFlush",
+          "lineNumber": 136
+        },
+        {
+          "caller": "flushPendingPolls",
+          "callee": "state.pendingPolls.shift",
+          "lineNumber": 139
+        },
+        {
+          "caller": "flushPendingPolls",
+          "callee": "poll.resolve",
+          "lineNumber": 140
+        },
+        {
+          "caller": "flushPendingPolls",
+          "callee": "leaseEvent",
+          "lineNumber": 140
+        },
+        {
+          "caller": "flushPendingPolls",
+          "callee": "scheduleLeaseFlush",
+          "lineNumber": 142
+        },
+        {
+          "caller": "broadcast",
+          "callee": "JSON.stringify",
+          "lineNumber": 147
+        },
+        {
+          "caller": "broadcast",
+          "callee": "res.write",
+          "lineNumber": 149
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "path.join",
+          "lineNumber": 162
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "path.join",
+          "lineNumber": 163
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "path.join",
+          "lineNumber": 164
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "path.join",
+          "lineNumber": 165
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "process.cwd",
+          "lineNumber": 165
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "fs.readFileSync",
+          "lineNumber": 169
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "path.join",
+          "lineNumber": 175
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "path.join",
+          "lineNumber": 176
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "fs.existsSync",
+          "lineNumber": 178
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "process.stderr.write",
+          "lineNumber": 179
+        },
+        {
+          "caller": "loadBrowserScripts",
+          "callee": "process.exit",
+          "lineNumber": 180
+        },
+        {
+          "caller": "hasProjectContext",
+          "callee": "fs.accessSync",
+          "lineNumber": 193
+        },
+        {
+          "caller": "hasProjectContext",
+          "callee": "path.join",
+          "lineNumber": 193
+        },
+        {
+          "caller": "statOrNull",
+          "callee": "fs.statSync",
+          "lineNumber": 199
+        },
+        {
+          "caller": "isValidId",
+          "callee": "ID_PATTERN.test",
+          "lineNumber": 218
+        },
+        {
+          "caller": "isValidVariantId",
+          "callee": "VARIANT_ID_PATTERN.test",
+          "lineNumber": 219
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "isValidId",
+          "lineNumber": 225
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "VISUAL_ACTIONS.includes",
+          "lineNumber": 226
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "Number.isInteger",
+          "lineNumber": 227
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "Array.isArray",
+          "lineNumber": 231
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "Array.isArray",
+          "lineNumber": 232
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "isValidId",
+          "lineNumber": 235
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "isValidVariantId",
+          "lineNumber": 236
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "Array.isArray",
+          "lineNumber": 238
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "isValidId",
+          "lineNumber": 244
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "isValidId",
+          "lineNumber": 246
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "Number.isInteger",
+          "lineNumber": 247
+        },
+        {
+          "caller": "validateEvent",
+          "callee": "Array.isArray",
+          "lineNumber": 248
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.setHeader",
+          "lineNumber": 269
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.setHeader",
+          "lineNumber": 270
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.setHeader",
+          "lineNumber": 271
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 272
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 272
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "fs.readFileSync",
+          "lineNumber": 285
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "fs.readFileSync",
+          "lineNumber": 286
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 288
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 289
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 297
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 302
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 306
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 306
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 307
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 308
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "path.join",
+          "lineNumber": 316
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 318
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 322
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "fs.readFileSync",
+          "lineNumber": 322
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 324
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 324
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "url.searchParams.get",
+          "lineNumber": 334
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 335
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 335
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "url.searchParams.get",
+          "lineNumber": 336
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "/^[A-Za-z0-9_-]{1,64}$/.test",
+          "lineNumber": 337
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 338
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 339
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 339
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "(req.headers['content-type'] || '').toLowerCase",
+          "lineNumber": 342
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 343
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 344
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 344
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 348
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 349
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 349
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "req.on",
+          "lineNumber": 355
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 360
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 361
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 361
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "req.destroy",
+          "lineNumber": 362
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "chunks.push",
+          "lineNumber": 365
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "req.on",
+          "lineNumber": 367
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "path.join",
+          "lineNumber": 369
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "fs.writeFileSync",
+          "lineNumber": 371
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "Buffer.concat",
+          "lineNumber": 371
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 373
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 374
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 374
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 377
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 378
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 378
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "req.on",
+          "lineNumber": 380
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 382
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 383
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 383
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "url.searchParams.get",
+          "lineNumber": 391
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 392
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 392
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 392
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "state.sessionStore.listActiveSessions",
+          "lineNumber": 393
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 394
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 395
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 395
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "state.pendingEvents.map",
+          "lineNumber": 399
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "Date.now",
+          "lineNumber": 402
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 411
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 412
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 412
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "hasProjectContext",
+          "lineNumber": 414
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "url.searchParams.get",
+          "lineNumber": 432
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 433
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 433
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "path.join",
+          "lineNumber": 435
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "resolveDesignSidecarPath",
+          "lineNumber": 436
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "process.cwd",
+          "lineNumber": 436
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "getDesignSidecarPath",
+          "lineNumber": 436
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "process.cwd",
+          "lineNumber": 436
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "statOrNull",
+          "lineNumber": 437
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "statOrNull",
+          "lineNumber": 438
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 441
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 441
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 442
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 443
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "fs.readFileSync",
+          "lineNumber": 443
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 448
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 449
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 449
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "parseDesignMd",
+          "lineNumber": 462
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "fs.readFileSync",
+          "lineNumber": 462
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.parse",
+          "lineNumber": 470
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "fs.readFileSync",
+          "lineNumber": 470
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 476
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 477
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 477
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "url.searchParams.get",
+          "lineNumber": 483
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 484
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 484
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "url.searchParams.get",
+          "lineNumber": 485
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "filePath.includes",
+          "lineNumber": 486
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 486
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 486
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "path.resolve",
+          "lineNumber": 487
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "process.cwd",
+          "lineNumber": 487
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "absPath.startsWith",
+          "lineNumber": 488
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "process.cwd",
+          "lineNumber": 488
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 488
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 488
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "fs.readFileSync",
+          "lineNumber": 490
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 491
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 491
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 492
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 493
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "url.searchParams.get",
+          "lineNumber": 499
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 500
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 500
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 501
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.write",
+          "lineNumber": 506
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 506
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "hasProjectContext",
+          "lineNumber": 508
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "state.sseClients.add",
+          "lineNumber": 511
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "clearTimeout",
+          "lineNumber": 512
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "setInterval",
+          "lineNumber": 515
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.write",
+          "lineNumber": 516
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "clearInterval",
+          "lineNumber": 516
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "req.on",
+          "lineNumber": 519
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "clearInterval",
+          "lineNumber": 520
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "state.sseClients.delete",
+          "lineNumber": 521
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "clearTimeout",
+          "lineNumber": 523
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "setTimeout",
+          "lineNumber": 524
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "enqueueEvent",
+          "lineNumber": 525
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "req.on",
+          "lineNumber": 535
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "req.on",
+          "lineNumber": 536
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.parse",
+          "lineNumber": 538
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 539
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 540
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 540
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 544
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 545
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 545
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "validateEvent",
+          "lineNumber": 548
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 550
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 551
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 551
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "state.sessionStore.appendEvent",
+          "lineNumber": 556
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 558
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 559
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 559
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "enqueueEvent",
+          "lineNumber": 563
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 564
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 565
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "JSON.stringify",
+          "lineNumber": 565
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "url.searchParams.get",
+          "lineNumber": 572
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 573
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 573
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 574
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 575
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "shutdown",
+          "lineNumber": 576
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "handlePollGet",
+          "lineNumber": 582
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "handlePollPost",
+          "lineNumber": 586
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.writeHead",
+          "lineNumber": 590
+        },
+        {
+          "caller": "createRequestHandler",
+          "callee": "res.end",
+          "lineNumber": 590
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "url.searchParams.get",
+          "lineNumber": 599
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "res.writeHead",
+          "lineNumber": 601
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "res.end",
+          "lineNumber": 602
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "JSON.stringify",
+          "lineNumber": 602
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "parseInt",
+          "lineNumber": 605
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "url.searchParams.get",
+          "lineNumber": 605
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "parseInt",
+          "lineNumber": 606
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "url.searchParams.get",
+          "lineNumber": 606
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "findAvailablePendingEvent",
+          "lineNumber": 607
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "res.writeHead",
+          "lineNumber": 609
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "res.end",
+          "lineNumber": 610
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "JSON.stringify",
+          "lineNumber": 610
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "leaseEvent",
+          "lineNumber": 610
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "setTimeout",
+          "lineNumber": 614
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "state.pendingPolls.indexOf",
+          "lineNumber": 615
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "state.pendingPolls.splice",
+          "lineNumber": 616
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "res.writeHead",
+          "lineNumber": 617
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "res.end",
+          "lineNumber": 618
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "JSON.stringify",
+          "lineNumber": 618
+        },
+        {
+          "caller": "resolve",
+          "callee": "clearTimeout",
+          "lineNumber": 621
+        },
+        {
+          "caller": "resolve",
+          "callee": "res.writeHead",
+          "lineNumber": 622
+        },
+        {
+          "caller": "resolve",
+          "callee": "res.end",
+          "lineNumber": 623
+        },
+        {
+          "caller": "resolve",
+          "callee": "JSON.stringify",
+          "lineNumber": 623
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "state.pendingPolls.push",
+          "lineNumber": 625
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "scheduleLeaseFlush",
+          "lineNumber": 626
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "req.on",
+          "lineNumber": 627
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "clearTimeout",
+          "lineNumber": 628
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "state.pendingPolls.indexOf",
+          "lineNumber": 629
+        },
+        {
+          "caller": "handlePollGet",
+          "callee": "state.pendingPolls.splice",
+          "lineNumber": 630
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "req.on",
+          "lineNumber": 636
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "req.on",
+          "lineNumber": 637
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "JSON.parse",
+          "lineNumber": 639
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "res.writeHead",
+          "lineNumber": 640
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "res.end",
+          "lineNumber": 641
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "JSON.stringify",
+          "lineNumber": 641
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "res.writeHead",
+          "lineNumber": 645
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "res.end",
+          "lineNumber": 646
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "JSON.stringify",
+          "lineNumber": 646
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "acknowledgePendingEvent",
+          "lineNumber": 649
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "state.sessionStore.appendEvent",
+          "lineNumber": 659
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "flushPendingPolls",
+          "lineNumber": 668
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "broadcast",
+          "lineNumber": 670
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "res.writeHead",
+          "lineNumber": 671
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "res.end",
+          "lineNumber": 672
+        },
+        {
+          "caller": "handlePollPost",
+          "callee": "JSON.stringify",
+          "lineNumber": 672
+        },
+        {
+          "caller": "shutdown",
+          "callee": "removeLiveServerInfo",
+          "lineNumber": 683
+        },
+        {
+          "caller": "shutdown",
+          "callee": "process.cwd",
+          "lineNumber": 683
+        },
+        {
+          "caller": "shutdown",
+          "callee": "clearTimeout",
+          "lineNumber": 684
+        },
+        {
+          "caller": "shutdown",
+          "callee": "fs.rmSync",
+          "lineNumber": 687
+        },
+        {
+          "caller": "shutdown",
+          "callee": "res.end",
+          "lineNumber": 689
+        },
+        {
+          "caller": "shutdown",
+          "callee": "state.sseClients.clear",
+          "lineNumber": 690
+        },
+        {
+          "caller": "shutdown",
+          "callee": "poll.resolve",
+          "lineNumber": 691
+        },
+        {
+          "caller": "shutdown",
+          "callee": "httpServer.close",
+          "lineNumber": 693
+        },
+        {
+          "caller": "shutdown",
+          "callee": "process.exit",
+          "lineNumber": 694
+        }
+      ],
+      "metrics": {
+        "importCount": 4,
+        "exportCount": 0,
+        "functionCount": 19,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/live-session-store.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 254,
+      "nonEmptyLines": 236,
+      "functions": [
+        {
+          "name": "createLiveSessionStore",
+          "startLine": 7,
+          "endLine": 80,
+          "params": []
+        },
+        {
+          "name": "normalizeEvent",
+          "startLine": 82,
+          "endLine": 88,
+          "params": [
+            "event",
+            "fallbackId"
+          ]
+        },
+        {
+          "name": "getJournalPath",
+          "startLine": 90,
+          "endLine": 92,
+          "params": [
+            "rootDir",
+            "id"
+          ]
+        },
+        {
+          "name": "getSnapshotPath",
+          "startLine": 94,
+          "endLine": 96,
+          "params": [
+            "rootDir",
+            "id"
+          ]
+        },
+        {
+          "name": "safeSessionId",
+          "startLine": 98,
+          "endLine": 101,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "baseSnapshot",
+          "startLine": 103,
+          "endLine": 124,
+          "params": [
+            "id"
+          ]
+        },
+        {
+          "name": "rebuildSnapshotFromJournal",
+          "startLine": 126,
+          "endLine": 151,
+          "params": [
+            "journalPath",
+            "id"
+          ]
+        },
+        {
+          "name": "applyEvent",
+          "startLine": 153,
+          "endLine": 238,
+          "params": [
+            "snapshot",
+            "entry"
+          ]
+        },
+        {
+          "name": "toPendingEvent",
+          "startLine": 240,
+          "endLine": 244,
+          "params": [
+            "event"
+          ]
+        },
+        {
+          "name": "upsertArtifact",
+          "startLine": 246,
+          "endLine": 250,
+          "params": [
+            "artifacts",
+            "artifact"
+          ]
+        },
+        {
+          "name": "writeSnapshot",
+          "startLine": 252,
+          "endLine": 254,
+          "params": [
+            "snapshotPath",
+            "snapshot"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "createLiveSessionStore",
+          "line": 7,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "createLiveSessionStore",
+          "callee": "process.cwd",
+          "lineNumber": 7
+        },
+        {
+          "caller": "createLiveSessionStore",
+          "callee": "getLiveSessionsDir",
+          "lineNumber": 8
+        },
+        {
+          "caller": "createLiveSessionStore",
+          "callee": "getLegacyLiveSessionsDir",
+          "lineNumber": 9
+        },
+        {
+          "caller": "createLiveSessionStore",
+          "callee": "fs.mkdirSync",
+          "lineNumber": 10
+        },
+        {
+          "caller": "loadCachedOrRebuild",
+          "callee": "snapshotCache.get",
+          "lineNumber": 14
+        },
+        {
+          "caller": "loadCachedOrRebuild",
+          "callee": "getReadableJournalPath",
+          "lineNumber": 16
+        },
+        {
+          "caller": "loadCachedOrRebuild",
+          "callee": "rebuildSnapshotFromJournal",
+          "lineNumber": 17
+        },
+        {
+          "caller": "loadCachedOrRebuild",
+          "callee": "snapshotCache.set",
+          "lineNumber": 18
+        },
+        {
+          "caller": "getReadableJournalPath",
+          "callee": "getJournalPath",
+          "lineNumber": 23
+        },
+        {
+          "caller": "getReadableJournalPath",
+          "callee": "fs.existsSync",
+          "lineNumber": 24
+        },
+        {
+          "caller": "getReadableJournalPath",
+          "callee": "getJournalPath",
+          "lineNumber": 25
+        },
+        {
+          "caller": "getReadableJournalPath",
+          "callee": "fs.existsSync",
+          "lineNumber": 26
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "normalizeEvent",
+          "lineNumber": 34
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "getJournalPath",
+          "lineNumber": 35
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "getSnapshotPath",
+          "lineNumber": 36
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "getJournalPath",
+          "lineNumber": 37
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "fs.existsSync",
+          "lineNumber": 38
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "fs.existsSync",
+          "lineNumber": 38
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "fs.copyFileSync",
+          "lineNumber": 39
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "loadCachedOrRebuild",
+          "lineNumber": 41
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "new Date().toISOString",
+          "lineNumber": 47
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "fs.appendFileSync",
+          "lineNumber": 50
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "JSON.stringify",
+          "lineNumber": 50
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "applyEvent",
+          "lineNumber": 51
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "snapshotCache.set",
+          "lineNumber": 52
+        },
+        {
+          "caller": "appendEvent",
+          "callee": "writeSnapshot",
+          "lineNumber": 53
+        },
+        {
+          "caller": "getSnapshot",
+          "callee": "getReadableJournalPath",
+          "lineNumber": 58
+        },
+        {
+          "caller": "getSnapshot",
+          "callee": "getSnapshotPath",
+          "lineNumber": 59
+        },
+        {
+          "caller": "getSnapshot",
+          "callee": "rebuildSnapshotFromJournal",
+          "lineNumber": 60
+        },
+        {
+          "caller": "getSnapshot",
+          "callee": "snapshotCache.set",
+          "lineNumber": 61
+        },
+        {
+          "caller": "getSnapshot",
+          "callee": "writeSnapshot",
+          "lineNumber": 62
+        },
+        {
+          "caller": "getSnapshot",
+          "callee": "COMPLETED_PHASES.has",
+          "lineNumber": 63
+        },
+        {
+          "caller": "listActiveSessions",
+          "callee": "fs.existsSync",
+          "lineNumber": 69
+        },
+        {
+          "caller": "listActiveSessions",
+          "callee": "fs.readdirSync",
+          "lineNumber": 70
+        },
+        {
+          "caller": "listActiveSessions",
+          "callee": "name.endsWith",
+          "lineNumber": 71
+        },
+        {
+          "caller": "listActiveSessions",
+          "callee": "ids.add",
+          "lineNumber": 71
+        },
+        {
+          "caller": "listActiveSessions",
+          "callee": "name.slice",
+          "lineNumber": 71
+        },
+        {
+          "caller": "listActiveSessions",
+          "callee": "[...ids]\r\n        .sort()\r\n        .map((id) => this.getSnapshot(id))\r\n        .filter",
+          "lineNumber": 74
+        },
+        {
+          "caller": "listActiveSessions",
+          "callee": "[...ids]\r\n        .sort()\r\n        .map",
+          "lineNumber": 74
+        },
+        {
+          "caller": "listActiveSessions",
+          "callee": "[...ids]\r\n        .sort",
+          "lineNumber": 74
+        },
+        {
+          "caller": "listActiveSessions",
+          "callee": "this.getSnapshot",
+          "lineNumber": 76
+        },
+        {
+          "caller": "getJournalPath",
+          "callee": "path.join",
+          "lineNumber": 91
+        },
+        {
+          "caller": "getJournalPath",
+          "callee": "safeSessionId",
+          "lineNumber": 91
+        },
+        {
+          "caller": "getSnapshotPath",
+          "callee": "path.join",
+          "lineNumber": 95
+        },
+        {
+          "caller": "getSnapshotPath",
+          "callee": "safeSessionId",
+          "lineNumber": 95
+        },
+        {
+          "caller": "safeSessionId",
+          "callee": "/^[A-Za-z0-9_-]{1,128}$/.test",
+          "lineNumber": 99
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "baseSnapshot",
+          "lineNumber": 127
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "fs.existsSync",
+          "lineNumber": 130
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "fs.readFileSync(journalPath, 'utf-8').split",
+          "lineNumber": 132
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "fs.readFileSync",
+          "lineNumber": 132
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "line.trim",
+          "lineNumber": 135
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "JSON.parse",
+          "lineNumber": 137
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "Number.isInteger",
+          "lineNumber": 139
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "Math.max",
+          "lineNumber": 139
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "applyEvent",
+          "lineNumber": 140
+        },
+        {
+          "caller": "rebuildSnapshotFromJournal",
+          "callee": "diagnostics.push",
+          "lineNumber": 142
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "new Date().toISOString",
+          "lineNumber": 161
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "toPendingEvent",
+          "lineNumber": 174
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "upsertArtifact",
+          "lineNumber": 175
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "next.diagnostics.push",
+          "lineNumber": 185
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "next.diagnostics.push",
+          "lineNumber": 201
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "Number",
+          "lineNumber": 207
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "toPendingEvent",
+          "lineNumber": 210
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "toPendingEvent",
+          "lineNumber": 215
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "next.diagnostics.push",
+          "lineNumber": 231
+        },
+        {
+          "caller": "applyEvent",
+          "callee": "next.diagnostics.push",
+          "lineNumber": 234
+        },
+        {
+          "caller": "upsertArtifact",
+          "callee": "artifacts.some",
+          "lineNumber": 247
+        },
+        {
+          "caller": "upsertArtifact",
+          "callee": "artifacts.push",
+          "lineNumber": 248
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "fs.writeFileSync",
+          "lineNumber": 253
+        },
+        {
+          "caller": "writeSnapshot",
+          "callee": "JSON.stringify",
+          "lineNumber": 253
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 1,
+        "functionCount": 11,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/live-status.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 47,
+      "nonEmptyLines": 42,
+      "functions": [
+        {
+          "name": "readServerInfo",
+          "startLine": 9,
+          "endLine": 11,
+          "params": []
+        },
+        {
+          "name": "fetchServerStatus",
+          "startLine": 13,
+          "endLine": 22,
+          "params": [
+            "info"
+          ]
+        },
+        {
+          "name": "statusCli",
+          "startLine": 24,
+          "endLine": 42,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "statusCli",
+          "line": 24,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "readServerInfo",
+          "callee": "readLiveServerInfo",
+          "lineNumber": 10
+        },
+        {
+          "caller": "readServerInfo",
+          "callee": "process.cwd",
+          "lineNumber": 10
+        },
+        {
+          "caller": "fetchServerStatus",
+          "callee": "fetch",
+          "lineNumber": 16
+        },
+        {
+          "caller": "fetchServerStatus",
+          "callee": "res.json",
+          "lineNumber": 18
+        },
+        {
+          "caller": "statusCli",
+          "callee": "readServerInfo",
+          "lineNumber": 25
+        },
+        {
+          "caller": "statusCli",
+          "callee": "fetchServerStatus",
+          "lineNumber": 26
+        },
+        {
+          "caller": "statusCli",
+          "callee": "createLiveSessionStore",
+          "lineNumber": 27
+        },
+        {
+          "caller": "statusCli",
+          "callee": "process.cwd",
+          "lineNumber": 27
+        },
+        {
+          "caller": "statusCli",
+          "callee": "store.listActiveSessions",
+          "lineNumber": 28
+        },
+        {
+          "caller": "statusCli",
+          "callee": "console.log",
+          "lineNumber": 41
+        },
+        {
+          "caller": "statusCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 41
+        }
+      ],
+      "metrics": {
+        "importCount": 2,
+        "exportCount": 1,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/live.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 247,
+      "nonEmptyLines": 218,
+      "functions": [
+        {
+          "name": "liveCli",
+          "startLine": 30,
+          "endLine": 107,
+          "params": []
+        },
+        {
+          "name": "scanForDrift",
+          "startLine": 119,
+          "endLine": 167,
+          "params": [
+            "rootDir",
+            "resolvedFiles",
+            "config"
+          ]
+        },
+        {
+          "name": "globToRegex",
+          "startLine": 174,
+          "endLine": 199,
+          "params": [
+            "pattern"
+          ]
+        },
+        {
+          "name": "runScript",
+          "startLine": 205,
+          "endLine": 214,
+          "params": [
+            "name",
+            "args"
+          ]
+        },
+        {
+          "name": "safeParse",
+          "startLine": 216,
+          "endLine": 218,
+          "params": [
+            "out"
+          ]
+        },
+        {
+          "name": "ensureServerRunning",
+          "startLine": 223,
+          "endLine": 238,
+          "params": []
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "liveCli",
+          "callee": "process.argv.slice",
+          "lineNumber": 31
+        },
+        {
+          "caller": "liveCli",
+          "callee": "args.includes",
+          "lineNumber": 33
+        },
+        {
+          "caller": "liveCli",
+          "callee": "args.includes",
+          "lineNumber": 33
+        },
+        {
+          "caller": "liveCli",
+          "callee": "console.log",
+          "lineNumber": 34
+        },
+        {
+          "caller": "liveCli",
+          "callee": "process.exit",
+          "lineNumber": 52
+        },
+        {
+          "caller": "liveCli",
+          "callee": "runScript",
+          "lineNumber": 56
+        },
+        {
+          "caller": "liveCli",
+          "callee": "safeParse",
+          "lineNumber": 57
+        },
+        {
+          "caller": "liveCli",
+          "callee": "console.log",
+          "lineNumber": 59
+        },
+        {
+          "caller": "liveCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 59
+        },
+        {
+          "caller": "liveCli",
+          "callee": "process.exit",
+          "lineNumber": 60
+        },
+        {
+          "caller": "liveCli",
+          "callee": "ensureServerRunning",
+          "lineNumber": 64
+        },
+        {
+          "caller": "liveCli",
+          "callee": "console.log",
+          "lineNumber": 66
+        },
+        {
+          "caller": "liveCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 66
+        },
+        {
+          "caller": "liveCli",
+          "callee": "process.exit",
+          "lineNumber": 67
+        },
+        {
+          "caller": "liveCli",
+          "callee": "runScript",
+          "lineNumber": 71
+        },
+        {
+          "caller": "liveCli",
+          "callee": "String",
+          "lineNumber": 71
+        },
+        {
+          "caller": "liveCli",
+          "callee": "safeParse",
+          "lineNumber": 72
+        },
+        {
+          "caller": "liveCli",
+          "callee": "console.log",
+          "lineNumber": 74
+        },
+        {
+          "caller": "liveCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 74
+        },
+        {
+          "caller": "liveCli",
+          "callee": "process.exit",
+          "lineNumber": 80
+        },
+        {
+          "caller": "liveCli",
+          "callee": "loadContext",
+          "lineNumber": 84
+        },
+        {
+          "caller": "liveCli",
+          "callee": "process.cwd",
+          "lineNumber": 84
+        },
+        {
+          "caller": "liveCli",
+          "callee": "resolveFiles",
+          "lineNumber": 89
+        },
+        {
+          "caller": "liveCli",
+          "callee": "process.cwd",
+          "lineNumber": 89
+        },
+        {
+          "caller": "liveCli",
+          "callee": "scanForDrift",
+          "lineNumber": 90
+        },
+        {
+          "caller": "liveCli",
+          "callee": "process.cwd",
+          "lineNumber": 90
+        },
+        {
+          "caller": "liveCli",
+          "callee": "console.log",
+          "lineNumber": 93
+        },
+        {
+          "caller": "liveCli",
+          "callee": "JSON.stringify",
+          "lineNumber": 93
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "resolvedFiles.map",
+          "lineNumber": 126
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "f.split(path.sep).join",
+          "lineNumber": 126
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "f.split",
+          "lineNumber": 126
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "(Array.isArray(config.exclude) ? config.exclude : [])\r\n    .map",
+          "lineNumber": 130
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "Array.isArray",
+          "lineNumber": 130
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "globToRegex",
+          "lineNumber": 131
+        },
+        {
+          "caller": "isUserExcluded",
+          "callee": "userExcludeRegexes.some",
+          "lineNumber": 132
+        },
+        {
+          "caller": "isUserExcluded",
+          "callee": "re.test",
+          "lineNumber": 132
+        },
+        {
+          "caller": "walk",
+          "callee": "fs.readdirSync",
+          "lineNumber": 138
+        },
+        {
+          "caller": "walk",
+          "callee": "e.isDirectory",
+          "lineNumber": 142
+        },
+        {
+          "caller": "walk",
+          "callee": "IGNORE_DIRS.has",
+          "lineNumber": 143
+        },
+        {
+          "caller": "walk",
+          "callee": "e.name.startsWith",
+          "lineNumber": 143
+        },
+        {
+          "caller": "walk",
+          "callee": "walk",
+          "lineNumber": 144
+        },
+        {
+          "caller": "walk",
+          "callee": "path.join",
+          "lineNumber": 144
+        },
+        {
+          "caller": "walk",
+          "callee": "e.isFile",
+          "lineNumber": 145
+        },
+        {
+          "caller": "walk",
+          "callee": "e.name.endsWith",
+          "lineNumber": 145
+        },
+        {
+          "caller": "walk",
+          "callee": "resolvedSet.has",
+          "lineNumber": 146
+        },
+        {
+          "caller": "walk",
+          "callee": "isUserExcluded",
+          "lineNumber": 147
+        },
+        {
+          "caller": "walk",
+          "callee": "orphans.push",
+          "lineNumber": 148
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "path.join",
+          "lineNumber": 154
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "fs.existsSync",
+          "lineNumber": 155
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "fs.statSync(abs).isDirectory",
+          "lineNumber": 155
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "fs.statSync",
+          "lineNumber": 155
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "walk",
+          "lineNumber": 156
+        },
+        {
+          "caller": "scanForDrift",
+          "callee": "orphans.slice",
+          "lineNumber": 161
+        },
+        {
+          "caller": "globToRegex",
+          "callee": "/[.+^${}()|[\\]\\\\]/.test",
+          "lineNumber": 190
+        },
+        {
+          "caller": "runScript",
+          "callee": "path.join",
+          "lineNumber": 206
+        },
+        {
+          "caller": "runScript",
+          "callee": "args.map(a => `\"${a}\"`).join",
+          "lineNumber": 207
+        },
+        {
+          "caller": "runScript",
+          "callee": "args.map",
+          "lineNumber": 207
+        },
+        {
+          "caller": "runScript",
+          "callee": "execSync",
+          "lineNumber": 209
+        },
+        {
+          "caller": "runScript",
+          "callee": "process.cwd",
+          "lineNumber": 209
+        },
+        {
+          "caller": "safeParse",
+          "callee": "JSON.parse",
+          "lineNumber": 217
+        },
+        {
+          "caller": "safeParse",
+          "callee": "String(out).trim",
+          "lineNumber": 217
+        },
+        {
+          "caller": "safeParse",
+          "callee": "String",
+          "lineNumber": 217
+        },
+        {
+          "caller": "ensureServerRunning",
+          "callee": "readLiveServerInfo",
+          "lineNumber": 226
+        },
+        {
+          "caller": "ensureServerRunning",
+          "callee": "process.cwd",
+          "lineNumber": 226
+        },
+        {
+          "caller": "ensureServerRunning",
+          "callee": "process.kill",
+          "lineNumber": 229
+        },
+        {
+          "caller": "ensureServerRunning",
+          "callee": "runScript",
+          "lineNumber": 236
+        },
+        {
+          "caller": "ensureServerRunning",
+          "callee": "safeParse",
+          "lineNumber": 237
+        }
+      ],
+      "metrics": {
+        "importCount": 3,
+        "exportCount": 0,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": ".agents/skills/impeccable/scripts/load-context.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 141,
+      "nonEmptyLines": 124,
+      "functions": [
+        {
+          "name": "resolveContextDir",
+          "startLine": 46,
+          "endLine": 72,
+          "params": []
+        },
+        {
+          "name": "loadContext",
+          "startLine": 74,
+          "endLine": 115,
+          "params": []
+        },
+        {
+          "name": "firstExisting",
+          "startLine": 117,
+          "endLine": 123,
+          "params": [
+            "dir",
+            "names"
+          ]
+        },
+        {
+          "name": "safeRead",
+          "startLine": 125,
+          "endLine": 127,
+          "params": [
+            "p"
+          ]
+        },
+        {
+          "name": "cli",
+          "startLine": 133,
+          "endLine": 136,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "resolveContextDir",
+          "line": 46,
+          "isDefault": false
+        },
+        {
+          "name": "loadContext",
+          "line": 74,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "resolveContextDir",
+          "callee": "process.cwd",
+          "lineNumber": 46
+        },
+        {
+          "caller": "resolveContextDir",
+          "callee": "envDir.trim",
+          "lineNumber": 49
+        },
+        {
+          "caller": "resolveContextDir",
+          "callee": "envDir.trim",
+          "lineNumber": 50
+        },
+        {
+          "caller": "resolveContextDir",
+          "callee": "path.isAbsolute",
+          "lineNumber": 51
+        },
+        {
+          "caller": "resolveContextDir",
+          "callee": "path.resolve",
+          "lineNumber": 51
+        },
+        {
+          "caller": "resolveContextDir",
+          "callee": "firstExisting",
+          "lineNumber": 56
+        },
+        {
+          "caller": "resolveContextDir",
+          "callee": "path.resolve",
+          "lineNumber": 63
+        },
+        {
+          "caller": "resolveContextDir",
+          "callee": "firstExisting",
+          "lineNumber": 64
+        },
+        {
+          "caller": "loadContext",
+          "callee": "process.cwd",
+          "lineNumber": 74
+        },
+        {
+          "caller": "loadContext",
+          "callee": "resolveContextDir",
+          "lineNumber": 76
+        },
+        {
+          "caller": "loadContext",
+          "callee": "firstExisting",
+          "lineNumber": 79
+        },
+        {
+          "caller": "loadContext",
+          "callee": "firstExisting",
+          "lineNumber": 85
+        },
+        {
+          "caller": "loadContext",
+          "callee": "path.join",
+          "lineNumber": 87
+        },
+        {
+          "caller": "loadContext",
+          "callee": "fs.renameSync",
+          "lineNumber": 89
+        },
+        {
+          "caller": "loadContext",
+          "callee": "firstExisting",
+          "lineNumber": 100
+        },
+        {
+          "caller": "loadContext",
+          "callee": "safeRead",
+          "lineNumber": 102
+        },
+        {
+          "caller": "loadContext",
+          "callee": "safeRead",
+          "lineNumber": 103
+        },
+        {
+          "caller": "loadContext",
+          "callee": "path.relative",
+          "lineNumber": 108
+        },
+        {
+          "caller": "loadContext",
+          "callee": "path.relative",
+          "lineNumber": 111
+        },
+        {
+          "caller": "firstExisting",
+          "callee": "path.join",
+          "lineNumber": 119
+        },
+        {
+          "caller": "firstExisting",
+          "callee": "fs.existsSync",
+          "lineNumber": 120
+        },
+        {
+          "caller": "safeRead",
+          "callee": "fs.readFileSync",
+          "lineNumber": 126
+        },
+        {
+          "caller": "cli",
+          "callee": "loadContext",
+          "lineNumber": 134
+        },
+        {
+          "caller": "cli",
+          "callee": "process.cwd",
+          "lineNumber": 134
+        },
+        {
+          "caller": "cli",
+          "callee": "console.log",
+          "lineNumber": 135
+        },
+        {
+          "caller": "cli",
+          "callee": "JSON.stringify",
+          "lineNumber": 135
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    }
+  ]
+}

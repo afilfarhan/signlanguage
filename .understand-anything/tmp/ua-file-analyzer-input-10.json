@@ -1,0 +1,71 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "ml/models/dynamic_eval_report.md",
+                           "language":  "markdown",
+                           "sizeLines":  79,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "ml/models/dynamic_labels.json",
+                           "language":  "json",
+                           "sizeLines":  13,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "ml/models/dynamic_robustness_report.md",
+                           "language":  "markdown",
+                           "sizeLines":  41,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "ml/models/dynamic_robustness_report_AFTER.md",
+                           "language":  "markdown",
+                           "sizeLines":  41,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "ml/models/dynamic_robustness_report_BEFORE.md",
+                           "language":  "markdown",
+                           "sizeLines":  41,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "ml/models/eval_report.md",
+                           "language":  "markdown",
+                           "sizeLines":  116,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "ml/models/eval_report_v2.md",
+                           "language":  "markdown",
+                           "sizeLines":  130,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "ml/models/jz_eval_report.md",
+                           "language":  "markdown",
+                           "sizeLines":  35,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "ml/models/jz_labels.json",
+                           "language":  "json",
+                           "sizeLines":  8,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "ml/models/labels.json",
+                           "language":  "json",
+                           "sizeLines":  56,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "ml/models/labels_v2.json",
+                           "language":  "json",
+                           "sizeLines":  73,
+                           "fileCategory":  "config"
+                       }
+                   ]
+}

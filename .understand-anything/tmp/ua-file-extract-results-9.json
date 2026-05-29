@@ -1,0 +1,527 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 8,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "BUILD_PROMPT.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 237,
+      "nonEmptyLines": 196,
+      "sections": [
+        {
+          "heading": "Build Prompt — SignTutor Website (from this repo)",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Role & objective",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "What already exists (read these first)",
+          "level": 2,
+          "line": 26
+        },
+        {
+          "heading": "Tech stack",
+          "level": 2,
+          "line": 45
+        },
+        {
+          "heading": "Hard requirements (do not violate)",
+          "level": 2,
+          "line": 70
+        },
+        {
+          "heading": "Pages & routes to ship in v1",
+          "level": 2,
+          "line": 106
+        },
+        {
+          "heading": "Architectural decisions to preserve",
+          "level": 2,
+          "line": 125
+        },
+        {
+          "heading": "Acceptance criteria (run before declaring done)",
+          "level": 2,
+          "line": 161
+        },
+        {
+          "heading": "Definition of done — checklist",
+          "level": 2,
+          "line": 197
+        },
+        {
+          "heading": "Stretch goals (only if all of the above is done and green)",
+          "level": 2,
+          "line": 210
+        },
+        {
+          "heading": "Notes for the agent",
+          "level": 2,
+          "line": 223
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 11
+      }
+    },
+    {
+      "path": "BUILD_PROMPT_ML_EXTENSION.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 437,
+      "nonEmptyLines": 360,
+      "sections": [
+        {
+          "heading": "Build Prompt — SignTutor v2 (ML Extension)",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Context — what's already done (v1, shipped)",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "v2 objectives (in priority order)",
+          "level": 2,
+          "line": 32
+        },
+        {
+          "heading": "What already exists — read these first",
+          "level": 2,
+          "line": 61
+        },
+        {
+          "heading": "Workstreams",
+          "level": 2,
+          "line": 75
+        },
+        {
+          "heading": "W1 — Real data (foundation; everything else depends on this)",
+          "level": 3,
+          "line": 80
+        },
+        {
+          "heading": "W2 — J and Z motion letters",
+          "level": 3,
+          "line": 125
+        },
+        {
+          "heading": "W3 — Vocabulary scale-out (8 → 200 dynamic signs)",
+          "level": 3,
+          "line": 146
+        },
+        {
+          "heading": "W4 — Non-manual marker (NMM) scoring",
+          "level": 3,
+          "line": 175
+        },
+        {
+          "heading": "W5 — On-device personalization",
+          "level": 3,
+          "line": 209
+        },
+        {
+          "heading": "W6 — Confidence calibration",
+          "level": 3,
+          "line": 247
+        },
+        {
+          "heading": "W7 — Multi-language goes live",
+          "level": 3,
+          "line": 265
+        },
+        {
+          "heading": "W8 — Continuous-sign research preview",
+          "level": 3,
+          "line": 287
+        },
+        {
+          "heading": "Hard requirements (preserved from v1, plus new)",
+          "level": 2,
+          "line": 315
+        },
+        {
+          "heading": "New architectural decisions to make (and document)",
+          "level": 2,
+          "line": 349
+        },
+        {
+          "heading": "Acceptance criteria (run before declaring done)",
+          "level": 2,
+          "line": 366
+        },
+        {
+          "heading": "Definition of done — checklist",
+          "level": 2,
+          "line": 395
+        },
+        {
+          "heading": "Notes for the agent",
+          "level": 2,
+          "line": 413
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 18
+      }
+    },
+    {
+      "path": "README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 79,
+      "nonEmptyLines": 58,
+      "sections": [
+        {
+          "heading": "SignTutor",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Quick start",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "Available commands",
+          "level": 2,
+          "line": 20
+        },
+        {
+          "heading": "Testing",
+          "level": 2,
+          "line": 33
+        },
+        {
+          "heading": "Deployment",
+          "level": 2,
+          "line": 42
+        },
+        {
+          "heading": "Project structure",
+          "level": 2,
+          "line": 55
+        },
+        {
+          "heading": "Privacy",
+          "level": 2,
+          "line": 67
+        },
+        {
+          "heading": "License",
+          "level": 2,
+          "line": 75
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "package.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 24,
+      "nonEmptyLines": 24,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "description",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "main",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "scripts",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "repository",
+          "level": 1,
+          "line": 9
+        },
+        {
+          "heading": "keywords",
+          "level": 1,
+          "line": 13
+        },
+        {
+          "heading": "author",
+          "level": 1,
+          "line": 14
+        },
+        {
+          "heading": "license",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "type",
+          "level": 1,
+          "line": 10
+        },
+        {
+          "heading": "bugs",
+          "level": 1,
+          "line": 17
+        },
+        {
+          "heading": "homepage",
+          "level": 1,
+          "line": 20
+        },
+        {
+          "heading": "dependencies",
+          "level": 1,
+          "line": 21
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 13
+      }
+    },
+    {
+      "path": "requirements.txt",
+      "language": "txt",
+      "fileCategory": "docs",
+      "totalLines": 28,
+      "nonEmptyLines": 23,
+      "metrics": {}
+    },
+    {
+      "path": "signtutor-redesign-prompt.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 430,
+      "nonEmptyLines": 329,
+      "sections": [
+        {
+          "heading": "SignTutor — Complete Redesign Build Prompt",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Project Overview",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Aesthetic Direction: \"Bioluminescent Studio\"",
+          "level": 2,
+          "line": 11
+        },
+        {
+          "heading": "Design Tokens",
+          "level": 3,
+          "line": 17
+        },
+        {
+          "heading": "Global UI Components",
+          "level": 2,
+          "line": 67
+        },
+        {
+          "heading": "Navbar",
+          "level": 3,
+          "line": 69
+        },
+        {
+          "heading": "Cards (base component)",
+          "level": 3,
+          "line": 77
+        },
+        {
+          "heading": "Category Badges",
+          "level": 3,
+          "line": 85
+        },
+        {
+          "heading": "Buttons",
+          "level": 3,
+          "line": 95
+        },
+        {
+          "heading": "Page-by-Page Redesign Specs",
+          "level": 2,
+          "line": 103
+        },
+        {
+          "heading": "1. HOME PAGE (`/`)",
+          "level": 3,
+          "line": 107
+        },
+        {
+          "heading": "2. ABOUT PAGE (`/about`)",
+          "level": 3,
+          "line": 136
+        },
+        {
+          "heading": "3. LEARN PAGE (`/learn`)",
+          "level": 3,
+          "line": 169
+        },
+        {
+          "heading": "4. FINGERSPELLING PAGE (`/fingerspelling`)",
+          "level": 3,
+          "line": 185
+        },
+        {
+          "heading": "5 & 6. LETTER PRACTICE PAGES (`/fingerspelling/[letter]`)",
+          "level": 3,
+          "line": 203
+        },
+        {
+          "heading": "7. SETTINGS PAGE (`/setup/settings`)",
+          "level": 3,
+          "line": 247
+        },
+        {
+          "heading": "8. WORDS PAGE (`/words`)",
+          "level": 3,
+          "line": 276
+        },
+        {
+          "heading": "9. PRACTICE PAGE (`/practice`)",
+          "level": 3,
+          "line": 294
+        },
+        {
+          "heading": "10. SETUP WIZARD (`/setup`)",
+          "level": 3,
+          "line": 328
+        },
+        {
+          "heading": "Animations & Motion System",
+          "level": 2,
+          "line": 363
+        },
+        {
+          "heading": "Page transitions",
+          "level": 3,
+          "line": 365
+        },
+        {
+          "heading": "Micro-interactions",
+          "level": 3,
+          "line": 368
+        },
+        {
+          "heading": "Reduced motion",
+          "level": 3,
+          "line": 377
+        },
+        {
+          "heading": "Responsive Breakpoints",
+          "level": 2,
+          "line": 382
+        },
+        {
+          "heading": "Accessibility (WCAG 2.2 AA — preserve and improve)",
+          "level": 2,
+          "line": 400
+        },
+        {
+          "heading": "What NOT to Change",
+          "level": 2,
+          "line": 412
+        },
+        {
+          "heading": "Deliverables Expected",
+          "level": 2,
+          "line": 423
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 27
+      }
+    },
+    {
+      "path": "skills-lock.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 11,
+      "nonEmptyLines": 11,
+      "sections": [
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "skills",
+          "level": 1,
+          "line": 3
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "vercel.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 3,
+      "nonEmptyLines": 3,
+      "sections": [
+        {
+          "heading": "rootDirectory",
+          "level": 1,
+          "line": 2
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 1
+      }
+    }
+  ]
+}

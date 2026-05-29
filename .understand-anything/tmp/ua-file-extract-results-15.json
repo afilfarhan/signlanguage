@@ -1,0 +1,476 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 9,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "signtutor/docs/ADR-002-dataset-choice.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 23,
+      "nonEmptyLines": 18,
+      "sections": [
+        {
+          "heading": "ADR-002: Dataset Choice, Licence Stance, and Signer Demographics Analysis",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Status",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Context",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Decision",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Rejected Alternatives",
+          "level": 2,
+          "line": 16
+        },
+        {
+          "heading": "Consequences",
+          "level": 2,
+          "line": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/docs/ADR-003-signer-disjoint-splits.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 21,
+      "nonEmptyLines": 16,
+      "sections": [
+        {
+          "heading": "ADR-003: Signer-Disjoint Split Strategy and CI Audit",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Status",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Context",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Decision",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Rejected Alternatives",
+          "level": 2,
+          "line": 15
+        },
+        {
+          "heading": "Consequences",
+          "level": 2,
+          "line": 19
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/docs/ADR-004-calibration.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 23,
+      "nonEmptyLines": 18,
+      "sections": [
+        {
+          "heading": "ADR-004: Calibration Method — Temperature Scaling vs. Platt vs. Isotonic Regression",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Status",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Context",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Decision",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Rejected Alternatives",
+          "level": 2,
+          "line": 16
+        },
+        {
+          "heading": "Consequences",
+          "level": 2,
+          "line": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/docs/ADR-005-personalization.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 27,
+      "nonEmptyLines": 22,
+      "sections": [
+        {
+          "heading": "ADR-005: PersonalAdapter — Encoder Embedding Format, Adapter Shape, and Storage Schema",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Status",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Context",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Decision",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Rejected Alternatives",
+          "level": 2,
+          "line": 19
+        },
+        {
+          "heading": "Consequences",
+          "level": 2,
+          "line": 24
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/docs/ADR-006-nmm-fusion.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 25,
+      "nonEmptyLines": 20,
+      "sections": [
+        {
+          "heading": "ADR-006: Holistic vs. Hands+Face Fusion and NMM Feature Strategy",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Status",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Context",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Decision",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Rejected Alternatives",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "Consequences",
+          "level": 2,
+          "line": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/docs/ADR-007-continuous-slr.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 23,
+      "nonEmptyLines": 18,
+      "sections": [
+        {
+          "heading": "ADR-007: CTC vs. Transformer-Decoder for Continuous SLR",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Status",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Context",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Decision",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Rejected Alternatives",
+          "level": 2,
+          "line": 16
+        },
+        {
+          "heading": "Consequences",
+          "level": 2,
+          "line": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/docs/ADR-008-language-bundles.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 22,
+      "nonEmptyLines": 17,
+      "sections": [
+        {
+          "heading": "ADR-008: Per-Language Model Bundle Layout and Lazy-Loading Strategy",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Status",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Context",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Decision",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Rejected Alternatives",
+          "level": 2,
+          "line": 15
+        },
+        {
+          "heading": "Consequences",
+          "level": 2,
+          "line": 19
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/docs/ADR-009-reference-media.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 25,
+      "nonEmptyLines": 19,
+      "sections": [
+        {
+          "heading": "ADR-009: Sign Reference Media Hosting: Bundled vs. CDN vs. On-Demand Fetch",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Status",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Context",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Decision",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Rejected Alternatives",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "Consequences",
+          "level": 2,
+          "line": 22
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/docs/ARCHITECTURE.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 171,
+      "nonEmptyLines": 130,
+      "sections": [
+        {
+          "heading": "SignTutor Architecture",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Stack",
+          "level": 2,
+          "line": 8
+        },
+        {
+          "heading": "Directory layout (what lives where)",
+          "level": 2,
+          "line": 22
+        },
+        {
+          "heading": "The eight architectural decisions (ALL preserved)",
+          "level": 2,
+          "line": 36
+        },
+        {
+          "heading": "1. Hybrid ML + rule classifier",
+          "level": 3,
+          "line": 38
+        },
+        {
+          "heading": "2. Auto-fallback to rule mode",
+          "level": 3,
+          "line": 49
+        },
+        {
+          "heading": "3. Collision-aware verdict",
+          "level": 3,
+          "line": 55
+        },
+        {
+          "heading": "4. Dynamic-sign feature pipeline anchors on the *first frame*",
+          "level": 3,
+          "line": 63
+        },
+        {
+          "heading": "5. `--rotation-aug` is required at training time",
+          "level": 3,
+          "line": 71
+        },
+        {
+          "heading": "6. Lesson-time lighting check stays on-device",
+          "level": 3,
+          "line": 77
+        },
+        {
+          "heading": "7. Latency HUD shows MediaPipe and classifier separately",
+          "level": 3,
+          "line": 83
+        },
+        {
+          "heading": "8. Mirror the webcam by default",
+          "level": 3,
+          "line": 89
+        },
+        {
+          "heading": "Data flow (static player)",
+          "level": 2,
+          "line": 97
+        },
+        {
+          "heading": "Data flow (dynamic player)",
+          "level": 2,
+          "line": 121
+        },
+        {
+          "heading": "Privacy model",
+          "level": 2,
+          "line": 140
+        },
+        {
+          "heading": "CI / CD gates",
+          "level": 2,
+          "line": 151
+        },
+        {
+          "heading": "Environment variables",
+          "level": 2,
+          "line": 167
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 17
+      }
+    }
+  ]
+}

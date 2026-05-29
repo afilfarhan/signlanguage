@@ -1,0 +1,35 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "signtutor/public/models/dynamic_labels.json",
+                           "language":  "json",
+                           "sizeLines":  13,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "signtutor/public/models/jz_labels.json",
+                           "language":  "json",
+                           "sizeLines":  8,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "signtutor/public/models/labels.json",
+                           "language":  "json",
+                           "sizeLines":  56,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "signtutor/public/models/labels_v2.json",
+                           "language":  "json",
+                           "sizeLines":  84,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "signtutor/public/models/parity_samples.json",
+                           "language":  "json",
+                           "sizeLines":  591,
+                           "fileCategory":  "config"
+                       }
+                   ]
+}

@@ -1,0 +1,1895 @@
+{
+    "estimatedComplexity":  "large",
+    "description":  "A browser-based, vision-driven sign language learning platform with on-device inference.",
+    "importMap":  {
+                      ".agents/skills/impeccable/agents/impeccable-asset-producer.md":  [
+
+                                                                                        ],
+                      ".agents/skills/impeccable/reference/adapt.md":  [
+
+                                                                       ],
+                      ".agents/skills/impeccable/reference/animate.md":  [
+
+                                                                         ],
+                      ".agents/skills/impeccable/reference/audit.md":  [
+
+                                                                       ],
+                      ".agents/skills/impeccable/reference/bolder.md":  [
+
+                                                                        ],
+                      ".agents/skills/impeccable/reference/brand.md":  [
+
+                                                                       ],
+                      ".agents/skills/impeccable/reference/clarify.md":  [
+
+                                                                         ],
+                      ".agents/skills/impeccable/reference/codex.md":  [
+
+                                                                       ],
+                      ".agents/skills/impeccable/reference/cognitive-load.md":  [
+
+                                                                                ],
+                      ".agents/skills/impeccable/reference/color-and-contrast.md":  [
+
+                                                                                    ],
+                      ".agents/skills/impeccable/reference/colorize.md":  [
+
+                                                                          ],
+                      ".agents/skills/impeccable/reference/craft.md":  [
+
+                                                                       ],
+                      ".agents/skills/impeccable/reference/critique.md":  [
+
+                                                                          ],
+                      ".agents/skills/impeccable/reference/delight.md":  [
+
+                                                                         ],
+                      ".agents/skills/impeccable/reference/distill.md":  [
+
+                                                                         ],
+                      ".agents/skills/impeccable/reference/document.md":  [
+
+                                                                          ],
+                      ".agents/skills/impeccable/reference/extract.md":  [
+
+                                                                         ],
+                      ".agents/skills/impeccable/reference/harden.md":  [
+
+                                                                        ],
+                      ".agents/skills/impeccable/reference/heuristics-scoring.md":  [
+
+                                                                                    ],
+                      ".agents/skills/impeccable/reference/interaction-design.md":  [
+
+                                                                                    ],
+                      ".agents/skills/impeccable/reference/layout.md":  [
+
+                                                                        ],
+                      ".agents/skills/impeccable/reference/live.md":  [
+
+                                                                      ],
+                      ".agents/skills/impeccable/reference/motion-design.md":  [
+
+                                                                               ],
+                      ".agents/skills/impeccable/reference/onboard.md":  [
+
+                                                                         ],
+                      ".agents/skills/impeccable/reference/optimize.md":  [
+
+                                                                          ],
+                      ".agents/skills/impeccable/reference/overdrive.md":  [
+
+                                                                           ],
+                      ".agents/skills/impeccable/reference/personas.md":  [
+
+                                                                          ],
+                      ".agents/skills/impeccable/reference/polish.md":  [
+
+                                                                        ],
+                      ".agents/skills/impeccable/reference/product.md":  [
+
+                                                                         ],
+                      ".agents/skills/impeccable/reference/quieter.md":  [
+
+                                                                         ],
+                      ".agents/skills/impeccable/reference/responsive-design.md":  [
+
+                                                                                   ],
+                      ".agents/skills/impeccable/reference/shape.md":  [
+
+                                                                       ],
+                      ".agents/skills/impeccable/reference/spatial-design.md":  [
+
+                                                                                ],
+                      ".agents/skills/impeccable/reference/teach.md":  [
+
+                                                                       ],
+                      ".agents/skills/impeccable/reference/typeset.md":  [
+
+                                                                         ],
+                      ".agents/skills/impeccable/reference/typography.md":  [
+
+                                                                            ],
+                      ".agents/skills/impeccable/reference/ux-writing.md":  [
+
+                                                                            ],
+                      ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs":  [
+
+                                                                                   ],
+                      ".agents/skills/impeccable/scripts/command-metadata.json":  [
+
+                                                                                  ],
+                      ".agents/skills/impeccable/scripts/critique-storage.mjs":  [
+                                                                                     ".agents/skills/impeccable/scripts/impeccable-paths.mjs"
+                                                                                 ],
+                      ".agents/skills/impeccable/scripts/design-parser.mjs":  [
+
+                                                                              ],
+                      ".agents/skills/impeccable/scripts/detect-csp.mjs":  [
+
+                                                                           ],
+                      ".agents/skills/impeccable/scripts/detect.mjs":  [
+
+                                                                       ],
+                      ".agents/skills/impeccable/scripts/impeccable-paths.mjs":  [
+
+                                                                                 ],
+                      ".agents/skills/impeccable/scripts/is-generated.mjs":  [
+
+                                                                             ],
+                      ".agents/skills/impeccable/scripts/live-accept.mjs":  [
+                                                                                ".agents/skills/impeccable/scripts/is-generated.mjs"
+                                                                            ],
+                      ".agents/skills/impeccable/scripts/live-browser-session.js":  [
+
+                                                                                    ],
+                      ".agents/skills/impeccable/scripts/live-browser.js":  [
+
+                                                                            ],
+                      ".agents/skills/impeccable/scripts/live-complete.mjs":  [
+                                                                                  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                                                                                  ".agents/skills/impeccable/scripts/live-session-store.mjs"
+                                                                              ],
+                      ".agents/skills/impeccable/scripts/live-completion.mjs":  [
+
+                                                                                ],
+                      ".agents/skills/impeccable/scripts/live-inject.mjs":  [
+                                                                                ".agents/skills/impeccable/scripts/impeccable-paths.mjs"
+                                                                            ],
+                      ".agents/skills/impeccable/scripts/live-poll.mjs":  [
+                                                                              ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                                                                              ".agents/skills/impeccable/scripts/live-completion.mjs"
+                                                                          ],
+                      ".agents/skills/impeccable/scripts/live-resume.mjs":  [
+                                                                                ".agents/skills/impeccable/scripts/live-session-store.mjs"
+                                                                            ],
+                      ".agents/skills/impeccable/scripts/live-server.mjs":  [
+                                                                                ".agents/skills/impeccable/scripts/design-parser.mjs",
+                                                                                ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                                                                                ".agents/skills/impeccable/scripts/live-session-store.mjs",
+                                                                                ".agents/skills/impeccable/scripts/load-context.mjs"
+                                                                            ],
+                      ".agents/skills/impeccable/scripts/live-session-store.mjs":  [
+                                                                                       ".agents/skills/impeccable/scripts/impeccable-paths.mjs"
+                                                                                   ],
+                      ".agents/skills/impeccable/scripts/live-status.mjs":  [
+                                                                                ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                                                                                ".agents/skills/impeccable/scripts/live-session-store.mjs"
+                                                                            ],
+                      ".agents/skills/impeccable/scripts/live-wrap.mjs":  [
+                                                                              ".agents/skills/impeccable/scripts/is-generated.mjs"
+                                                                          ],
+                      ".agents/skills/impeccable/scripts/live.mjs":  [
+                                                                         ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                                                                         ".agents/skills/impeccable/scripts/live-inject.mjs",
+                                                                         ".agents/skills/impeccable/scripts/load-context.mjs"
+                                                                     ],
+                      ".agents/skills/impeccable/scripts/load-context.mjs":  [
+
+                                                                             ],
+                      ".agents/skills/impeccable/scripts/modern-screenshot.umd.js":  [
+
+                                                                                     ],
+                      ".agents/skills/impeccable/scripts/pin.mjs":  [
+
+                                                                    ],
+                      ".agents/skills/impeccable/SKILL.md":  [
+
+                                                             ],
+                      ".github/workflows/ml-gate.yml":  [
+
+                                                        ],
+                      ".understand-anything/.understandignore":  [
+
+                                                                 ],
+                      ".understand-anything/config.json":  [
+
+                                                           ],
+                      ".understand-anything/knowledge-graph.json":  [
+
+                                                                    ],
+                      ".vercelignore":  [
+
+                                        ],
+                      "BUILD_PROMPT_ML_EXTENSION.md":  [
+
+                                                       ],
+                      "BUILD_PROMPT.md":  [
+
+                                          ],
+                      "ci/check_nfr.py":  [
+
+                                          ],
+                      "ci/run_parity.mjs":  [
+
+                                            ],
+                      "generate-asl-svgs.js":  [
+
+                                               ],
+                      "ml/data/__init__.py":  [
+
+                                              ],
+                      "ml/data/chicago_fs.py":  [
+
+                                                ],
+                      "ml/data/in_house.py":  [
+
+                                              ],
+                      "ml/data/LICENSES.md":  [
+
+                                              ],
+                      "ml/data/msasl.py":  [
+
+                                           ],
+                      "ml/data/wlasl.py":  [
+
+                                           ],
+                      "ml/eval_robustness.py":  [
+                                                    "ml/seq_features.py",
+                                                    "ml/synth_sequences.py"
+                                                ],
+                      "ml/features.py":  [
+
+                                         ],
+                      "ml/hand_gesture_detector.py":  [
+
+                                                      ],
+                      "ml/models/dynamic_eval_report.md":  [
+
+                                                           ],
+                      "ml/models/dynamic_labels.json":  [
+
+                                                        ],
+                      "ml/models/dynamic_robustness_report_AFTER.md":  [
+
+                                                                       ],
+                      "ml/models/dynamic_robustness_report_BEFORE.md":  [
+
+                                                                        ],
+                      "ml/models/dynamic_robustness_report.md":  [
+
+                                                                 ],
+                      "ml/models/dynamic_signs_transformer_AFTER.onnx":  [
+
+                                                                         ],
+                      "ml/models/dynamic_signs_transformer_BEFORE.onnx":  [
+
+                                                                          ],
+                      "ml/models/dynamic_signs_transformer.onnx":  [
+
+                                                                   ],
+                      "ml/models/eval_report_v2.md":  [
+
+                                                      ],
+                      "ml/models/eval_report.md":  [
+
+                                                   ],
+                      "ml/models/fingerspell_mlp_v2.onnx":  [
+
+                                                            ],
+                      "ml/models/fingerspell_mlp.onnx":  [
+
+                                                         ],
+                      "ml/models/jz_classifier.onnx":  [
+
+                                                       ],
+                      "ml/models/jz_classifier.onnx.data":  [
+
+                                                            ],
+                      "ml/models/jz_eval_report.md":  [
+
+                                                      ],
+                      "ml/models/jz_labels.json":  [
+
+                                                   ],
+                      "ml/models/labels_v2.json":  [
+
+                                                   ],
+                      "ml/models/labels.json":  [
+
+                                                ],
+                      "ml/ROBUSTNESS_GATE_DEMO.md":  [
+
+                                                     ],
+                      "ml/seq_features.py":  [
+
+                                             ],
+                      "ml/synth_jz_sequences.py":  [
+
+                                                   ],
+                      "ml/synth_landmarks.py":  [
+
+                                                ],
+                      "ml/synth_sequences.py":  [
+
+                                                ],
+                      "ml/train_export_v2.py":  [
+                                                    "ml/synth_landmarks.py"
+                                                ],
+                      "ml/train_export.py":  [
+                                                 "ml/features.py",
+                                                 "ml/synth_landmarks.py"
+                                             ],
+                      "ml/train_jz_classifier.py":  [
+                                                        "ml/seq_features.py",
+                                                        "ml/synth_jz_sequences.py"
+                                                    ],
+                      "ml/train_transformer_v2.py":  [
+                                                         "ml/seq_features.py"
+                                                     ],
+                      "ml/train_transformer.py":  [
+                                                      "ml/seq_features.py",
+                                                      "ml/synth_sequences.py"
+                                                  ],
+                      "package.json":  [
+
+                                       ],
+                      "pdr-review/01-PDR-Review.md":  [
+
+                                                      ],
+                      "pdr-review/02-PDR-v2-Refined.md":  [
+
+                                                          ],
+                      "pdr-review/03-PDR-summary.html":  [
+
+                                                         ],
+                      "pdr-review/04-Epics-and-Stories.md":  [
+
+                                                             ],
+                      "prototype/dynamic.html":  [
+
+                                                 ],
+                      "prototype/educator.html":  [
+
+                                                  ],
+                      "prototype/home.html":  [
+
+                                              ],
+                      "prototype/index.html":  [
+
+                                               ],
+                      "prototype/models/dynamic_labels.json":  [
+
+                                                               ],
+                      "prototype/models/dynamic_signs_transformer.onnx":  [
+
+                                                                          ],
+                      "prototype/models/fingerspell_mlp.onnx":  [
+
+                                                                ],
+                      "prototype/models/labels.json":  [
+
+                                                       ],
+                      "prototype/models/parity_samples.json":  [
+
+                                                               ],
+                      "prototype/README.md":  [
+
+                                              ],
+                      "prototype/wizard.html":  [
+
+                                                ],
+                      "README.md":  [
+
+                                    ],
+                      "requirements.txt":  [
+
+                                           ],
+                      "screenshot-test.js":  [
+
+                                             ],
+                      "screenshot.js":  [
+
+                                        ],
+                      "signtutor-redesign-prompt.md":  [
+
+                                                       ],
+                      "signtutor/__tests__/curriculum-v2.test.ts":  [
+                                                                        "signtutor/src/lib/curriculum-v2.ts"
+                                                                    ],
+                      "signtutor/__tests__/lib.test.ts":  [
+                                                              "signtutor/src/lib/normalize.ts",
+                                                              "signtutor/src/lib/seq-features.ts"
+                                                          ],
+                      "signtutor/__tests__/parity.test.ts":  [
+                                                                 "signtutor/src/lib/normalize.ts"
+                                                             ],
+                      "signtutor/__tests__/privacy.test.ts":  [
+
+                                                              ],
+                      "signtutor/.github/workflows/ml-gate.yml":  [
+
+                                                                  ],
+                      "signtutor/ci/check_ece.py":  [
+
+                                                    ],
+                      "signtutor/ci/check_licenses.py":  [
+
+                                                         ],
+                      "signtutor/ci/check_signer_disjoint.py":  [
+
+                                                                ],
+                      "signtutor/DESIGN.md":  [
+
+                                              ],
+                      "signtutor/docs/ADR-002-dataset-choice.md":  [
+
+                                                                   ],
+                      "signtutor/docs/ADR-003-signer-disjoint-splits.md":  [
+
+                                                                           ],
+                      "signtutor/docs/ADR-004-calibration.md":  [
+
+                                                                ],
+                      "signtutor/docs/ADR-005-personalization.md":  [
+
+                                                                    ],
+                      "signtutor/docs/ADR-006-nmm-fusion.md":  [
+
+                                                               ],
+                      "signtutor/docs/ADR-007-continuous-slr.md":  [
+
+                                                                   ],
+                      "signtutor/docs/ADR-008-language-bundles.md":  [
+
+                                                                     ],
+                      "signtutor/docs/ADR-009-reference-media.md":  [
+
+                                                                    ],
+                      "signtutor/docs/ARCHITECTURE.md":  [
+
+                                                         ],
+                      "signtutor/e2e/dynamic-lesson.spec.ts":  [
+
+                                                               ],
+                      "signtutor/e2e/static-lesson.spec.ts":  [
+
+                                                              ],
+                      "signtutor/eslint.config.mjs":  [
+
+                                                      ],
+                      "signtutor/IMPLEMENTATION_STATUS.md":  [
+
+                                                             ],
+                      "signtutor/ml/data/LICENSES.md":  [
+
+                                                        ],
+                      "signtutor/next.config.ts":  [
+
+                                                   ],
+                      "signtutor/package.json":  [
+
+                                                 ],
+                      "signtutor/playwright.config.ts":  [
+
+                                                         ],
+                      "signtutor/pnpm-workspace.yaml":  [
+
+                                                        ],
+                      "signtutor/postcss.config.mjs":  [
+
+                                                       ],
+                      "signtutor/PRODUCT.md":  [
+
+                                               ],
+                      "signtutor/public/models/dynamic_labels.json":  [
+
+                                                                      ],
+                      "signtutor/public/models/dynamic_signs_transformer.onnx":  [
+
+                                                                                 ],
+                      "signtutor/public/models/fingerspell_mlp_v2.onnx":  [
+
+                                                                          ],
+                      "signtutor/public/models/fingerspell_mlp.onnx":  [
+
+                                                                       ],
+                      "signtutor/public/models/jz_classifier.onnx":  [
+
+                                                                     ],
+                      "signtutor/public/models/jz_labels.json":  [
+
+                                                                 ],
+                      "signtutor/public/models/labels_v2.json":  [
+
+                                                                 ],
+                      "signtutor/public/models/labels.json":  [
+
+                                                              ],
+                      "signtutor/public/models/parity_samples.json":  [
+
+                                                                      ],
+                      "signtutor/README.md":  [
+
+                                              ],
+                      "signtutor/signtutor/data/REFERENCE_LICENSES.md":  [
+
+                                                                         ],
+                      "signtutor/src/app/about/page.tsx":  [
+
+                                                           ],
+                      "signtutor/src/app/globals.css":  [
+
+                                                        ],
+                      "signtutor/src/app/layout.tsx":  [
+                                                           "signtutor/src/app/globals.css",
+                                                           "signtutor/src/components/Header.tsx"
+                                                       ],
+                      "signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx":  [
+                                                                                           "signtutor/src/lib/curriculum.ts",
+                                                                                           "signtutor/src/lib/loadExternals.ts",
+                                                                                           "signtutor/src/lib/normalize.ts",
+                                                                                           "signtutor/src/lib/seq-features.ts",
+                                                                                           "signtutor/src/lib/storage.ts"
+                                                                                       ],
+                      "signtutor/src/app/learn/asl/fingerspelling/page.tsx":  [
+                                                                                  "signtutor/src/lib/curriculum.ts"
+                                                                              ],
+                      "signtutor/src/app/learn/asl/settings/page.tsx":  [
+                                                                            "signtutor/src/lib/storage.ts"
+                                                                        ],
+                      "signtutor/src/app/learn/asl/words/[slug]/page.tsx":  [
+                                                                                "signtutor/src/lib/curriculum.ts",
+                                                                                "signtutor/src/lib/loadExternals.ts",
+                                                                                "signtutor/src/lib/seq-features.ts",
+                                                                                "signtutor/src/lib/storage.ts",
+                                                                                "signtutor/src/lib/vocabulary_200.ts"
+                                                                            ],
+                      "signtutor/src/app/learn/asl/words/page.tsx":  [
+                                                                         "signtutor/src/lib/curriculum.ts",
+                                                                         "signtutor/src/lib/vocabulary_200.ts"
+                                                                     ],
+                      "signtutor/src/app/learn/page.tsx":  [
+
+                                                           ],
+                      "signtutor/src/app/page.tsx":  [
+
+                                                     ],
+                      "signtutor/src/app/practice/page.tsx":  [
+                                                                  "signtutor/src/lib/curriculum.ts",
+                                                                  "signtutor/src/lib/storage.ts"
+                                                              ],
+                      "signtutor/src/app/privacy/page.tsx":  [
+
+                                                             ],
+                      "signtutor/src/app/research/continuous/page.tsx":  [
+                                                                             "signtutor/src/app/research/continuous/ResearchClient.tsx"
+                                                                         ],
+                      "signtutor/src/app/research/continuous/ResearchClient.tsx":  [
+
+                                                                                   ],
+                      "signtutor/src/app/setup/page.tsx":  [
+                                                               "signtutor/src/lib/storage.ts"
+                                                           ],
+                      "signtutor/src/components/Header.tsx":  [
+
+                                                              ],
+                      "signtutor/src/components/PrivacyGateWrapper.tsx":  [
+                                                                              "signtutor/src/lib/privacyGate.ts"
+                                                                          ],
+                      "signtutor/src/components/ReliabilityDiagram.tsx":  [
+                                                                              "signtutor/src/lib/calibration.ts"
+                                                                          ],
+                      "signtutor/src/lib/calibration.ts":  [
+
+                                                           ],
+                      "signtutor/src/lib/curriculum-v2.ts":  [
+
+                                                             ],
+                      "signtutor/src/lib/curriculum.ts":  [
+                                                              "signtutor/src/lib/vocabulary_200.ts"
+                                                          ],
+                      "signtutor/src/lib/language-bundles.ts":  [
+
+                                                                ],
+                      "signtutor/src/lib/loadExternals.ts":  [
+
+                                                             ],
+                      "signtutor/src/lib/mediapipe/holisticRunner.ts":  [
+
+                                                                        ],
+                      "signtutor/src/lib/normalize.ts":  [
+
+                                                         ],
+                      "signtutor/src/lib/PersonalAdapter.ts":  [
+
+                                                               ],
+                      "signtutor/src/lib/privacyGate.ts":  [
+
+                                                           ],
+                      "signtutor/src/lib/seq-features.ts":  [
+
+                                                            ],
+                      "signtutor/src/lib/storage.ts":  [
+
+                                                       ],
+                      "signtutor/src/lib/vocabulary_200.ts":  [
+
+                                                              ],
+                      "signtutor/test-results/.last-run.json":  [
+
+                                                                ],
+                      "signtutor/tsconfig.json":  [
+
+                                                  ],
+                      "signtutor/vitest.config.ts":  [
+
+                                                     ],
+                      "skills-lock.json":  [
+
+                                           ],
+                      "vercel.json":  [
+
+                                      ]
+                  },
+    "languages":  [
+                      "css",
+                      "data",
+                      "html",
+                      "javascript",
+                      "json",
+                      "markdown",
+                      "onnx",
+                      "python",
+                      "txt",
+                      "typescript",
+                      "unknown",
+                      "yaml"
+                  ],
+    "filteredByIgnore":  0,
+    "frameworks":  "GitHub Actions",
+    "name":  "signlanguage",
+    "files":  [
+                  {
+                      "path":  ".agents/skills/impeccable/agents/impeccable-asset-producer.md",
+                      "language":  "markdown",
+                      "sizeLines":  101,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/adapt.md",
+                      "language":  "markdown",
+                      "sizeLines":  190,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/animate.md",
+                      "language":  "markdown",
+                      "sizeLines":  175,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/audit.md",
+                      "language":  "markdown",
+                      "sizeLines":  133,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/bolder.md",
+                      "language":  "markdown",
+                      "sizeLines":  113,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/brand.md",
+                      "language":  "markdown",
+                      "sizeLines":  118,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/clarify.md",
+                      "language":  "markdown",
+                      "sizeLines":  174,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/codex.md",
+                      "language":  "markdown",
+                      "sizeLines":  105,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/cognitive-load.md",
+                      "language":  "markdown",
+                      "sizeLines":  106,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/color-and-contrast.md",
+                      "language":  "markdown",
+                      "sizeLines":  105,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/colorize.md",
+                      "language":  "markdown",
+                      "sizeLines":  154,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/craft.md",
+                      "language":  "markdown",
+                      "sizeLines":  123,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/critique.md",
+                      "language":  "markdown",
+                      "sizeLines":  273,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/delight.md",
+                      "language":  "markdown",
+                      "sizeLines":  302,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/distill.md",
+                      "language":  "markdown",
+                      "sizeLines":  111,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/document.md",
+                      "language":  "markdown",
+                      "sizeLines":  427,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/extract.md",
+                      "language":  "markdown",
+                      "sizeLines":  69,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/harden.md",
+                      "language":  "markdown",
+                      "sizeLines":  347,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/heuristics-scoring.md",
+                      "language":  "markdown",
+                      "sizeLines":  234,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/interaction-design.md",
+                      "language":  "markdown",
+                      "sizeLines":  195,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/layout.md",
+                      "language":  "markdown",
+                      "sizeLines":  141,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/live.md",
+                      "language":  "markdown",
+                      "sizeLines":  622,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/motion-design.md",
+                      "language":  "markdown",
+                      "sizeLines":  109,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/onboard.md",
+                      "language":  "markdown",
+                      "sizeLines":  234,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/optimize.md",
+                      "language":  "markdown",
+                      "sizeLines":  258,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/overdrive.md",
+                      "language":  "markdown",
+                      "sizeLines":  130,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/personas.md",
+                      "language":  "markdown",
+                      "sizeLines":  179,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/polish.md",
+                      "language":  "markdown",
+                      "sizeLines":  242,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/product.md",
+                      "language":  "markdown",
+                      "sizeLines":  62,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/quieter.md",
+                      "language":  "markdown",
+                      "sizeLines":  99,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/responsive-design.md",
+                      "language":  "markdown",
+                      "sizeLines":  114,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/shape.md",
+                      "language":  "markdown",
+                      "sizeLines":  165,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/spatial-design.md",
+                      "language":  "markdown",
+                      "sizeLines":  100,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/teach.md",
+                      "language":  "markdown",
+                      "sizeLines":  156,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/typeset.md",
+                      "language":  "markdown",
+                      "sizeLines":  124,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/typography.md",
+                      "language":  "markdown",
+                      "sizeLines":  159,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/reference/ux-writing.md",
+                      "language":  "markdown",
+                      "sizeLines":  107,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  284,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/command-metadata.json",
+                      "language":  "json",
+                      "sizeLines":  94,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/critique-storage.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  242,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/design-parser.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  820,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/detect-csp.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  198,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/detect.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  21,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  110,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/is-generated.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  69,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-accept.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  595,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-browser-session.js",
+                      "language":  "javascript",
+                      "sizeLines":  123,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-browser.js",
+                      "language":  "javascript",
+                      "sizeLines":  4860,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-complete.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  75,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-completion.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  18,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-inject.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  446,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-poll.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  200,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-resume.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  48,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-server.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  838,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-session-store.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  254,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-status.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  47,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live-wrap.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  632,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/live.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  247,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/load-context.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  141,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/modern-screenshot.umd.js",
+                      "language":  "javascript",
+                      "sizeLines":  14,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/scripts/pin.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  214,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".agents/skills/impeccable/SKILL.md",
+                      "language":  "markdown",
+                      "sizeLines":  168,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  ".github/workflows/ml-gate.yml",
+                      "language":  "yaml",
+                      "sizeLines":  169,
+                      "fileCategory":  "infra"
+                  },
+                  {
+                      "path":  ".understand-anything/.understandignore",
+                      "language":  "unknown",
+                      "sizeLines":  24,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  ".understand-anything/config.json",
+                      "language":  "json",
+                      "sizeLines":  2,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".understand-anything/knowledge-graph.json",
+                      "language":  "json",
+                      "sizeLines":  6633,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  ".vercelignore",
+                      "language":  "unknown",
+                      "sizeLines":  11,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "BUILD_PROMPT_ML_EXTENSION.md",
+                      "language":  "markdown",
+                      "sizeLines":  437,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "BUILD_PROMPT.md",
+                      "language":  "markdown",
+                      "sizeLines":  237,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ci/check_nfr.py",
+                      "language":  "python",
+                      "sizeLines":  122,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ci/run_parity.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  44,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "generate-asl-svgs.js",
+                      "language":  "javascript",
+                      "sizeLines":  24,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/data/__init__.py",
+                      "language":  "python",
+                      "sizeLines":  16,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/data/chicago_fs.py",
+                      "language":  "python",
+                      "sizeLines":  195,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/data/in_house.py",
+                      "language":  "python",
+                      "sizeLines":  136,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/data/LICENSES.md",
+                      "language":  "markdown",
+                      "sizeLines":  137,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ml/data/msasl.py",
+                      "language":  "python",
+                      "sizeLines":  118,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/data/wlasl.py",
+                      "language":  "python",
+                      "sizeLines":  227,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/eval_robustness.py",
+                      "language":  "python",
+                      "sizeLines":  142,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/features.py",
+                      "language":  "python",
+                      "sizeLines":  38,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/hand_gesture_detector.py",
+                      "language":  "python",
+                      "sizeLines":  314,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/models/dynamic_eval_report.md",
+                      "language":  "markdown",
+                      "sizeLines":  79,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ml/models/dynamic_labels.json",
+                      "language":  "json",
+                      "sizeLines":  13,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "ml/models/dynamic_robustness_report_AFTER.md",
+                      "language":  "markdown",
+                      "sizeLines":  41,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ml/models/dynamic_robustness_report_BEFORE.md",
+                      "language":  "markdown",
+                      "sizeLines":  41,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ml/models/dynamic_robustness_report.md",
+                      "language":  "markdown",
+                      "sizeLines":  41,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ml/models/dynamic_signs_transformer_AFTER.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  2034,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/models/dynamic_signs_transformer_BEFORE.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  2067,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/models/dynamic_signs_transformer.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  2034,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/models/eval_report_v2.md",
+                      "language":  "markdown",
+                      "sizeLines":  130,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ml/models/eval_report.md",
+                      "language":  "markdown",
+                      "sizeLines":  116,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ml/models/fingerspell_mlp_v2.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  1064,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/models/fingerspell_mlp.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  321,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/models/jz_classifier.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  1510,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/models/jz_classifier.onnx.data",
+                      "language":  "data",
+                      "sizeLines":  2227,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/models/jz_eval_report.md",
+                      "language":  "markdown",
+                      "sizeLines":  35,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ml/models/jz_labels.json",
+                      "language":  "json",
+                      "sizeLines":  8,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "ml/models/labels_v2.json",
+                      "language":  "json",
+                      "sizeLines":  73,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "ml/models/labels.json",
+                      "language":  "json",
+                      "sizeLines":  56,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "ml/ROBUSTNESS_GATE_DEMO.md",
+                      "language":  "markdown",
+                      "sizeLines":  147,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "ml/seq_features.py",
+                      "language":  "python",
+                      "sizeLines":  55,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/synth_jz_sequences.py",
+                      "language":  "python",
+                      "sizeLines":  213,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/synth_landmarks.py",
+                      "language":  "python",
+                      "sizeLines":  157,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/synth_sequences.py",
+                      "language":  "python",
+                      "sizeLines":  182,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/train_export_v2.py",
+                      "language":  "python",
+                      "sizeLines":  421,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/train_export.py",
+                      "language":  "python",
+                      "sizeLines":  185,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/train_jz_classifier.py",
+                      "language":  "python",
+                      "sizeLines":  213,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/train_transformer_v2.py",
+                      "language":  "python",
+                      "sizeLines":  269,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "ml/train_transformer.py",
+                      "language":  "python",
+                      "sizeLines":  279,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "package.json",
+                      "language":  "json",
+                      "sizeLines":  24,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "pdr-review/01-PDR-Review.md",
+                      "language":  "markdown",
+                      "sizeLines":  139,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "pdr-review/02-PDR-v2-Refined.md",
+                      "language":  "markdown",
+                      "sizeLines":  254,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "pdr-review/03-PDR-summary.html",
+                      "language":  "html",
+                      "sizeLines":  239,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "pdr-review/04-Epics-and-Stories.md",
+                      "language":  "markdown",
+                      "sizeLines":  271,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "prototype/dynamic.html",
+                      "language":  "html",
+                      "sizeLines":  539,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "prototype/educator.html",
+                      "language":  "html",
+                      "sizeLines":  395,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "prototype/home.html",
+                      "language":  "html",
+                      "sizeLines":  190,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "prototype/index.html",
+                      "language":  "html",
+                      "sizeLines":  852,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "prototype/models/dynamic_labels.json",
+                      "language":  "json",
+                      "sizeLines":  13,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "prototype/models/dynamic_signs_transformer.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  2034,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "prototype/models/fingerspell_mlp.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  321,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "prototype/models/labels.json",
+                      "language":  "json",
+                      "sizeLines":  56,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "prototype/models/parity_samples.json",
+                      "language":  "json",
+                      "sizeLines":  591,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "prototype/README.md",
+                      "language":  "markdown",
+                      "sizeLines":  205,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "prototype/wizard.html",
+                      "language":  "html",
+                      "sizeLines":  431,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "README.md",
+                      "language":  "markdown",
+                      "sizeLines":  79,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "requirements.txt",
+                      "language":  "txt",
+                      "sizeLines":  28,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "screenshot-test.js",
+                      "language":  "javascript",
+                      "sizeLines":  21,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "screenshot.js",
+                      "language":  "javascript",
+                      "sizeLines":  43,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor-redesign-prompt.md",
+                      "language":  "markdown",
+                      "sizeLines":  430,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/__tests__/curriculum-v2.test.ts",
+                      "language":  "typescript",
+                      "sizeLines":  60,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/__tests__/lib.test.ts",
+                      "language":  "typescript",
+                      "sizeLines":  160,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/__tests__/parity.test.ts",
+                      "language":  "typescript",
+                      "sizeLines":  42,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/__tests__/privacy.test.ts",
+                      "language":  "typescript",
+                      "sizeLines":  34,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/.github/workflows/ml-gate.yml",
+                      "language":  "yaml",
+                      "sizeLines":  216,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/ci/check_ece.py",
+                      "language":  "python",
+                      "sizeLines":  37,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/ci/check_licenses.py",
+                      "language":  "python",
+                      "sizeLines":  24,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/ci/check_signer_disjoint.py",
+                      "language":  "python",
+                      "sizeLines":  27,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/DESIGN.md",
+                      "language":  "markdown",
+                      "sizeLines":  63,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/docs/ADR-002-dataset-choice.md",
+                      "language":  "markdown",
+                      "sizeLines":  23,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/docs/ADR-003-signer-disjoint-splits.md",
+                      "language":  "markdown",
+                      "sizeLines":  21,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/docs/ADR-004-calibration.md",
+                      "language":  "markdown",
+                      "sizeLines":  23,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/docs/ADR-005-personalization.md",
+                      "language":  "markdown",
+                      "sizeLines":  27,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/docs/ADR-006-nmm-fusion.md",
+                      "language":  "markdown",
+                      "sizeLines":  25,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/docs/ADR-007-continuous-slr.md",
+                      "language":  "markdown",
+                      "sizeLines":  23,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/docs/ADR-008-language-bundles.md",
+                      "language":  "markdown",
+                      "sizeLines":  22,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/docs/ADR-009-reference-media.md",
+                      "language":  "markdown",
+                      "sizeLines":  25,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/docs/ARCHITECTURE.md",
+                      "language":  "markdown",
+                      "sizeLines":  171,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/e2e/dynamic-lesson.spec.ts",
+                      "language":  "typescript",
+                      "sizeLines":  47,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/e2e/static-lesson.spec.ts",
+                      "language":  "typescript",
+                      "sizeLines":  45,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/eslint.config.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  29,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/IMPLEMENTATION_STATUS.md",
+                      "language":  "markdown",
+                      "sizeLines":  92,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/ml/data/LICENSES.md",
+                      "language":  "markdown",
+                      "sizeLines":  48,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/next.config.ts",
+                      "language":  "typescript",
+                      "sizeLines":  42,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/package.json",
+                      "language":  "json",
+                      "sizeLines":  38,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/playwright.config.ts",
+                      "language":  "typescript",
+                      "sizeLines":  35,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/pnpm-workspace.yaml",
+                      "language":  "yaml",
+                      "sizeLines":  7,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/postcss.config.mjs",
+                      "language":  "javascript",
+                      "sizeLines":  7,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/PRODUCT.md",
+                      "language":  "markdown",
+                      "sizeLines":  32,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/public/models/dynamic_labels.json",
+                      "language":  "json",
+                      "sizeLines":  13,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/public/models/dynamic_signs_transformer.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  2034,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/public/models/fingerspell_mlp_v2.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  1064,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/public/models/fingerspell_mlp.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  321,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/public/models/jz_classifier.onnx",
+                      "language":  "onnx",
+                      "sizeLines":  1510,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/public/models/jz_labels.json",
+                      "language":  "json",
+                      "sizeLines":  8,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/public/models/labels_v2.json",
+                      "language":  "json",
+                      "sizeLines":  84,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/public/models/labels.json",
+                      "language":  "json",
+                      "sizeLines":  56,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/public/models/parity_samples.json",
+                      "language":  "json",
+                      "sizeLines":  591,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/README.md",
+                      "language":  "markdown",
+                      "sizeLines":  36,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/signtutor/data/REFERENCE_LICENSES.md",
+                      "language":  "markdown",
+                      "sizeLines":  25,
+                      "fileCategory":  "docs"
+                  },
+                  {
+                      "path":  "signtutor/src/app/about/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  165,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/globals.css",
+                      "language":  "css",
+                      "sizeLines":  123,
+                      "fileCategory":  "markup"
+                  },
+                  {
+                      "path":  "signtutor/src/app/layout.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  32,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  703,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  82,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/learn/asl/settings/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  169,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  562,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/learn/asl/words/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  255,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/learn/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  149,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  196,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/practice/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  241,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/privacy/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  64,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/research/continuous/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  11,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/research/continuous/ResearchClient.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  102,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/app/setup/page.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  478,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/components/Header.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  152,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/components/PrivacyGateWrapper.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  16,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/components/ReliabilityDiagram.tsx",
+                      "language":  "typescript",
+                      "sizeLines":  149,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/calibration.ts",
+                      "language":  "typescript",
+                      "sizeLines":  96,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/curriculum-v2.ts",
+                      "language":  "typescript",
+                      "sizeLines":  149,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/curriculum.ts",
+                      "language":  "typescript",
+                      "sizeLines":  136,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/language-bundles.ts",
+                      "language":  "typescript",
+                      "sizeLines":  64,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/loadExternals.ts",
+                      "language":  "typescript",
+                      "sizeLines":  99,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/mediapipe/holisticRunner.ts",
+                      "language":  "typescript",
+                      "sizeLines":  110,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/normalize.ts",
+                      "language":  "typescript",
+                      "sizeLines":  172,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/PersonalAdapter.ts",
+                      "language":  "typescript",
+                      "sizeLines":  105,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/privacyGate.ts",
+                      "language":  "typescript",
+                      "sizeLines":  132,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/seq-features.ts",
+                      "language":  "typescript",
+                      "sizeLines":  78,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/storage.ts",
+                      "language":  "typescript",
+                      "sizeLines":  122,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/src/lib/vocabulary_200.ts",
+                      "language":  "typescript",
+                      "sizeLines":  2598,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "signtutor/test-results/.last-run.json",
+                      "language":  "json",
+                      "sizeLines":  3,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/tsconfig.json",
+                      "language":  "json",
+                      "sizeLines":  34,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "signtutor/vitest.config.ts",
+                      "language":  "typescript",
+                      "sizeLines":  17,
+                      "fileCategory":  "code"
+                  },
+                  {
+                      "path":  "skills-lock.json",
+                      "language":  "json",
+                      "sizeLines":  11,
+                      "fileCategory":  "config"
+                  },
+                  {
+                      "path":  "vercel.json",
+                      "language":  "json",
+                      "sizeLines":  2,
+                      "fileCategory":  "config"
+                  }
+              ],
+    "totalFiles":  205
+}

@@ -1,0 +1,240 @@
+{
+  "nodes": [
+    {
+      "name": "signtutor/DESIGN.md",
+      "entityType": "documentation",
+      "observations": [
+        "Design system document for SignTutor with 'Bioluminescent Studio' dark theme aesthetic",
+        "Defines OKLCH color tokens: bg-base #080c14, bg-surface #0f1420, bg-elevated #161d2e",
+        "Accent colors: primary teal (#00e5b0), secondary electric blue (#4f8cff), warm amber (#ffb347)",
+        "Typography: Syne (display), DM Sans (body), JetBrains Mono (labels/stats)",
+        "Spacing/radius tokens: sm 8px, md 14px, lg 20px, xl 28px",
+        "Motion guidelines: ease-out-quart/expo curves, no bounce/elastic, respects prefers-reduced-motion",
+        "Component patterns: glass cards with hover glow, pill badges with mono font, teal primary buttons"
+      ]
+    },
+    {
+      "name": "signtutor/docs/ARCHITECTURE.md",
+      "entityType": "documentation",
+      "observations": [
+        "Architecture document covering stack, data flow, privacy model, CI/CD gates",
+        "Stack: Next.js 16 App Router + React 19 + TypeScript + Tailwind CSS v4",
+        "ML runtime: onnxruntime-web (WASM) + MediaPipe Hands (CDN)",
+        "State: localStorage for prefs (signtutor.prefs) and progress (signtutor.progress)",
+        "Testing: Vitest (unit) + Playwright (E2E)",
+        "CI/CD: GitHub Actions with ML gates + frontend gates",
+        "Defines 8 architectural decisions: hybrid ML+rule classifier, auto-fallback, collision-aware verdict, first-frame anchoring, rotation-aug required, on-device lighting check, split latency HUD, mirrored webcam default",
+        "Data flow for static player: MediaPipe → normalize() → ONNX MLP + fingerStates/PATTERNS",
+        "Data flow for dynamic player: MediaPipe → 45-frame sliding buffer → normalizeSequence() → ONNX Transformer",
+        "Privacy model: no frames leave device, enforced by CSP connect-src",
+        "CI gates: JS↔Python parity, unit tests, typecheck, lint, E2E, Lighthouse a11y ≥95, ML training, robustness, NFR enforcement"
+      ]
+    },
+    {
+      "name": "signtutor/docs/ADR-002-dataset-choice.md",
+      "entityType": "decision",
+      "observations": [
+        "ADR-002: Dataset choice, license stance, and signer demographics analysis",
+        "Status: Accepted (W1 — Real Data Foundation)",
+        "v1 used synthetic data; v2 must use real licensed data with documented provenance",
+        "Selected datasets in priority: ChicagoFSWild+ (26 classes, ~160 signers), WLASL2000 (2000 classes, 119 signers), MS-ASL (1000 classes, 222 signers, eval only), ASL Citizen (2731 signs, 52 signers)",
+        "Rejected: synthetic-only data, Surrey16/BSLdict (saved for multi-language beta)",
+        "Every dataset requires entry in ml/data/LICENSES.md; CI enforces grep gate"
+      ]
+    },
+    {
+      "name": "signtutor/docs/ADR-003-signer-disjoint-splits.md",
+      "entityType": "decision",
+      "observations": [
+        "ADR-003: Signer-disjoint split strategy and CI audit",
+        "Status: Accepted (W1 — Real Data Foundation)",
+        "Split by signer identity, not by frame, to prevent signer leakage",
+        "Each dataset loader must emit signer_id per sample",
+        "CI runs ci/check_signer_disjoint.py on every PR; failure blocks merge",
+        "Rejected: random 70/20/10 split and stratified split by class (leak signers)",
+        "Consequence: lower headline accuracy but honest and reproducible metrics"
+      ]
+    },
+    {
+      "name": "signtutor/docs/ADR-004-calibration.md",
+      "entityType": "decision",
+      "observations": [
+        "ADR-004: Calibration method — temperature scaling vs Platt vs isotonic regression",
+        "Status: Accepted (W6 — Confidence Calibration)",
+        "Decision: use temperature scaling on validation set after every training run",
+        "Fit scalar T on validation logits via LBFGS to minimize NLL",
+        "Bake T into ONNX graph as Div node before final softmax",
+        "Gate: ECE ≤ 0.05 on held-out test set; publish reliability diagram as CI artifact",
+        "Rejected: Platt scaling (calibrates only final boundary) and isotonic regression (overfits)",
+        "Adds ~1 parameter per model (T) with trivial runtime cost"
+      ]
+    },
+    {
+      "name": "signtutor/docs/ADR-005-personalization.md",
+      "entityType": "decision",
+      "observations": [
+        "ADR-005: PersonalAdapter — encoder embedding format, adapter shape, and storage schema",
+        "Status: Accepted (W5 — On-Device Personalization)",
+        "Export Transformer with 128-d pooled encoder embedding output",
+        "PersonalAdapter: W (128 × n_classes), b (n_classes), vanilla SGD lr=0.01",
+        "Serialized to localStorage as { W, b, attempts }",
+        "Enabled after ≥ 20 confirmed attempts to avoid cold-start noise",
+        "Rejected: full fine-tuning (too slow), server-side (privacy), LoRA (over-engineered for 1KB budget)",
+        "Privacy gate must assert no fetch/XHR sends embeddings or adapter weights"
+      ]
+    },
+    {
+      "name": "signtutor/docs/ADR-006-nmm-fusion.md",
+      "entityType": "decision",
+      "observations": [
+        "ADR-006: Holistic vs Hands+Face fusion and NMM feature strategy",
+        "Status: Accepted (W4 — Non-Manual Marker Scoring)",
+        "Decision: replace bare MediaPipe Hands with MediaPipe Holistic (single pass, ~12ms on WebGL2)",
+        "Face landmarks from Holistic used for NMM: BrowHead (72 floats → 3 logits), MouthHead (60 floats → 4 logits)",
+        "Feature flag NMM_SCORING gates NMM UI tile and extra ONNX inference",
+        "Latency budget: NMM on must not increase P50 by more than 50ms",
+        "Consent modal required before enabling NMM scoring",
+        "Rejected: separate sequential MediaPipe passes (2× cost) and custom face detector",
+        "holisticRunner.ts replaces handsRunner.ts as single landmark source"
+      ]
+    },
+    {
+      "name": "signtutor/docs/ADR-007-continuous-slr.md",
+      "entityType": "decision",
+      "observations": [
+        "ADR-007: CTC vs Transformer-Decoder for continuous SLR",
+        "Status: Accepted (W8 — Continuous-Sign Research Preview)",
+        "Decision: CTC encoder-decoder Transformer for continuous SLR",
+        "Datasets: How2Sign or RWTH-PHOENIX-2014T; decode with greedy beam search (beam=5)",
+        "Gate: WER ≤ 0.50 on held-out test set",
+        "UI: /research/continuous behind interstitial explaining preview, no scoring, live transcription only",
+        "Rejected: Transformer-decoder with forced alignment (too slow) and pure CTC without beam search (bad WER)",
+        "Model excluded from production pipeline and sitemap; noindex,nofollow"
+      ]
+    },
+    {
+      "name": "signtutor/docs/ADR-008-language-bundles.md",
+      "entityType": "decision",
+      "observations": [
+        "ADR-008: Per-language model bundle layout and lazy-loading strategy",
+        "Status: Accepted (W7 — Multi-Language Beta)",
+        "Each language gets ONNX model bundle under public/models/{lang}/",
+        "Curriculum, reference media, and labels loaded lazily on language switch",
+        "Prefetch triggers on hover/focus of language selector",
+        "Cache headers: Cache-Control public, max-age=31536000, immutable for versioned bundles",
+        "Rejected: monolithic bundle (too large) and CDN per language (network egress)",
+        "Build system must output versioned language bundles; loading state in selector"
+      ]
+    },
+    {
+      "name": "signtutor/docs/ADR-009-reference-media.md",
+      "entityType": "decision",
+      "observations": [
+        "ADR-009: Sign reference media hosting — bundled vs CDN vs on-demand fetch",
+        "Status: Accepted (W1 — Sign Reference System)",
+        "In-house recordings bundled in public/refs/; CI downloads on cold cache",
+        "Lifeprint/ASL University GIFs bundled locally, attributed in REFERENCE_LICENSES.md",
+        "WLASL clips bundled locally (research-use only)",
+        "HandSpeak/SigningSavvy on-demand fetch with caching, blocked if no license entry",
+        "CI gate: grep for every media path in public/refs/, fail if no license entry",
+        "Rejected: hot-linking (fragile, license risk) and in-house only (cannot scale)"
+      ]
+    },
+    {
+      "name": "Bioluminescent Studio Design Theme",
+      "entityType": "concept",
+      "observations": [
+        "Dark, focused, alive aesthetic described in DESIGN.md",
+        "Deep-sea research lab metaphor with glowing accents",
+        "Near-black backgrounds with blue undertone (#080c14 base)",
+        "Teal bioluminescent primary accent (#00e5b0)",
+        "Professional sign language coach at midnight setting"
+      ]
+    },
+    {
+      "name": "Hybrid ML + Rule Classifier",
+      "entityType": "concept",
+      "observations": [
+        "Architectural decision #1: runs MLP and rule classifier concurrently at all times",
+        "MLP provides calibrated probabilities and discriminative top-K",
+        "Rule layer provides finger-level interpretability via fingerStates() + PATTERNS",
+        "Mode toggle switches which source is used for final verdict",
+        "Per-finger panel driven by rule layer, not MLP"
+      ]
+    },
+    {
+      "name": "On-Device Privacy Model",
+      "entityType": "concept",
+      "observations": [
+        "No webcam frames leave the device — enforced by CSP connect-src restrictions",
+        "No hand-landmark data transmitted — normalize() runs entirely in browser",
+        "Only network requests on lesson pages are to load *.onnx model files",
+        "No analytics payloads or telemetry during practice",
+        "PersonalAdapter embeddings and weights never sent via fetch/XHR"
+      ]
+    },
+    {
+      "name": "Collision-Aware Verdict",
+      "entityType": "concept",
+      "observations": [
+        "Architectural decision #3: handles visually identical letter pairs in synthetic training data",
+        "Same-collision-group neighbours (A=E=M=N=S=T) treated as 'close' not 'miss'",
+        "Friendly explanation shown to user for collision-group verdicts",
+        "COLLISION_GROUPS lives in src/lib/normalize.ts",
+        "Swapping to real data later makes this a no-op but logic stays"
+      ]
+    },
+    {
+      "name": "Normalization Pipeline",
+      "entityType": "concept",
+      "observations": [
+        "Static normalization (normalize()): wrist-centred, scaled by wrist→middle-MCP distance, produces Float32Array(63)",
+        "Dynamic normalization (normalizeSequence()): centers entire sequence on wrist of frame 0, computes inter-frame deltas, produces Float32Array(45×126)",
+        "First-frame anchoring preserves global trajectory distinguishing signs like HELLO vs THANKS vs PLEASE",
+        "Per-frame independent normalization would destroy trajectory signal"
+      ]
+    },
+    {
+      "name": "CI/CD Gates",
+      "entityType": "concept",
+      "observations": [
+        "Frontend gate: JS↔Python parity, unit tests, typecheck, lint, E2E, Lighthouse a11y ≥95",
+        "ML gate: training, robustness eval, NFR enforcement",
+        "Dataset grep gate: undocumented dataset paths fail build",
+        "Signer-disjoint CI: ci/check_signer_disjoint.py runs on every PR",
+        "Calibration gate: ECE ≤ 0.05 on held-out test set",
+        "Reference media gate: grep every media path against REFERENCE_LICENSES.md"
+      ]
+    }
+  ],
+  "edges": [
+    { "from": "signtutor/DESIGN.md", "to": "Bioluminescent Studio Design Theme", "relationType": "defines" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "signtutor/DESIGN.md", "relationType": "references" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "Hybrid ML + Rule Classifier", "relationType": "defines" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "Collision-Aware Verdict", "relationType": "defines" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "Normalization Pipeline", "relationType": "defines" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "On-Device Privacy Model", "relationType": "defines" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "CI/CD Gates", "relationType": "defines" },
+    { "from": "signtutor/docs/ADR-002-dataset-choice.md", "to": "signtutor/docs/ADR-003-signer-disjoint-splits.md", "relationType": "informs" },
+    { "from": "signtutor/docs/ADR-002-dataset-choice.md", "to": "signtutor/docs/ADR-009-reference-media.md", "relationType": "relatedTo" },
+    { "from": "signtutor/docs/ADR-002-dataset-choice.md", "to": "CI/CD Gates", "relationType": "triggersGate" },
+    { "from": "signtutor/docs/ADR-003-signer-disjoint-splits.md", "to": "signtutor/docs/ADR-002-dataset-choice.md", "relationType": "dependsOn" },
+    { "from": "signtutor/docs/ADR-003-signer-disjoint-splits.md", "to": "CI/CD Gates", "relationType": "triggersGate" },
+    { "from": "signtutor/docs/ADR-004-calibration.md", "to": "Hybrid ML + Rule Classifier", "relationType": "improves" },
+    { "from": "signtutor/docs/ADR-004-calibration.md", "to": "CI/CD Gates", "relationType": "triggersGate" },
+    { "from": "signtutor/docs/ADR-005-personalization.md", "to": "On-Device Privacy Model", "relationType": "implements" },
+    { "from": "signtutor/docs/ADR-005-personalization.md", "to": "Normalization Pipeline", "relationType": "extends" },
+    { "from": "signtutor/docs/ADR-006-nmm-fusion.md", "to": "Normalization Pipeline", "relationType": "extends" },
+    { "from": "signtutor/docs/ADR-006-nmm-fusion.md", "to": "On-Device Privacy Model", "relationType": "implements" },
+    { "from": "signtutor/docs/ADR-007-continuous-slr.md", "to": "signtutor/docs/ADR-008-language-bundles.md", "relationType": "precedes" },
+    { "from": "signtutor/docs/ADR-008-language-bundles.md", "to": "signtutor/docs/ADR-009-reference-media.md", "relationType": "dependsOn" },
+    { "from": "signtutor/docs/ADR-009-reference-media.md", "to": "CI/CD Gates", "relationType": "triggersGate" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "signtutor/docs/ADR-002-dataset-choice.md", "relationType": "references" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "signtutor/docs/ADR-004-calibration.md", "relationType": "references" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "signtutor/docs/ADR-005-personalization.md", "relationType": "references" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "signtutor/docs/ADR-006-nmm-fusion.md", "relationType": "references" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "signtutor/docs/ADR-007-continuous-slr.md", "relationType": "references" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "signtutor/docs/ADR-008-language-bundles.md", "relationType": "references" },
+    { "from": "signtutor/docs/ARCHITECTURE.md", "to": "signtutor/docs/ADR-009-reference-media.md", "relationType": "references" }
+  ]
+}

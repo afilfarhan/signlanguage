@@ -1,0 +1,1053 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 4,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "ml/features.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 38,
+      "nonEmptyLines": 32,
+      "functions": [
+        {
+          "name": "normalize",
+          "startLine": 19,
+          "endLine": 38,
+          "params": [
+            "landmarks"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "normalize",
+          "line": 19,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "normalize",
+          "callee": "np.linalg.norm",
+          "lineNumber": 32
+        },
+        {
+          "caller": "normalize",
+          "callee": "np.where",
+          "lineNumber": 33
+        },
+        {
+          "caller": "normalize",
+          "callee": "translated.reshape(translated.shape[0], -1).astype",
+          "lineNumber": 37
+        },
+        {
+          "caller": "normalize",
+          "callee": "translated.reshape",
+          "lineNumber": 37
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "ml/synth_landmarks.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 157,
+      "nonEmptyLines": 138,
+      "functions": [
+        {
+          "name": "_polar",
+          "startLine": 96,
+          "endLine": 98,
+          "params": [
+            "angle_deg",
+            "length"
+          ]
+        },
+        {
+          "name": "_synthesize_one",
+          "startLine": 100,
+          "endLine": 137,
+          "params": [
+            "letter",
+            "rng"
+          ]
+        },
+        {
+          "name": "make_dataset",
+          "startLine": 139,
+          "endLine": 152,
+          "params": [
+            "n_per_class",
+            "seed",
+            "letters"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "_polar",
+          "line": 96,
+          "isDefault": false
+        },
+        {
+          "name": "_synthesize_one",
+          "line": 100,
+          "isDefault": false
+        },
+        {
+          "name": "make_dataset",
+          "line": 139,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "_polar",
+          "callee": "np.deg2rad",
+          "lineNumber": 97
+        },
+        {
+          "caller": "_polar",
+          "callee": "np.array",
+          "lineNumber": 98
+        },
+        {
+          "caller": "_polar",
+          "callee": "np.sin",
+          "lineNumber": 98
+        },
+        {
+          "caller": "_polar",
+          "callee": "np.cos",
+          "lineNumber": 98
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.zeros",
+          "lineNumber": 102
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.array",
+          "lineNumber": 104
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 104
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 106
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 108
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 109
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "dict",
+          "lineNumber": 111
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "FINGERS.items",
+          "lineNumber": 114
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "_polar",
+          "lineNumber": 116
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 117
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "np.array",
+          "lineNumber": 120
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "_polar",
+          "lineNumber": 124
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 124
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "_polar",
+          "lineNumber": 125
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 125
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "_polar",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 127
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 128
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "_polar",
+          "lineNumber": 129
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "joints.values",
+          "lineNumber": 133
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 134
+        },
+        {
+          "caller": "_synthesize_one",
+          "callee": "rng.normal",
+          "lineNumber": 136
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.random.default_rng",
+          "lineNumber": 144
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "enumerate",
+          "lineNumber": 146
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "range",
+          "lineNumber": 147
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "X.append",
+          "lineNumber": 148
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "_synthesize_one",
+          "lineNumber": 148
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "y.append",
+          "lineNumber": 149
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.stack(X).astype",
+          "lineNumber": 150
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.stack",
+          "lineNumber": 150
+        },
+        {
+          "caller": "make_dataset",
+          "callee": "np.array",
+          "lineNumber": 151
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 3,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "ml/train_export.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 185,
+      "nonEmptyLines": 147,
+      "functions": [
+        {
+          "name": "collision_aware_correct",
+          "startLine": 75,
+          "endLine": 76,
+          "params": [
+            "true",
+            "pred"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "collision_aware_correct",
+          "line": 75,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "collision_aware_correct",
+          "callee": "int",
+          "lineNumber": 76
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "ml/train_export_v2.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 421,
+      "nonEmptyLines": 334,
+      "functions": [
+        {
+          "name": "compute_geometry_features",
+          "startLine": 44,
+          "endLine": 94,
+          "params": [
+            "landmarks"
+          ]
+        },
+        {
+          "name": "expand_features_with_geometry",
+          "startLine": 97,
+          "endLine": 119,
+          "params": [
+            "X_raw"
+          ]
+        },
+        {
+          "name": "mirror_augment",
+          "startLine": 124,
+          "endLine": 131,
+          "params": [
+            "X_raw",
+            "y"
+          ]
+        },
+        {
+          "name": "jitter_augment",
+          "startLine": 134,
+          "endLine": 179,
+          "params": [
+            "X_raw",
+            "y",
+            "labels",
+            "hard_classes",
+            "n_jitters",
+            "rotation_max",
+            "noise_std"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 184,
+          "endLine": 417,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "compute_geometry_features",
+          "line": 44,
+          "isDefault": false
+        },
+        {
+          "name": "expand_features_with_geometry",
+          "line": 97,
+          "isDefault": false
+        },
+        {
+          "name": "mirror_augment",
+          "line": 124,
+          "isDefault": false
+        },
+        {
+          "name": "jitter_augment",
+          "line": 134,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 184,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "compute_geometry_features",
+          "callee": "np.linalg.norm",
+          "lineNumber": 72
+        },
+        {
+          "caller": "compute_geometry_features",
+          "callee": "np.linalg.norm",
+          "lineNumber": 75
+        },
+        {
+          "caller": "compute_geometry_features",
+          "callee": "np.linalg.norm",
+          "lineNumber": 78
+        },
+        {
+          "caller": "compute_geometry_features",
+          "callee": "np.linalg.norm",
+          "lineNumber": 79
+        },
+        {
+          "caller": "compute_geometry_features",
+          "callee": "np.dot",
+          "lineNumber": 81
+        },
+        {
+          "caller": "compute_geometry_features",
+          "callee": "np.clip",
+          "lineNumber": 82
+        },
+        {
+          "caller": "compute_geometry_features",
+          "callee": "np.sign",
+          "lineNumber": 89
+        },
+        {
+          "caller": "compute_geometry_features",
+          "callee": "np.array",
+          "lineNumber": 94
+        },
+        {
+          "caller": "expand_features_with_geometry",
+          "callee": "np.zeros",
+          "lineNumber": 107
+        },
+        {
+          "caller": "expand_features_with_geometry",
+          "callee": "range",
+          "lineNumber": 109
+        },
+        {
+          "caller": "expand_features_with_geometry",
+          "callee": "normalize",
+          "lineNumber": 112
+        },
+        {
+          "caller": "expand_features_with_geometry",
+          "callee": "compute_geometry_features",
+          "lineNumber": 116
+        },
+        {
+          "caller": "mirror_augment",
+          "callee": "X_raw.copy",
+          "lineNumber": 129
+        },
+        {
+          "caller": "mirror_augment",
+          "callee": "np.concatenate",
+          "lineNumber": 131
+        },
+        {
+          "caller": "mirror_augment",
+          "callee": "np.concatenate",
+          "lineNumber": 131
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "enumerate",
+          "lineNumber": 145
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "np.random.default_rng",
+          "lineNumber": 155
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "range",
+          "lineNumber": 157
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "rng.uniform",
+          "lineNumber": 159
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "np.cos",
+          "lineNumber": 160
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "np.sin",
+          "lineNumber": 160
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "np.array",
+          "lineNumber": 161
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "X_hard.copy",
+          "lineNumber": 166
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "X_rot[:, 0:1, :].copy",
+          "lineNumber": 167
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "rng.normal(0, noise_std, X_rot.shape).astype",
+          "lineNumber": 171
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "rng.normal",
+          "lineNumber": 171
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "X_aug.append",
+          "lineNumber": 173
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "y_aug.append",
+          "lineNumber": 174
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "np.concatenate",
+          "lineNumber": 176
+        },
+        {
+          "caller": "jitter_augment",
+          "callee": "np.concatenate",
+          "lineNumber": 177
+        },
+        {
+          "caller": "main",
+          "callee": "argparse.ArgumentParser",
+          "lineNumber": 185
+        },
+        {
+          "caller": "main",
+          "callee": "parser.add_argument",
+          "lineNumber": 186
+        },
+        {
+          "caller": "main",
+          "callee": "parser.add_argument",
+          "lineNumber": 187
+        },
+        {
+          "caller": "main",
+          "callee": "parser.parse_args",
+          "lineNumber": 188
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 190
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 190
+        },
+        {
+          "caller": "main",
+          "callee": "make_dataset",
+          "lineNumber": 191
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 192
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 192
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 195
+        },
+        {
+          "caller": "main",
+          "callee": "mirror_augment",
+          "lineNumber": 196
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 197
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 200
+        },
+        {
+          "caller": "main",
+          "callee": "jitter_augment",
+          "lineNumber": 201
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 202
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 205
+        },
+        {
+          "caller": "main",
+          "callee": "expand_features_with_geometry",
+          "lineNumber": 206
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 207
+        },
+        {
+          "caller": "main",
+          "callee": "train_test_split",
+          "lineNumber": 210
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 215
+        },
+        {
+          "caller": "main",
+          "callee": "enumerate",
+          "lineNumber": 216
+        },
+        {
+          "caller": "main",
+          "callee": "np.ones",
+          "lineNumber": 217
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 217
+        },
+        {
+          "caller": "main",
+          "callee": "enumerate",
+          "lineNumber": 218
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 222
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 225
+        },
+        {
+          "caller": "main",
+          "callee": "MLPClassifier",
+          "lineNumber": 226
+        },
+        {
+          "caller": "main",
+          "callee": "clf.fit",
+          "lineNumber": 238
+        },
+        {
+          "caller": "main",
+          "callee": "clf.predict",
+          "lineNumber": 241
+        },
+        {
+          "caller": "main",
+          "callee": "accuracy_score",
+          "lineNumber": 242
+        },
+        {
+          "caller": "main",
+          "callee": "f1_score",
+          "lineNumber": 243
+        },
+        {
+          "caller": "main",
+          "callee": "enumerate",
+          "lineNumber": 246
+        },
+        {
+          "caller": "main",
+          "callee": "range",
+          "lineNumber": 247
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 247
+        },
+        {
+          "caller": "collision_aware_correct",
+          "callee": "int",
+          "lineNumber": 254
+        },
+        {
+          "caller": "main",
+          "callee": "float",
+          "lineNumber": 256
+        },
+        {
+          "caller": "main",
+          "callee": "np.mean",
+          "lineNumber": 256
+        },
+        {
+          "caller": "main",
+          "callee": "collision_aware_correct",
+          "lineNumber": 256
+        },
+        {
+          "caller": "main",
+          "callee": "zip",
+          "lineNumber": 256
+        },
+        {
+          "caller": "main",
+          "callee": "classification_report",
+          "lineNumber": 258
+        },
+        {
+          "caller": "main",
+          "callee": "confusion_matrix",
+          "lineNumber": 259
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 261
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 262
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 263
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 266
+        },
+        {
+          "caller": "main",
+          "callee": "enumerate",
+          "lineNumber": 267
+        },
+        {
+          "caller": "main",
+          "callee": "mask.sum",
+          "lineNumber": 269
+        },
+        {
+          "caller": "main",
+          "callee": "(y_pred[mask] == i).mean",
+          "lineNumber": 270
+        },
+        {
+          "caller": "main",
+          "callee": "np.isin",
+          "lineNumber": 280
+        },
+        {
+          "caller": "main",
+          "callee": "sum",
+          "lineNumber": 281
+        },
+        {
+          "caller": "main",
+          "callee": "collision_aware_correct",
+          "lineNumber": 281
+        },
+        {
+          "caller": "main",
+          "callee": "zip",
+          "lineNumber": 281
+        },
+        {
+          "caller": "main",
+          "callee": "group_mask.sum",
+          "lineNumber": 282
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 284
+        },
+        {
+          "caller": "main",
+          "callee": "', '.join",
+          "lineNumber": 284
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 287
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 290
+        },
+        {
+          "caller": "main",
+          "callee": "FloatTensorType",
+          "lineNumber": 294
+        },
+        {
+          "caller": "main",
+          "callee": "convert_sklearn",
+          "lineNumber": 295
+        },
+        {
+          "caller": "main",
+          "callee": "id",
+          "lineNumber": 297
+        },
+        {
+          "caller": "main",
+          "callee": "os.path.join",
+          "lineNumber": 299
+        },
+        {
+          "caller": "main",
+          "callee": "open",
+          "lineNumber": 300
+        },
+        {
+          "caller": "main",
+          "callee": "f.write",
+          "lineNumber": 301
+        },
+        {
+          "caller": "main",
+          "callee": "onnx_model.SerializeToString",
+          "lineNumber": 301
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 302
+        },
+        {
+          "caller": "main",
+          "callee": "os.path.getsize",
+          "lineNumber": 302
+        },
+        {
+          "caller": "main",
+          "callee": "open",
+          "lineNumber": 304
+        },
+        {
+          "caller": "main",
+          "callee": "os.path.join",
+          "lineNumber": 304
+        },
+        {
+          "caller": "main",
+          "callee": "json.dump",
+          "lineNumber": 305
+        },
+        {
+          "caller": "main",
+          "callee": "\" | \".join",
+          "lineNumber": 326
+        },
+        {
+          "caller": "main",
+          "callee": "\"|\".join",
+          "lineNumber": 327
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 327
+        },
+        {
+          "caller": "main",
+          "callee": "range",
+          "lineNumber": 328
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 328
+        },
+        {
+          "caller": "main",
+          "callee": "\" | \".join",
+          "lineNumber": 329
+        },
+        {
+          "caller": "main",
+          "callee": "str",
+          "lineNumber": 329
+        },
+        {
+          "caller": "main",
+          "callee": "int",
+          "lineNumber": 329
+        },
+        {
+          "caller": "main",
+          "callee": "np.isin",
+          "lineNumber": 336
+        },
+        {
+          "caller": "main",
+          "callee": "mask.sum",
+          "lineNumber": 337
+        },
+        {
+          "caller": "main",
+          "callee": "sum",
+          "lineNumber": 338
+        },
+        {
+          "caller": "main",
+          "callee": "', '.join",
+          "lineNumber": 339
+        },
+        {
+          "caller": "main",
+          "callee": "int",
+          "lineNumber": 339
+        },
+        {
+          "caller": "main",
+          "callee": "mask.sum",
+          "lineNumber": 339
+        },
+        {
+          "caller": "main",
+          "callee": "mask.sum",
+          "lineNumber": 339
+        },
+        {
+          "caller": "main",
+          "callee": "np.isin",
+          "lineNumber": 350
+        },
+        {
+          "caller": "main",
+          "callee": "mask.sum",
+          "lineNumber": 351
+        },
+        {
+          "caller": "main",
+          "callee": "sum",
+          "lineNumber": 352
+        },
+        {
+          "caller": "main",
+          "callee": "mask.sum",
+          "lineNumber": 353
+        },
+        {
+          "caller": "main",
+          "callee": "', '.join",
+          "lineNumber": 354
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 354
+        },
+        {
+          "caller": "main",
+          "callee": "len",
+          "lineNumber": 358
+        },
+        {
+          "caller": "main",
+          "callee": "', '.join",
+          "lineNumber": 359
+        },
+        {
+          "caller": "main",
+          "callee": "os.path.join",
+          "lineNumber": 414
+        },
+        {
+          "caller": "main",
+          "callee": "open",
+          "lineNumber": 415
+        },
+        {
+          "caller": "main",
+          "callee": "f.write",
+          "lineNumber": 416
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 417
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 5,
+        "functionCount": 5,
+        "classCount": 0
+      }
+    }
+  ]
+}

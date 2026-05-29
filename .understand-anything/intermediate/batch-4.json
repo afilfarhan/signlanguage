@@ -1,0 +1,211 @@
+{
+  "nodes": [
+    {
+      "name": "file:ml/features.py",
+      "entityType": "file",
+      "observations": [
+        "Path: ml/features.py",
+        "Language: python",
+        "Category: code",
+        "Lines: 38",
+        "Landmark-to-feature normalization pipeline",
+        "Imports: numpy",
+        "Exports: normalize(landmarks) -> (..., 63) normalized features",
+        "Normalization contracts: translate wrist to origin, scale by wrist-to-middle-finger-MCP distance, flatten to 63 floats",
+        "Shared contract between Python training and JS browser serving"
+      ]
+    },
+    {
+      "name": "function:ml/features.py:normalize",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 19",
+        "Parameters: landmarks (np.ndarray)",
+        "Returns: (..., 63) normalized feature vector as float32",
+        "Handles both 2D (21,3) and 3D (N,21,3) input shapes",
+        "Translation step: subtract wrist (landmark 0) coordinates",
+        "Scale step: divide by wrist-to-middle-MCP (landmark 9) xy distance",
+        "Falls back to scale=1.0 if reference distance < 1e-6",
+        "Scales xy and z by same factor",
+        "Flattens to (..., 63) output"
+      ]
+    },
+    {
+      "name": "file:ml/synth_landmarks.py",
+      "entityType": "file",
+      "observations": [
+        "Path: ml/synth_landmarks.py",
+        "Language: python",
+        "Category: code",
+        "Lines: 157",
+        "Synthetic ASL fingerspelling landmark generator",
+        "Imports: __future__.annotations, numpy",
+        "Covers 24 of 26 ASL letters (excludes J and Z: require motion)",
+        "Models letters as finger-extended/curled patterns",
+        "Defines SYNTH_COLLISIONS: groups of letters with identical finger patterns that the synth cannot distinguish",
+        "Uses MediaPipe Hands index map (21 landmarks per hand)"
+      ]
+    },
+    {
+      "name": "function:ml/synth_landmarks.py:_polar",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 96",
+        "Parameters: angle_deg, length",
+        "Converts polar coordinates to Cartesian [x, y]",
+        "Private helper function"
+      ]
+    },
+    {
+      "name": "function:ml/synth_landmarks.py:_synthesize_one",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 100",
+        "Parameters: letter (str), rng (np.random.Generator)",
+        "Generates one synthetic (21, 3) landmark frame for a given letter",
+        "Adds noise to wrist position, palm rotation, segment lengths, and joint positions",
+        "Models extended vs curled finger states per pattern",
+        "Returns float32 array of shape (21, 3)"
+      ]
+    },
+    {
+      "name": "function:ml/synth_landmarks.py:make_dataset",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 139",
+        "Parameters: n_per_class=400, seed=0, letters=None",
+        "Generates full synthetic landmark dataset",
+        "Returns tuple (X, y, labels)",
+        "X shape: (N*letters, 21, 3) as float32",
+        "y shape: (N*letters,) as int64 class indices",
+        "Has __main__ entry point for quick validation"
+      ]
+    },
+    {
+      "name": "file:ml/train_export.py",
+      "entityType": "file",
+      "observations": [
+        "Path: ml/train_export.py",
+        "Language: python",
+        "Category: code",
+        "Lines: 185",
+        "MLP training and ONNX export pipeline (baseline v1)",
+        "Imports: json, os, numpy, sklearn (MLPClassifier, train_test_split, metrics), skl2onnx",
+        "Local imports: from synth_landmarks, from features",
+        "Outputs: fingerspell_mlp.onnx, labels.json, eval_report.md",
+        "Collision-aware accuracy reporting for synthetic data eval",
+        "Fairness placeholder slices (even/odd index)"
+      ]
+    },
+    {
+      "name": "function:ml/train_export.py:collision_aware_correct",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 75",
+        "Parameters: true, pred",
+        "Checks if prediction is in the synth-collision equivalence class of the true label",
+        "Inner function in module scope, also used by train_export_v2.py logic"
+      ]
+    },
+    {
+      "name": "file:ml/train_export_v2.py",
+      "entityType": "file",
+      "observations": [
+        "Path: ml/train_export_v2.py",
+        "Language: python",
+        "Category: code",
+        "Lines: 421",
+        "Enhanced MLP training pipeline (v2) with geometry features, augmentation, and sample weighting",
+        "Imports: json, os, numpy, sklearn (MLPClassifier, train_test_split, metrics, StandardScaler), argparse",
+        "Local imports: from synth_landmarks (make_dataset, LETTERS, SYNTH_COLLISIONS)",
+        "Local imports inside functions: from features (normalize), from skl2onnx",
+        "Outputs: fingerspell_mlp_v2.onnx, labels_v2.json, eval_report_v2.md",
+        "68-dim features (63 normalized + 5 geometry)",
+        "Mirror augmentation (2x) + jitter augmentation (6x for hard classes)",
+        "Sample weighting (2.25x for hard classes: R, U, V, M, N, O)",
+        "Architecture: 256 -> 128 -> 64 with early stopping and adaptive learning rate"
+      ]
+    },
+    {
+      "name": "function:ml/train_export_v2.py:compute_geometry_features",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 44",
+        "Parameters: landmarks (np.ndarray (21,3))",
+        "Computes 5 geometry features for R/U/V distinction",
+        "Features: index-middle tip distance, MCP distance, cosine angle, cross product sign, tip/MCP ratio",
+        "Returns (5,) float32 array"
+      ]
+    },
+    {
+      "name": "function:ml/train_export_v2.py:expand_features_with_geometry",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 97",
+        "Parameters: X_raw (np.ndarray (N,21,3))",
+        "Expands (N,21,3) to (N,68) feature vectors",
+        "63 normalized landmarks + 5 geometry features",
+        "Calls normalize() from features.py and compute_geometry_features()"
+      ]
+    },
+    {
+      "name": "function:ml/train_export_v2.py:mirror_augment",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 124",
+        "Parameters: X_raw, y",
+        "Mirror augmentation by negating x-coordinates",
+        "Doubles dataset for left/right hand invariance",
+        "Returns concatenated (2N,21,3) and (2N,) arrays"
+      ]
+    },
+    {
+      "name": "function:ml/train_export_v2.py:jitter_augment",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 134",
+        "Parameters: X_raw, y, labels, hard_classes, n_jitters=6, rotation_max=0.42, noise_std=0.018",
+        "Applies random rotation and Gaussian noise to hard class samples",
+        "Rotates around wrist landmark in image plane",
+        "Defaults: R, U, V, M, N, O as hard classes",
+        "Returns augmented dataset with n_jitters additional copies per hard sample"
+      ]
+    },
+    {
+      "name": "function:ml/train_export_v2.py:main",
+      "entityType": "function",
+      "observations": [
+        "Defined at line 184",
+        "CLI entry point with argparse (--n-per-class, --seed)",
+        "Full pipeline: generate data, mirror augment, jitter augment, expand features, train/test split, sample weight, MLP train",
+        "Evaluates with strict accuracy, collision-aware accuracy, macro-F1, per-class accuracy with collision group info",
+        "Exports to ONNX (68-dim input), saves labels_v2.json with geometry feature descriptions",
+        "Generates comprehensive eval_report_v2.md"
+      ]
+    }
+  ],
+  "edges": [
+    { "from": "file:ml/features.py", "to": "function:ml/features.py:normalize", "relationType": "contains" },
+    { "from": "file:ml/synth_landmarks.py", "to": "function:ml/synth_landmarks.py:_polar", "relationType": "contains" },
+    { "from": "file:ml/synth_landmarks.py", "to": "function:ml/synth_landmarks.py:_synthesize_one", "relationType": "contains" },
+    { "from": "file:ml/synth_landmarks.py", "to": "function:ml/synth_landmarks.py:make_dataset", "relationType": "contains" },
+    { "from": "file:ml/train_export.py", "to": "function:ml/train_export.py:collision_aware_correct", "relationType": "contains" },
+    { "from": "file:ml/train_export_v2.py", "to": "function:ml/train_export_v2.py:compute_geometry_features", "relationType": "contains" },
+    { "from": "file:ml/train_export_v2.py", "to": "function:ml/train_export_v2.py:expand_features_with_geometry", "relationType": "contains" },
+    { "from": "file:ml/train_export_v2.py", "to": "function:ml/train_export_v2.py:mirror_augment", "relationType": "contains" },
+    { "from": "file:ml/train_export_v2.py", "to": "function:ml/train_export_v2.py:jitter_augment", "relationType": "contains" },
+    { "from": "file:ml/train_export_v2.py", "to": "function:ml/train_export_v2.py:main", "relationType": "contains" },
+    { "from": "file:ml/train_export.py", "to": "file:ml/synth_landmarks.py", "relationType": "imports" },
+    { "from": "file:ml/train_export.py", "to": "file:ml/features.py", "relationType": "imports" },
+    { "from": "file:ml/train_export_v2.py", "to": "file:ml/synth_landmarks.py", "relationType": "imports" },
+    { "from": "file:ml/train_export_v2.py", "to": "file:ml/features.py", "relationType": "imports" },
+    { "from": "function:ml/train_export_v2.py:expand_features_with_geometry", "to": "function:ml/features.py:normalize", "relationType": "calls" },
+    { "from": "function:ml/train_export_v2.py:expand_features_with_geometry", "to": "function:ml/train_export_v2.py:compute_geometry_features", "relationType": "calls" },
+    { "from": "function:ml/train_export_v2.py:main", "to": "function:ml/synth_landmarks.py:make_dataset", "relationType": "calls" },
+    { "from": "function:ml/train_export_v2.py:main", "to": "function:ml/train_export_v2.py:mirror_augment", "relationType": "calls" },
+    { "from": "function:ml/train_export_v2.py:main", "to": "function:ml/train_export_v2.py:jitter_augment", "relationType": "calls" },
+    { "from": "function:ml/train_export_v2.py:main", "to": "function:ml/train_export_v2.py:expand_features_with_geometry", "relationType": "calls" },
+    { "from": "function:ml/synth_landmarks.py:_synthesize_one", "to": "function:ml/synth_landmarks.py:_polar", "relationType": "calls" },
+    { "from": "function:ml/synth_landmarks.py:make_dataset", "to": "function:ml/synth_landmarks.py:_synthesize_one", "relationType": "calls" }
+  ]
+}

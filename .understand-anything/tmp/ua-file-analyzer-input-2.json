@@ -1,0 +1,83 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/critique-storage.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  242,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/design-parser.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  820,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  110,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-complete.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  75,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-completion.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  18,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-inject.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  446,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-poll.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  200,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-resume.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  48,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-server.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  838,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-session-store.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  254,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-status.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  47,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  247,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/load-context.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  141,
+                           "fileCategory":  "code"
+                       }
+                   ]
+}

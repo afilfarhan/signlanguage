@@ -1,0 +1,175 @@
+{
+  "nodes": [
+    {
+      "id": "batch-16",
+      "type": "batch",
+      "label": "Batch 16/19 — Config & Data Files",
+      "observations": [
+        "5 config/data files for signtutor: labels, deployment config, dependencies",
+        "3 of 5 listed paths (fingerspell_labels.json, fingerspell_mlp_labels_mlp.json, signtutor/vercel.json) did not exist on disk; mapped to real equivalents"
+      ]
+    },
+    {
+      "id": "file:dynamic_labels.json",
+      "type": "file",
+      "label": "signtutor/public/models/dynamic_labels.json",
+      "observations": [
+        "14-line JSON mapping 8 dynamic ASL gesture labels: HELLO, GOODBYE, YES, NO, PLEASE, THANKS, SORRY, HELP",
+        "seq_len=45 frames, feature_dim=126 (21 keypoints × 3 coords × 2 hands)",
+        "Used by the dynamic gesture recognition model"
+      ]
+    },
+    {
+      "id": "file:labels.json",
+      "type": "file",
+      "label": "signtutor/public/models/labels.json (v1 fingerspell labels)",
+      "observations": [
+        "57-line JSON with 24 fingerspell labels (A-Y, no J or Z)",
+        "Includes synth_collisions: groups of visually similar letters (e.g. A/E/M/N/S/T)",
+        "Likely used by an earlier fingerspell model version (MLP or CNN)"
+      ]
+    },
+    {
+      "id": "file:labels_v2.json",
+      "type": "file",
+      "label": "signtutor/public/models/labels_v2.json",
+      "observations": [
+        "84-line JSON with full A-Z fingerspell labels (26 letters)",
+        "synth_collisions extended with J/I and Z/D collision groups",
+        "feature_dim=68 (geometry-engineered features, not raw keypoints)",
+        "geometry_features: index_middle_tip_distance, index_middle_mcp_distance, index_middle_cosine_angle, index_middle_cross_sign, tip_mcp_distance_ratio",
+        "hard_classes=[R, U, V, M, N, O] with hard_class_weight=2.25 for loss upweighting",
+        "Used by the fingerspell MLP v2 model"
+      ]
+    },
+    {
+      "id": "file:vercel.json",
+      "type": "file",
+      "label": "vercel.json (project root)",
+      "observations": [
+        "3-line Vercel deployment config",
+        "Sets rootDirectory to 'signtutor' so Vercel knows where the Next.js app lives"
+      ]
+    },
+    {
+      "id": "file:package.json",
+      "type": "file",
+      "label": "signtutor/package.json",
+      "observations": [
+        "38-line Node.js manifest for signtutor v0.1.0 (private)",
+        "Framework: Next.js 16.2.6, React 19.2.4, TypeScript 5",
+        "Key runtime dep: onnxruntime-web ^1.26.0 (on-device ML inference)",
+        "Testing: vitest ^4.1.6 (unit), @playwright/test ^1.60.0 (E2E)",
+        "Linters: eslint 9, eslint-config-next 16.2.6",
+        "Styling: tailwindcss 4, @tailwindcss/postcss 4"
+      ]
+    },
+    {
+      "id": "data-label:dynamic",
+      "type": "data-label",
+      "label": "Dynamic Gesture Labels (8 words)",
+      "observations": [
+        "8 ASL phrase/word labels: HELLO, GOODBYE, YES, NO, PLEASE, THANKS, SORRY, HELP",
+        "Model input: 45-frame sequence, 126-dim feature vector per frame",
+        "Temporal model (likely LSTM/GRU or Transformer)"
+      ]
+    },
+    {
+      "id": "data-label:static-v1",
+      "type": "data-label",
+      "label": "Static Fingerspell Labels v1 (A-Y, 24 letters)",
+      "observations": [
+        "24 letters A through Y (no J, no Z)",
+        "5 synth_collision groups for data augmentation ambiguity handling",
+        "Used by earlier static fingerspell model"
+      ]
+    },
+    {
+      "id": "data-label:static-v2",
+      "type": "data-label",
+      "label": "Static Fingerspell Labels v2 (A-Z, 26 letters)",
+      "observations": [
+        "Full 26-letter ASL alphabet",
+        "7 synth_collision groups including J/I and Z/D",
+        "5 geometry features extracted from finger landmarks",
+        "6 hard classes with 2.25× loss weighting",
+        "Engineered features (not raw keypoints) → feature_dim=68",
+        "Used by fingerspell_mlp_v2.onnx"
+      ]
+    },
+    {
+      "id": "dep:nextjs",
+      "type": "dependency",
+      "label": "Next.js 16.2.6 + React 19.2.4",
+      "observations": [
+        "Next.js 16.2.6 with React 19.2.4 and React DOM 19.2.4",
+        "TypeScript 5, strict mode, bundler module resolution",
+        "Path alias @/* → ./src/*"
+      ]
+    },
+    {
+      "id": "dep:onnxruntime",
+      "type": "dependency",
+      "label": "onnxruntime-web ^1.26.0",
+      "observations": [
+        "On-device ML inference via ONNX Runtime Web",
+        "Runs fingerspell and dynamic gesture models in browser",
+        "Key enabler for privacy-preserving local inference"
+      ]
+    },
+    {
+      "id": "dep:testing",
+      "type": "dependency",
+      "label": "Testing Stack (Vitest + Playwright + jsdom)",
+      "observations": [
+        "Vitest ^4.1.6 with @vitejs/plugin-react ^6.0.1 for unit/integration tests",
+        "@testing-library/react ^16.3.2 + @testing-library/jest-dom ^6.9.1",
+        "jsdom ^29.1.1 for DOM environment",
+        "@playwright/test ^1.60.0 + playwright ^1.60.0 for E2E",
+        "test:e2e script configured"
+      ]
+    },
+    {
+      "id": "config:vercel",
+      "type": "config",
+      "label": "Vercel Deployment Config",
+      "observations": [
+        "rootDirectory: signtutor — Vercel builds from the signtutor/ subdirectory",
+        "Monorepo-friendly layout"
+      ]
+    },
+    {
+      "id": "note:missing-files",
+      "type": "note",
+      "label": "Files Checked — 3 Missing",
+      "observations": [
+        "fingerspell_labels.json — NOT FOUND at listed path; closest real file is labels.json (v1, 24 letters A-Y)",
+        "fingerspell_mlp_labels_mlp.json — NOT FOUND at listed path; closest real files are fingerspell_mlp.onnx / fingerspell_mlp_v2.onnx (binary models) and labels_v2.json (label spec)",
+        "signtutor/vercel.json — NOT FOUND; vercel.json exists at project root D:\\signlanguage\\vercel.json instead"
+      ]
+    }
+  ],
+  "edges": [
+    { "from": "batch-16", "to": "file:dynamic_labels.json", "relationType": "contains" },
+    { "from": "batch-16", "to": "file:labels.json", "relationType": "contains" },
+    { "from": "batch-16", "to": "file:labels_v2.json", "relationType": "contains" },
+    { "from": "batch-16", "to": "file:vercel.json", "relationType": "contains" },
+    { "from": "batch-16", "to": "file:package.json", "relationType": "contains" },
+    { "from": "batch-16", "to": "note:missing-files", "relationType": "has_issue" },
+
+    { "from": "file:dynamic_labels.json", "to": "data-label:dynamic", "relationType": "defines_labels" },
+    { "from": "file:labels.json", "to": "data-label:static-v1", "relationType": "defines_labels" },
+    { "from": "file:labels_v2.json", "to": "data-label:static-v2", "relationType": "defines_labels" },
+
+    { "from": "file:package.json", "to": "dep:nextjs", "relationType": "declares" },
+    { "from": "file:package.json", "to": "dep:onnxruntime", "relationType": "declares" },
+    { "from": "file:package.json", "to": "dep:testing", "relationType": "declares" },
+
+    { "from": "file:vercel.json", "to": "config:vercel", "relationType": "configures" },
+    { "from": "config:vercel", "to": "dep:nextjs", "relationType": "deploys" },
+
+    { "from": "data-label:static-v2", "to": "data-label:static-v1", "relationType": "evolves_from" },
+    { "from": "data-label:static-v2", "to": "dep:onnxruntime", "relationType": "consumes_model" },
+    { "from": "data-label:dynamic", "to": "dep:onnxruntime", "relationType": "consumes_model" }
+  ]
+}

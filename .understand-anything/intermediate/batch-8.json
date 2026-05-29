@@ -1,0 +1,541 @@
+{
+  "nodes": [
+    {
+      "id": "impeccable-skills-root",
+      "type": "directory",
+      "label": "impeccable/",
+      "observations": [
+        "Root directory of the impeccables UI craft skill",
+        "Contains agents/, scripts/, reference/ subdirectories",
+        "Skill descriptor at SKILL.md registers 22 commands across Build, Evaluate, Refine, Enhance, Fix, Iterate categories"
+      ]
+    },
+    {
+      "id": "SKILL.md",
+      "type": "document",
+      "label": "SKILL.md",
+      "observations": [
+        "Skill descriptor and routing hub for the impeccable skill",
+        "Total lines: 168, non-empty lines: 146",
+        "Defines 22 sub-commands: craft, shape, teach, document, extract, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live",
+        "Shares 8 design laws: color (OKLCH), theme scene sentence, typography 65-75ch, layout, motion bans, absolute bans (side-stripe borders, gradient text, glassmorphism), AI slop test",
+        "References registers: brand.md and product.md for register-specific rules",
+        "Houses shared design laws including color strategy, theme, typography, layout, motion, and absolute bans"
+      ]
+    },
+    {
+      "id": "impeccable-asset-producer.md",
+      "type": "agent",
+      "label": "impeccable-asset-producer.md",
+      "observations": [
+        "Agent: Asset production for impeccability craft",
+        "Total lines: 101, agents/impeccable-asset-producer.md",
+        "Goal: production cleanup of raster assets from approved mocks, no new art direction",
+        "Core rule: preserve visual role, silhouette, palette, lighting, material, texture, camera angle",
+        "Input contract: approved mock path, crops, output directory, dimensions, format, transparency needs",
+        "Three buckets: produce (needs generation), direct (can ship as crop), semantic (HTML/CSS/SVG)",
+        "Output: manifest grouped by produce/direct/semantic with qa_status",
+        "Uses imagegen skill for production, prefers true alpha transparency",
+        "Contrasts: removes UI text, nav, buttons; preserves only physical marks if parent specifies"
+      ]
+    },
+    {
+      "id": "impeccable-paths.mjs",
+      "type": "file",
+      "label": "impeccable-paths.mjs",
+      "observations": [
+        "Script: Path resolution utilities for impeccability",
+        "Total lines: 110, scripts/impeccable-paths.mjs",
+        "Node.js ESM module with exports",
+        "Exports constants: IMPECCABLE_DIR, LIVE_DIR, CRITIQUE_DIR",
+        "Provides path helpers for: design sidecar, live config, live server info, sessions, annotations, critique dirs",
+        "Supports legacy fallback paths (.impeccable-live/)",
+        "Used by live.mjs and other scripts for consistent directory resolution"
+      ]
+    },
+    {
+      "id": "live-accept.mjs",
+      "type": "file",
+      "label": "live-accept.mjs",
+      "observations": [
+        "Script: Variant accept/discard CLI for live sessions",
+        "Total lines: 595, scripts/live-accept.mjs",
+        "Node.js ESM module with auto-execute on direct run",
+        "Two modes: --discard removes variants and restores original; --variant N accepts one variant",
+        "Handles HTML, JSX, TSX, Vue, Svelte, Astro file extensions",
+        "Deep div-depth tracking for accurate JSX wrapper expansion (expandReplaceRange)",
+        "Carbonize support: preserves colocated <style> blocks with markers for background CSS integration",
+        "Exports: findMarkerBlock, extractOriginal, extractVariant, extractCss, deindentContent, detectCommentSyntax",
+        "Falls back to agent-driven flow if session markers live in a generated file",
+        "Imports is-generated.mjs for generated file detection"
+      ]
+    },
+    {
+      "id": "live-wrap.mjs",
+      "type": "file",
+      "label": "live-wrap.mjs",
+      "observations": [
+        "Script: Element wrapping CLI for live variant sessions",
+        "Total lines: 632, scripts/live-wrap.mjs",
+        "Node.js ESM module with auto-execute on direct run",
+        "Searches project files by query (ID, class combo, tag, text snippet) to find elements",
+        "Wraps found element with variant scaffolding (original + variant slots)",
+        "Generates different wrapper syntax for HTML vs JSX/TSX files",
+        "Ambiguity detection: when multiple elements match, filters by textContent",
+        "Detects comment syntax (HTML vs JSX) and style mode (scoped vs Astro global)",
+        "Provides CSS authoring guidance in output (scope rules or global-prefixed selectors)",
+        "Exports: buildSearchQueries, findElement, findClosingLine, detectCommentSyntax"
+      ]
+    },
+    {
+      "id": "reference-live.md",
+      "type": "document",
+      "label": "live.md",
+      "observations": [
+        "Reference: Live variant mode workflow",
+        "Total lines: 622, non-empty: 413, 37 sections",
+        "Comprehensive live-mode protocol: contract, start, poll loop, recovery",
+        "Covers generate/fallback/accept/discard/prefetch/exit/cleanup flows",
+        "Includes first-time setup, drift-heal warning, CSP detection, consent prompt template",
+        "Troubleshooting section for common issues",
+        "Core reference for live-accept.mjs and live-wrap.mjs scripts"
+      ]
+    },
+    {
+      "id": "reference-motion-design.md",
+      "type": "document",
+      "label": "motion-design.md",
+      "observations": [
+        "Reference: Motion design principles",
+        "Total lines: 109, non-empty: 73, 8 sections",
+        "Covers duration 100/300/500 rule, easing curves, premium motion materials",
+        "Staggered animations, reduced motion, perceived performance, rendering performance",
+        "Key resource for animate and overdrive commands"
+      ]
+    },
+    {
+      "id": "reference-onboard.md",
+      "type": "document",
+      "label": "onboard.md",
+      "observations": [
+        "Reference: Onboarding design patterns",
+        "Total lines: 234, non-empty: 179, 22 sections",
+        "Covers onboarding needs assessment, principles (show don't tell, make optional, time to value)",
+        "Designs for: initial product onboarding, feature discovery, guided tours, interactive tutorials",
+        "Documentation/help patterns, empty state design, implementation patterns, verification",
+        "Reference for onboard command"
+      ]
+    },
+    {
+      "id": "reference-optimize.md",
+      "type": "document",
+      "label": "optimize.md",
+      "observations": [
+        "Reference: UI performance optimization",
+        "Total lines: 258, non-empty: 211, 13 sections",
+        "Covers performance assessment, loading performance, rendering performance",
+        "Animation performance, React/framework optimization, network optimization",
+        "Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1",
+        "Performance monitoring and verification strategies",
+        "Reference for optimize command"
+      ]
+    },
+    {
+      "id": "reference-overdrive.md",
+      "type": "document",
+      "label": "overdrive.md",
+      "observations": [
+        "Reference: Extraordinary visual effects",
+        "Total lines: 130, non-empty: 90, 20 sections",
+        "Approach: propose before building, iterate with browser automation",
+        "Assess extraordinary per surface: visual/marketing, functional UI, performance-critical, data-heavy",
+        "Toolkit: cinematic transitions, scroll-linked animation, canvas beyond CSS, data animation",
+        "Implement with discipline: progressive enhancement, performance rules",
+        "Reference for overdrive command"
+      ]
+    },
+    {
+      "id": "reference-personas.md",
+      "type": "document",
+      "label": "personas.md",
+      "observations": [
+        "Reference: Persona-based design testing",
+        "Total lines: 179, non-empty: 133, 8 sections",
+        "Five personas: Impatient Power User (Alex), Confused First-Timer (Jordan)",
+        "Accessibility-Dependent User (Sam), Deliberate Stress Tester (Riley), Distracted Mobile User (Casey)",
+        "Guidance on selecting personas and creating project-specific personas",
+        "Used during critique and audit commands"
+      ]
+    },
+    {
+      "id": "reference-polish.md",
+      "type": "document",
+      "label": "polish.md",
+      "observations": [
+        "Reference: Final quality polish pass",
+        "Total lines: 242, non-empty: 184, 19 sections",
+        "Covers design system discovery, pre-polish assessment",
+        "12 polish dimensions: alignment, IA, typography, color/contrast, interaction states",
+        "Micro-interactions, copy, icons/images, forms, edge cases, responsiveness, performance, code quality",
+        "Polish checklist for systematic verification",
+        "Reference for polish command"
+      ]
+    },
+    {
+      "id": "reference-product.md",
+      "type": "document",
+      "label": "product.md",
+      "observations": [
+        "Reference: Product register rules",
+        "Total lines: 62, non-empty: 41, 9 sections",
+        "Defines product register (app UI, dashboard, tool: design SERVES the product)",
+        "Product slop test, typography, color, layout, components, motion",
+        "Product bans (on top of shared absolute bans) and permissions",
+        "Loaded by SKILL.md when register is identified as product"
+      ]
+    },
+    {
+      "id": "reference-quieter.md",
+      "type": "document",
+      "label": "quieter.md",
+      "observations": [
+        "Reference: Tone down overstimulating designs",
+        "Total lines: 99, non-empty: 72, 10 sections",
+        "Register, assess current state, plan refinement",
+        "Refine through: color, visual weight reduction, simplification, motion reduction, composition",
+        "Verification quality checklist",
+        "Reference for quieter command"
+      ]
+    },
+    {
+      "id": "reference-responsive-design.md",
+      "type": "document",
+      "label": "responsive-design.md",
+      "observations": [
+        "Reference: Responsive design patterns",
+        "Total lines: 114, non-empty: 83, 10 sections",
+        "Mobile-first approach, content-driven breakpoints",
+        "Input method detection beyond screen size, safe areas/notch handling",
+        "Responsive images with srcset width descriptors and picture element art direction",
+        "Layout adaptation patterns, real device testing guidance",
+        "Reference for adapt command"
+      ]
+    },
+    {
+      "id": "reference-shape.md",
+      "type": "document",
+      "label": "shape.md",
+      "observations": [
+        "Reference: UX/UI planning workflow",
+        "Total lines: 165, non-empty: 106, 15 sections",
+        "Philosophy, Phase 1 discovery interview with interview cadence",
+        "Interview covers: purpose/context, content/data, design direction, scope, constraints, anti-goals",
+        "Phase 1.5: visual direction probe (capability-gated)",
+        "Phase 2: design brief structure",
+        "Reference for shape command"
+      ]
+    },
+    {
+      "id": "reference-spatial-design.md",
+      "type": "document",
+      "label": "spatial-design.md",
+      "observations": [
+        "Reference: Spatial design principles",
+        "Total lines: 100, non-empty: 66, 14 sections",
+        "Spacing systems: 4pt base instead of 8pt, semantic token naming",
+        "Grid systems: self-adjusting grid, visual hierarchy via squint test",
+        "Cards are not required, container queries, optical adjustments",
+        "Touch targets vs visual size, depth and elevation",
+        "Reference for layout command"
+      ]
+    },
+    {
+      "id": "reference-teach.md",
+      "type": "document",
+      "label": "teach.md",
+      "observations": [
+        "Reference: Context setup workflow",
+        "Total lines: 156, non-empty: 100, 13 sections",
+        "Six-step flow: load current state, explore codebase, ask strategic questions",
+        "Interview mode (not confirmation mode), minimum viable interview",
+        "Covers register, users/purpose, brand/personality, accessibility/inclusion",
+        "Write PRODUCT.md, decide on DESIGN.md, confirm and wrap up",
+        "Reference for teach command"
+      ]
+    },
+    {
+      "id": "reference-typeset.md",
+      "type": "document",
+      "label": "typeset.md",
+      "observations": [
+        "Reference: Typography refinement workflow",
+        "Total lines: 124, non-empty: 87, 11 sections",
+        "Register, assess current typography, plan improvements",
+        "Systematic improvement: font selection, hierarchy, readability, details, weight consistency",
+        "Verification and live-mode signature params",
+        "Reference for typeset command"
+      ]
+    },
+    {
+      "id": "reference-typography.md",
+      "type": "document",
+      "label": "typography.md",
+      "observations": [
+        "Reference: Typography system reference",
+        "Total lines: 159, non-empty: 102, 15 sections",
+        "Classic principles: vertical rhythm, modular scale and hierarchy, readability and measure",
+        "Font selection and pairing principles, web font loading strategies",
+        "Modern web typography: fluid type, OpenType features, rendering polish",
+        "Typography system architecture, accessibility considerations",
+        "Supporting reference for typeset command"
+      ]
+    },
+    {
+      "id": "reference-ux-writing.md",
+      "type": "document",
+      "label": "ux-writing.md",
+      "observations": [
+        "Reference: UX writing guidance",
+        "Total lines: 107, non-empty: 69, 16 sections",
+        "Button label problem, error message formula and templates",
+        "Don't blame the user, empty states as opportunities",
+        "Voice vs tone, writing for accessibility, writing for translation (expansion planning)",
+        "Consistency terminology problem, avoid redundant copy, loading states, confirmation dialogs",
+        "Form instructions guidance",
+        "Reference for clarify command"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "SKILL.md",
+      "to": "reference-product.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-shape.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-teach.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-polish.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-overdrive.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-optimize.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-onboard.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-live.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-motion-design.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-personas.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-quieter.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-responsive-design.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-spatial-design.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-typeset.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-typography.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "reference-ux-writing.md",
+      "relation": "references"
+    },
+    {
+      "from": "SKILL.md",
+      "to": "impeccable-asset-producer.md",
+      "relation": "delegates_to"
+    },
+    {
+      "from": "impeccable-asset-producer.md",
+      "to": "impeccable-paths.mjs",
+      "relation": "depends_on"
+    },
+    {
+      "from": "live-accept.mjs",
+      "to": "reference-live.md",
+      "relation": "implements_protocol"
+    },
+    {
+      "from": "live-wrap.mjs",
+      "to": "reference-live.md",
+      "relation": "implements_protocol"
+    },
+    {
+      "from": "live-accept.mjs",
+      "to": "impeccable-paths.mjs",
+      "relation": "depends_on"
+    },
+    {
+      "from": "live-wrap.mjs",
+      "to": "impeccable-paths.mjs",
+      "relation": "depends_on"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "SKILL.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "impeccable-asset-producer.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "impeccable-paths.mjs",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "live-accept.mjs",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "live-wrap.mjs",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-live.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-motion-design.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-onboard.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-optimize.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-overdrive.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-personas.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-polish.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-product.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-quieter.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-responsive-design.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-shape.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-spatial-design.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-teach.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-typeset.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-typography.md",
+      "relation": "contains"
+    },
+    {
+      "from": "impeccable-skills-root",
+      "to": "reference-ux-writing.md",
+      "relation": "contains"
+    }
+  ],
+  "missing": [
+    ".agents/skills/impeccable/agents/impeccable-beautifier.md",
+    ".agents/skills/impeccable/agents/impeccable-component-researcher.md",
+    ".agents/skills/impeccable/agents/impeccable-page-builder.md",
+    ".agents/skills/impeccable/agents/impeccable-planner.md",
+    ".agents/skills/impeccable/agents/impeccable-design-token-agent.md",
+    ".agents/skills/impeccable/agents/impeccable-page-components.md",
+    ".agents/skills/impeccable/scripts/render-live-preview.mjs",
+    ".agents/skills/impeccable/reference/design-system-builder.md",
+    ".agents/skills/impeccable/reference/foundation-builder.md",
+    ".agents/skills/impeccable/reference/observatory.md",
+    ".agents/skills/impeccable/reference/sketch.md",
+    ".agents/skills/impeccable/reference/spike.md"
+  ],
+  "note_on_discrepancies": "12 of 16 batch-8 files do not exist on disk. The extraction at ua-file-extract-results-8.json instead captured 16 reference/*.md files from impeccable/reference/ (different set). Nodes above combine: (a) reference docs from the extraction file, (b) the 3 script + 1 agent + SKILL.md that exist on disk."
+}

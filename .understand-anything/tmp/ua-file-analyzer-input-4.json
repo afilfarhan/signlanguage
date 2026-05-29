@@ -1,0 +1,29 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "ml/features.py",
+                           "language":  "python",
+                           "sizeLines":  38,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/synth_landmarks.py",
+                           "language":  "python",
+                           "sizeLines":  157,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/train_export.py",
+                           "language":  "python",
+                           "sizeLines":  185,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/train_export_v2.py",
+                           "language":  "python",
+                           "sizeLines":  421,
+                           "fileCategory":  "code"
+                       }
+                   ]
+}

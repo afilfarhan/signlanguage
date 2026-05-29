@@ -1,0 +1,14 @@
+{
+  "nodes": [
+    {"id": "data:prototype/models/dynamic_labels.json", "type": "data", "name": "dynamic_labels.json", "filePath": "prototype/models/dynamic_labels.json", "summary": "JSON label mapping for 8 ASL gesture classes (HELLO, GOODBYE, YES, NO, PLEASE, THANKS, SORRY, HELP) with 45-frame sequence config and 126-dim feature dimensions", "tags": ["labels", "gesture-classes", "asl", "prototype"], "complexity": "simple"},
+    {"id": "data:prototype/models/hand_lr_epoch5_acc_9753.pth", "type": "data", "name": "hand_lr_epoch5_acc_9753.pth", "filePath": "prototype/models/hand_lr_epoch5_acc_9753.pth", "summary": "PyTorch model checkpoint for hand landmark gesture classification, trained with LR scheduler at epoch 5 achieving 97.53% validation accuracy", "tags": ["model-checkpoint", "pytorch", "hand-landmarks", "prototype"], "complexity": "moderate"},
+    {"id": "data:prototype/models/hand_x_val.pth", "type": "data", "name": "hand_x_val.pth", "filePath": "prototype/models/hand_x_val.pth", "summary": "PyTorch model checkpoint for hand landmark gesture classification using cross-validation variant", "tags": ["model-checkpoint", "pytorch", "cross-validation", "prototype"], "complexity": "moderate"}
+  ],
+  "edges": [
+    {"source": "data:prototype/models/dynamic_labels.json", "target": "file:prototype/models", "type": "contained_in", "weight": 1.0},
+    {"source": "data:prototype/models/hand_lr_epoch5_acc_9753.pth", "target": "file:prototype/models", "type": "contained_in", "weight": 1.0},
+    {"source": "data:prototype/models/hand_x_val.pth", "target": "file:prototype/models", "type": "contained_in", "weight": 1.0},
+    {"source": "data:prototype/models/hand_lr_epoch5_acc_9753.pth", "target": "data:prototype/models/dynamic_labels.json", "type": "depends_on", "weight": 0.6},
+    {"source": "data:prototype/models/hand_x_val.pth", "target": "data:prototype/models/dynamic_labels.json", "type": "depends_on", "weight": 0.6}
+  ]
+}

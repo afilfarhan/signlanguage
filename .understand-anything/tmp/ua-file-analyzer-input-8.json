@@ -1,0 +1,101 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  ".agents/skills/impeccable/reference/live.md",
+                           "language":  "markdown",
+                           "sizeLines":  622,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/motion-design.md",
+                           "language":  "markdown",
+                           "sizeLines":  109,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/onboard.md",
+                           "language":  "markdown",
+                           "sizeLines":  234,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/optimize.md",
+                           "language":  "markdown",
+                           "sizeLines":  258,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/overdrive.md",
+                           "language":  "markdown",
+                           "sizeLines":  130,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/personas.md",
+                           "language":  "markdown",
+                           "sizeLines":  179,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/polish.md",
+                           "language":  "markdown",
+                           "sizeLines":  242,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/product.md",
+                           "language":  "markdown",
+                           "sizeLines":  62,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/quieter.md",
+                           "language":  "markdown",
+                           "sizeLines":  99,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/responsive-design.md",
+                           "language":  "markdown",
+                           "sizeLines":  114,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/shape.md",
+                           "language":  "markdown",
+                           "sizeLines":  165,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/spatial-design.md",
+                           "language":  "markdown",
+                           "sizeLines":  100,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/teach.md",
+                           "language":  "markdown",
+                           "sizeLines":  156,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/typeset.md",
+                           "language":  "markdown",
+                           "sizeLines":  124,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/typography.md",
+                           "language":  "markdown",
+                           "sizeLines":  159,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/ux-writing.md",
+                           "language":  "markdown",
+                           "sizeLines":  107,
+                           "fileCategory":  "docs"
+                       }
+                   ]
+}

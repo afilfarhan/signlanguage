@@ -1,0 +1,27 @@
+{
+  "source": "synth",
+  "vocab_size": 10,
+  "words": [
+    "HELLO",
+    "GOODBYE",
+    "YES",
+    "NO",
+    "PLEASE",
+    "THANKS",
+    "SORRY",
+    "HELP",
+    "WANT",
+    "NEED"
+  ],
+  "t_frames": 60,
+  "feature_dim": 126,
+  "n_train": 210,
+  "n_val": 30,
+  "n_test": 60,
+  "augmentation": false,
+  "split_ratios": {
+    "train": 0.7,
+    "val": 0.1,
+    "test": 0.2
+  }
+}

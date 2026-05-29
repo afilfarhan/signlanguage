@@ -1,0 +1,369 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 7,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "signtutor/DESIGN.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 63,
+      "nonEmptyLines": 51,
+      "sections": [
+        {
+          "heading": "SignTutor — Design System",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Aesthetic: \"Bioluminescent Studio\"",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Design Tokens",
+          "level": 2,
+          "line": 6
+        },
+        {
+          "heading": "Colors (OKLCH preferred)",
+          "level": 3,
+          "line": 8
+        },
+        {
+          "heading": "Typography",
+          "level": 3,
+          "line": 31
+        },
+        {
+          "heading": "Spacing & Radius",
+          "level": 3,
+          "line": 36
+        },
+        {
+          "heading": "Shadows",
+          "level": 3,
+          "line": 42
+        },
+        {
+          "heading": "Fonts",
+          "level": 2,
+          "line": 46
+        },
+        {
+          "heading": "Component Patterns",
+          "level": 2,
+          "line": 54
+        },
+        {
+          "heading": "Motion",
+          "level": 2,
+          "line": 60
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 10
+      }
+    },
+    {
+      "path": "signtutor/IMPLEMENTATION_STATUS.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 92,
+      "nonEmptyLines": 71,
+      "sections": [
+        {
+          "heading": "SignTutor v2 — Implementation Status",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "✅ Completed (Core Fixes)",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "1. Webcam Start Button Now Works",
+          "level": 3,
+          "line": 5
+        },
+        {
+          "heading": "2. MediaPipe Holistic Integration",
+          "level": 3,
+          "line": 13
+        },
+        {
+          "heading": "3. Calibration & Personalization",
+          "level": 3,
+          "line": 18
+        },
+        {
+          "heading": "4. Structured Feedback Panel",
+          "level": 3,
+          "line": 24
+        },
+        {
+          "heading": "5. Privacy/Fetch Interceptor",
+          "level": 3,
+          "line": 31
+        },
+        {
+          "heading": "6. TypeScript & Tests",
+          "level": 3,
+          "line": 37
+        },
+        {
+          "heading": "⏳ Remaining Work (per BUILD_PROMPT_ML_EXTENSION.md)",
+          "level": 2,
+          "line": 43
+        },
+        {
+          "heading": "W1 — Real Data Foundation",
+          "level": 3,
+          "line": 45
+        },
+        {
+          "heading": "W2 — J and Z Motion Letters",
+          "level": 3,
+          "line": 50
+        },
+        {
+          "heading": "W3 — 200 Dynamic Signs",
+          "level": 3,
+          "line": 54
+        },
+        {
+          "heading": "W4 — NMM Scoring (behind `NMM_SCORING` flag)",
+          "level": 3,
+          "line": 59
+        },
+        {
+          "heading": "W5 — On-Device Personalization",
+          "level": 3,
+          "line": 64
+        },
+        {
+          "heading": "W6 — Confidence Calibration",
+          "level": 3,
+          "line": 68
+        },
+        {
+          "heading": "W7 — Multi-Language Beta",
+          "level": 3,
+          "line": 72
+        },
+        {
+          "heading": "W8 — Continuous-Sign Research Preview",
+          "level": 3,
+          "line": 76
+        },
+        {
+          "heading": "🔒 CI Gates (Hard Requirements)",
+          "level": 2,
+          "line": 82
+        },
+        {
+          "heading": "📝 Documentation",
+          "level": 2,
+          "line": 89
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 19
+      }
+    },
+    {
+      "path": "signtutor/PRODUCT.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 32,
+      "nonEmptyLines": 26,
+      "sections": [
+        {
+          "heading": "SignTutor — Product Context",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Users",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Brand",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Product Purpose",
+          "level": 2,
+          "line": 15
+        },
+        {
+          "heading": "Strategic Principles",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "Register",
+          "level": 2,
+          "line": 24
+        },
+        {
+          "heading": "Tech Stack",
+          "level": 2,
+          "line": 27
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "path": "signtutor/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 36,
+      "nonEmptyLines": 23,
+      "sections": [
+        {
+          "heading": "Getting Started",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Learn More",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "Deploy on Vercel",
+          "level": 2,
+          "line": 32
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "signtutor/package.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 38,
+      "nonEmptyLines": 38,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "version",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "private",
+          "level": 1,
+          "line": 4
+        },
+        {
+          "heading": "scripts",
+          "level": 1,
+          "line": 5
+        },
+        {
+          "heading": "dependencies",
+          "level": 1,
+          "line": 15
+        },
+        {
+          "heading": "devDependencies",
+          "level": 1,
+          "line": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/pnpm-workspace.yaml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 7,
+      "nonEmptyLines": 7,
+      "sections": [
+        {
+          "heading": "allowBuilds",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "ignoredBuiltDependencies",
+          "level": 1,
+          "line": 5
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "signtutor/tsconfig.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 34,
+      "nonEmptyLines": 34,
+      "sections": [
+        {
+          "heading": "compilerOptions",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "include",
+          "level": 1,
+          "line": 25
+        },
+        {
+          "heading": "exclude",
+          "level": 1,
+          "line": 33
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    }
+  ]
+}

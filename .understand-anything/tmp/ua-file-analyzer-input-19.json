@@ -1,0 +1,143 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "signtutor/public/models/fingerspell_mlp_v2.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  1064,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/public/models/fingerspell_mlp.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  321,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/public/models/jz_classifier.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  1510,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/signtutor/data/REFERENCE_LICENSES.md",
+                           "language":  "markdown",
+                           "sizeLines":  25,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/src/app/about/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  165,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/globals.css",
+                           "language":  "css",
+                           "sizeLines":  123,
+                           "fileCategory":  "markup"
+                       },
+                       {
+                           "path":  "signtutor/src/app/layout.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  32,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/learn/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  149,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  196,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/privacy/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  64,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/research/continuous/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  11,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/research/continuous/ResearchClient.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  102,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/components/Header.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  152,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/components/PrivacyGateWrapper.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  16,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/components/ReliabilityDiagram.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  149,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/calibration.ts",
+                           "language":  "typescript",
+                           "sizeLines":  96,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/curriculum-v2.ts",
+                           "language":  "typescript",
+                           "sizeLines":  149,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/language-bundles.ts",
+                           "language":  "typescript",
+                           "sizeLines":  64,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/mediapipe/holisticRunner.ts",
+                           "language":  "typescript",
+                           "sizeLines":  110,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/PersonalAdapter.ts",
+                           "language":  "typescript",
+                           "sizeLines":  105,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/privacyGate.ts",
+                           "language":  "typescript",
+                           "sizeLines":  132,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/test-results/.last-run.json",
+                           "language":  "json",
+                           "sizeLines":  3,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "signtutor/vitest.config.ts",
+                           "language":  "typescript",
+                           "sizeLines":  17,
+                           "fileCategory":  "code"
+                       }
+                   ]
+}

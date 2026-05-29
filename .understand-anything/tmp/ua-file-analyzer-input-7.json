@@ -1,0 +1,125 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  ".agents/skills/impeccable/reference/adapt.md",
+                           "language":  "markdown",
+                           "sizeLines":  190,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/animate.md",
+                           "language":  "markdown",
+                           "sizeLines":  175,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/audit.md",
+                           "language":  "markdown",
+                           "sizeLines":  133,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/bolder.md",
+                           "language":  "markdown",
+                           "sizeLines":  113,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/brand.md",
+                           "language":  "markdown",
+                           "sizeLines":  118,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/clarify.md",
+                           "language":  "markdown",
+                           "sizeLines":  174,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/codex.md",
+                           "language":  "markdown",
+                           "sizeLines":  105,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/cognitive-load.md",
+                           "language":  "markdown",
+                           "sizeLines":  106,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/color-and-contrast.md",
+                           "language":  "markdown",
+                           "sizeLines":  105,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/colorize.md",
+                           "language":  "markdown",
+                           "sizeLines":  154,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/craft.md",
+                           "language":  "markdown",
+                           "sizeLines":  123,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/critique.md",
+                           "language":  "markdown",
+                           "sizeLines":  273,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/delight.md",
+                           "language":  "markdown",
+                           "sizeLines":  302,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/distill.md",
+                           "language":  "markdown",
+                           "sizeLines":  111,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/document.md",
+                           "language":  "markdown",
+                           "sizeLines":  427,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/extract.md",
+                           "language":  "markdown",
+                           "sizeLines":  69,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/harden.md",
+                           "language":  "markdown",
+                           "sizeLines":  347,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/heuristics-scoring.md",
+                           "language":  "markdown",
+                           "sizeLines":  234,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/interaction-design.md",
+                           "language":  "markdown",
+                           "sizeLines":  195,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/reference/layout.md",
+                           "language":  "markdown",
+                           "sizeLines":  141,
+                           "fileCategory":  "docs"
+                       }
+                   ]
+}

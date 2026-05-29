@@ -1,0 +1,755 @@
+{
+  "nodes": [
+    {
+      "name": "batch-19",
+      "type": "batch",
+      "observations": [
+        "Batch 19/19 — Main app source files, configs, ONNX model, and core libraries"
+      ]
+    },
+    {
+      "name": "signtutor/public/models/fingerspell_mlp_v2.onnx",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/public/models/fingerspell_mlp_v2.onnx",
+        "Language: onnx",
+        "Category: data",
+        "1065 lines total, 1057 non-empty",
+        "MLP ONNX model for fingerspelling inference (v2)"
+      ]
+    },
+    {
+      "name": "signtutor/next.config.ts",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/next.config.ts",
+        "Language: TypeScript (config)",
+        "42 lines",
+        "Next.js configuration with CSP headers for MediaPipe CDN, images config for wikimedia"
+      ]
+    },
+    {
+      "name": "nextConfig",
+      "type": "function",
+      "observations": [
+        "Default export from next.config.ts",
+        "Configures image remote patterns and security headers for /learn/* and /practice routes"
+      ]
+    },
+    {
+      "name": "signtutor/postcss.config.mjs",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/postcss.config.mjs",
+        "Language: JavaScript (config)",
+        "7 lines",
+        "PostCSS config with @tailwindcss/postcss plugin"
+      ]
+    },
+    {
+      "name": "postcssConfig",
+      "type": "function",
+      "observations": [
+        "Default export from postcss.config.mjs",
+        "Plugin config for @tailwindcss/postcss"
+      ]
+    },
+    {
+      "name": "signtutor/tsconfig.json",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/tsconfig.json",
+        "Language: JSON (config)",
+        "28 lines",
+        "TypeScript config targeting ES2017 with react-jsx, bundler module resolution, @/* path alias"
+      ]
+    },
+    {
+      "name": "signtutor/eslint.config.mjs",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/eslint.config.mjs",
+        "Language: JavaScript (config)",
+        "29 lines",
+        "ESLint config extending next/core-web-vitals and next/typescript"
+      ]
+    },
+    {
+      "name": "eslintConfig",
+      "type": "function",
+      "observations": [
+        "Default export from eslint.config.mjs",
+        "Extends next configs, adds '@typescript-eslint/no-unused-vars' rule"
+      ]
+    },
+    {
+      "name": "signtutor/src/app/globals.css",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/app/globals.css",
+        "Language: CSS (markup)",
+        "123 lines",
+        "Imports Google Fonts (Syne, DM Sans, JetBrains Mono) and Tailwind CSS",
+        "Defines CSS custom properties for dark theme: backgrounds, accents, text, borders, shadows, radii",
+        "Defines animations: wave, float, pulse-glow, shake, fill-bar, border-flash, count-up"
+      ]
+    },
+    {
+      "name": "signtutor/src/app/layout.tsx",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/app/layout.tsx",
+        "Language: TypeScript (code)",
+        "32 lines",
+        "Root layout component with Header and skip-to-content link",
+        "Imports Header from @/components/Header and globals.css"
+      ]
+    },
+    {
+      "name": "RootLayout",
+      "type": "function",
+      "observations": [
+        "Default export from layout.tsx",
+        "React component: wraps children in html/body with Header and main#main-content",
+        "Includes skip-to-content accessibility link"
+      ]
+    },
+    {
+      "name": "SigntutorMetadata",
+      "type": "function",
+      "observations": [
+        "Named export 'metadata' from layout.tsx",
+        "Next.js Metadata object with title and description"
+      ]
+    },
+    {
+      "name": "signtutor/src/app/page.tsx",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/app/page.tsx",
+        "Language: TypeScript (code)",
+        "196 lines",
+        "Home landing page with hero section, tech badges, feature cards, and footer",
+        "4 features: Fingerspelling, Dynamic Signs, Spaced Repetition, Privacy First"
+      ]
+    },
+    {
+      "name": "Home",
+      "type": "function",
+      "observations": [
+        "Default export from page.tsx",
+        "React component: renders full landing page with hero, badges, feature cards grid, footer navigation",
+        "Imports Link from 'next/link'",
+        "Links to /setup, /learn, /about, /privacy, and GitHub"
+      ]
+    },
+    {
+      "name": "signtutor/src/app/privacy/page.tsx",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/app/privacy/page.tsx",
+        "Language: TypeScript (code)",
+        "64 lines",
+        "Privacy policy page with sections: on-device, local storage, network requests, no accounts, camera access, contact"
+      ]
+    },
+    {
+      "name": "PrivacyPage",
+      "type": "function",
+      "observations": [
+        "Default export from privacy/page.tsx",
+        "React component: renders privacy policy content with multiple sections"
+      ]
+    },
+    {
+      "name": "PrivacyMetadata",
+      "type": "function",
+      "observations": [
+        "Named export 'metadata' from privacy/page.tsx",
+        "Page title: 'Privacy — SignTutor'"
+      ]
+    },
+    {
+      "name": "signtutor/src/lib/normalize.ts",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/lib/normalize.ts",
+        "Language: TypeScript (code)",
+        "172 lines",
+        "Hand landmark normalization and rule-based fingerspelling classification",
+        "Exports: normalize, dist, FT, PIP, MCP, FingerStates, fingerStates, COLLISION_GROUPS, inSameGroup, PATTERNS, scoreLetterRule, classifyRule, palmFacingCamera, locationLabel, MovementPoint, recentMovement"
+      ]
+    },
+    {
+      "name": "normalize",
+      "type": "function",
+      "observations": [
+        "Exported from normalize.ts",
+        "Translates 21 landmarks to wrist-relative, scale-normalized Float32Array(63)"
+      ]
+    },
+    {
+      "name": "dist",
+      "type": "function",
+      "observations": [
+        "Exported from normalize.ts",
+        "Euclidean distance between two Landmark points"
+      ]
+    },
+    {
+      "name": "fingerExtended",
+      "type": "function",
+      "observations": [
+        "Private function in normalize.ts",
+        "Checks if a finger is extended based on tip/pip/mcp distances from wrist"
+      ]
+    },
+    {
+      "name": "thumbExtended",
+      "type": "function",
+      "observations": [
+        "Private function in normalize.ts",
+        "Checks if thumb is extended relative to wrist"
+      ]
+    },
+    {
+      "name": "fingerStates",
+      "type": "function",
+      "observations": [
+        "Exported from normalize.ts",
+        "Returns FingerStates object indicating which fingers are extended"
+      ]
+    },
+    {
+      "name": "inSameGroup",
+      "type": "function",
+      "observations": [
+        "Exported from normalize.ts",
+        "Checks if two ASL letters belong to the same collision group"
+      ]
+    },
+    {
+      "name": "scoreLetterRule",
+      "type": "function",
+      "observations": [
+        "Exported from normalize.ts",
+        "Scores how well actual finger states match a target letter's pattern (0-1)"
+      ]
+    },
+    {
+      "name": "classifyRule",
+      "type": "function",
+      "observations": [
+        "Exported from normalize.ts",
+        "Rule-based classifier: ranks all 26 letters by finger state match score"
+      ]
+    },
+    {
+      "name": "palmFacingCamera",
+      "type": "function",
+      "observations": [
+        "Exported from normalize.ts",
+        "Determines if palm is facing camera using cross product of index/pinky MCP vectors"
+      ]
+    },
+    {
+      "name": "locationLabel",
+      "type": "function",
+      "observations": [
+        "Exported from normalize.ts",
+        "Returns spatial zone label based on wrist y-position (upper/middle/lower)"
+      ]
+    },
+    {
+      "name": "recentMovement",
+      "type": "function",
+      "observations": [
+        "Exported from normalize.ts",
+        "Computes total movement magnitude from a buffer of MovementPoints"
+      ]
+    },
+    {
+      "name": "signtutor/src/lib/seq-features.ts",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/lib/seq-features.ts",
+        "Language: TypeScript (code)",
+        "78 lines",
+        "Sequence feature extraction for dynamic sign recognition",
+        "Exports: T_FRAMES, N_LANDMARKS, FEATURE_DIM, JZ_FRAMES, normalizeSequence, normalizeSequenceFixed"
+      ]
+    },
+    {
+      "name": "normalizeSequence",
+      "type": "function",
+      "observations": [
+        "Exported from seq-features.ts",
+        "Normalizes a sequence of landmark frames into T x 126 Float32Array (pos + velocity)"
+      ]
+    },
+    {
+      "name": "normalizeSequenceFixed",
+      "type": "function",
+      "observations": [
+        "Exported from seq-features.ts",
+        "Pads or trims sequence to targetLen frames, returns targetLen x 126 Float32Array"
+      ]
+    },
+    {
+      "name": "signtutor/src/lib/storage.ts",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/lib/storage.ts",
+        "Language: TypeScript (code)",
+        "122 lines",
+        "LocalStorage persistence for preferences and progress tracking with FSRS-like scheduling"
+      ]
+    },
+    {
+      "name": "loadPrefs",
+      "type": "function",
+      "observations": [
+        "Exported from storage.ts",
+        "Loads user preferences from localStorage, returns defaults on failure"
+      ]
+    },
+    {
+      "name": "savePrefs",
+      "type": "function",
+      "observations": [
+        "Exported from storage.ts",
+        "Saves user preferences to localStorage"
+      ]
+    },
+    {
+      "name": "loadProgress",
+      "type": "function",
+      "observations": [
+        "Exported from storage.ts",
+        "Loads progress records from localStorage"
+      ]
+    },
+    {
+      "name": "saveProgress",
+      "type": "function",
+      "observations": [
+        "Exported from storage.ts",
+        "Saves progress records to localStorage"
+      ]
+    },
+    {
+      "name": "recordAttempt",
+      "type": "function",
+      "observations": [
+        "Exported from storage.ts",
+        "Records an attempt, updates FSRS-like scheduling state (stability, difficulty, next review)"
+      ]
+    },
+    {
+      "name": "getReviewQueue",
+      "type": "function",
+      "observations": [
+        "Exported from storage.ts",
+        "Returns sorted queue of due signs for review, plus up to 5 untried signs"
+      ]
+    },
+    {
+      "name": "signtutor/src/lib/curriculum.ts",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/lib/curriculum.ts",
+        "Language: TypeScript (code)",
+        "136 lines",
+        "Curriculum definitions: static letters A-Z, dynamic signs, vocabulary 200 combined into unified curriculum"
+      ]
+    },
+    {
+      "name": "getStaticLetter",
+      "type": "function",
+      "observations": [
+        "Exported from curriculum.ts",
+        "Looks up a CurriculumItem by letter (static type)"
+      ]
+    },
+    {
+      "name": "getDynamicSign",
+      "type": "function",
+      "observations": [
+        "Exported from curriculum.ts",
+        "Looks up a CurriculumItem by slug (dynamic type)"
+      ]
+    },
+    {
+      "name": "signtutor/src/lib/vocabulary_200.ts",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/lib/vocabulary_200.ts",
+        "Language: TypeScript (code)",
+        "2598 lines",
+        "200 high-frequency ASL sign entries with structured metadata (handshape, location, movement, video refs)",
+        "Categories: Greetings, Family, Food, Colors, Numbers, Emotions, Time, Verbs, Places, Directions, Adjectives"
+      ]
+    },
+    {
+      "name": "getSignsByCategory",
+      "type": "function",
+      "observations": [
+        "Exported from vocabulary_200.ts",
+        "Filters VOCABULARY_200 by category name"
+      ]
+    },
+    {
+      "name": "searchSigns",
+      "type": "function",
+      "observations": [
+        "Exported from vocabulary_200.ts",
+        "Case-insensitive search across gloss, description, category"
+      ]
+    },
+    {
+      "name": "getSignById",
+      "type": "function",
+      "observations": [
+        "Exported from vocabulary_200.ts",
+        "Returns a single SignEntry by its id field"
+      ]
+    },
+    {
+      "name": "signtutor/src/lib/loadExternals.ts",
+      "type": "file",
+      "observations": [
+        "Path: signtutor/src/lib/loadExternals.ts",
+        "Language: TypeScript (code)",
+        "99 lines",
+        "Dynamic script loader for MediaPipe Hands and ONNX Runtime Web from CDN",
+        "Exports: loadMediaPipe, loadONNX, MediaPipeLibs interface, ONNXLibs interface"
+      ]
+    },
+    {
+      "name": "loadMediaPipe",
+      "type": "function",
+      "observations": [
+        "Async exported from loadExternals.ts",
+        "Loads MediaPipe Hands, drawing_utils, camera_utils from jsdelivr CDN, returns window globals"
+      ]
+    },
+    {
+      "name": "loadONNX",
+      "type": "function",
+      "observations": [
+        "Async exported from loadExternals.ts",
+        "Loads onnxruntime-web from jsdelivr CDN, returns window.ort"
+      ]
+    },
+    {
+      "name": "loadScript",
+      "type": "function",
+      "observations": [
+        "Private function in loadExternals.ts",
+        "Creates and injects a script tag, returns promise resolving on load with timeout"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "batch-19",
+      "to": "signtutor/public/models/fingerspell_mlp_v2.onnx",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/next.config.ts",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/postcss.config.mjs",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/tsconfig.json",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/eslint.config.mjs",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/app/globals.css",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/app/layout.tsx",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/app/page.tsx",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/app/privacy/page.tsx",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/lib/normalize.ts",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/lib/seq-features.ts",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/lib/storage.ts",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/lib/curriculum.ts",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/lib/vocabulary_200.ts",
+      "relationType": "contains"
+    },
+    {
+      "from": "batch-19",
+      "to": "signtutor/src/lib/loadExternals.ts",
+      "relationType": "contains"
+    },
+    {
+      "from": "signtutor/next.config.ts",
+      "to": "nextConfig",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/postcss.config.mjs",
+      "to": "postcssConfig",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/eslint.config.mjs",
+      "to": "eslintConfig",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/app/layout.tsx",
+      "to": "RootLayout",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/app/layout.tsx",
+      "to": "SigntutorMetadata",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/app/page.tsx",
+      "to": "Home",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/app/privacy/page.tsx",
+      "to": "PrivacyPage",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/app/privacy/page.tsx",
+      "to": "PrivacyMetadata",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/normalize.ts",
+      "to": "normalize",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/normalize.ts",
+      "to": "dist",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/normalize.ts",
+      "to": "fingerStates",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/normalize.ts",
+      "to": "inSameGroup",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/normalize.ts",
+      "to": "scoreLetterRule",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/normalize.ts",
+      "to": "classifyRule",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/normalize.ts",
+      "to": "palmFacingCamera",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/normalize.ts",
+      "to": "locationLabel",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/normalize.ts",
+      "to": "recentMovement",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/seq-features.ts",
+      "to": "normalizeSequence",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/seq-features.ts",
+      "to": "normalizeSequenceFixed",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/storage.ts",
+      "to": "loadPrefs",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/storage.ts",
+      "to": "savePrefs",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/storage.ts",
+      "to": "loadProgress",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/storage.ts",
+      "to": "saveProgress",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/storage.ts",
+      "to": "recordAttempt",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/storage.ts",
+      "to": "getReviewQueue",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/curriculum.ts",
+      "to": "getStaticLetter",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/curriculum.ts",
+      "to": "getDynamicSign",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/curriculum.ts",
+      "to": "signtutor/src/lib/vocabulary_200.ts",
+      "relationType": "imports"
+    },
+    {
+      "from": "signtutor/src/lib/vocabulary_200.ts",
+      "to": "getSignsByCategory",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/vocabulary_200.ts",
+      "to": "searchSigns",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/vocabulary_200.ts",
+      "to": "getSignById",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/loadExternals.ts",
+      "to": "loadMediaPipe",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/lib/loadExternals.ts",
+      "to": "loadONNX",
+      "relationType": "exports"
+    },
+    {
+      "from": "signtutor/src/app/layout.tsx",
+      "to": "signtutor/src/components/Header.tsx",
+      "relationType": "imports"
+    },
+    {
+      "from": "signtutor/src/app/layout.tsx",
+      "to": "signtutor/src/app/globals.css",
+      "relationType": "imports"
+    },
+    {
+      "from": "signtutor/src/app/page.tsx",
+      "to": "next/link",
+      "relationType": "imports"
+    },
+    {
+      "from": "RootLayout",
+      "to": "signtutor/src/components/Header.tsx",
+      "relationType": "uses"
+    },
+    {
+      "from": "Home",
+      "to": "next/link",
+      "relationType": "uses"
+    },
+    {
+      "from": "scoreLetterRule",
+      "to": "fingerStates",
+      "relationType": "uses"
+    },
+    {
+      "from": "fingerStates",
+      "to": "fingerExtended",
+      "relationType": "calls"
+    },
+    {
+      "from": "fingerStates",
+      "to": "thumbExtended",
+      "relationType": "calls"
+    },
+    {
+      "from": "classifyRule",
+      "to": "fingerStates",
+      "relationType": "calls"
+    },
+    {
+      "from": "classifyRule",
+      "to": "scoreLetterRule",
+      "relationType": "calls"
+    },
+    {
+      "from": "fingerExtended",
+      "to": "dist",
+      "relationType": "calls"
+    },
+    {
+      "from": "thumbExtended",
+      "to": "dist",
+      "relationType": "calls"
+    }
+  ]
+}

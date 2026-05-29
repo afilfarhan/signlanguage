@@ -1,0 +1,29 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "pdr-review/01-PDR-Review.md",
+                           "language":  "markdown",
+                           "sizeLines":  139,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "pdr-review/02-PDR-v2-Refined.md",
+                           "language":  "markdown",
+                           "sizeLines":  254,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "pdr-review/03-PDR-summary.html",
+                           "language":  "html",
+                           "sizeLines":  239,
+                           "fileCategory":  "markup"
+                       },
+                       {
+                           "path":  "pdr-review/04-Epics-and-Stories.md",
+                           "language":  "markdown",
+                           "sizeLines":  271,
+                           "fileCategory":  "docs"
+                       }
+                   ]
+}

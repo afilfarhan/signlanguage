@@ -1,0 +1,105 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 3,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "prototype/models/dynamic_labels.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 14,
+      "nonEmptyLines": 14,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "seq_len",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "feature_dim",
+          "level": 1,
+          "line": 13
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "prototype/models/labels.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 57,
+      "nonEmptyLines": 57,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "synth_collisions",
+          "level": 1,
+          "line": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "prototype/models/parity_samples.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 592,
+      "nonEmptyLines": 592,
+      "sections": [
+        {
+          "heading": "B",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "F",
+          "level": 1,
+          "line": 120
+        },
+        {
+          "heading": "I",
+          "level": 1,
+          "line": 238
+        },
+        {
+          "heading": "L",
+          "level": 1,
+          "line": 356
+        },
+        {
+          "heading": "Y",
+          "level": 1,
+          "line": 474
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    }
+  ]
+}

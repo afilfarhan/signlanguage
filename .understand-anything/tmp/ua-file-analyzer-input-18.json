@@ -1,0 +1,155 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "ml/models/dynamic_signs_transformer_BEFORE.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  2067,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/models/dynamic_signs_transformer.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  2034,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/models/fingerspell_mlp_v2.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  1064,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/models/fingerspell_mlp.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  321,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/models/jz_classifier.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  1510,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/models/jz_classifier.onnx.data",
+                           "language":  "data",
+                           "sizeLines":  2227,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/ROBUSTNESS_GATE_DEMO.md",
+                           "language":  "markdown",
+                           "sizeLines":  147,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "prototype/models/dynamic_signs_transformer.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  2034,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "prototype/models/fingerspell_mlp.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  321,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "screenshot-test.js",
+                           "language":  "javascript",
+                           "sizeLines":  21,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "screenshot.js",
+                           "language":  "javascript",
+                           "sizeLines":  43,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/__tests__/curriculum-v2.test.ts",
+                           "language":  "typescript",
+                           "sizeLines":  60,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/__tests__/privacy.test.ts",
+                           "language":  "typescript",
+                           "sizeLines":  34,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/.github/workflows/ml-gate.yml",
+                           "language":  "yaml",
+                           "sizeLines":  216,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "signtutor/ci/check_ece.py",
+                           "language":  "python",
+                           "sizeLines":  37,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/ci/check_licenses.py",
+                           "language":  "python",
+                           "sizeLines":  24,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/ci/check_signer_disjoint.py",
+                           "language":  "python",
+                           "sizeLines":  27,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/e2e/dynamic-lesson.spec.ts",
+                           "language":  "typescript",
+                           "sizeLines":  47,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/e2e/static-lesson.spec.ts",
+                           "language":  "typescript",
+                           "sizeLines":  45,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/eslint.config.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  29,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/ml/data/LICENSES.md",
+                           "language":  "markdown",
+                           "sizeLines":  48,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/next.config.ts",
+                           "language":  "typescript",
+                           "sizeLines":  42,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/playwright.config.ts",
+                           "language":  "typescript",
+                           "sizeLines":  35,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/postcss.config.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  7,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/public/models/dynamic_signs_transformer.onnx",
+                           "language":  "onnx",
+                           "sizeLines":  2034,
+                           "fileCategory":  "code"
+                       }
+                   ]
+}

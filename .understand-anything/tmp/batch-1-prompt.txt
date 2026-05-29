@@ -1,0 +1,70 @@
+You are a file-analyzer agent. Analyze batch 1/19 and produce graph nodes and edges.
+
+Project root: D:\signlanguage
+Project: signlanguage — A browser-based, vision-driven sign language learning platform with on-device inference.
+Languages: css, data, html, javascript, json, markdown, onnx, python, txt, typescript, unknown, yaml
+Batch: 1/19
+Skill directory: C:\Users\mohaa\understand-anything\understand-anything-plugin\skills\understand
+Output: write to D:\signlanguage\.understand-anything\intermediate\batch-1.json
+
+Pre-resolved import data for this batch:
+{"signtutor/__tests__/lib.test.ts":["signtutor/src/lib/normalize.ts","signtutor/src/lib/seq-features.ts"],"signtutor/__tests__/parity.test.ts":["signtutor/src/lib/normalize.ts"],"signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx":["signtutor/src/lib/curriculum.ts","signtutor/src/lib/loadExternals.ts","signtutor/src/lib/normalize.ts","signtutor/src/lib/seq-features.ts","signtutor/src/lib/storage.ts"],"signtutor/src/app/learn/asl/fingerspelling/page.tsx":["signtutor/src/lib/curriculum.ts"],"signtutor/src/app/learn/asl/settings/page.tsx":["signtutor/src/lib/storage.ts"],"signtutor/src/app/learn/asl/words/[slug]/page.tsx":["signtutor/src/lib/curriculum.ts","signtutor/src/lib/loadExternals.ts","signtutor/src/lib/seq-features.ts","signtutor/src/lib/storage.ts","signtutor/src/lib/vocabulary_200.ts"],"signtutor/src/app/learn/asl/words/page.tsx":["signtutor/src/lib/curriculum.ts","signtutor/src/lib/vocabulary_200.ts"],"signtutor/src/app/practice/page.tsx":["signtutor/src/lib/curriculum.ts","signtutor/src/lib/storage.ts"],"signtutor/src/app/setup/page.tsx":["signtutor/src/lib/storage.ts"],"signtutor/src/lib/curriculum.ts":["signtutor/src/lib/vocabulary_200.ts"],"signtutor/src/lib/loadExternals.ts":[],"signtutor/src/lib/normalize.ts":[],"signtutor/src/lib/seq-features.ts":[],"signtutor/src/lib/storage.ts":[],"signtutor/src/lib/vocabulary_200.ts":[]}
+
+Cross-batch neighbors:
+{}
+
+Files to analyze:
+    - "signtutor/__tests__/lib.test.ts" (160 lines, language: typescript, fileCategory: code)
+    - "signtutor/__tests__/parity.test.ts" (42 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx" (703 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/app/learn/asl/fingerspelling/page.tsx" (82 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/app/learn/asl/settings/page.tsx" (169 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/app/learn/asl/words/[slug]/page.tsx" (562 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/app/learn/asl/words/page.tsx" (255 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/app/practice/page.tsx" (241 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/app/setup/page.tsx" (478 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/lib/curriculum.ts" (136 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/lib/loadExternals.ts" (99 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/lib/normalize.ts" (172 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/lib/seq-features.ts" (78 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/lib/storage.ts" (122 lines, language: typescript, fileCategory: code)
+    - "signtutor/src/lib/vocabulary_200.ts" (2598 lines, language: typescript, fileCategory: code)
+
+## Instructions
+
+1. First, read the structural extraction results at D:\signlanguage\.understand-anything\tmp\ua-file-extract-results-1.json
+2. For each file, create GraphNode objects (one per file, plus function/class/sub-file nodes when they pass the significance filter)
+3. Create GraphEdge objects for relationships between nodes
+4. Write the output to D:\signlanguage\.understand-anything\intermediate\batch-1.json
+
+The output must be a JSON object with "nodes" and "edges" arrays:
+{ "nodes": [...], "edges": [...] }
+
+Each node should have: id, type, name, filePath (for file-level nodes), summary (1-2 sentences), tags (array of strings), complexity ("simple", "moderate", or "complex"), languageNotes (optional), emoji (optional)
+
+Each edge should have: source, target, type, weight (float), description (optional)
+
+Edge type conventions for weights:
+- contains: 1.0
+- inherits, implements: 0.9
+- calls, exports, defines_schema: 0.8
+- imports, deploys, migrates: 0.7
+- depends_on, configures, triggers: 0.6
+- tested_by, documents, provisions, serves, routes: 0.5
+- All others: 0.5
+
+ID conventions:
+- file nodes: "file:<relative-path>"
+- function nodes: "function:<relative-path>:<name>"
+- class nodes: "class:<relative-path>:<name>"
+- config: "config:<relative-path>"
+- document: "document:<relative-path>"
+- service: "service:<relative-path>:<name>"
+- endpoint: "endpoint:<relative-path>:<name>"
+- pipeline: "pipeline:<relative-path>"
+- resource: "resource:<relative-path>"
+- schema: "schema:<relative-path>"
+
+Make sure every file gets a file-level node. Add function/class/sub-file nodes for significant structures. Include edges for imports, calls, contains, and other relationships you can infer from the code.
+
+The batch file should produce nodes and edges for all files in this batch.

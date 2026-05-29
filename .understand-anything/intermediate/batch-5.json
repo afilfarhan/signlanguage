@@ -1,0 +1,892 @@
+{
+  "nodes": [
+    {
+      "id": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "type": "file",
+      "properties": {
+        "path": ".agents/skills/impeccable/scripts/is-generated.mjs",
+        "language": "javascript",
+        "lines": 69,
+        "description": "Heuristic check for generated files via git check-ignore and header markers"
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+      "type": "function",
+      "properties": {
+        "name": "isGeneratedFile",
+        "params": ["filePath", "options"],
+        "startLine": 33,
+        "endLine": 40,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGitIgnored",
+      "type": "function",
+      "properties": {
+        "name": "isGitIgnored",
+        "params": ["absPath", "cwd"],
+        "startLine": 42,
+        "endLine": 54,
+        "exported": false
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/is-generated.mjs:hasGeneratedHeader",
+      "type": "function",
+      "properties": {
+        "name": "hasGeneratedHeader",
+        "params": ["absPath"],
+        "startLine": 56,
+        "endLine": 69,
+        "exported": false
+      }
+    },
+    {
+      "id": "import:node:child_process:execSync",
+      "type": "import",
+      "properties": {
+        "source": "node:child_process",
+        "name": "execSync",
+        "isExternal": true
+      }
+    },
+    {
+      "id": "import:node:fs",
+      "type": "import",
+      "properties": {
+        "source": "node:fs",
+        "isExternal": true
+      }
+    },
+    {
+      "id": "import:node:path",
+      "type": "import",
+      "properties": {
+        "source": "node:path",
+        "isExternal": true
+      }
+    },
+    {
+      "id": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "type": "file",
+      "properties": {
+        "path": ".agents/skills/impeccable/scripts/live-accept.mjs",
+        "language": "javascript",
+        "lines": 595,
+        "description": "CLI tool for deterministic accept/discard of variant sessions"
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:acceptCli",
+      "type": "function",
+      "properties": {
+        "name": "acceptCli",
+        "params": [],
+        "startLine": 26,
+        "endLine": 97,
+        "exported": true,
+        "async": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+      "type": "function",
+      "properties": {
+        "name": "handleDiscard",
+        "params": ["id", "lines", "targetFile"],
+        "startLine": 103,
+        "endLine": 127
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "type": "function",
+      "properties": {
+        "name": "handleAccept",
+        "params": ["id", "variantNum", "lines", "targetFile", "paramValues"],
+        "startLine": 133,
+        "endLine": 208
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findMarkerBlock",
+      "type": "function",
+      "properties": {
+        "name": "findMarkerBlock",
+        "params": ["id", "lines"],
+        "startLine": 218,
+        "endLine": 230,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:expandReplaceRange",
+      "type": "function",
+      "properties": {
+        "name": "expandReplaceRange",
+        "params": ["block", "lines", "isJsx"],
+        "startLine": 248,
+        "endLine": 296
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripStyleAndJoin",
+      "type": "function",
+      "properties": {
+        "name": "stripStyleAndJoin",
+        "params": ["lines", "block"],
+        "startLine": 307,
+        "endLine": 339
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractInnerByAttr",
+      "type": "function",
+      "properties": {
+        "name": "extractInnerByAttr",
+        "params": ["text", "attrMatch"],
+        "startLine": 347,
+        "endLine": 373
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractOriginal",
+      "type": "function",
+      "properties": {
+        "name": "extractOriginal",
+        "params": ["lines", "block"],
+        "startLine": 379,
+        "endLine": 384,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractVariant",
+      "type": "function",
+      "properties": {
+        "name": "extractVariant",
+        "params": ["lines", "block", "variantNum"],
+        "startLine": 390,
+        "endLine": 399,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractCss",
+      "type": "function",
+      "properties": {
+        "name": "extractCss",
+        "params": ["lines", "block", "id"],
+        "startLine": 411,
+        "endLine": 444,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateLines",
+      "type": "function",
+      "properties": {
+        "name": "stripJsxTemplateLines",
+        "params": ["content"],
+        "startLine": 457,
+        "endLine": 490
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateWrap",
+      "type": "function",
+      "properties": {
+        "name": "stripJsxTemplateWrap",
+        "params": ["text"],
+        "startLine": 492,
+        "endLine": 496
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:deindentContent",
+      "type": "function",
+      "properties": {
+        "name": "deindentContent",
+        "params": ["contentLines", "baseIndent"],
+        "startLine": 503,
+        "endLine": 518,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:detectCommentSyntax",
+      "type": "function",
+      "properties": {
+        "name": "detectCommentSyntax",
+        "params": ["filePath"],
+        "startLine": 520,
+        "endLine": 526,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findSessionFile",
+      "type": "function",
+      "properties": {
+        "name": "findSessionFile",
+        "params": ["id", "cwd"],
+        "startLine": 532,
+        "endLine": 547
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:searchDir",
+      "type": "function",
+      "properties": {
+        "name": "searchDir",
+        "params": ["dir", "query", "seen", "depth"],
+        "startLine": 549,
+        "endLine": 578
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:argVal",
+      "type": "function",
+      "properties": {
+        "name": "argVal",
+        "params": ["args", "flag"],
+        "startLine": 584,
+        "endLine": 587
+      }
+    },
+    {
+      "id": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "type": "file",
+      "properties": {
+        "path": ".agents/skills/impeccable/scripts/live-wrap.mjs",
+        "language": "javascript",
+        "lines": 632,
+        "description": "CLI tool to find element in source and wrap in variant container"
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "type": "function",
+      "properties": {
+        "name": "wrapCli",
+        "params": [],
+        "startLine": 20,
+        "endLine": 279,
+        "exported": true,
+        "async": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:argVal",
+      "type": "function",
+      "properties": {
+        "name": "argVal",
+        "params": ["args", "flag"],
+        "startLine": 285,
+        "endLine": 288
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildSearchQueries",
+      "type": "function",
+      "properties": {
+        "name": "buildSearchQueries",
+        "params": ["elementId", "classes", "tag", "query"],
+        "startLine": 294,
+        "endLine": 332,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectCommentSyntax",
+      "type": "function",
+      "properties": {
+        "name": "detectCommentSyntax",
+        "params": ["filePath"],
+        "startLine": 334,
+        "endLine": 341,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectStyleMode",
+      "type": "function",
+      "properties": {
+        "name": "detectStyleMode",
+        "params": ["filePath"],
+        "startLine": 343,
+        "endLine": 355
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssSelectorPrefixExamples",
+      "type": "function",
+      "properties": {
+        "name": "buildCssSelectorPrefixExamples",
+        "params": ["styleMode", "count"],
+        "startLine": 357,
+        "endLine": 360
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssAuthoring",
+      "type": "function",
+      "properties": {
+        "name": "buildCssAuthoring",
+        "params": ["styleMode", "count"],
+        "startLine": 362,
+        "endLine": 397
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findFileWithQuery",
+      "type": "function",
+      "properties": {
+        "name": "findFileWithQuery",
+        "params": ["query", "cwd", "genOpts"],
+        "startLine": 403,
+        "endLine": 414
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:searchDir",
+      "type": "function",
+      "properties": {
+        "name": "searchDir",
+        "params": ["dir", "query", "seen", "depth", "genOpts"],
+        "startLine": 416,
+        "endLine": 452
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:minLeadingSpaces",
+      "type": "function",
+      "properties": {
+        "name": "minLeadingSpaces",
+        "params": ["lines"],
+        "startLine": 477,
+        "endLine": 485
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findElement",
+      "type": "function",
+      "properties": {
+        "name": "findElement",
+        "params": ["lines", "query", "tag"],
+        "startLine": 487,
+        "endLine": 505,
+        "exported": true
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findAllElements",
+      "type": "function",
+      "properties": {
+        "name": "findAllElements",
+        "params": ["lines", "query", "tag"],
+        "startLine": 514,
+        "endLine": 530
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:filterByText",
+      "type": "function",
+      "properties": {
+        "name": "filterByText",
+        "params": ["candidates", "lines", "text"],
+        "startLine": 547,
+        "endLine": 568
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findOpenerLine",
+      "type": "function",
+      "properties": {
+        "name": "findOpenerLine",
+        "params": ["lines", "matchLine", "tag"],
+        "startLine": 579,
+        "endLine": 594
+      }
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findClosingLine",
+      "type": "function",
+      "properties": {
+        "name": "findClosingLine",
+        "params": ["lines", "start"],
+        "startLine": 600,
+        "endLine": 623,
+        "exported": true
+      }
+    },
+    {
+      "id": "import:./is-generated.mjs:isGeneratedFile",
+      "type": "import",
+      "properties": {
+        "source": "./is-generated.mjs",
+        "name": "isGeneratedFile",
+        "isExternal": false
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "to": "import:node:child_process:execSync",
+      "relation": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "to": "import:node:fs",
+      "relation": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "to": "import:node:path",
+      "relation": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGitIgnored",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/is-generated.mjs:hasGeneratedHeader",
+      "relation": "contains"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+      "to": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGitIgnored",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+      "to": "function:.agents/skills/impeccable/scripts/is-generated.mjs:hasGeneratedHeader",
+      "relation": "calls"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "import:node:fs",
+      "relation": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "import:node:path",
+      "relation": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "import:./is-generated.mjs:isGeneratedFile",
+      "relation": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:acceptCli",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findMarkerBlock",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:expandReplaceRange",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripStyleAndJoin",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractInnerByAttr",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractOriginal",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractVariant",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractCss",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateLines",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateWrap",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:deindentContent",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:detectCommentSyntax",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findSessionFile",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:searchDir",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:argVal",
+      "relation": "contains"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:acceptCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:argVal",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:acceptCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findSessionFile",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:acceptCli",
+      "to": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:acceptCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:acceptCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findMarkerBlock",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractOriginal",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:detectCommentSyntax",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:expandReplaceRange",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:deindentContent",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findMarkerBlock",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:detectCommentSyntax",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:expandReplaceRange",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractVariant",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractCss",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:deindentContent",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractOriginal",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripStyleAndJoin",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractOriginal",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractInnerByAttr",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractVariant",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripStyleAndJoin",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractVariant",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractInnerByAttr",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractCss",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateWrap",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractCss",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateLines",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateWrap",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateLines",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findSessionFile",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:searchDir",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-accept.mjs:searchDir",
+      "to": "function:.agents/skills/impeccable/scripts/live-accept.mjs:searchDir",
+      "relation": "calls"
+    },
+    {
+      "from": "import:./is-generated.mjs:isGeneratedFile",
+      "to": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+      "relation": "resolves_to"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "import:node:fs",
+      "relation": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "import:node:path",
+      "relation": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "import:./is-generated.mjs:isGeneratedFile",
+      "relation": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:argVal",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildSearchQueries",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectCommentSyntax",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectStyleMode",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssSelectorPrefixExamples",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssAuthoring",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findFileWithQuery",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:searchDir",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:minLeadingSpaces",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findElement",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findAllElements",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:filterByText",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findOpenerLine",
+      "relation": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findClosingLine",
+      "relation": "contains"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:argVal",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildSearchQueries",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findFileWithQuery",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findAllElements",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:filterByText",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findElement",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectCommentSyntax",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectStyleMode",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:minLeadingSpaces",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssSelectorPrefixExamples",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssAuthoring",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findFileWithQuery",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:searchDir",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:searchDir",
+      "to": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:searchDir",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:searchDir",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findElement",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findOpenerLine",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findElement",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findClosingLine",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findAllElements",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findOpenerLine",
+      "relation": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findAllElements",
+      "to": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findClosingLine",
+      "relation": "calls"
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "nodes": [
+    {
+      "name": "BUILD_PROMPT.md",
+      "entityType": "file",
+      "observations": [
+        "Markdown document at repo root (237 lines, 11 sections)",
+        "Build prompt for SignTutor v1 — instructs coding agents to ship a production-quality web app from prototype artifacts",
+        "Key sections: Role & Objective, Tech Stack, Hard Requirements (9 items), Pages & Routes, Architectural Decisions (7 items), Acceptance Criteria, Definition of Done, Stretch Goals",
+        "Prescribes Next.js 14+ App Router + TypeScript + Tailwind CSS + onnxruntime-web + MediaPipe Hands",
+        "Defines 9 non-negotiable hard requirements: on-device inference, no-account-first-lesson, WCAG 2.2 AA, mirror default, left-handed mode, confidence-gated verdict, per-finger panel, JS↔Python parity, CI release gates",
+        "Documents 7 architectural decisions: hybrid ML+rule, auto-fallback to rule, collision-aware verdict, first-frame trajectory anchor, rotation-aug training, on-device lighting check, latency HUD",
+        "Lists 6 v1 pages/routes: /, /setup, /learn/asl/fingerspelling/:letter, /learn/asl/words/:slug, /practice, /about, /privacy",
+        "References prototype/, ml/, ci/, pdr-review/, and .github/workflows/ as existing assets to consume",
+        "Tests with Vitest + Playwright; deploys to Vercel"
+      ]
+    },
+    {
+      "name": "BUILD_PROMPT_ML_EXTENSION.md",
+      "entityType": "file",
+      "observations": [
+        "Markdown document at repo root (437 lines, 18 sections)",
+        "Build prompt for SignTutor v2 ML Extension — replaces synthetic data with real data, adds motion letters, NMM scoring, personalization, confidence calibration, multi-language, continuous-sign research preview",
+        "8 workstreams: W1 Real data, W2 J/Z motion letters, W3 Vocabulary scale-out (8→200), W4 NMM scoring, W5 On-device personalization, W6 Confidence calibration, W7 Multi-language, W8 Continuous-sign research preview",
+        "Assumes v1 is shipped and functional in signtutor/ directory",
+        "Preserves all v1 user-facing invariants while substantially expanding ML capabilities",
+        "References signtutor/ (v1 shipped site), ml/ (data gen + training), .github/workflows/ (CI gates)",
+        "New hard requirements include: signer-disjoint train/test splits, privacy-preserving personalization, confidence calibration curves, i18n curriculum bundles"
+      ]
+    },
+    {
+      "name": "README.md",
+      "entityType": "file",
+      "observations": [
+        "Markdown document at repo root (79 lines, 8 sections)",
+        "Project README for SignTutor — browser-based, vision-driven sign language learning platform with on-device inference",
+        "Quick start: cd signtutor, npm install, npm run dev",
+        "8 available commands: dev, build, start, lint, typecheck, test, test:watch, test:e2e",
+        "Testing: Vitest unit tests in __tests__/, Playwright E2E in e2e/",
+        "Project structure: src/app/, src/lib/, src/components/, public/models/, __tests__/, e2e/, docs/ARCHITECTURE.md",
+        "Privacy emphasis: on-device by default, no account required, no analytics during practice",
+        "MIT licensed"
+      ]
+    },
+    {
+      "name": "package.json",
+      "entityType": "file",
+      "observations": [
+        "JSON config at repo root (24 lines)",
+        "Package name: signlanguage, version 1.0.0",
+        "Repository: github.com/afilfarhan/signlanguage",
+        "License: ISC",
+        "Only dependency: playwright ^1.60.0",
+        "Test script is placeholder (echo only, no test framework configured at root level)",
+        "Root-level package.json — actual app lives under signtutor/"
+      ]
+    },
+    {
+      "name": "requirements.txt",
+      "entityType": "file",
+      "observations": [
+        "Text file at repo root (28 lines)",
+        "Python dependencies for the ML pipeline in ml/",
+        "Key packages: mediapipe, onnxruntime, numpy, scikit-learn, torch, torchvision, pillow, opencv-python, matplotlib, pandas, seaborn, jupyter",
+        "Supports the Python-side data generation, training, and evaluation scripts"
+      ]
+    },
+    {
+      "name": "signtutor-redesign-prompt.md",
+      "entityType": "file",
+      "observations": [
+        "Markdown document at repo root (430 lines, 27 sections)",
+        "Complete redesign build prompt for SignTutor with 'Bioluminescent Studio' aesthetic direction",
+        "Dark, focused visual theme: near-black backgrounds, bioluminescent teal accent (#00e5b0), electric blue (#4f8cff), amber (#ffb347)",
+        "Design tokens defined for backgrounds, brand colors, typography, spacing",
+        "10 pages specified: Home, About, Learn, Fingerspelling, Letter Practice (×2), Settings, Words, Practice, Setup Wizard",
+        "Global UI components: Navbar, Cards, Category Badges, Buttons",
+        "Animation & motion system including page transitions, micro-interactions, reduced-motion support",
+        "Responsive breakpoints and WCAG 2.2 AA accessibility requirements",
+        "Preserves all functional ML/inference logic — UI/UX layer redesign only",
+        "Stack: Next.js + Tailwind CSS (existing, no stack change)"
+      ]
+    },
+    {
+      "name": "skills-lock.json",
+      "entityType": "file",
+      "observations": [
+        "JSON config at repo root (11 lines)",
+        "Skills lockfile version 1",
+        "Registers one skill: 'impeccable' from pbakaus/impeccable (GitHub source, SKILL.md path)",
+        "Includes computed hash e08cc9be... for integrity verification",
+        "Used by the agent skill management system to track installed skills"
+      ]
+    },
+    {
+      "name": "vercel.json",
+      "entityType": "file",
+      "observations": [
+        "JSON config at repo root (3 lines)",
+        "Vercel deployment configuration",
+        "Root directory set to 'signtutor' — directs Vercel to deploy from the Next.js app subdirectory"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "BUILD_PROMPT.md",
+      "to": "BUILD_PROMPT_ML_EXTENSION.md",
+      "relationType": "precedes"
+    },
+    {
+      "from": "BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "BUILD_PROMPT.md",
+      "relationType": "extends"
+    },
+    {
+      "from": "BUILD_PROMPT.md",
+      "to": "README.md",
+      "relationType": "references"
+    },
+    {
+      "from": "BUILD_PROMPT.md",
+      "to": "package.json",
+      "relationType": "references"
+    },
+    {
+      "from": "BUILD_PROMPT.md",
+      "to": "requirements.txt",
+      "relationType": "references"
+    },
+    {
+      "from": "BUILD_PROMPT.md",
+      "to": "vercel.json",
+      "relationType": "references"
+    },
+    {
+      "from": "BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "requirements.txt",
+      "relationType": "references"
+    },
+    {
+      "from": "README.md",
+      "to": "vercel.json",
+      "relationType": "references"
+    },
+    {
+      "from": "signtutor-redesign-prompt.md",
+      "to": "BUILD_PROMPT.md",
+      "relationType": "redesigns"
+    },
+    {
+      "from": "skills-lock.json",
+      "to": "signtutor-redesign-prompt.md",
+      "relationType": "associated_with"
+    },
+    {
+      "from": "package.json",
+      "to": "vercel.json",
+      "relationType": "deployed_via"
+    },
+    {
+      "from": "BUILD_PROMPT.md",
+      "to": "signtutor-redesign-prompt.md",
+      "relationType": "references"
+    }
+  ]
+}

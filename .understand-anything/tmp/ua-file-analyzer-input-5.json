@@ -1,0 +1,23 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/is-generated.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  69,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-accept.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  595,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  ".agents/skills/impeccable/scripts/live-wrap.mjs",
+                           "language":  "javascript",
+                           "sizeLines":  632,
+                           "fileCategory":  "code"
+                       }
+                   ]
+}

@@ -1,0 +1,347 @@
+{
+  "nodes": [
+    {
+      "name": "document:ml/models/dynamic_eval_report.md",
+      "entityType": "document",
+      "observations": [
+        "Eval report for dynamic_signs_transformer.onnx Transformer model",
+        "Dataset: synthetic landmark sequences, 8 classes × 200 examples",
+        "Sequence: T=45 frames, feature_dim=126 (63 positions + 63 velocities)",
+        "Model: Transformer encoder, d_model=64, 4 heads, 2 layers, 78,600 params",
+        "Held-out top-1 accuracy: 0.991 (NFR-9 target ≥ 0.80 — pass)",
+        "PyTorch ↔ ONNX prediction parity: 1.000",
+        "Model file size: 359.5 KB",
+        "Classes: HELLO, GOODBYE, YES, NO, PLEASE, THANKS, SORRY, HELP",
+        "Fairness gate NFR-10 pass with 0.9pp worst gap",
+        "Served via onnxruntime-web in browser"
+      ]
+    },
+    {
+      "name": "document:ml/models/eval_report.md",
+      "entityType": "document",
+      "observations": [
+        "Eval report for fingerspell_mlp.onnx MLP model",
+        "Dataset: synthetic landmarks, 24 classes × 400 examples",
+        "Model: sklearn MLPClassifier, hidden=(128, 64), early stopping",
+        "Collision-aware accuracy: 0.928 (NFR-9 target ≥ 0.85 — pass)",
+        "Strict top-1 accuracy: 0.452 (penalises visually-identical-in-synth letters)",
+        "Collision-aware vs strict gap: 47.6 pp due to synthetic data limitations",
+        "Documents 5 synth collision groups: {A,E,M,N,S,T}, {D,G,L,Q}, {H,U,V}, {K,P}, {C,O}",
+        "Fairness gate NFR-10 pass with 0.2pp worst gap",
+        "Served via onnxruntime-web in browser"
+      ]
+    },
+    {
+      "name": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "entityType": "document",
+      "observations": [
+        "Build prompt for SignTutor v2 ML extension phase",
+        "Hand this file to a coding agent to ship v2 without further input",
+        "v1 shipped with signtutor/ directory, pnpm typecheck/test/build all pass",
+        "8 architectural decisions preserved from v1",
+        "Recognition models: 24-letter sklearn MLP (static, 72 KB) + 8-sign Transformer (dynamic, 360 KB)",
+        "Both models trained on synthetic data, served via onnxruntime-web",
+        "v2 objectives: real data, J/Z motion letters, 200-sign vocabulary, NMM scoring",
+        "On-device personalization, confidence calibration, multi-language, continuous-sign research",
+        "8 workstreams defined: W1-W8 with independent shipping",
+        "8 new ADRs to document: ADR-002 through ADR-008",
+        "Hard requirements preserved from v1 plus 5 new v2 requirements",
+        "Definition of done checklist included"
+      ]
+    },
+    {
+      "name": "document:requirements.txt",
+      "entityType": "document",
+      "observations": [
+        "SignTutor full stack Python requirements",
+        "Core: numpy>=1.24.0",
+        "ML: scikit-learn>=1.3.0, torch>=2.0.0,<2.12.0, onnxruntime>=1.16.0",
+        "ML: onnx>=1.14.0, skl2onnx>=1.15.0, onnxscript>=0.1.0",
+        "CV: opencv-python>=4.8.0, mediapipe>=0.10.0",
+        "Frontend is Next.js (signtutor/package.json), not Python",
+        "Optional: fastapi, uvicorn for Python API server",
+        "Dev optional: pytest, matplotlib"
+      ]
+    },
+    {
+      "name": "document:signtutor-redesign-prompt.md",
+      "entityType": "document",
+      "observations": [
+        "Complete redesign build prompt for SignTutor UI/UX",
+        "Design direction: Bioluminescent Studio — dark, focused, alive",
+        "Stack: Next.js + Tailwind CSS, preserve all functional logic",
+        "Comprehensive design tokens: backgrounds, accents, text, borders, typography, shadows",
+        "10 page layouts redesigned: Home, About, Learn, Fingerspelling, Letter Practice, Settings, Words, Practice, Setup Wizard",
+        "Animation system: page transitions, micro-interactions, reduced motion support",
+        "Responsive breakpoints: mobile-first, sm/md/lg/xl",
+        "Accessibility: WCAG 2.2 AA, focus rings, skip-to-content, ARIA labels",
+        "Color is never the only differentiator"
+      ]
+    },
+    {
+      "name": "dynamic_signs_transformer.onnx",
+      "entityType": "model",
+      "observations": [
+        "Transformer encoder model for dynamic sign recognition",
+        "8 classes: HELLO, GOODBYE, YES, NO, PLEASE, THANKS, SORRY, HELP",
+        "Architecture: d_model=64, 4 heads, 2 layers, 78,600 params",
+        "Input: T=45 frames, feature_dim=126",
+        "Accuracy on synthetic data: 0.991",
+        "Model size: 359.5 KB (ONNX)",
+        "CPU-trained",
+        "Served via onnxruntime-web"
+      ]
+    },
+    {
+      "name": "fingerspell_mlp.onnx",
+      "entityType": "model",
+      "observations": [
+        "sklearn MLPClassifier for static fingerspelling recognition",
+        "24 letter classes (A-Y, excluding J/Z)",
+        "Architecture: hidden layers (128, 64)",
+        "Collision-aware accuracy: 0.928 on synthetic data",
+        "Strict accuracy: 0.452 due to synthetic data limitations",
+        "Model size: 72 KB (ONNX)",
+        "Served via onnxruntime-web"
+      ]
+    },
+    {
+      "name": "SignTutor v2 ML Extension",
+      "entityType": "project_phase",
+      "observations": [
+        "Build phase: extend SignTutor with real data, more models, and new capabilities",
+        "8 workstreams: W1 Real data, W2 J/Z letters, W3 200-sign vocabulary",
+        "W4 NMM scoring, W5 On-device personalization, W6 Confidence calibration",
+        "W7 Multi-language, W8 Continuous-sign research preview",
+        "Preserves all v1 invariants",
+        "Requires 8 new ADRs (ADR-002 through ADR-008)"
+      ]
+    },
+    {
+      "name": "SignTutor UI Redesign",
+      "entityType": "project_phase",
+      "observations": [
+        "Complete UI/UX redesign of SignTutor application",
+        "Bioluminescent Studio dark theme design language",
+        "10 pages redesigned with full component specifications",
+        "Preserves all ML logic, webcam integration, ONNX loading",
+        "Preserves FSRS algorithm, localStorage schema, routing structure",
+        "Preserves on-device privacy guarantee and ARIA landmarks"
+      ]
+    },
+    {
+      "name": "NFR-9 Accuracy Gate",
+      "entityType": "requirement",
+      "observations": [
+        "Accuracy target for ML models",
+        "Static fingerspelling: ≥ 0.85 collision-aware (v1 target)",
+        "Dynamic signs: ≥ 0.80 (v1 target)",
+        "v2 targets adjust to real data: static ≥ 0.80, dynamic ≥ 0.65"
+      ]
+    },
+    {
+      "name": "NFR-10 Fairness Gate",
+      "entityType": "requirement",
+      "observations": [
+        "Fairness gate: no slice may be more than 5pp below overall accuracy",
+        "v1 uses synthetic placeholder slices (even/odd index)",
+        "v2 to add real demographic slices: skin tone (Monk scale), handedness, age bracket, eyewear, lighting, camera angle"
+      ]
+    },
+    {
+      "name": "synth_collision_groups",
+      "entityType": "concept",
+      "observations": [
+        "Letters visually identical in synthetic data due to simplified finger modeling",
+        "5 collision groups: {A,E,M,N,S,T}, {D,G,L,Q}, {H,U,V}, {K,P}, {C,O}",
+        "Collision-aware accuracy credits predictions within same equivalence class",
+        "Gap between collision-aware (0.928) and strict (0.452) is 47.6 pp",
+        "Expected to collapse on real data with finger-curvature and orientation cues"
+      ]
+    },
+    {
+      "name": "mediapipe_integration",
+      "entityType": "concept",
+      "observations": [
+        "MediaPipe Hands used for hand landmark detection",
+        "v2 to use MediaPipe Holistic (hands + pose + face) for NMM scoring",
+        "Holistic adds 468 face landmarks and 33 pose landmarks per frame",
+        "Outputs normalized landmark sequences for ONNX model input",
+        "On-device processing, no video uploads"
+      ]
+    },
+    {
+      "name": "onnxruntime_web",
+      "entityType": "concept",
+      "observations": [
+        "ONNX Runtime Web loads .onnx models in browser via JavaScript",
+        "Used for both fingerspell_mlp.onnx and dynamic_signs_transformer.onnx",
+        "CDN loaded from jsdelivr: ort.min.js",
+        "InferenceSession.create for model loading",
+        "Tensor creation from flattened landmark features"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "document:ml/models/dynamic_eval_report.md",
+      "to": "dynamic_signs_transformer.onnx",
+      "relationType": "evaluates"
+    },
+    {
+      "from": "document:ml/models/eval_report.md",
+      "to": "fingerspell_mlp.onnx",
+      "relationType": "evaluates"
+    },
+    {
+      "from": "document:ml/models/dynamic_eval_report.md",
+      "to": "NFR-9 Accuracy Gate",
+      "relationType": "reports_metric_for"
+    },
+    {
+      "from": "document:ml/models/dynamic_eval_report.md",
+      "to": "NFR-10 Fairness Gate",
+      "relationType": "reports_metric_for"
+    },
+    {
+      "from": "document:ml/models/eval_report.md",
+      "to": "NFR-9 Accuracy Gate",
+      "relationType": "reports_metric_for"
+    },
+    {
+      "from": "document:ml/models/eval_report.md",
+      "to": "NFR-10 Fairness Gate",
+      "relationType": "reports_metric_for"
+    },
+    {
+      "from": "document:ml/models/eval_report.md",
+      "to": "synth_collision_groups",
+      "relationType": "documents"
+    },
+    {
+      "from": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "SignTutor v2 ML Extension",
+      "relationType": "defines"
+    },
+    {
+      "from": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "dynamic_signs_transformer.onnx",
+      "relationType": "references_model"
+    },
+    {
+      "from": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "fingerspell_mlp.onnx",
+      "relationType": "references_model"
+    },
+    {
+      "from": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "document:ml/models/dynamic_eval_report.md",
+      "relationType": "references"
+    },
+    {
+      "from": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "document:ml/models/eval_report.md",
+      "relationType": "references"
+    },
+    {
+      "from": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "NFR-9 Accuracy Gate",
+      "relationType": "specifies"
+    },
+    {
+      "from": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "NFR-10 Fairness Gate",
+      "relationType": "specifies"
+    },
+    {
+      "from": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "mediapipe_integration",
+      "relationType": "specifies"
+    },
+    {
+      "from": "document:BUILD_PROMPT_ML_EXTENSION.md",
+      "to": "synth_collision_groups",
+      "relationType": "references"
+    },
+    {
+      "from": "document:signtutor-redesign-prompt.md",
+      "to": "SignTutor UI Redesign",
+      "relationType": "defines"
+    },
+    {
+      "from": "document:signtutor-redesign-prompt.md",
+      "to": "fingerspell_mlp.onnx",
+      "relationType": "references_model"
+    },
+    {
+      "from": "document:signtutor-redesign-prompt.md",
+      "to": "dynamic_signs_transformer.onnx",
+      "relationType": "references_model"
+    },
+    {
+      "from": "document:signtutor-redesign-prompt.md",
+      "to": "mediapipe_integration",
+      "relationType": "references"
+    },
+    {
+      "from": "document:signtutor-redesign-prompt.md",
+      "to": "onnxruntime_web",
+      "relationType": "references"
+    },
+    {
+      "from": "document:requirements.txt",
+      "to": "fingerspell_mlp.onnx",
+      "relationType": "enables_build_of"
+    },
+    {
+      "from": "document:requirements.txt",
+      "to": "dynamic_signs_transformer.onnx",
+      "relationType": "enables_build_of"
+    },
+    {
+      "from": "document:requirements.txt",
+      "to": "mediapipe_integration",
+      "relationType": "specifies_dependency"
+    },
+    {
+      "from": "dynamic_signs_transformer.onnx",
+      "to": "mediapipe_integration",
+      "relationType": "depends_on"
+    },
+    {
+      "from": "fingerspell_mlp.onnx",
+      "to": "mediapipe_integration",
+      "relationType": "depends_on"
+    },
+    {
+      "from": "dynamic_signs_transformer.onnx",
+      "to": "onnxruntime_web",
+      "relationType": "served_by"
+    },
+    {
+      "from": "fingerspell_mlp.onnx",
+      "to": "onnxruntime_web",
+      "relationType": "served_by"
+    },
+    {
+      "from": "SignTutor v2 ML Extension",
+      "to": "SignTutor UI Redesign",
+      "relationType": "runs_concurrently_with"
+    },
+    {
+      "from": "dynamic_signs_transformer.onnx",
+      "to": "NFR-9 Accuracy Gate",
+      "relationType": "validates_against"
+    },
+    {
+      "from": "fingerspell_mlp.onnx",
+      "to": "NFR-9 Accuracy Gate",
+      "relationType": "validates_against"
+    },
+    {
+      "from": "synth_collision_groups",
+      "to": "fingerspell_mlp.onnx",
+      "relationType": "limits_accuracy_of"
+    }
+  ]
+}
