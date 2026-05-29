@@ -1,0 +1,12 @@
+ml/
+ci/
+prototype/
+screenshots/
+node_modules/
+.git/
+.github/
+.agents/
+pdr-review/
+*.md
+package-lock.json
+node_modules
