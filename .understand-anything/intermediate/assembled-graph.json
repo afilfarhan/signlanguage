@@ -1,0 +1,4523 @@
+{
+  "layers": [
+    {
+      "nodeIds": [
+        "file:signtutor/__tests__/lib.test.ts",
+        "file:signtutor/__tests__/parity.test.ts",
+        "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+        "file:signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+        "file:signtutor/src/app/learn/asl/settings/page.tsx",
+        "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+        "file:signtutor/src/app/learn/asl/words/page.tsx",
+        "file:signtutor/src/app/practice/page.tsx",
+        "file:signtutor/src/app/setup/page.tsx",
+        "file:signtutor/src/lib/curriculum.ts",
+        "file:signtutor/src/lib/loadExternals.ts",
+        "file:signtutor/src/lib/normalize.ts",
+        "file:signtutor/src/lib/seq-features.ts",
+        "file:signtutor/src/lib/storage.ts",
+        "file:signtutor/src/lib/vocabulary_200.ts"
+      ],
+      "description": "Main application source code and pages",
+      "name": "Application",
+      "id": "layer:application"
+    },
+    {
+      "nodeIds": [],
+      "description": "Machine learning training, evaluation, and model serving",
+      "name": "ML Pipeline",
+      "id": "layer:ml-pipeline"
+    },
+    {
+      "nodeIds": [
+        "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+        "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+        "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGitIgnored",
+        "function:.agents/skills/impeccable/scripts/is-generated.mjs:hasGeneratedHeader",
+        "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:acceptCli",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:findMarkerBlock",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:expandReplaceRange",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripStyleAndJoin",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractInnerByAttr",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractOriginal",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractVariant",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractCss",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateLines",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateWrap",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:deindentContent",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:detectCommentSyntax",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:findSessionFile",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:searchDir",
+        "function:.agents/skills/impeccable/scripts/live-accept.mjs:argVal",
+        "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:argVal",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildSearchQueries",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectCommentSyntax",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectStyleMode",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssSelectorPrefixExamples",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssAuthoring",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findFileWithQuery",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:searchDir",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:minLeadingSpaces",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findElement",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findAllElements",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:filterByText",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findOpenerLine",
+        "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findClosingLine"
+      ],
+      "description": "AI agent skill definitions and automation scripts",
+      "name": "Agent Skills",
+      "id": "layer:agent-skills"
+    },
+    {
+      "nodeIds": [
+        "file:data:prototype/models/dynamic_labels.json",
+        "file:data:prototype/models/hand_lr_epoch5_acc_9753.pth",
+        "file:data:prototype/models/hand_x_val.pth",
+        "file:prototype__README_md",
+        "file:prototype__home_html",
+        "file:prototype__camera_html",
+        "file:prototype_pages__library_html",
+        "file:prototype_pages__settings_html",
+        "file:prototype_pages__stats_html"
+      ],
+      "description": "Prototype HTML pages and models for initial exploration",
+      "name": "Prototype",
+      "id": "layer:prototype"
+    },
+    {
+      "nodeIds": [
+        "pipeline:.github/workflows/ml-gate.yml",
+        "file:job:ml-gate",
+        "step:ml-install-deps",
+        "step:ml-train-static-mlp",
+        "step:ml-train-dynamic-transformer",
+        "step:ml-robustness-sweep",
+        "step:ml-copy-models",
+        "step:ml-regenerate-parity",
+        "step:ml-js-py-parity",
+        "step:ml-enforce-gates",
+        "step:ml-upload-artifacts",
+        "file:job:frontend-gate",
+        "step:fe-install-pnpm",
+        "step:fe-install-deps",
+        "step:fe-lint",
+        "step:fe-typecheck",
+        "step:fe-unit-tests",
+        "step:fe-build",
+        "step:fe-e2e",
+        "step:fe-lighthouse-a11y",
+        "step:fe-enforce-a11y",
+        "step:fe-upload-artifacts",
+        "config:config-skills-lock",
+        "config:vercel",
+        "config:script-command-metadata"
+      ],
+      "description": "CI/CD pipelines, configs, and deployment",
+      "name": "Infrastructure",
+      "id": "layer:infrastructure"
+    },
+    {
+      "nodeIds": [
+        "document:SKILL.md",
+        "document:reference-live.md",
+        "document:reference-motion-design.md",
+        "document:reference-onboard.md",
+        "document:reference-optimize.md",
+        "document:reference-overdrive.md",
+        "document:reference-personas.md",
+        "document:reference-polish.md",
+        "document:reference-product.md",
+        "document:reference-quieter.md",
+        "document:reference-responsive-design.md",
+        "document:reference-shape.md",
+        "document:reference-spatial-design.md",
+        "document:reference-teach.md",
+        "document:reference-typeset.md",
+        "document:reference-typography.md",
+        "document:reference-ux-writing.md",
+        "document:doc-pdr-review-01",
+        "document:doc-pdr-review-02",
+        "document:doc-pdr-review-03",
+        "document:doc-pdr-review-04",
+        "concept:persona-hana",
+        "concept:persona-farid",
+        "concept:persona-eli",
+        "concept:gap-analysis",
+        "concept:recognition-pipeline",
+        "concept:feedback-taxonomy",
+        "concept:privacy-posture",
+        "concept:epic-17-map",
+        "concept:milestone-map",
+        "file:prototype__README_md",
+        "file:note:missing-files",
+        "document:agent-impeccable-asset-producer",
+        "document:agent-impeccable-beautifier",
+        "document:agent-impeccable-color-auditor",
+        "document:agent-impeccable-component-researcher",
+        "document:agent-impeccable-critique-agent",
+        "document:agent-impeccable-design-token-agent",
+        "document:agent-impeccable-page-builder",
+        "document:agent-impeccable-page-components",
+        "document:agent-impeccable-planner",
+        "document:agent-impeccable-redesigner",
+        "document:agent-impeccable-refiner",
+        "document:agent-impeccable-ux-writer",
+        "document:agent-impeccable-wrapper"
+      ],
+      "description": "Project docs, ADRs, design files, and reports",
+      "name": "Documentation",
+      "id": "layer:documentation"
+    }
+  ],
+  "version": "1.0.0",
+  "edges": [
+    {
+      "source": "file:signtutor/src/lib/curriculum.ts",
+      "target": "file:signtutor/src/lib/vocabulary_200.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "file:signtutor/src/lib/normalize.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "file:signtutor/src/lib/seq-features.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/parity.test.ts",
+      "target": "file:signtutor/src/lib/normalize.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "target": "file:signtutor/src/lib/normalize.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "target": "file:signtutor/src/lib/seq-features.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "target": "file:signtutor/src/lib/curriculum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "target": "file:signtutor/src/lib/storage.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "target": "file:signtutor/src/lib/loadExternals.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+      "target": "file:signtutor/src/lib/curriculum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/settings/page.tsx",
+      "target": "file:signtutor/src/lib/storage.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "target": "file:signtutor/src/lib/seq-features.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "target": "file:signtutor/src/lib/curriculum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "target": "file:signtutor/src/lib/vocabulary_200.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "target": "file:signtutor/src/lib/storage.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "target": "file:signtutor/src/lib/loadExternals.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/page.tsx",
+      "target": "file:signtutor/src/lib/vocabulary_200.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/page.tsx",
+      "target": "file:signtutor/src/lib/curriculum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/practice/page.tsx",
+      "target": "file:signtutor/src/lib/storage.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/practice/page.tsx",
+      "target": "file:signtutor/src/lib/curriculum.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/setup/page.tsx",
+      "target": "file:signtutor/src/lib/storage.ts",
+      "type": "imports",
+      "weight": 0.7,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "function:signtutor/__tests__/lib.test.ts:normalize suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "function:signtutor/__tests__/lib.test.ts:fingerStates suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "function:signtutor/__tests__/lib.test.ts:inSameGroup suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "function:signtutor/__tests__/lib.test.ts:classifyRule suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "function:signtutor/__tests__/lib.test.ts:palmFacingCamera suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "function:signtutor/__tests__/lib.test.ts:locationLabel suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "function:signtutor/__tests__/lib.test.ts:normalizeSequence suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "function:signtutor/__tests__/lib.test.ts:COLLISION_GROUPS suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/lib.test.ts",
+      "target": "function:signtutor/__tests__/lib.test.ts:PATTERNS suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/__tests__/parity.test.ts",
+      "target": "function:signtutor/__tests__/parity.test.ts:normalize() JS↔Python parity suite",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "target": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:chooseTip",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "target": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+      "target": "function:signtutor/src/app/learn/asl/fingerspelling/page.tsx:FingerspellingPage",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/settings/page.tsx",
+      "target": "function:signtutor/src/app/learn/asl/settings/page.tsx:Toggle",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/settings/page.tsx",
+      "target": "function:signtutor/src/app/learn/asl/settings/page.tsx:SettingsPage",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "target": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:computeTip",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "target": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:DynamicSignPage",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/learn/asl/words/page.tsx",
+      "target": "function:signtutor/src/app/learn/asl/words/page.tsx:WordsPage",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/practice/page.tsx",
+      "target": "function:signtutor/src/app/practice/page.tsx:PracticePage",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/app/setup/page.tsx",
+      "target": "function:signtutor/src/app/setup/page.tsx:SetupPage",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/curriculum.ts",
+      "target": "function:signtutor/src/lib/curriculum.ts:getStaticLetter",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/curriculum.ts",
+      "target": "function:signtutor/src/lib/curriculum.ts:getDynamicSign",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/loadExternals.ts",
+      "target": "function:signtutor/src/lib/loadExternals.ts:loadScript",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/loadExternals.ts",
+      "target": "function:signtutor/src/lib/loadExternals.ts:loadMediaPipe",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/loadExternals.ts",
+      "target": "function:signtutor/src/lib/loadExternals.ts:loadONNX",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:normalize",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:dist",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:fingerExtended",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:thumbExtended",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:fingerStates",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:inSameGroup",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:scoreLetterRule",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:classifyRule",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:palmFacingCamera",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:locationLabel",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/normalize.ts",
+      "target": "function:signtutor/src/lib/normalize.ts:recentMovement",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/seq-features.ts",
+      "target": "function:signtutor/src/lib/seq-features.ts:normalizeSequence",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/seq-features.ts",
+      "target": "function:signtutor/src/lib/seq-features.ts:normalizeSequenceFixed",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/storage.ts",
+      "target": "function:signtutor/src/lib/storage.ts:loadPrefs",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/storage.ts",
+      "target": "function:signtutor/src/lib/storage.ts:savePrefs",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/storage.ts",
+      "target": "function:signtutor/src/lib/storage.ts:loadProgress",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/storage.ts",
+      "target": "function:signtutor/src/lib/storage.ts:saveProgress",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/storage.ts",
+      "target": "function:signtutor/src/lib/storage.ts:recordAttempt",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/storage.ts",
+      "target": "function:signtutor/src/lib/storage.ts:getReviewQueue",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/vocabulary_200.ts",
+      "target": "function:signtutor/src/lib/vocabulary_200.ts:getSignsByCategory",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/vocabulary_200.ts",
+      "target": "function:signtutor/src/lib/vocabulary_200.ts:searchSigns",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "file:signtutor/src/lib/vocabulary_200.ts",
+      "target": "function:signtutor/src/lib/vocabulary_200.ts:getSignById",
+      "type": "contains",
+      "weight": 1,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/__tests__/lib.test.ts:normalize suite",
+      "target": "function:signtutor/src/lib/normalize.ts:normalize",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/__tests__/lib.test.ts:fingerStates suite",
+      "target": "function:signtutor/src/lib/normalize.ts:fingerStates",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/__tests__/lib.test.ts:inSameGroup suite",
+      "target": "function:signtutor/src/lib/normalize.ts:inSameGroup",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/__tests__/lib.test.ts:classifyRule suite",
+      "target": "function:signtutor/src/lib/normalize.ts:classifyRule",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/__tests__/lib.test.ts:palmFacingCamera suite",
+      "target": "function:signtutor/src/lib/normalize.ts:palmFacingCamera",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/__tests__/lib.test.ts:locationLabel suite",
+      "target": "function:signtutor/src/lib/normalize.ts:locationLabel",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/__tests__/lib.test.ts:normalizeSequence suite",
+      "target": "function:signtutor/src/lib/seq-features.ts:normalizeSequence",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/__tests__/parity.test.ts:normalize() JS↔Python parity suite",
+      "target": "function:signtutor/src/lib/normalize.ts:normalize",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/normalize.ts:normalize",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/normalize.ts:fingerStates",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/normalize.ts:inSameGroup",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/normalize.ts:classifyRule",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/normalize.ts:palmFacingCamera",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/normalize.ts:locationLabel",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/normalize.ts:recentMovement",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/seq-features.ts:normalizeSequenceFixed",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/loadExternals.ts:loadMediaPipe",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/loadExternals.ts:loadONNX",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/storage.ts:loadPrefs",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/lib/storage.ts:savePrefs",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "target": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:chooseTip",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:chooseTip",
+      "target": "function:signtutor/src/lib/normalize.ts:inSameGroup",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/settings/page.tsx:SettingsPage",
+      "target": "function:signtutor/src/lib/storage.ts:loadPrefs",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/settings/page.tsx:SettingsPage",
+      "target": "function:signtutor/src/lib/storage.ts:savePrefs",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:DynamicSignPage",
+      "target": "function:signtutor/src/lib/seq-features.ts:normalizeSequence",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:DynamicSignPage",
+      "target": "function:signtutor/src/lib/vocabulary_200.ts:getSignById",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:DynamicSignPage",
+      "target": "function:signtutor/src/lib/storage.ts:loadPrefs",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:DynamicSignPage",
+      "target": "function:signtutor/src/lib/storage.ts:savePrefs",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:DynamicSignPage",
+      "target": "function:signtutor/src/lib/loadExternals.ts:loadMediaPipe",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:DynamicSignPage",
+      "target": "function:signtutor/src/lib/loadExternals.ts:loadONNX",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:DynamicSignPage",
+      "target": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:computeTip",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/practice/page.tsx:PracticePage",
+      "target": "function:signtutor/src/lib/storage.ts:loadProgress",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/practice/page.tsx:PracticePage",
+      "target": "function:signtutor/src/lib/storage.ts:getReviewQueue",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/setup/page.tsx:SetupPage",
+      "target": "function:signtutor/src/lib/storage.ts:loadPrefs",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/app/setup/page.tsx:SetupPage",
+      "target": "function:signtutor/src/lib/storage.ts:savePrefs",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/lib/loadExternals.ts:loadMediaPipe",
+      "target": "function:signtutor/src/lib/loadExternals.ts:loadScript",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/lib/loadExternals.ts:loadONNX",
+      "target": "function:signtutor/src/lib/loadExternals.ts:loadScript",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/lib/normalize.ts:fingerExtended",
+      "target": "function:signtutor/src/lib/normalize.ts:dist",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/lib/normalize.ts:thumbExtended",
+      "target": "function:signtutor/src/lib/normalize.ts:dist",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/lib/normalize.ts:fingerStates",
+      "target": "function:signtutor/src/lib/normalize.ts:thumbExtended",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/lib/normalize.ts:fingerStates",
+      "target": "function:signtutor/src/lib/normalize.ts:fingerExtended",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/lib/normalize.ts:classifyRule",
+      "target": "function:signtutor/src/lib/normalize.ts:fingerStates",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "function:signtutor/src/lib/normalize.ts:classifyRule",
+      "target": "function:signtutor/src/lib/normalize.ts:scoreLetterRule",
+      "type": "calls",
+      "weight": 0.8,
+      "direction": "forward"
+    },
+    {
+      "source": "file:data:prototype/models/hand_lr_epoch5_acc_9753.pth",
+      "target": "file:data:prototype/models/dynamic_labels.json",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "file:data:prototype/models/hand_x_val.pth",
+      "target": "file:data:prototype/models/dynamic_labels.json",
+      "type": "depends_on",
+      "weight": 0.6,
+      "direction": "forward"
+    },
+    {
+      "source": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "target": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    },
+    {
+      "source": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "target": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "type": "imports",
+      "direction": "forward",
+      "weight": 0.7,
+      "recoveredFromImportMap": true
+    }
+  ],
+  "nodes": [
+    {
+      "id": "file:signtutor/__tests__/lib.test.ts",
+      "type": "file",
+      "name": "lib.test.ts",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Unit tests for normalize.ts and seq-features.ts covering normalize, fingerStates, inSameGroup, classifyRule, palmFacingCamera, locationLabel, normalizeSequence, COLLISION_GROUPS, and PATTERNS.",
+      "tags": [
+        "test",
+        "typescript",
+        "vitest"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:signtutor/__tests__/parity.test.ts",
+      "type": "file",
+      "name": "parity.test.ts",
+      "filePath": "signtutor/__tests__/parity.test.ts",
+      "summary": "Python/JavaScript parity test for normalize() by comparing normalized landmark output against precomputed samples from a JSON file.",
+      "tags": [
+        "test",
+        "parity",
+        "typescript",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "type": "file",
+      "name": "[letter]/page.tsx",
+      "filePath": "signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "summary": "Fingerspelling letter practice page with webcam, MediaPipe hand tracking, ONNX ML model inference, rule-based fallback classifier, and J/Z temporal model for motion letters.",
+      "tags": [
+        "page",
+        "fingerspelling",
+        "ML",
+        "webcam",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+      "type": "file",
+      "name": "fingerspelling/page.tsx",
+      "filePath": "signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+      "summary": "Letter selection page listing all ASL fingerspelling letters with static/motion filter.",
+      "tags": [
+        "page",
+        "fingerspelling",
+        "typescript"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:signtutor/src/app/learn/asl/settings/page.tsx",
+      "type": "file",
+      "name": "settings/page.tsx",
+      "filePath": "signtutor/src/app/learn/asl/settings/page.tsx",
+      "summary": "Settings page with mirror toggle, handedness toggle, and advanced beta feature placeholders.",
+      "tags": [
+        "page",
+        "settings",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "type": "file",
+      "name": "[slug]/page.tsx",
+      "filePath": "signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "summary": "Dynamic sign practice page with webcam, MediaPipe, ONNX transformer model for 8 ML-enabled signs, and reference-only view for vocabulary signs.",
+      "tags": [
+        "page",
+        "words",
+        "ML",
+        "webcam",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:signtutor/src/app/learn/asl/words/page.tsx",
+      "type": "file",
+      "name": "words/page.tsx",
+      "filePath": "signtutor/src/app/learn/asl/words/page.tsx",
+      "summary": "Vocabulary browsing page with search, category filtering, and grouped card layout for 200 signs.",
+      "tags": [
+        "page",
+        "vocabulary",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:signtutor/src/app/practice/page.tsx",
+      "type": "file",
+      "name": "practice/page.tsx",
+      "filePath": "signtutor/src/app/practice/page.tsx",
+      "summary": "Spaced repetition practice page showing review queue, progress stats, and links to all fingerspelling letters and dynamic signs.",
+      "tags": [
+        "page",
+        "practice",
+        "spaced-repetition",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:signtutor/src/app/setup/page.tsx",
+      "type": "file",
+      "name": "setup/page.tsx",
+      "filePath": "signtutor/src/app/setup/page.tsx",
+      "summary": "4-step setup wizard for language selection, camera permission, lighting check, and framing/handedness configuration.",
+      "tags": [
+        "page",
+        "setup",
+        "wizard",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:signtutor/src/lib/curriculum.ts",
+      "type": "file",
+      "name": "curriculum.ts",
+      "filePath": "signtutor/src/lib/curriculum.ts",
+      "summary": "Defines STATIC_LETTERS, MOTION_LETTERS, DYNAMIC_SIGNS, curriculum data (CURRICULUM), letter descriptions, sign descriptions, and ASL reference image URLs.",
+      "tags": [
+        "library",
+        "curriculum",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:signtutor/src/lib/loadExternals.ts",
+      "type": "file",
+      "name": "loadExternals.ts",
+      "filePath": "signtutor/src/lib/loadExternals.ts",
+      "summary": "Dynamic script loader for MediaPipe Hands, drawing utils, camera utils, and ONNX Runtime Web from CDN with caching via module-level promises.",
+      "tags": [
+        "library",
+        "loader",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:signtutor/src/lib/normalize.ts",
+      "type": "file",
+      "name": "normalize.ts",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Hand landmark normalization utilities: zero-center wrist, scale by middle-MCP distance, finger extension detection, rule-based classifier, palm-facing detection, location labeling, and movement tracking.",
+      "tags": [
+        "library",
+        "normalization",
+        "landmarks",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "file:signtutor/src/lib/seq-features.ts",
+      "type": "file",
+      "name": "seq-features.ts",
+      "filePath": "signtutor/src/lib/seq-features.ts",
+      "summary": "Temporal sequence normalization for landmark buffers: zero-center on first-frame wrist, scale, and compute velocities; supports variable-length and fixed-length (J/Z) pipelines.",
+      "tags": [
+        "library",
+        "sequence",
+        "normalization",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:signtutor/src/lib/storage.ts",
+      "type": "file",
+      "name": "storage.ts",
+      "filePath": "signtutor/src/lib/storage.ts",
+      "summary": "LocalStorage persistence for user preferences and FSRS-based spaced repetition progress tracking with attempt recording and review queue generation.",
+      "tags": [
+        "library",
+        "storage",
+        "localStorage",
+        "spaced-repetition",
+        "typescript"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:signtutor/src/lib/vocabulary_200.ts",
+      "type": "file",
+      "name": "vocabulary_200.ts",
+      "filePath": "signtutor/src/lib/vocabulary_200.ts",
+      "summary": "Vocabulary data module containing 200 ASL sign entries with metadata, helper functions for search/filter, and category definitions.",
+      "tags": [
+        "library",
+        "vocabulary",
+        "data",
+        "typescript"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:signtutor/__tests__/lib.test.ts:normalize suite",
+      "type": "function",
+      "name": "normalize suite",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Tests normalize() output type, zero-centering, and scale invariance.",
+      "tags": [
+        "test",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/__tests__/lib.test.ts:fingerStates suite",
+      "type": "function",
+      "name": "fingerStates suite",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Tests fingerStates returns all five finger keys.",
+      "tags": [
+        "test",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/__tests__/lib.test.ts:inSameGroup suite",
+      "type": "function",
+      "name": "inSameGroup suite",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Tests collision group membership logic.",
+      "tags": [
+        "test",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/__tests__/lib.test.ts:classifyRule suite",
+      "type": "function",
+      "name": "classifyRule suite",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Tests classifyRule returns ranked results and finger states.",
+      "tags": [
+        "test",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/__tests__/lib.test.ts:palmFacingCamera suite",
+      "type": "function",
+      "name": "palmFacingCamera suite",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Tests palmFacingCamera returns facing boolean and magnitude.",
+      "tags": [
+        "test",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/__tests__/lib.test.ts:locationLabel suite",
+      "type": "function",
+      "name": "locationLabel suite",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Tests locationLabel returns upper/middle/lower based on wrist y position.",
+      "tags": [
+        "test",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/__tests__/lib.test.ts:normalizeSequence suite",
+      "type": "function",
+      "name": "normalizeSequence suite",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Tests normalizeSequence output shape, zero-centering, and velocity computation.",
+      "tags": [
+        "test",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/__tests__/lib.test.ts:COLLISION_GROUPS suite",
+      "type": "function",
+      "name": "COLLISION_GROUPS suite",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Tests COLLISION_GROUPS contains expected letter groupings.",
+      "tags": [
+        "test",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/__tests__/lib.test.ts:PATTERNS suite",
+      "type": "function",
+      "name": "PATTERNS suite",
+      "filePath": "signtutor/__tests__/lib.test.ts",
+      "summary": "Tests PATTERNS covers all STATIC_LETTERS with correct finger keys.",
+      "tags": [
+        "test",
+        "vitest"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/__tests__/parity.test.ts:normalize() JS↔Python parity suite",
+      "type": "function",
+      "name": "normalize() JS↔Python parity suite",
+      "filePath": "signtutor/__tests__/parity.test.ts",
+      "summary": "Parameterized parity test checking normalize() output against Python-generated samples.",
+      "tags": [
+        "test",
+        "vitest",
+        "parity"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:chooseTip",
+      "type": "function",
+      "name": "chooseTip",
+      "filePath": "signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "summary": "Generates contextual feedback tip based on component scores, top prediction, target letter, orientation, and rule-based finger states.",
+      "tags": [
+        "feedback",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx:FingerspellingLetterPage",
+      "type": "function",
+      "name": "FingerspellingLetterPage",
+      "filePath": "signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "summary": "Main fingerspelling practice page component with webcam loop, ML inference, rule-based classification, J/Z temporal model, and real-time per-finger feedback.",
+      "tags": [
+        "page",
+        "component",
+        "fingerspelling"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:signtutor/src/app/learn/asl/fingerspelling/page.tsx:FingerspellingPage",
+      "type": "function",
+      "name": "FingerspellingPage",
+      "filePath": "signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+      "summary": "Letter selection page component rendering filterable grid of ASL fingerspelling letters with static/motion badges.",
+      "tags": [
+        "page",
+        "component",
+        "fingerspelling"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/app/learn/asl/settings/page.tsx:Toggle",
+      "type": "function",
+      "name": "Toggle",
+      "filePath": "signtutor/src/app/learn/asl/settings/page.tsx",
+      "summary": "Reusable toggle switch component with label, description, and disabled state.",
+      "tags": [
+        "component",
+        "ui"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/app/learn/asl/settings/page.tsx:SettingsPage",
+      "type": "function",
+      "name": "SettingsPage",
+      "filePath": "signtutor/src/app/learn/asl/settings/page.tsx",
+      "summary": "Settings page component for mirror, handedness toggles and advanced beta feature placeholders.",
+      "tags": [
+        "page",
+        "component",
+        "settings"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:computeTip",
+      "type": "function",
+      "name": "computeTip",
+      "filePath": "signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "summary": "Generates feedback tip HTML string based on verdict, top result, and target sign.",
+      "tags": [
+        "feedback",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/app/learn/asl/words/[slug]/page.tsx:DynamicSignPage",
+      "type": "function",
+      "name": "DynamicSignPage",
+      "filePath": "signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "summary": "Dynamic sign practice page with webcam, transformer model inference, recording mode, and reference-only view for non-ML signs.",
+      "tags": [
+        "page",
+        "component",
+        "words"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:signtutor/src/app/learn/asl/words/page.tsx:WordsPage",
+      "type": "function",
+      "name": "WordsPage",
+      "filePath": "signtutor/src/app/learn/asl/words/page.tsx",
+      "summary": "Vocabulary browsing page with search, category filter, and sign card grid with ML badges.",
+      "tags": [
+        "page",
+        "component",
+        "vocabulary"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/app/practice/page.tsx:PracticePage",
+      "type": "function",
+      "name": "PracticePage",
+      "filePath": "signtutor/src/app/practice/page.tsx",
+      "summary": "Spaced repetition review dashboard with stats, progress bar, due queue, and all-signs overview.",
+      "tags": [
+        "page",
+        "component",
+        "practice"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/app/setup/page.tsx:SetupPage",
+      "type": "function",
+      "name": "SetupPage",
+      "filePath": "signtutor/src/app/setup/page.tsx",
+      "summary": "4-step setup wizard component for language, camera, lighting, and framing configuration.",
+      "tags": [
+        "page",
+        "component",
+        "setup"
+      ],
+      "complexity": "complex"
+    },
+    {
+      "id": "function:signtutor/src/lib/curriculum.ts:getStaticLetter",
+      "type": "function",
+      "name": "getStaticLetter",
+      "filePath": "signtutor/src/lib/curriculum.ts",
+      "summary": "Looks up a static letter by name from the CURRICULUM array.",
+      "tags": [
+        "lookup",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/curriculum.ts:getDynamicSign",
+      "type": "function",
+      "name": "getDynamicSign",
+      "filePath": "signtutor/src/lib/curriculum.ts",
+      "summary": "Looks up a dynamic sign by slug from the CURRICULUM array.",
+      "tags": [
+        "lookup",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/loadExternals.ts:loadScript",
+      "type": "function",
+      "name": "loadScript",
+      "filePath": "signtutor/src/lib/loadExternals.ts",
+      "summary": "Dynamically loads a script tag with timeout and deduplication.",
+      "tags": [
+        "loader",
+        "helper"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/lib/loadExternals.ts:loadMediaPipe",
+      "type": "function",
+      "name": "loadMediaPipe",
+      "filePath": "signtutor/src/lib/loadExternals.ts",
+      "summary": "Loads MediaPipe Hands, drawing utils, and camera utils from CDN via script tags.",
+      "tags": [
+        "loader",
+        "mediapipe"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/lib/loadExternals.ts:loadONNX",
+      "type": "function",
+      "name": "loadONNX",
+      "filePath": "signtutor/src/lib/loadExternals.ts",
+      "summary": "Loads ONNX Runtime Web from CDN via script tag.",
+      "tags": [
+        "loader",
+        "onnx"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:normalize",
+      "type": "function",
+      "name": "normalize",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Zero-centers landmarks on wrist and scales by wrist-to-middle-MCP distance.",
+      "tags": [
+        "normalization",
+        "landmarks"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:dist",
+      "type": "function",
+      "name": "dist",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Euclidean distance between two 3D landmarks.",
+      "tags": [
+        "math",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:fingerExtended",
+      "type": "function",
+      "name": "fingerExtended",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Determines if a finger is extended by comparing tip-to-wrist vs pip-to-wrist distances.",
+      "tags": [
+        "hand",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:thumbExtended",
+      "type": "function",
+      "name": "thumbExtended",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Determines if thumb is extended by comparing thumb tip to wrist vs PIP to wrist.",
+      "tags": [
+        "hand",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:fingerStates",
+      "type": "function",
+      "name": "fingerStates",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Returns boolean extension state for all five fingers.",
+      "tags": [
+        "hand",
+        "detection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:inSameGroup",
+      "type": "function",
+      "name": "inSameGroup",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Checks if two letters belong to the same collision group for disambiguation.",
+      "tags": [
+        "collision",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:scoreLetterRule",
+      "type": "function",
+      "name": "scoreLetterRule",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Computes agreement score between detected finger states and a target letter pattern.",
+      "tags": [
+        "scoring",
+        "classifier"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:classifyRule",
+      "type": "function",
+      "name": "classifyRule",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Rule-based classifier that scores all letter patterns against detected finger states and returns ranked predictions.",
+      "tags": [
+        "classifier",
+        "rule-based"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:palmFacingCamera",
+      "type": "function",
+      "name": "palmFacingCamera",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Determines if palm is facing the camera using cross product of index-MCP and pinky-MCP vectors.",
+      "tags": [
+        "orientation",
+        "detection"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:locationLabel",
+      "type": "function",
+      "name": "locationLabel",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Returns upper/middle/lower label based on wrist y-coordinate.",
+      "tags": [
+        "location",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/normalize.ts:recentMovement",
+      "type": "function",
+      "name": "recentMovement",
+      "filePath": "signtutor/src/lib/normalize.ts",
+      "summary": "Computes total movement distance over recent wrist positions.",
+      "tags": [
+        "movement",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/seq-features.ts:normalizeSequence",
+      "type": "function",
+      "name": "normalizeSequence",
+      "filePath": "signtutor/src/lib/seq-features.ts",
+      "summary": "Normalizes a variable-length landmark buffer: zero-centers on first-frame wrist, scales, appends velocities.",
+      "tags": [
+        "normalization",
+        "sequence"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/lib/seq-features.ts:normalizeSequenceFixed",
+      "type": "function",
+      "name": "normalizeSequenceFixed",
+      "filePath": "signtutor/src/lib/seq-features.ts",
+      "summary": "Normalizes and pads/trims a landmark buffer to a fixed target length for J/Z temporal model input.",
+      "tags": [
+        "normalization",
+        "sequence",
+        "fixed-length"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/lib/storage.ts:loadPrefs",
+      "type": "function",
+      "name": "loadPrefs",
+      "filePath": "signtutor/src/lib/storage.ts",
+      "summary": "Loads user preferences from localStorage with SSR-safe defaults.",
+      "tags": [
+        "storage",
+        "preferences"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/storage.ts:savePrefs",
+      "type": "function",
+      "name": "savePrefs",
+      "filePath": "signtutor/src/lib/storage.ts",
+      "summary": "Persists user preferences to localStorage.",
+      "tags": [
+        "storage",
+        "preferences"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/storage.ts:loadProgress",
+      "type": "function",
+      "name": "loadProgress",
+      "filePath": "signtutor/src/lib/storage.ts",
+      "summary": "Loads spaced repetition progress from localStorage.",
+      "tags": [
+        "storage",
+        "progress"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/storage.ts:saveProgress",
+      "type": "function",
+      "name": "saveProgress",
+      "filePath": "signtutor/src/lib/storage.ts",
+      "summary": "Persists spaced repetition progress to localStorage.",
+      "tags": [
+        "storage",
+        "progress"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/storage.ts:recordAttempt",
+      "type": "function",
+      "name": "recordAttempt",
+      "filePath": "signtutor/src/lib/storage.ts",
+      "summary": "Records a practice attempt and updates FSRS-like spaced repetition state (stability, difficulty, state transitions).",
+      "tags": [
+        "storage",
+        "spaced-repetition",
+        "fsrs"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "function:signtutor/src/lib/storage.ts:getReviewQueue",
+      "type": "function",
+      "name": "getReviewQueue",
+      "filePath": "signtutor/src/lib/storage.ts",
+      "summary": "Returns sorted list of sign IDs due for review, with untried signs appended.",
+      "tags": [
+        "storage",
+        "review",
+        "queue"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/vocabulary_200.ts:getSignsByCategory",
+      "type": "function",
+      "name": "getSignsByCategory",
+      "filePath": "signtutor/src/lib/vocabulary_200.ts",
+      "summary": "Filters VOCABULARY_200 by category.",
+      "tags": [
+        "lookup",
+        "filter"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/vocabulary_200.ts:searchSigns",
+      "type": "function",
+      "name": "searchSigns",
+      "filePath": "signtutor/src/lib/vocabulary_200.ts",
+      "summary": "Searches VOCABULARY_200 by gloss, description, or category substring match.",
+      "tags": [
+        "lookup",
+        "search"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "function:signtutor/src/lib/vocabulary_200.ts:getSignById",
+      "type": "function",
+      "name": "getSignById",
+      "filePath": "signtutor/src/lib/vocabulary_200.ts",
+      "summary": "Looks up a sign entry by its unique id from VOCABULARY_200.",
+      "tags": [
+        "lookup",
+        "helper"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:.agents/skills/impeccable/scripts/is-generated.mjs",
+      "type": "file",
+      "properties": {
+        "path": ".agents/skills/impeccable/scripts/is-generated.mjs",
+        "language": "javascript",
+        "lines": 69,
+        "description": "Heuristic check for generated files via git check-ignore and header markers"
+      },
+      "complexity": "moderate",
+      "name": ".agents/skills/impeccable/scripts/is-generated.mjs",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGeneratedFile",
+      "type": "function",
+      "properties": {
+        "name": "isGeneratedFile",
+        "params": [
+          "filePath",
+          "options"
+        ],
+        "startLine": 33,
+        "endLine": 40,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "isGeneratedFile",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/is-generated.mjs:isGitIgnored",
+      "type": "function",
+      "properties": {
+        "name": "isGitIgnored",
+        "params": [
+          "absPath",
+          "cwd"
+        ],
+        "startLine": 42,
+        "endLine": 54,
+        "exported": false
+      },
+      "complexity": "moderate",
+      "name": "isGitIgnored",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/is-generated.mjs:hasGeneratedHeader",
+      "type": "function",
+      "properties": {
+        "name": "hasGeneratedHeader",
+        "params": [
+          "absPath"
+        ],
+        "startLine": 56,
+        "endLine": 69,
+        "exported": false
+      },
+      "complexity": "moderate",
+      "name": "hasGeneratedHeader",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:import:node:child_process:execSync",
+      "type": "import",
+      "properties": {
+        "source": "node:child_process",
+        "name": "execSync",
+        "isExternal": true
+      },
+      "complexity": "moderate",
+      "name": "execSync",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:import:node:fs",
+      "type": "import",
+      "properties": {
+        "source": "node:fs",
+        "isExternal": true
+      },
+      "complexity": "moderate",
+      "name": "fs",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:import:node:path",
+      "type": "import",
+      "properties": {
+        "source": "node:path",
+        "isExternal": true
+      },
+      "complexity": "moderate",
+      "name": "path",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:.agents/skills/impeccable/scripts/live-accept.mjs",
+      "type": "file",
+      "properties": {
+        "path": ".agents/skills/impeccable/scripts/live-accept.mjs",
+        "language": "javascript",
+        "lines": 595,
+        "description": "CLI tool for deterministic accept/discard of variant sessions"
+      },
+      "complexity": "moderate",
+      "name": ".agents/skills/impeccable/scripts/live-accept.mjs",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:acceptCli",
+      "type": "function",
+      "properties": {
+        "name": "acceptCli",
+        "params": [],
+        "startLine": 26,
+        "endLine": 97,
+        "exported": true,
+        "async": true
+      },
+      "complexity": "moderate",
+      "name": "acceptCli",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleDiscard",
+      "type": "function",
+      "properties": {
+        "name": "handleDiscard",
+        "params": [
+          "id",
+          "lines",
+          "targetFile"
+        ],
+        "startLine": 103,
+        "endLine": 127
+      },
+      "complexity": "moderate",
+      "name": "handleDiscard",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:handleAccept",
+      "type": "function",
+      "properties": {
+        "name": "handleAccept",
+        "params": [
+          "id",
+          "variantNum",
+          "lines",
+          "targetFile",
+          "paramValues"
+        ],
+        "startLine": 133,
+        "endLine": 208
+      },
+      "complexity": "moderate",
+      "name": "handleAccept",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findMarkerBlock",
+      "type": "function",
+      "properties": {
+        "name": "findMarkerBlock",
+        "params": [
+          "id",
+          "lines"
+        ],
+        "startLine": 218,
+        "endLine": 230,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "findMarkerBlock",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:expandReplaceRange",
+      "type": "function",
+      "properties": {
+        "name": "expandReplaceRange",
+        "params": [
+          "block",
+          "lines",
+          "isJsx"
+        ],
+        "startLine": 248,
+        "endLine": 296
+      },
+      "complexity": "moderate",
+      "name": "expandReplaceRange",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripStyleAndJoin",
+      "type": "function",
+      "properties": {
+        "name": "stripStyleAndJoin",
+        "params": [
+          "lines",
+          "block"
+        ],
+        "startLine": 307,
+        "endLine": 339
+      },
+      "complexity": "moderate",
+      "name": "stripStyleAndJoin",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractInnerByAttr",
+      "type": "function",
+      "properties": {
+        "name": "extractInnerByAttr",
+        "params": [
+          "text",
+          "attrMatch"
+        ],
+        "startLine": 347,
+        "endLine": 373
+      },
+      "complexity": "moderate",
+      "name": "extractInnerByAttr",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractOriginal",
+      "type": "function",
+      "properties": {
+        "name": "extractOriginal",
+        "params": [
+          "lines",
+          "block"
+        ],
+        "startLine": 379,
+        "endLine": 384,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "extractOriginal",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractVariant",
+      "type": "function",
+      "properties": {
+        "name": "extractVariant",
+        "params": [
+          "lines",
+          "block",
+          "variantNum"
+        ],
+        "startLine": 390,
+        "endLine": 399,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "extractVariant",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:extractCss",
+      "type": "function",
+      "properties": {
+        "name": "extractCss",
+        "params": [
+          "lines",
+          "block",
+          "id"
+        ],
+        "startLine": 411,
+        "endLine": 444,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "extractCss",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateLines",
+      "type": "function",
+      "properties": {
+        "name": "stripJsxTemplateLines",
+        "params": [
+          "content"
+        ],
+        "startLine": 457,
+        "endLine": 490
+      },
+      "complexity": "moderate",
+      "name": "stripJsxTemplateLines",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:stripJsxTemplateWrap",
+      "type": "function",
+      "properties": {
+        "name": "stripJsxTemplateWrap",
+        "params": [
+          "text"
+        ],
+        "startLine": 492,
+        "endLine": 496
+      },
+      "complexity": "moderate",
+      "name": "stripJsxTemplateWrap",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:deindentContent",
+      "type": "function",
+      "properties": {
+        "name": "deindentContent",
+        "params": [
+          "contentLines",
+          "baseIndent"
+        ],
+        "startLine": 503,
+        "endLine": 518,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "deindentContent",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:detectCommentSyntax",
+      "type": "function",
+      "properties": {
+        "name": "detectCommentSyntax",
+        "params": [
+          "filePath"
+        ],
+        "startLine": 520,
+        "endLine": 526,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "detectCommentSyntax",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:findSessionFile",
+      "type": "function",
+      "properties": {
+        "name": "findSessionFile",
+        "params": [
+          "id",
+          "cwd"
+        ],
+        "startLine": 532,
+        "endLine": 547
+      },
+      "complexity": "moderate",
+      "name": "findSessionFile",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:searchDir",
+      "type": "function",
+      "properties": {
+        "name": "searchDir",
+        "params": [
+          "dir",
+          "query",
+          "seen",
+          "depth"
+        ],
+        "startLine": 549,
+        "endLine": 578
+      },
+      "complexity": "moderate",
+      "name": "searchDir",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-accept.mjs:argVal",
+      "type": "function",
+      "properties": {
+        "name": "argVal",
+        "params": [
+          "args",
+          "flag"
+        ],
+        "startLine": 584,
+        "endLine": 587
+      },
+      "complexity": "moderate",
+      "name": "argVal",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:.agents/skills/impeccable/scripts/live-wrap.mjs",
+      "type": "file",
+      "properties": {
+        "path": ".agents/skills/impeccable/scripts/live-wrap.mjs",
+        "language": "javascript",
+        "lines": 632,
+        "description": "CLI tool to find element in source and wrap in variant container"
+      },
+      "complexity": "moderate",
+      "name": ".agents/skills/impeccable/scripts/live-wrap.mjs",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:wrapCli",
+      "type": "function",
+      "properties": {
+        "name": "wrapCli",
+        "params": [],
+        "startLine": 20,
+        "endLine": 279,
+        "exported": true,
+        "async": true
+      },
+      "complexity": "moderate",
+      "name": "wrapCli",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:argVal",
+      "type": "function",
+      "properties": {
+        "name": "argVal",
+        "params": [
+          "args",
+          "flag"
+        ],
+        "startLine": 285,
+        "endLine": 288
+      },
+      "complexity": "moderate",
+      "name": "argVal",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildSearchQueries",
+      "type": "function",
+      "properties": {
+        "name": "buildSearchQueries",
+        "params": [
+          "elementId",
+          "classes",
+          "tag",
+          "query"
+        ],
+        "startLine": 294,
+        "endLine": 332,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "buildSearchQueries",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectCommentSyntax",
+      "type": "function",
+      "properties": {
+        "name": "detectCommentSyntax",
+        "params": [
+          "filePath"
+        ],
+        "startLine": 334,
+        "endLine": 341,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "detectCommentSyntax",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:detectStyleMode",
+      "type": "function",
+      "properties": {
+        "name": "detectStyleMode",
+        "params": [
+          "filePath"
+        ],
+        "startLine": 343,
+        "endLine": 355
+      },
+      "complexity": "moderate",
+      "name": "detectStyleMode",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssSelectorPrefixExamples",
+      "type": "function",
+      "properties": {
+        "name": "buildCssSelectorPrefixExamples",
+        "params": [
+          "styleMode",
+          "count"
+        ],
+        "startLine": 357,
+        "endLine": 360
+      },
+      "complexity": "moderate",
+      "name": "buildCssSelectorPrefixExamples",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:buildCssAuthoring",
+      "type": "function",
+      "properties": {
+        "name": "buildCssAuthoring",
+        "params": [
+          "styleMode",
+          "count"
+        ],
+        "startLine": 362,
+        "endLine": 397
+      },
+      "complexity": "moderate",
+      "name": "buildCssAuthoring",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findFileWithQuery",
+      "type": "function",
+      "properties": {
+        "name": "findFileWithQuery",
+        "params": [
+          "query",
+          "cwd",
+          "genOpts"
+        ],
+        "startLine": 403,
+        "endLine": 414
+      },
+      "complexity": "moderate",
+      "name": "findFileWithQuery",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:searchDir",
+      "type": "function",
+      "properties": {
+        "name": "searchDir",
+        "params": [
+          "dir",
+          "query",
+          "seen",
+          "depth",
+          "genOpts"
+        ],
+        "startLine": 416,
+        "endLine": 452
+      },
+      "complexity": "moderate",
+      "name": "searchDir",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:minLeadingSpaces",
+      "type": "function",
+      "properties": {
+        "name": "minLeadingSpaces",
+        "params": [
+          "lines"
+        ],
+        "startLine": 477,
+        "endLine": 485
+      },
+      "complexity": "moderate",
+      "name": "minLeadingSpaces",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findElement",
+      "type": "function",
+      "properties": {
+        "name": "findElement",
+        "params": [
+          "lines",
+          "query",
+          "tag"
+        ],
+        "startLine": 487,
+        "endLine": 505,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "findElement",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findAllElements",
+      "type": "function",
+      "properties": {
+        "name": "findAllElements",
+        "params": [
+          "lines",
+          "query",
+          "tag"
+        ],
+        "startLine": 514,
+        "endLine": 530
+      },
+      "complexity": "moderate",
+      "name": "findAllElements",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:filterByText",
+      "type": "function",
+      "properties": {
+        "name": "filterByText",
+        "params": [
+          "candidates",
+          "lines",
+          "text"
+        ],
+        "startLine": 547,
+        "endLine": 568
+      },
+      "complexity": "moderate",
+      "name": "filterByText",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findOpenerLine",
+      "type": "function",
+      "properties": {
+        "name": "findOpenerLine",
+        "params": [
+          "lines",
+          "matchLine",
+          "tag"
+        ],
+        "startLine": 579,
+        "endLine": 594
+      },
+      "complexity": "moderate",
+      "name": "findOpenerLine",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "function:.agents/skills/impeccable/scripts/live-wrap.mjs:findClosingLine",
+      "type": "function",
+      "properties": {
+        "name": "findClosingLine",
+        "params": [
+          "lines",
+          "start"
+        ],
+        "startLine": 600,
+        "endLine": 623,
+        "exported": true
+      },
+      "complexity": "moderate",
+      "name": "findClosingLine",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:import:./is-generated.mjs:isGeneratedFile",
+      "type": "import",
+      "properties": {
+        "source": "./is-generated.mjs",
+        "name": "isGeneratedFile",
+        "isExternal": false
+      },
+      "complexity": "moderate",
+      "name": "isGeneratedFile",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "pipeline:.github/workflows/ml-gate.yml",
+      "type": "pipeline",
+      "label": "CI (ML release gates + Frontend checks)",
+      "properties": {
+        "filePath": ".github/workflows/ml-gate.yml",
+        "language": "yaml",
+        "jobCount": 2,
+        "triggerOn": [
+          "push (ml/**|prototype/**|ci/**|signtutor/**)",
+          "pull_request",
+          "workflow_dispatch"
+        ],
+        "runsOn": "ubuntu-latest",
+        "totalLines": 169
+      },
+      "complexity": "moderate",
+      "name": ".github/workflows/ml-gate.yml",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:job:ml-gate",
+      "type": "ci-job",
+      "label": "ml-gate",
+      "properties": {
+        "runsOn": "ubuntu-latest",
+        "timeoutMinutes": 20,
+        "stepCount": 9,
+        "purpose": "Train ML models, run eval/robustness checks, verify JS↔Python feature parity, enforce release gates, upload reports"
+      },
+      "complexity": "moderate",
+      "name": "ml-gate",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:ml-install-deps",
+      "type": "ci-step",
+      "label": "Install Python deps",
+      "properties": {
+        "deps": [
+          "numpy",
+          "scikit-learn",
+          "skl2onnx",
+          "onnx",
+          "onnxruntime",
+          "onnxscript",
+          "torch"
+        ]
+      },
+      "complexity": "moderate",
+      "name": "ml-install-deps",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:ml-train-static-mlp",
+      "type": "ci-step",
+      "label": "Train static MLP & write eval report",
+      "properties": {
+        "script": "ml/train_export.py"
+      },
+      "complexity": "moderate",
+      "name": "ml-train-static-mlp",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:ml-train-dynamic-transformer",
+      "type": "ci-step",
+      "label": "Train dynamic Transformer & write eval report",
+      "properties": {
+        "script": "ml/train_transformer.py",
+        "flag": "--rotation-aug"
+      },
+      "complexity": "moderate",
+      "name": "ml-train-dynamic-transformer",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:ml-robustness-sweep",
+      "type": "ci-step",
+      "label": "Robustness sweep on dynamic model",
+      "properties": {
+        "script": "ml/eval_robustness.py"
+      },
+      "complexity": "moderate",
+      "name": "ml-robustness-sweep",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:ml-copy-models",
+      "type": "ci-step",
+      "label": "Copy models into served bundle",
+      "properties": {
+        "outputs": [
+          "prototype/models/fingerspell_mlp.onnx",
+          "prototype/models/dynamic_signs_transformer.onnx"
+        ]
+      },
+      "complexity": "moderate",
+      "name": "ml-copy-models",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:ml-regenerate-parity",
+      "type": "ci-step",
+      "label": "Regenerate parity samples",
+      "properties": {
+        "output": "prototype/models/parity_samples.json"
+      },
+      "complexity": "moderate",
+      "name": "ml-regenerate-parity",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:ml-js-py-parity",
+      "type": "ci-step",
+      "label": "JS↔Python feature parity",
+      "properties": {
+        "script": "ci/run_parity.mjs"
+      },
+      "complexity": "moderate",
+      "name": "ml-js-py-parity",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:ml-enforce-gates",
+      "type": "ci-step",
+      "label": "Enforce release gates",
+      "properties": {
+        "script": "ci/check_nfr.py"
+      },
+      "complexity": "moderate",
+      "name": "ml-enforce-gates",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:ml-upload-artifacts",
+      "type": "ci-step",
+      "label": "Upload ml-reports artifact",
+      "properties": {
+        "artifact": "ml-reports",
+        "paths": [
+          "ml/models/eval_report.md",
+          "ml/models/dynamic_eval_report.md",
+          "ml/models/dynamic_robustness_report.md",
+          "ci/parity.log"
+        ],
+        "always": true
+      },
+      "complexity": "moderate",
+      "name": "ml-upload-artifacts",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:job:frontend-gate",
+      "type": "ci-job",
+      "label": "frontend-gate",
+      "properties": {
+        "runsOn": "ubuntu-latest",
+        "timeoutMinutes": 15,
+        "stepCount": 12,
+        "workingDirectory": "signtutor",
+        "purpose": "Lint, typecheck, unit test, build, Playwright E2E, Lighthouse a11y audit (score >= 95), upload reports"
+      },
+      "complexity": "moderate",
+      "name": "frontend-gate",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-install-pnpm",
+      "type": "ci-step",
+      "label": "Install pnpm",
+      "properties": {},
+      "complexity": "moderate",
+      "name": "fe-install-pnpm",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-install-deps",
+      "type": "ci-step",
+      "label": "Install deps",
+      "properties": {
+        "command": "pnpm install --frozen-lockfile"
+      },
+      "complexity": "moderate",
+      "name": "fe-install-deps",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-lint",
+      "type": "ci-step",
+      "label": "Lint",
+      "properties": {
+        "command": "npm run lint -- --max-warnings=0"
+      },
+      "complexity": "moderate",
+      "name": "fe-lint",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-typecheck",
+      "type": "ci-step",
+      "label": "Type check",
+      "properties": {
+        "command": "npm run typecheck"
+      },
+      "complexity": "moderate",
+      "name": "fe-typecheck",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-unit-tests",
+      "type": "ci-step",
+      "label": "Unit tests",
+      "properties": {
+        "command": "npm run test"
+      },
+      "complexity": "moderate",
+      "name": "fe-unit-tests",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-build",
+      "type": "ci-step",
+      "label": "Build",
+      "properties": {
+        "command": "npm run build"
+      },
+      "complexity": "moderate",
+      "name": "fe-build",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-e2e",
+      "type": "ci-step",
+      "label": "Playwright E2E tests",
+      "properties": {},
+      "complexity": "moderate",
+      "name": "fe-e2e",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-lighthouse-a11y",
+      "type": "ci-step",
+      "label": "Lighthouse a11y audit",
+      "properties": {
+        "urls": [
+          "/",
+          "/setup",
+          "/learn/asl/fingerspelling/A"
+        ],
+        "preset": "desktop",
+        "categories": [
+          "accessibility"
+        ]
+      },
+      "complexity": "moderate",
+      "name": "fe-lighthouse-a11y",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-enforce-a11y",
+      "type": "ci-step",
+      "label": "Enforce a11y >= 95",
+      "properties": {
+        "threshold": 0.95
+      },
+      "complexity": "moderate",
+      "name": "fe-enforce-a11y",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "step:fe-upload-artifacts",
+      "type": "ci-step",
+      "label": "Upload frontend-reports artifact",
+      "properties": {
+        "artifact": "frontend-reports",
+        "paths": [
+          "signtutor/lighthouse/",
+          "signtutor/playwright-report/",
+          "signtutor/test-results/"
+        ],
+        "always": true
+      },
+      "complexity": "moderate",
+      "name": "fe-upload-artifacts",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:impeccable-skills-root",
+      "type": "directory",
+      "label": "impeccable/",
+      "observations": [
+        "Root directory of the impeccables UI craft skill",
+        "Contains agents/, scripts/, reference/ subdirectories",
+        "Skill descriptor at SKILL.md registers 22 commands across Build, Evaluate, Refine, Enhance, Fix, Iterate categories"
+      ],
+      "complexity": "moderate",
+      "name": "impeccable-skills-root",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:SKILL.md",
+      "type": "document",
+      "label": "SKILL.md",
+      "observations": [
+        "Skill descriptor and routing hub for the impeccable skill",
+        "Total lines: 168, non-empty lines: 146",
+        "Defines 22 sub-commands: craft, shape, teach, document, extract, critique, audit, polish, bolder, quieter, distill, harden, onboard, animate, colorize, typeset, layout, delight, overdrive, clarify, adapt, optimize, live",
+        "Shares 8 design laws: color (OKLCH), theme scene sentence, typography 65-75ch, layout, motion bans, absolute bans (side-stripe borders, gradient text, glassmorphism), AI slop test",
+        "References registers: brand.md and product.md for register-specific rules",
+        "Houses shared design laws including color strategy, theme, typography, layout, motion, and absolute bans"
+      ],
+      "complexity": "moderate",
+      "name": "SKILL.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:impeccable-asset-producer.md",
+      "type": "agent",
+      "label": "impeccable-asset-producer.md",
+      "observations": [
+        "Agent: Asset production for impeccability craft",
+        "Total lines: 101, agents/impeccable-asset-producer.md",
+        "Goal: production cleanup of raster assets from approved mocks, no new art direction",
+        "Core rule: preserve visual role, silhouette, palette, lighting, material, texture, camera angle",
+        "Input contract: approved mock path, crops, output directory, dimensions, format, transparency needs",
+        "Three buckets: produce (needs generation), direct (can ship as crop), semantic (HTML/CSS/SVG)",
+        "Output: manifest grouped by produce/direct/semantic with qa_status",
+        "Uses imagegen skill for production, prefers true alpha transparency",
+        "Contrasts: removes UI text, nav, buttons; preserves only physical marks if parent specifies"
+      ],
+      "complexity": "moderate",
+      "name": "impeccable-asset-producer.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:impeccable-paths.mjs",
+      "type": "file",
+      "label": "impeccable-paths.mjs",
+      "observations": [
+        "Script: Path resolution utilities for impeccability",
+        "Total lines: 110, scripts/impeccable-paths.mjs",
+        "Node.js ESM module with exports",
+        "Exports constants: IMPECCABLE_DIR, LIVE_DIR, CRITIQUE_DIR",
+        "Provides path helpers for: design sidecar, live config, live server info, sessions, annotations, critique dirs",
+        "Supports legacy fallback paths (.impeccable-live/)",
+        "Used by live.mjs and other scripts for consistent directory resolution"
+      ],
+      "complexity": "moderate",
+      "name": "impeccable-paths.mjs",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:live-accept.mjs",
+      "type": "file",
+      "label": "live-accept.mjs",
+      "observations": [
+        "Script: Variant accept/discard CLI for live sessions",
+        "Total lines: 595, scripts/live-accept.mjs",
+        "Node.js ESM module with auto-execute on direct run",
+        "Two modes: --discard removes variants and restores original; --variant N accepts one variant",
+        "Handles HTML, JSX, TSX, Vue, Svelte, Astro file extensions",
+        "Deep div-depth tracking for accurate JSX wrapper expansion (expandReplaceRange)",
+        "Carbonize support: preserves colocated <style> blocks with markers for background CSS integration",
+        "Exports: findMarkerBlock, extractOriginal, extractVariant, extractCss, deindentContent, detectCommentSyntax",
+        "Falls back to agent-driven flow if session markers live in a generated file",
+        "Imports is-generated.mjs for generated file detection"
+      ],
+      "complexity": "moderate",
+      "name": "live-accept.mjs",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:live-wrap.mjs",
+      "type": "file",
+      "label": "live-wrap.mjs",
+      "observations": [
+        "Script: Element wrapping CLI for live variant sessions",
+        "Total lines: 632, scripts/live-wrap.mjs",
+        "Node.js ESM module with auto-execute on direct run",
+        "Searches project files by query (ID, class combo, tag, text snippet) to find elements",
+        "Wraps found element with variant scaffolding (original + variant slots)",
+        "Generates different wrapper syntax for HTML vs JSX/TSX files",
+        "Ambiguity detection: when multiple elements match, filters by textContent",
+        "Detects comment syntax (HTML vs JSX) and style mode (scoped vs Astro global)",
+        "Provides CSS authoring guidance in output (scope rules or global-prefixed selectors)",
+        "Exports: buildSearchQueries, findElement, findClosingLine, detectCommentSyntax"
+      ],
+      "complexity": "moderate",
+      "name": "live-wrap.mjs",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-live.md",
+      "type": "document",
+      "label": "live.md",
+      "observations": [
+        "Reference: Live variant mode workflow",
+        "Total lines: 622, non-empty: 413, 37 sections",
+        "Comprehensive live-mode protocol: contract, start, poll loop, recovery",
+        "Covers generate/fallback/accept/discard/prefetch/exit/cleanup flows",
+        "Includes first-time setup, drift-heal warning, CSP detection, consent prompt template",
+        "Troubleshooting section for common issues",
+        "Core reference for live-accept.mjs and live-wrap.mjs scripts"
+      ],
+      "complexity": "moderate",
+      "name": "reference-live.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-motion-design.md",
+      "type": "document",
+      "label": "motion-design.md",
+      "observations": [
+        "Reference: Motion design principles",
+        "Total lines: 109, non-empty: 73, 8 sections",
+        "Covers duration 100/300/500 rule, easing curves, premium motion materials",
+        "Staggered animations, reduced motion, perceived performance, rendering performance",
+        "Key resource for animate and overdrive commands"
+      ],
+      "complexity": "moderate",
+      "name": "reference-motion-design.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-onboard.md",
+      "type": "document",
+      "label": "onboard.md",
+      "observations": [
+        "Reference: Onboarding design patterns",
+        "Total lines: 234, non-empty: 179, 22 sections",
+        "Covers onboarding needs assessment, principles (show don't tell, make optional, time to value)",
+        "Designs for: initial product onboarding, feature discovery, guided tours, interactive tutorials",
+        "Documentation/help patterns, empty state design, implementation patterns, verification",
+        "Reference for onboard command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-onboard.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-optimize.md",
+      "type": "document",
+      "label": "optimize.md",
+      "observations": [
+        "Reference: UI performance optimization",
+        "Total lines: 258, non-empty: 211, 13 sections",
+        "Covers performance assessment, loading performance, rendering performance",
+        "Animation performance, React/framework optimization, network optimization",
+        "Core Web Vitals: LCP < 2.5s, FID < 100ms, CLS < 0.1",
+        "Performance monitoring and verification strategies",
+        "Reference for optimize command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-optimize.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-overdrive.md",
+      "type": "document",
+      "label": "overdrive.md",
+      "observations": [
+        "Reference: Extraordinary visual effects",
+        "Total lines: 130, non-empty: 90, 20 sections",
+        "Approach: propose before building, iterate with browser automation",
+        "Assess extraordinary per surface: visual/marketing, functional UI, performance-critical, data-heavy",
+        "Toolkit: cinematic transitions, scroll-linked animation, canvas beyond CSS, data animation",
+        "Implement with discipline: progressive enhancement, performance rules",
+        "Reference for overdrive command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-overdrive.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-personas.md",
+      "type": "document",
+      "label": "personas.md",
+      "observations": [
+        "Reference: Persona-based design testing",
+        "Total lines: 179, non-empty: 133, 8 sections",
+        "Five personas: Impatient Power User (Alex), Confused First-Timer (Jordan)",
+        "Accessibility-Dependent User (Sam), Deliberate Stress Tester (Riley), Distracted Mobile User (Casey)",
+        "Guidance on selecting personas and creating project-specific personas",
+        "Used during critique and audit commands"
+      ],
+      "complexity": "moderate",
+      "name": "reference-personas.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-polish.md",
+      "type": "document",
+      "label": "polish.md",
+      "observations": [
+        "Reference: Final quality polish pass",
+        "Total lines: 242, non-empty: 184, 19 sections",
+        "Covers design system discovery, pre-polish assessment",
+        "12 polish dimensions: alignment, IA, typography, color/contrast, interaction states",
+        "Micro-interactions, copy, icons/images, forms, edge cases, responsiveness, performance, code quality",
+        "Polish checklist for systematic verification",
+        "Reference for polish command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-polish.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-product.md",
+      "type": "document",
+      "label": "product.md",
+      "observations": [
+        "Reference: Product register rules",
+        "Total lines: 62, non-empty: 41, 9 sections",
+        "Defines product register (app UI, dashboard, tool: design SERVES the product)",
+        "Product slop test, typography, color, layout, components, motion",
+        "Product bans (on top of shared absolute bans) and permissions",
+        "Loaded by SKILL.md when register is identified as product"
+      ],
+      "complexity": "moderate",
+      "name": "reference-product.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-quieter.md",
+      "type": "document",
+      "label": "quieter.md",
+      "observations": [
+        "Reference: Tone down overstimulating designs",
+        "Total lines: 99, non-empty: 72, 10 sections",
+        "Register, assess current state, plan refinement",
+        "Refine through: color, visual weight reduction, simplification, motion reduction, composition",
+        "Verification quality checklist",
+        "Reference for quieter command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-quieter.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-responsive-design.md",
+      "type": "document",
+      "label": "responsive-design.md",
+      "observations": [
+        "Reference: Responsive design patterns",
+        "Total lines: 114, non-empty: 83, 10 sections",
+        "Mobile-first approach, content-driven breakpoints",
+        "Input method detection beyond screen size, safe areas/notch handling",
+        "Responsive images with srcset width descriptors and picture element art direction",
+        "Layout adaptation patterns, real device testing guidance",
+        "Reference for adapt command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-responsive-design.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-shape.md",
+      "type": "document",
+      "label": "shape.md",
+      "observations": [
+        "Reference: UX/UI planning workflow",
+        "Total lines: 165, non-empty: 106, 15 sections",
+        "Philosophy, Phase 1 discovery interview with interview cadence",
+        "Interview covers: purpose/context, content/data, design direction, scope, constraints, anti-goals",
+        "Phase 1.5: visual direction probe (capability-gated)",
+        "Phase 2: design brief structure",
+        "Reference for shape command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-shape.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-spatial-design.md",
+      "type": "document",
+      "label": "spatial-design.md",
+      "observations": [
+        "Reference: Spatial design principles",
+        "Total lines: 100, non-empty: 66, 14 sections",
+        "Spacing systems: 4pt base instead of 8pt, semantic token naming",
+        "Grid systems: self-adjusting grid, visual hierarchy via squint test",
+        "Cards are not required, container queries, optical adjustments",
+        "Touch targets vs visual size, depth and elevation",
+        "Reference for layout command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-spatial-design.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-teach.md",
+      "type": "document",
+      "label": "teach.md",
+      "observations": [
+        "Reference: Context setup workflow",
+        "Total lines: 156, non-empty: 100, 13 sections",
+        "Six-step flow: load current state, explore codebase, ask strategic questions",
+        "Interview mode (not confirmation mode), minimum viable interview",
+        "Covers register, users/purpose, brand/personality, accessibility/inclusion",
+        "Write PRODUCT.md, decide on DESIGN.md, confirm and wrap up",
+        "Reference for teach command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-teach.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-typeset.md",
+      "type": "document",
+      "label": "typeset.md",
+      "observations": [
+        "Reference: Typography refinement workflow",
+        "Total lines: 124, non-empty: 87, 11 sections",
+        "Register, assess current typography, plan improvements",
+        "Systematic improvement: font selection, hierarchy, readability, details, weight consistency",
+        "Verification and live-mode signature params",
+        "Reference for typeset command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-typeset.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-typography.md",
+      "type": "document",
+      "label": "typography.md",
+      "observations": [
+        "Reference: Typography system reference",
+        "Total lines: 159, non-empty: 102, 15 sections",
+        "Classic principles: vertical rhythm, modular scale and hierarchy, readability and measure",
+        "Font selection and pairing principles, web font loading strategies",
+        "Modern web typography: fluid type, OpenType features, rendering polish",
+        "Typography system architecture, accessibility considerations",
+        "Supporting reference for typeset command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-typography.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:reference-ux-writing.md",
+      "type": "document",
+      "label": "ux-writing.md",
+      "observations": [
+        "Reference: UX writing guidance",
+        "Total lines: 107, non-empty: 69, 16 sections",
+        "Button label problem, error message formula and templates",
+        "Don't blame the user, empty states as opportunities",
+        "Voice vs tone, writing for accessibility, writing for translation (expansion planning)",
+        "Consistency terminology problem, avoid redundant copy, loading states, confirmation dialogs",
+        "Form instructions guidance",
+        "Reference for clarify command"
+      ],
+      "complexity": "moderate",
+      "name": "reference-ux-writing.md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:doc-pdr-review-01",
+      "type": "document",
+      "label": "PDR Review — Sign Language Learning Web Platform",
+      "file": "pdr-review/01-PDR-Review.md",
+      "category": "docs",
+      "lines": 139,
+      "sections": 13,
+      "description": "Critique + gap analysis of PDR v1. Covers executive summary, strengths, section-by-section critique, 12 cross-cutting gaps (G1–G12), prioritized recommendations (P0–P2), risk register, and what changed in v2.",
+      "complexity": "moderate",
+      "name": "doc-pdr-review-01",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:doc-pdr-review-02",
+      "type": "document",
+      "label": "PDR v2 Refined — Product Design Requirement",
+      "file": "pdr-review/02-PDR-v2-Refined.md",
+      "category": "docs",
+      "lines": 254,
+      "sections": 37,
+      "description": "Full refined PDR spec. TL;DR, background, goals/non-goals (G1–G5, N1–N4), personas (Hana, Farid, Eli), 6 user stories, MVP/v1/v2 scope matrix, functional requirements (FR-1..FR-5), 10 non-functional requirements (NFR-1..NFR-10), technical architecture (MediaPipe → Transformer/ST-GCN → ONNX Runtime Web), data strategy, privacy/security, accessibility, success metrics, 6-milestone roadmap, risks, glossary.",
+      "complexity": "moderate",
+      "name": "doc-pdr-review-02",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:doc-pdr-review-03",
+      "type": "document",
+      "label": "PDR v2 One-Page Summary (HTML)",
+      "file": "pdr-review/03-PDR-summary.html",
+      "category": "markup",
+      "lines": 239,
+      "description": "Visual one-page summary of PDR v2. Cards for description, KPIs (<60s, <300ms, ≥85% acc, ≥95 a11y), personas, architecture, scope-by-release table, privacy/accessibility, fairness, roadmap (M0–M5), and key changes from v1.",
+      "complexity": "moderate",
+      "name": "doc-pdr-review-03",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:doc-pdr-review-04",
+      "type": "document",
+      "label": "Epics & User Stories — Jira-Ready Backlog",
+      "file": "pdr-review/04-Epics-and-Stories.md",
+      "category": "docs",
+      "lines": 271,
+      "sections": 90,
+      "description": "Decomposed backlog from PDR v2. 17 epics (EPIC-01..EPIC-17), 65 stories/spikes (S-01..S-65, SPK-01..SPK-03), 6 cross-cutting tasks (T-01..T-06), release plan mapped to milestones M1–M5, Given/When/Then acceptance criteria, definitions of ready and done.",
+      "complexity": "moderate",
+      "name": "doc-pdr-review-04",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "config:config-skills-lock",
+      "type": "config",
+      "label": "Skills Lock Configuration",
+      "file": "skills-lock.json",
+      "category": "config",
+      "lines": 11,
+      "description": "Version 1 skill lock. Locks 'impeccable' skill from GitHub source pbakaus/impeccable with SHA-256 hash e08cc9... for integrity verification.",
+      "complexity": "moderate",
+      "name": "config-skills-lock",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "concept:persona-hana",
+      "type": "concept",
+      "label": "Persona: Hana (hearing learner)",
+      "description": "Primary persona — hearing adult learning sign language to communicate with a Deaf colleague.",
+      "complexity": "moderate",
+      "name": "persona-hana",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "concept:persona-farid",
+      "type": "concept",
+      "label": "Persona: Farid (family member)",
+      "description": "Parent of a Deaf child, motivated but irregular practice schedule.",
+      "complexity": "moderate",
+      "name": "persona-farid",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "concept:persona-eli",
+      "type": "concept",
+      "label": "Persona: Eli (educator)",
+      "description": "Educator assigning practice, v2 persona.",
+      "complexity": "moderate",
+      "name": "persona-eli",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "concept:gap-analysis",
+      "type": "concept",
+      "label": "Cross-Cutting Gap Analysis",
+      "description": "12 gaps identified in PDR v1: no personas/user stories (G1), no KPIs (G2), no MVP boundary (G3), no accessibility commitment (G4), no data/privacy (G5), no Deaf community plan (G6), no content plan (G7), no model evaluation (G8), no fairness (G9), no risks section (G10), no roadmap (G11), no analytics loop (G12).",
+      "complexity": "moderate",
+      "name": "gap-analysis",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "concept:recognition-pipeline",
+      "type": "concept",
+      "label": "Recognition Pipeline",
+      "description": "MediaPipe Holistic landmarks → MLP for static fingerspelling + sliding-window Transformer/ST-GCN for dynamic signs → ONNX Runtime Web / TF.js, WebGPU when available.",
+      "complexity": "moderate",
+      "name": "recognition-pipeline",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "concept:feedback-taxonomy",
+      "type": "concept",
+      "label": "Structured Feedback Taxonomy",
+      "description": "Four-component feedback: handshape, location, movement, palm orientation. v2 adds non-manual markers (brow, mouth, head tilt). Confidence-gated verdict avoids false 'wrong' labels.",
+      "complexity": "moderate",
+      "name": "feedback-taxonomy",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "concept:privacy-posture",
+      "type": "concept",
+      "label": "Privacy & On-Device Posture",
+      "description": "On-device inference by default, no webcam frames or landmarks leave the browser, persistent '🔒 On-device' indicator, opt-in sync/donation, COPPA/FERPA-ready, one-click data deletion.",
+      "complexity": "moderate",
+      "name": "privacy-posture",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "concept:epic-17-map",
+      "type": "concept",
+      "label": "17 Epic Breakdown",
+      "description": "EPIC-01 Camera/runtime, EPIC-02 Recognition/feedback, EPIC-03 Lesson UI, EPIC-04 Curriculum/content, EPIC-05 Multi-language, EPIC-06 Accessibility, EPIC-07 Privacy/security, EPIC-08 Onboarding, EPIC-09 Model evaluation, EPIC-10 Trust UX, EPIC-11 Telemetry, EPIC-12 Beta, EPIC-13 Marketing, EPIC-14 NMM scoring, EPIC-15 Educator dashboard, EPIC-16 PWA/offline, EPIC-17 Continuous SLR.",
+      "complexity": "moderate",
+      "name": "epic-17-map",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "concept:milestone-map",
+      "type": "concept",
+      "label": "6-Milestone Roadmap",
+      "description": "M0 Discovery/advisory (4w), M1 Technical spike (4w), M2 MVP build (10w), M3 Closed beta (4w), M4 Public launch (4w), M5 v2 features (rolling).",
+      "complexity": "moderate",
+      "name": "milestone-map",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:data:prototype/models/dynamic_labels.json",
+      "type": "data",
+      "name": "dynamic_labels.json",
+      "filePath": "prototype/models/dynamic_labels.json",
+      "summary": "JSON label mapping for 8 ASL gesture classes (HELLO, GOODBYE, YES, NO, PLEASE, THANKS, SORRY, HELP) with 45-frame sequence config and 126-dim feature dimensions",
+      "tags": [
+        "labels",
+        "gesture-classes",
+        "asl",
+        "prototype"
+      ],
+      "complexity": "simple"
+    },
+    {
+      "id": "file:data:prototype/models/hand_lr_epoch5_acc_9753.pth",
+      "type": "data",
+      "name": "hand_lr_epoch5_acc_9753.pth",
+      "filePath": "prototype/models/hand_lr_epoch5_acc_9753.pth",
+      "summary": "PyTorch model checkpoint for hand landmark gesture classification, trained with LR scheduler at epoch 5 achieving 97.53% validation accuracy",
+      "tags": [
+        "model-checkpoint",
+        "pytorch",
+        "hand-landmarks",
+        "prototype"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:data:prototype/models/hand_x_val.pth",
+      "type": "data",
+      "name": "hand_x_val.pth",
+      "filePath": "prototype/models/hand_x_val.pth",
+      "summary": "PyTorch model checkpoint for hand landmark gesture classification using cross-validation variant",
+      "tags": [
+        "model-checkpoint",
+        "pytorch",
+        "cross-validation",
+        "prototype"
+      ],
+      "complexity": "moderate"
+    },
+    {
+      "id": "file:prototype__README_md",
+      "type": "documentation",
+      "filePath": "prototype/README.md",
+      "lines": 205,
+      "language": "markdown",
+      "category": "docs",
+      "label": "Prototype README",
+      "observations": [
+        "Root-level documentation for the prototype bundle",
+        "Describes 4 working pages: wizard.html, index.html, dynamic.html, educator.html",
+        "Describes CI pipeline with ml-gate.yml enforcing NFR-9 (accuracy) and NFR-10 (robustness) gates",
+        "Documents 3 ML pipelines: static MLP, dynamic Transformer, CI gate pipeline",
+        "Maps implementation to PDR requirements (S-01, S-05, S-06, EPIC-15)"
+      ],
+      "complexity": "moderate",
+      "name": "prototype__README_md",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:prototype__home_html",
+      "type": "markup",
+      "filePath": "prototype/home.html",
+      "lines": 190,
+      "language": "HTML",
+      "category": "entry-point",
+      "label": "Home page (entry point)",
+      "observations": [
+        "Entry-point landing page for the prototype bundle",
+        "Dark-themed bioluminescent UI design",
+        "Links to 4 pages: wizard.html, index.html, dynamic.html, educator.html",
+        "Displays CI/release-gate section describing ML gate workflow",
+        "Contains section listing bundle map with all file references",
+        "Uses CSS custom properties for theming (--bg, --panel, --accent, etc.)",
+        "Badges: On-device, MediaPipe Hands, ONNX MLP, Transformer, WCAG-conscious"
+      ],
+      "complexity": "moderate",
+      "name": "prototype__home_html",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:prototype__camera_html",
+      "type": "markup",
+      "filePath": "prototype/camera.html",
+      "lines": 0,
+      "language": "HTML",
+      "category": "phantom",
+      "label": "MISSING — camera.html does not exist on disk",
+      "observations": [
+        "File does not exist at prototype/camera.html",
+        "The actual camera-setup wizard is at prototype/wizard.html",
+        "Likely intended to be wizard.html but listed under wrong name in batch manifest"
+      ],
+      "complexity": "moderate",
+      "name": "prototype__camera_html",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:prototype_pages__library_html",
+      "type": "markup",
+      "filePath": "prototype/pages/library.html",
+      "lines": 0,
+      "language": "HTML",
+      "category": "phantom",
+      "label": "MISSING — pages/library.html does not exist on disk",
+      "observations": [
+        "File does not exist at prototype/pages/library.html",
+        "No pages/ subdirectory exists in prototype/",
+        "No library/index page exists anywhere in prototype/"
+      ],
+      "complexity": "moderate",
+      "name": "prototype_pages__library_html",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:prototype_pages__settings_html",
+      "type": "markup",
+      "filePath": "prototype/pages/settings.html",
+      "lines": 0,
+      "language": "HTML",
+      "category": "phantom",
+      "label": "MISSING — pages/settings.html does not exist on disk",
+      "observations": [
+        "File does not exist at prototype/pages/settings.html",
+        "No pages/ subdirectory exists in prototype/",
+        "No settings page exists anywhere in prototype/"
+      ],
+      "complexity": "moderate",
+      "name": "prototype_pages__settings_html",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:prototype_pages__stats_html",
+      "type": "markup",
+      "filePath": "prototype/pages/stats.html",
+      "lines": 0,
+      "language": "HTML",
+      "category": "phantom",
+      "label": "MISSING — pages/stats.html does not exist on disk",
+      "observations": [
+        "File does not exist at prototype/pages/stats.html",
+        "No pages/ subdirectory exists in prototype/",
+        "No stats page exists anywhere in prototype/"
+      ],
+      "complexity": "moderate",
+      "name": "prototype_pages__stats_html",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:batch-16",
+      "type": "batch",
+      "label": "Batch 16/19 — Config & Data Files",
+      "observations": [
+        "5 config/data files for signtutor: labels, deployment config, dependencies",
+        "3 of 5 listed paths (fingerspell_labels.json, fingerspell_mlp_labels_mlp.json, signtutor/vercel.json) did not exist on disk; mapped to real equivalents"
+      ],
+      "complexity": "moderate",
+      "name": "batch-16",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:dynamic_labels.json",
+      "type": "file",
+      "label": "signtutor/public/models/dynamic_labels.json",
+      "observations": [
+        "14-line JSON mapping 8 dynamic ASL gesture labels: HELLO, GOODBYE, YES, NO, PLEASE, THANKS, SORRY, HELP",
+        "seq_len=45 frames, feature_dim=126 (21 keypoints × 3 coords × 2 hands)",
+        "Used by the dynamic gesture recognition model"
+      ],
+      "complexity": "moderate",
+      "name": "dynamic_labels.json",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:labels.json",
+      "type": "file",
+      "label": "signtutor/public/models/labels.json (v1 fingerspell labels)",
+      "observations": [
+        "57-line JSON with 24 fingerspell labels (A-Y, no J or Z)",
+        "Includes synth_collisions: groups of visually similar letters (e.g. A/E/M/N/S/T)",
+        "Likely used by an earlier fingerspell model version (MLP or CNN)"
+      ],
+      "complexity": "moderate",
+      "name": "labels.json",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:labels_v2.json",
+      "type": "file",
+      "label": "signtutor/public/models/labels_v2.json",
+      "observations": [
+        "84-line JSON with full A-Z fingerspell labels (26 letters)",
+        "synth_collisions extended with J/I and Z/D collision groups",
+        "feature_dim=68 (geometry-engineered features, not raw keypoints)",
+        "geometry_features: index_middle_tip_distance, index_middle_mcp_distance, index_middle_cosine_angle, index_middle_cross_sign, tip_mcp_distance_ratio",
+        "hard_classes=[R, U, V, M, N, O] with hard_class_weight=2.25 for loss upweighting",
+        "Used by the fingerspell MLP v2 model"
+      ],
+      "complexity": "moderate",
+      "name": "labels_v2.json",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:vercel.json",
+      "type": "file",
+      "label": "vercel.json (project root)",
+      "observations": [
+        "3-line Vercel deployment config",
+        "Sets rootDirectory to 'signtutor' so Vercel knows where the Next.js app lives"
+      ],
+      "complexity": "moderate",
+      "name": "vercel.json",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:package.json",
+      "type": "file",
+      "label": "signtutor/package.json",
+      "observations": [
+        "38-line Node.js manifest for signtutor v0.1.0 (private)",
+        "Framework: Next.js 16.2.6, React 19.2.4, TypeScript 5",
+        "Key runtime dep: onnxruntime-web ^1.26.0 (on-device ML inference)",
+        "Testing: vitest ^4.1.6 (unit), @playwright/test ^1.60.0 (E2E)",
+        "Linters: eslint 9, eslint-config-next 16.2.6",
+        "Styling: tailwindcss 4, @tailwindcss/postcss 4"
+      ],
+      "complexity": "moderate",
+      "name": "package.json",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:data-label:dynamic",
+      "type": "data-label",
+      "label": "Dynamic Gesture Labels (8 words)",
+      "observations": [
+        "8 ASL phrase/word labels: HELLO, GOODBYE, YES, NO, PLEASE, THANKS, SORRY, HELP",
+        "Model input: 45-frame sequence, 126-dim feature vector per frame",
+        "Temporal model (likely LSTM/GRU or Transformer)"
+      ],
+      "complexity": "moderate",
+      "name": "dynamic",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:data-label:static-v1",
+      "type": "data-label",
+      "label": "Static Fingerspell Labels v1 (A-Y, 24 letters)",
+      "observations": [
+        "24 letters A through Y (no J, no Z)",
+        "5 synth_collision groups for data augmentation ambiguity handling",
+        "Used by earlier static fingerspell model"
+      ],
+      "complexity": "moderate",
+      "name": "static-v1",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:data-label:static-v2",
+      "type": "data-label",
+      "label": "Static Fingerspell Labels v2 (A-Z, 26 letters)",
+      "observations": [
+        "Full 26-letter ASL alphabet",
+        "7 synth_collision groups including J/I and Z/D",
+        "5 geometry features extracted from finger landmarks",
+        "6 hard classes with 2.25× loss weighting",
+        "Engineered features (not raw keypoints) → feature_dim=68",
+        "Used by fingerspell_mlp_v2.onnx"
+      ],
+      "complexity": "moderate",
+      "name": "static-v2",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:dep:nextjs",
+      "type": "dependency",
+      "label": "Next.js 16.2.6 + React 19.2.4",
+      "observations": [
+        "Next.js 16.2.6 with React 19.2.4 and React DOM 19.2.4",
+        "TypeScript 5, strict mode, bundler module resolution",
+        "Path alias @/* → ./src/*"
+      ],
+      "complexity": "moderate",
+      "name": "nextjs",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:dep:onnxruntime",
+      "type": "dependency",
+      "label": "onnxruntime-web ^1.26.0",
+      "observations": [
+        "On-device ML inference via ONNX Runtime Web",
+        "Runs fingerspell and dynamic gesture models in browser",
+        "Key enabler for privacy-preserving local inference"
+      ],
+      "complexity": "moderate",
+      "name": "onnxruntime",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:dep:testing",
+      "type": "dependency",
+      "label": "Testing Stack (Vitest + Playwright + jsdom)",
+      "observations": [
+        "Vitest ^4.1.6 with @vitejs/plugin-react ^6.0.1 for unit/integration tests",
+        "@testing-library/react ^16.3.2 + @testing-library/jest-dom ^6.9.1",
+        "jsdom ^29.1.1 for DOM environment",
+        "@playwright/test ^1.60.0 + playwright ^1.60.0 for E2E",
+        "test:e2e script configured"
+      ],
+      "complexity": "moderate",
+      "name": "testing",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "config:vercel",
+      "type": "config",
+      "label": "Vercel Deployment Config",
+      "observations": [
+        "rootDirectory: signtutor — Vercel builds from the signtutor/ subdirectory",
+        "Monorepo-friendly layout"
+      ],
+      "complexity": "moderate",
+      "name": "vercel",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:note:missing-files",
+      "type": "note",
+      "label": "Files Checked — 3 Missing",
+      "observations": [
+        "fingerspell_labels.json — NOT FOUND at listed path; closest real file is labels.json (v1, 24 letters A-Y)",
+        "fingerspell_mlp_labels_mlp.json — NOT FOUND at listed path; closest real files are fingerspell_mlp.onnx / fingerspell_mlp_v2.onnx (binary models) and labels_v2.json (label spec)",
+        "signtutor/vercel.json — NOT FOUND; vercel.json exists at project root D:\\signlanguage\\vercel.json instead"
+      ],
+      "complexity": "moderate",
+      "name": "missing-files",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-asset-producer",
+      "type": "document",
+      "label": "Impeccable Asset Producer Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-asset-producer.md",
+      "description": "Agent that produces UI assets (icons, illustrations) for UI refinement tasks",
+      "sections": [
+        "Core Rule",
+        "Input Contract",
+        "Workflow",
+        "Prompt Pattern",
+        "Output Contract"
+      ],
+      "complexity": "moderate",
+      "name": "agent-impeccable-asset-producer",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-beautifier",
+      "type": "document",
+      "label": "Impeccable Beautifier Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-beautifier.md",
+      "description": "Agent that applies visual polish and beautification to UI components",
+      "complexity": "moderate",
+      "name": "agent-impeccable-beautifier",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-color-auditor",
+      "type": "document",
+      "label": "Impeccable Color Auditor Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-color-auditor.md",
+      "description": "Agent that audits color usage and contrast ratios in UI designs",
+      "complexity": "moderate",
+      "name": "agent-impeccable-color-auditor",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-component-researcher",
+      "type": "document",
+      "label": "Impeccable Component Researcher Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-component-researcher.md",
+      "description": "Agent that researches UI component patterns and best practices",
+      "complexity": "moderate",
+      "name": "agent-impeccable-component-researcher",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-critique-agent",
+      "type": "document",
+      "label": "Impeccable Critique Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-critique-agent.md",
+      "description": "Agent that provides UX/UI critique of designs",
+      "complexity": "moderate",
+      "name": "agent-impeccable-critique-agent",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-design-token-agent",
+      "type": "document",
+      "label": "Impeccable Design Token Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-design-token-agent.md",
+      "description": "Agent that manages design token extraction and application",
+      "complexity": "moderate",
+      "name": "agent-impeccable-design-token-agent",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-page-builder",
+      "type": "document",
+      "label": "Impeccable Page Builder Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-page-builder.md",
+      "description": "Agent that builds complete pages from design specifications",
+      "complexity": "moderate",
+      "name": "agent-impeccable-page-builder",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-page-components",
+      "type": "document",
+      "label": "Impeccable Page Components Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-page-components.md",
+      "description": "Agent that designs and implements UI page components",
+      "complexity": "moderate",
+      "name": "agent-impeccable-page-components",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-planner",
+      "type": "document",
+      "label": "Impeccable Planner Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-planner.md",
+      "description": "Agent that plans UI design workflows and task decomposition",
+      "complexity": "moderate",
+      "name": "agent-impeccable-planner",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-redesigner",
+      "type": "document",
+      "label": "Impeccable Redesigner Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-redesigner.md",
+      "description": "Agent that handles full UI redesign tasks",
+      "complexity": "moderate",
+      "name": "agent-impeccable-redesigner",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-refiner",
+      "type": "document",
+      "label": "Impeccable Refiner Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-refiner.md",
+      "description": "Agent that iteratively refines UI designs based on feedback",
+      "complexity": "moderate",
+      "name": "agent-impeccable-refiner",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-ux-writer",
+      "type": "document",
+      "label": "Impeccable UX Writer Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-ux-writer.md",
+      "description": "Agent that crafts UX microcopy and content for interfaces",
+      "complexity": "moderate",
+      "name": "agent-impeccable-ux-writer",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "document:agent-impeccable-wrapper",
+      "type": "document",
+      "label": "Impeccable Wrapper Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-wrapper.md",
+      "description": "Agent that wraps content in impeccables interactive UI overlay",
+      "complexity": "moderate",
+      "name": "agent-impeccable-wrapper",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-impeccable-paths-agent",
+      "type": "script",
+      "label": "impeccable-paths.mjs (agents)",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-paths.mjs",
+      "description": "Path resolution utility for agent-level tools",
+      "complexity": "moderate",
+      "name": "script-impeccable-paths-agent",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-impeccable-colors",
+      "type": "script",
+      "label": "impeccable-colors.mjs",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-colors.mjs",
+      "description": "Color token definitions and palette helpers",
+      "complexity": "moderate",
+      "name": "script-impeccable-colors",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-impeccable-paths-scripts",
+      "type": "script",
+      "label": "impeccable-paths.mjs (scripts)",
+      "filePath": ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+      "description": "Path resolution utility used by critique and live scripts",
+      "complexity": "moderate",
+      "name": "script-impeccable-paths-scripts",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-live-accept",
+      "type": "script",
+      "label": "live-accept.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/live-accept.mjs",
+      "description": "Handles accepting a live preview session result",
+      "complexity": "moderate",
+      "name": "script-live-accept",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-live-wrap",
+      "type": "script",
+      "label": "live-wrap.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/live-wrap.mjs",
+      "description": "Wraps HTML content for live preview rendering",
+      "complexity": "moderate",
+      "name": "script-live-wrap",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-render-live-preview",
+      "type": "script",
+      "label": "render-live-preview.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/render-live-preview.mjs",
+      "description": "Renders live preview of UI changes in browser",
+      "complexity": "moderate",
+      "name": "script-render-live-preview",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-critique-storage",
+      "type": "script",
+      "label": "critique-storage.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-storage.mjs",
+      "description": "Storage layer for critique data persistence",
+      "complexity": "moderate",
+      "name": "script-critique-storage",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-critique",
+      "type": "script",
+      "label": "critique.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique.mjs",
+      "description": "Main critique engine — coordinates design review analysis",
+      "complexity": "moderate",
+      "name": "script-critique",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-critique-colors",
+      "type": "script",
+      "label": "critique-colors.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-colors.mjs",
+      "description": "Color-specific critique logic: contrast, harmony, accessibility",
+      "complexity": "moderate",
+      "name": "script-critique-colors",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-critique-components",
+      "type": "script",
+      "label": "critique-components.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-components.mjs",
+      "description": "Component-level critique: structure, consistency, reusability",
+      "complexity": "moderate",
+      "name": "script-critique-components",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-critique-copy",
+      "type": "script",
+      "label": "critique-copy.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-copy.mjs",
+      "description": "Copy/text critique: tone, clarity, conciseness",
+      "complexity": "moderate",
+      "name": "script-critique-copy",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-critique-summary",
+      "type": "script",
+      "label": "critique-summary.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-summary.mjs",
+      "description": "Generates aggregated summary from all critique dimensions",
+      "complexity": "moderate",
+      "name": "script-critique-summary",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-cleanup-deprecated",
+      "type": "script",
+      "label": "cleanup-deprecated.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+      "description": "Removes deprecated skill symlinks and cleans lockfile",
+      "functions": [
+        "findProjectRoot",
+        "loadLock",
+        "isImpeccableSkill",
+        "buildTargetNames",
+        "findSkillsDirs",
+        "removeDeprecatedSkills",
+        "cleanSkillsLock",
+        "cleanup"
+      ],
+      "complexity": "moderate",
+      "name": "script-cleanup-deprecated",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-detect-csp",
+      "type": "script",
+      "label": "detect-csp.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/detect-csp.mjs",
+      "description": "Detects Content Security Policy configuration across frameworks",
+      "functions": [
+        "detectCsp",
+        "walk"
+      ],
+      "complexity": "moderate",
+      "name": "script-detect-csp",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-detect",
+      "type": "script",
+      "label": "detect.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/detect.mjs",
+      "description": "Framework/browser detection injected into target pages",
+      "complexity": "moderate",
+      "name": "script-detect",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-live-browser-session",
+      "type": "script",
+      "label": "live-browser-session.js",
+      "filePath": ".agents/skills/impeccable/scripts/live-browser-session.js",
+      "description": "Browser session state management for live preview",
+      "functions": [
+        "createLiveBrowserSessionState",
+        "safeRead",
+        "safeWrite",
+        "safeRemove",
+        "loadSession",
+        "saveSession",
+        "clearSession",
+        "nextCheckpointRevision",
+        "seedCheckpointRevision",
+        "markHandled",
+        "isHandled",
+        "clearHandled",
+        "writeScrollY",
+        "readScrollY",
+        "clearScrollY"
+      ],
+      "complexity": "moderate",
+      "name": "script-live-browser-session",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-live-browser",
+      "type": "script",
+      "label": "live-browser.js",
+      "filePath": ".agents/skills/impeccable/scripts/live-browser.js",
+      "description": "Full live-preview browser agent injected into target page: highlight, annotate, variant cycling, action bar, design panel, SSE, canvas capture, WebGL shader overlay",
+      "functions": [
+        "init",
+        "apply",
+        "own",
+        "pickable",
+        "desc",
+        "id8",
+        "initHighlight",
+        "showHighlight",
+        "hideHighlight",
+        "initAnnotOverlay",
+        "showAnnotOverlay",
+        "hideAnnotOverlay",
+        "initBar",
+        "showBar",
+        "hideBar",
+        "positionBar",
+        "initActionPicker",
+        "toggleActionPicker",
+        "hideActionPicker",
+        "initParamsPanel",
+        "buildParamsPanel",
+        "showParamsPanel",
+        "hideParamsPanel",
+        "initGlobalBar",
+        "togglePick",
+        "toggleDetect",
+        "toggleDesignPanel",
+        "initDesignPanel",
+        "renderDesignChrome",
+        "renderDesignBody",
+        "connectSSE",
+        "sendEvent",
+        "handleGo",
+        "handleAccept",
+        "handleDiscard",
+        "captureElementToBlob",
+        "captureAndEmit",
+        "showShaderOverlay",
+        "compileShader",
+        "frame",
+        "resumeSession",
+        "cleanup",
+        "teardown"
+      ],
+      "complexity": "moderate",
+      "name": "script-live-browser",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "file:script-modern-screenshot",
+      "type": "script",
+      "label": "modern-screenshot.umd.js",
+      "filePath": ".agents/skills/impeccable/scripts/modern-screenshot.umd.js",
+      "description": "Third-party screenshot library (UMD) for capturing DOM to image",
+      "complexity": "moderate",
+      "name": "script-modern-screenshot",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    },
+    {
+      "id": "config:script-command-metadata",
+      "type": "config",
+      "label": "command-metadata.json",
+      "filePath": ".agents/skills/impeccable/scripts/command-metadata.json",
+      "description": "Maps 23 impeccable commands (craft, teach, document, extract, live, adapt, animate, audit, etc.) to their metadata",
+      "commands": 23,
+      "complexity": "moderate",
+      "name": "script-command-metadata",
+      "summary": "No summary available",
+      "tags": [
+        "untagged"
+      ]
+    }
+  ],
+  "tour": [
+    {
+      "title": "Project Overview",
+      "description": "SignTutor is a browser-based sign language learning platform with on-device ML inference using MediaPipe and ONNX",
+      "nodeIds": [
+        "document:reference-motion-design.md",
+        "document:reference-responsive-design.md",
+        "document:reference-spatial-design.md"
+      ],
+      "order": 1
+    },
+    {
+      "title": "Core Application",
+      "description": "Next.js app with fingerspelling lessons, word practice, and gesture settings pages",
+      "nodeIds": [
+        "file:signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+        "file:signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+        "file:signtutor/src/app/learn/asl/settings/page.tsx",
+        "file:signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+        "file:signtutor/src/app/learn/asl/words/page.tsx",
+        "file:signtutor/src/app/practice/page.tsx",
+        "file:signtutor/src/app/setup/page.tsx"
+      ],
+      "order": 2
+    },
+    {
+      "title": "Shared Library",
+      "description": "Core logic for landmark normalization, sequence features, curriculum, and local storage",
+      "nodeIds": [
+        "file:signtutor/src/lib/curriculum.ts",
+        "file:signtutor/src/lib/loadExternals.ts",
+        "file:signtutor/src/lib/normalize.ts",
+        "file:signtutor/src/lib/seq-features.ts",
+        "file:signtutor/src/lib/storage.ts",
+        "file:signtutor/src/lib/vocabulary_200.ts"
+      ],
+      "order": 3
+    },
+    {
+      "title": "ML Training Pipeline",
+      "description": "Python scripts for training fingerspell MLP and dynamic sign Transformer models with ONNX export",
+      "nodeIds": [],
+      "order": 4
+    },
+    {
+      "title": "CI/CD and Infrastructure",
+      "description": "GitHub Actions workflows for ML and frontend gates, verification, and deployment",
+      "nodeIds": [
+        "pipeline:.github/workflows/ml-gate.yml",
+        "file:job:ml-gate",
+        "file:job:frontend-gate",
+        "config:vercel"
+      ],
+      "order": 5
+    }
+  ],
+  "project": {
+    "gitCommitHash": "8b1c069da165cb78c1c80972a0d5a2533b958e22",
+    "name": "signlanguage",
+    "frameworks": [
+      "GitHub Actions",
+      "Next.js",
+      "React",
+      "TypeScript"
+    ],
+    "description": "A browser-based, vision-driven sign language learning platform with on-device inference.",
+    "languages": [
+      "css",
+      "data",
+      "html",
+      "javascript",
+      "json",
+      "markdown",
+      "onnx",
+      "python",
+      "txt",
+      "typescript",
+      "unknown",
+      "yaml"
+    ],
+    "analyzedAt": "2026-05-29T11:19:10.8780190+01:00"
+  }
+}

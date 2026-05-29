@@ -1,0 +1,186 @@
+{
+  "nodes": [
+    {
+      "name": "prototype",
+      "entityType": "directory",
+      "observations": [
+        "Root directory of the SignTutor prototype sub-project",
+        "Contains a complete browser-based sign language lesson player prototype",
+        "Hosts 4 HTML pages + README documentation",
+        "Includes Vite/TypeScript tooling config files for future migration"
+      ]
+    },
+    {
+      "name": "prototype/README.md",
+      "entityType": "documentation",
+      "observations": [
+        "205 lines, 12 sections",
+        "Titled 'SignTutor — Prototype Bundle'",
+        "Documents how to run the prototype: serve with any static server",
+        "Describes CI gate reproduction commands",
+        "Maps each page to PDR requirements (S-01, S-05, S-06, EPIC-15)",
+        "Outlines the Path to v1 for this prototype"
+      ]
+    },
+    {
+      "name": "prototype/home.html",
+      "entityType": "markup",
+      "observations": [
+        "190 lines, landing page for the prototype",
+        "Entry point for users navigating the prototype",
+        "Likely links to wizard, index, dynamic, and educator pages"
+      ]
+    },
+    {
+      "name": "prototype/wizard.html",
+      "entityType": "markup",
+      "observations": [
+        "431 lines",
+        "Camera-setup wizard page",
+        "Maps to requirement S-01 (camera initialization)",
+        "Handles camera permission flow and device selection"
+      ]
+    },
+    {
+      "name": "prototype/index.html",
+      "entityType": "markup",
+      "observations": [
+        "852 lines — largest file in the prototype",
+        "Static-sign lesson player page",
+        "Maps to requirement S-05",
+        "Core lesson delivery interface for pre-recorded sign content"
+      ]
+    },
+    {
+      "name": "prototype/dynamic.html",
+      "entityType": "markup",
+      "observations": [
+        "539 lines",
+        "Dynamic-sign lesson player page",
+        "Maps to requirement S-06",
+        "Real-time/interactive sign language lesson delivery"
+      ]
+    },
+    {
+      "name": "prototype/educator.html",
+      "entityType": "markup",
+      "observations": [
+        "395 lines",
+        "v2 educator dashboard wireframe",
+        "Maps to EPIC-15 (educator tooling)",
+        "Preview/future-scope page for teacher-facing analytics"
+      ]
+    },
+    {
+      "name": "prototype/package.json",
+      "entityType": "config",
+      "observations": [
+        "35 lines",
+        "Defines project metadata and dependencies",
+        "Likely includes Vite, TypeScript, and build tooling"
+      ]
+    },
+    {
+      "name": "prototype/tsconfig.json",
+      "entityType": "config",
+      "observations": [
+        "11 lines",
+        "TypeScript compiler configuration for the prototype",
+        "Defines strictness, module resolution, and target settings"
+      ]
+    },
+    {
+      "name": "prototype/vite.config.ts",
+      "entityType": "config",
+      "observations": [
+        "5 lines",
+        "Minimal Vite build configuration",
+        "Used for bundling and dev server in the prototype"
+      ]
+    },
+    {
+      "name": "prototype/src/main.ts",
+      "entityType": "code",
+      "observations": [
+        "0 lines (empty placeholder file)",
+        "Intended entry point for TypeScript application code",
+        "Not yet implemented — signals upcoming migration from raw HTML to framework"
+      ]
+    },
+    {
+      "name": "SignTutor Prototype Bundle",
+      "entityType": "project",
+      "observations": [
+        "Named 'SignTutor' in the README",
+        "Browser-based prototype for sign language learning",
+        "Focuses on lesson playback (static + dynamic) and camera setup",
+        "Has a defined path to v1 with CI gates",
+        "Maps to PDR requirements S-01, S-05, S-06, and EPIC-15"
+      ]
+    },
+    {
+      "name": "S-01",
+      "entityType": "requirement",
+      "observations": [
+        "Camera-setup requirement from PDR",
+        "Implemented by prototype/wizard.html",
+        "Handles camera initialization, permissions, and device selection"
+      ]
+    },
+    {
+      "name": "S-05",
+      "entityType": "requirement",
+      "observations": [
+        "Static-sign lesson player requirement from PDR",
+        "Implemented by prototype/index.html",
+        "Delivers pre-recorded sign language lesson content"
+      ]
+    },
+    {
+      "name": "S-06",
+      "entityType": "requirement",
+      "observations": [
+        "Dynamic-sign lesson player requirement from PDR",
+        "Implemented by prototype/dynamic.html",
+        "Handles real-time/interactive lesson delivery"
+      ]
+    },
+    {
+      "name": "EPIC-15",
+      "entityType": "requirement",
+      "observations": [
+        "Educator dashboard epic from PDR",
+        "Wireframed in prototype/educator.html",
+        "Teacher-facing analytics and classroom management"
+      ]
+    }
+  ],
+  "edges": [
+    { "from": "prototype/README.md", "to": "SignTutor Prototype Bundle", "relationType": "documents" },
+    { "from": "prototype/home.html", "to": "prototype", "relationType": "belongs_to" },
+    { "from": "prototype/wizard.html", "to": "prototype", "relationType": "belongs_to" },
+    { "from": "prototype/index.html", "to": "prototype", "relationType": "belongs_to" },
+    { "from": "prototype/dynamic.html", "to": "prototype", "relationType": "belongs_to" },
+    { "from": "prototype/educator.html", "to": "prototype", "relationType": "belongs_to" },
+    { "from": "prototype/package.json", "to": "prototype", "relationType": "belongs_to" },
+    { "from": "prototype/tsconfig.json", "to": "prototype", "relationType": "belongs_to" },
+    { "from": "prototype/vite.config.ts", "to": "prototype", "relationType": "belongs_to" },
+    { "from": "prototype/src/main.ts", "to": "prototype", "relationType": "belongs_to" },
+    { "from": "prototype/home.html", "to": "SignTutor Prototype Bundle", "relationType": "is_entry_point_of" },
+    { "from": "prototype/wizard.html", "to": "S-01", "relationType": "implements" },
+    { "from": "prototype/index.html", "to": "S-05", "relationType": "implements" },
+    { "from": "prototype/dynamic.html", "to": "S-06", "relationType": "implements" },
+    { "from": "prototype/educator.html", "to": "EPIC-15", "relationType": "implements" },
+    { "from": "S-01", "to": "SignTutor Prototype Bundle", "relationType": "part_of" },
+    { "from": "S-05", "to": "SignTutor Prototype Bundle", "relationType": "part_of" },
+    { "from": "S-06", "to": "SignTutor Prototype Bundle", "relationType": "part_of" },
+    { "from": "EPIC-15", "to": "SignTutor Prototype Bundle", "relationType": "part_of" },
+    { "from": "prototype/package.json", "to": "prototype/vite.config.ts", "relationType": "depends_on" },
+    { "from": "prototype/tsconfig.json", "to": "prototype/vite.config.ts", "relationType": "depends_on" },
+    { "from": "prototype/src/main.ts", "to": "prototype/tsconfig.json", "relationType": "compiled_by" },
+    { "from": "prototype/home.html", "to": "prototype/wizard.html", "relationType": "links_to" },
+    { "from": "prototype/home.html", "to": "prototype/index.html", "relationType": "links_to" },
+    { "from": "prototype/home.html", "to": "prototype/dynamic.html", "relationType": "links_to" },
+    { "from": "prototype/home.html", "to": "prototype/educator.html", "relationType": "links_to" }
+  ]
+}

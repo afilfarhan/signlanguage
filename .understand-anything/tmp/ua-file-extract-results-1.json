@@ -1,0 +1,3472 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 15,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "signtutor/__tests__/lib.test.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 160,
+      "nonEmptyLines": 143,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/__tests__/parity.test.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 42,
+      "nonEmptyLines": 35,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 703,
+      "nonEmptyLines": 646,
+      "functions": [
+        {
+          "name": "chooseTip",
+          "startLine": 36,
+          "endLine": 70,
+          "params": [
+            "c",
+            "top",
+            "target",
+            "orient",
+            "ruleStates"
+          ]
+        },
+        {
+          "name": "FingerspellingLetterPage",
+          "startLine": 72,
+          "endLine": 703,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FingerspellingLetterPage",
+          "line": 72,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "chooseTip",
+          "callee": "inSameGroup",
+          "lineNumber": 46
+        },
+        {
+          "caller": "chooseTip",
+          "callee": "(LETTER_DESCRIPTIONS[target] || \"\").toLowerCase",
+          "lineNumber": 50
+        },
+        {
+          "caller": "chooseTip",
+          "callee": "([[\"orient\", c.orient], [\"loc\", c.loc], [\"move\", c.move]] as [string, number][]).sort",
+          "lineNumber": 63
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useParams",
+          "lineNumber": 73
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRouter",
+          "lineNumber": 74
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "(params.letter as string || \"A\").toUpperCase",
+          "lineNumber": 75
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useEffect",
+          "lineNumber": 77
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "loadPrefs",
+          "lineNumber": 78
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "router.replace",
+          "lineNumber": 80
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 84
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "loadPrefs",
+          "lineNumber": 86
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 88
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 89
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 90
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 91
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 92
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 93
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 94
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 95
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 96
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 97
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 98
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 99
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 100
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 101
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 102
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useState",
+          "lineNumber": 103
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 105
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 106
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 107
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 108
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 109
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 110
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 111
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 112
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 113
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 114
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 115
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 116
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 117
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 118
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 119
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 120
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 121
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 122
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 123
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 124
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useRef",
+          "lineNumber": 125
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useEffect",
+          "lineNumber": 127
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useEffect",
+          "lineNumber": 128
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useEffect",
+          "lineNumber": 129
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useCallback",
+          "lineNumber": 131
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "performance.now",
+          "lineNumber": 133
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "normalize",
+          "lineNumber": 134
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "session.run",
+          "lineNumber": 137
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "performance.now",
+          "lineNumber": 138
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "Array.from(probs).map((p, i) => ({ label: labels[i] || String(i), prob: p })).sort",
+          "lineNumber": 141
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "Array.from(probs).map",
+          "lineNumber": 141
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "Array.from",
+          "lineNumber": 141
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "String",
+          "lineNumber": 141
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useCallback",
+          "lineNumber": 145
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "fingerStates",
+          "lineNumber": 146
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setFingers",
+          "lineNumber": 147
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "palmFacingCamera",
+          "lineNumber": 149
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "locationLabel",
+          "lineNumber": 150
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "recentMovement",
+          "lineNumber": 151
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "runModel",
+          "lineNumber": 155
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "classifyRule",
+          "lineNumber": 158
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "ranked.find",
+          "lineNumber": 164
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "loc.startsWith",
+          "lineNumber": 170
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setComponents",
+          "lineNumber": 173
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "inSameGroup",
+          "lineNumber": 179
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setDetected",
+          "lineNumber": 182
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setConfidence",
+          "lineNumber": 183
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "(conf * 100).toFixed",
+          "lineNumber": 183
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setVerdict",
+          "lineNumber": 184
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setTopK",
+          "lineNumber": 185
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "ranked.slice",
+          "lineNumber": 185
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setTip",
+          "lineNumber": 186
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "chooseTip",
+          "lineNumber": 186
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useCallback",
+          "lineNumber": 189
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "overlayRef.current?.getContext",
+          "lineNumber": 191
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "ctx.clearRect",
+          "lineNumber": 193
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setHudHand",
+          "lineNumber": 196
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "libs.drawConnectors",
+          "lineNumber": 199
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "libs.drawLandmarks",
+          "lineNumber": 200
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "movementBufRef.current.push",
+          "lineNumber": 202
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "performance.now",
+          "lineNumber": 202
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "movementBufRef.current.shift",
+          "lineNumber": 203
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "jzBufRef.current.push",
+          "lineNumber": 212
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "jzBufRef.current.shift",
+          "lineNumber": 213
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "(async () => {\n            try {\n              const features = normalizeSequenceFixed(jzBufRef.current, JZ_FRAMES);\n              const tensor = new onnxLibsRef.current!.Tensor(\"float32\", features, [1, JZ_FRAMES, 126]);\n              const out = await jzSessionRef.current!.run({ input: tensor });\n              const logits = out.logits.data;\n              // Softmax\n              const max = Math.max(...logits);\n              const exps = Array.from(logits, (v: number) => Math.exp(v - max));\n              const sumE = exps.reduce((a: number, b: number) => a + b, 0);\n              const probs = exps.map((e: number) => e / sumE);\n              const labels = jzLabelsRef.current;\n              const ranked = probs.map((p: number, i: number) => ({ label: labels[i] || String(i), prob: p })).sort((a: { prob: number }, b: { prob: number }) => b.prob - a.prob);\n              const top = ranked[0];\n              setDetected(top.label);\n              setConfidence(`${(top.prob * 100).toFixed(0)}%`);\n              setTopK(ranked);\n\n              const targetProb = ranked.find((r: { label: string }) => r.label === target)?.prob || 0;\n              const v: Verdict = top.label === target && targetProb >= 0.7 ? \"match\" : targetProb >= 0.3 ? \"close\" : \"miss\";\n              setVerdict(v);\n              setComponents({ shape: targetProb, orient: 1, loc: 1, move: 1 });\n              setTip(v === \"match\" ? `Nice — that looks like \"${target}\". Hold it for a beat.` : v === \"close\" ? `Almost \"${target}\". Keep tracing the shape.` : `Trace the \"${target}\" shape with your finger.`);\n            } catch {\n              // Fallback to static\n              classifyAndScore(lm);\n            }\n          })",
+          "lineNumber": 218
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "normalizeSequenceFixed",
+          "lineNumber": 220
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "new onnxLibsRef.current!.Tensor",
+          "lineNumber": 221
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "jzSessionRef.current!.run",
+          "lineNumber": 222
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "Math.max",
+          "lineNumber": 225
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "Array.from",
+          "lineNumber": 226
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "Math.exp",
+          "lineNumber": 226
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "exps.reduce",
+          "lineNumber": 227
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "exps.map",
+          "lineNumber": 228
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "probs.map((p: number, i: number) => ({ label: labels[i] || String(i), prob: p })).sort",
+          "lineNumber": 230
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "probs.map",
+          "lineNumber": 230
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "String",
+          "lineNumber": 230
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setDetected",
+          "lineNumber": 232
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setConfidence",
+          "lineNumber": 233
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "(top.prob * 100).toFixed",
+          "lineNumber": 233
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setTopK",
+          "lineNumber": 234
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "ranked.find",
+          "lineNumber": 236
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setVerdict",
+          "lineNumber": 238
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setComponents",
+          "lineNumber": 239
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setTip",
+          "lineNumber": 240
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "classifyAndScore",
+          "lineNumber": 243
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "classifyAndScore",
+          "lineNumber": 247
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setHudHand",
+          "lineNumber": 250
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setDetected",
+          "lineNumber": 253
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setConfidence",
+          "lineNumber": 254
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setVerdict",
+          "lineNumber": 255
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setTopK",
+          "lineNumber": 256
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "performance.now",
+          "lineNumber": 259
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "performance.now",
+          "lineNumber": 261
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setFps",
+          "lineNumber": 263
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "(fc.frames * 1000 / (now - fc.t0)).toFixed",
+          "lineNumber": 263
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useCallback",
+          "lineNumber": 271
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setModelReady",
+          "lineNumber": 275
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setModelBadge",
+          "lineNumber": 276
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useCallback",
+          "lineNumber": 279
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setModelBadge",
+          "lineNumber": 280
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setMode",
+          "lineNumber": 281
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useCallback",
+          "lineNumber": 284
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setLoadingExternals",
+          "lineNumber": 293
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setExternalsError",
+          "lineNumber": 294
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "loadMediaPipe",
+          "lineNumber": 299
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "loadONNX",
+          "lineNumber": 306
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setModelBadge",
+          "lineNumber": 308
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setMode",
+          "lineNumber": 309
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "onnxLibsRef.current.InferenceSession.create",
+          "lineNumber": 316
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "fetch",
+          "lineNumber": 317
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "resp.json",
+          "lineNumber": 318
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "onModelLoaded",
+          "lineNumber": 319
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "onModelError",
+          "lineNumber": 321
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "onnxLibsRef.current.InferenceSession.create",
+          "lineNumber": 328
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "fetch",
+          "lineNumber": 329
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "jzResp.json",
+          "lineNumber": 330
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "hands.setOptions",
+          "lineNumber": 343
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "hands.onResults",
+          "lineNumber": 344
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "navigator.mediaDevices.getUserMedia",
+          "lineNumber": 348
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "video.play",
+          "lineNumber": 355
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "performance.now",
+          "lineNumber": 363
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "handsRef.current!.send",
+          "lineNumber": 364
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "performance.now",
+          "lineNumber": 365
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setHudLatency",
+          "lineNumber": 366
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "mpLatencyRef.current.toFixed",
+          "lineNumber": 366
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "clfLatencyRef.current.toFixed",
+          "lineNumber": 366
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "camera.start",
+          "lineNumber": 372
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setRunning",
+          "lineNumber": 373
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setExternalsError",
+          "lineNumber": 375
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setLoadingExternals",
+          "lineNumber": 377
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "useCallback",
+          "lineNumber": 381
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "cameraRef.current?.stop",
+          "lineNumber": 382
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "streamRef.current?.getTracks().forEach",
+          "lineNumber": 383
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "streamRef.current?.getTracks",
+          "lineNumber": 383
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "t.stop",
+          "lineNumber": 383
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setRunning",
+          "lineNumber": 384
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setHudHand",
+          "lineNumber": 385
+        },
+        {
+          "caller": "handleMirrorChange",
+          "callee": "setPrefs",
+          "lineNumber": 392
+        },
+        {
+          "caller": "handleMirrorChange",
+          "callee": "savePrefs",
+          "lineNumber": 393
+        },
+        {
+          "caller": "handleHandednessChange",
+          "callee": "setPrefs",
+          "lineNumber": 398
+        },
+        {
+          "caller": "handleHandednessChange",
+          "callee": "savePrefs",
+          "lineNumber": 399
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "(MOTION_LETTERS as readonly string[]).includes",
+          "lineNumber": 423
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setMode",
+          "lineNumber": 438
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "setMode",
+          "lineNumber": 446
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "handleMirrorChange",
+          "lineNumber": 469
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "STATIC_LETTERS.map",
+          "lineNumber": 526
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "topK.map",
+          "lineNumber": 602
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "(r.prob * 100).toFixed",
+          "lineNumber": 616
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "([\"thumb\", \"index\", \"middle\", \"ring\", \"pinky\"] as FingerKey[]).map",
+          "lineNumber": 625
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "([\n                { key: \"shape\", label: \"Handshape\", val: components.shape, text: `${(components.shape * 100) | 0}% \"${letter}\"` },\n                { key: \"orient\", label: \"Orientation\", val: components.orient, text: components.orient > 0.5 ? \"palm forward\" : \"rotate toward camera\" },\n                { key: \"loc\", label: \"Location\", val: components.loc, text: locationLabel([{ x: 0.5, y: 0.5, z: 0 }]) },\n                { key: \"move\", label: \"Movement\", val: components.move, text: components.move > 0.7 ? \"steady\" : \"hold still\" },\n              ] as const).map",
+          "lineNumber": 654
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "locationLabel",
+          "lineNumber": 657
+        },
+        {
+          "caller": "FingerspellingLetterPage",
+          "callee": "tip.replace",
+          "lineNumber": 680
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 82,
+      "nonEmptyLines": 76,
+      "functions": [
+        {
+          "name": "FingerspellingPage",
+          "startLine": 7,
+          "endLine": 82,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "FingerspellingPage",
+          "line": 7,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "FingerspellingPage",
+          "callee": "useState",
+          "lineNumber": 8
+        },
+        {
+          "caller": "FingerspellingPage",
+          "callee": "STATIC_LETTERS.filter",
+          "lineNumber": 10
+        },
+        {
+          "caller": "FingerspellingPage",
+          "callee": "(MOTION_LETTERS as readonly string[]).includes",
+          "lineNumber": 12
+        },
+        {
+          "caller": "FingerspellingPage",
+          "callee": "([\"all\", \"static\", \"motion\"] as const).map",
+          "lineNumber": 33
+        },
+        {
+          "caller": "FingerspellingPage",
+          "callee": "setFilter",
+          "lineNumber": 36
+        },
+        {
+          "caller": "FingerspellingPage",
+          "callee": "letters.map",
+          "lineNumber": 55
+        },
+        {
+          "caller": "FingerspellingPage",
+          "callee": "(MOTION_LETTERS as readonly string[]).includes",
+          "lineNumber": 56
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/learn/asl/settings/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 169,
+      "nonEmptyLines": 159,
+      "functions": [
+        {
+          "name": "Toggle",
+          "startLine": 7,
+          "endLine": 47,
+          "params": [
+            "{\n  checked,\n  onChange,\n  disabled = false,\n  label,\n  description,\n}"
+          ]
+        },
+        {
+          "name": "SettingsPage",
+          "startLine": 49,
+          "endLine": 169,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SettingsPage",
+          "line": 49,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "Toggle",
+          "callee": "onChange",
+          "lineNumber": 34
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "useState",
+          "lineNumber": 50
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "loadPrefs",
+          "lineNumber": 52
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "useState",
+          "lineNumber": 54
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "useCallback",
+          "lineNumber": 56
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "savePrefs",
+          "lineNumber": 57
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "setPrefsState",
+          "lineNumber": 58
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "setMessage",
+          "lineNumber": 59
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "setTimeout",
+          "lineNumber": 60
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "setMessage",
+          "lineNumber": 60
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "updatePrefs",
+          "lineNumber": 88
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "updatePrefs",
+          "lineNumber": 94
+        },
+        {
+          "caller": "SettingsPage",
+          "callee": "[\n            { title: \"Custom sensitivity\", desc: \"Fine-tune detection thresholds\" },\n            { title: \"Export progress\", desc: \"Download your learning history\" },\n          ].map",
+          "lineNumber": 134
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 562,
+      "nonEmptyLines": 507,
+      "functions": [
+        {
+          "name": "computeTip",
+          "startLine": 20,
+          "endLine": 26,
+          "params": [
+            "verdict",
+            "top",
+            "target"
+          ]
+        },
+        {
+          "name": "DynamicSignPage",
+          "startLine": 30,
+          "endLine": 562,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "DynamicSignPage",
+          "line": 30,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useParams",
+          "lineNumber": 31
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRouter",
+          "lineNumber": 32
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "(params.slug as string || \"hello\").toLowerCase",
+          "lineNumber": 33
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useEffect",
+          "lineNumber": 35
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "loadPrefs",
+          "lineNumber": 36
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "router.replace",
+          "lineNumber": 38
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "getSignById",
+          "lineNumber": 42
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "ML_SIGNS.has",
+          "lineNumber": 43
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "slug.toUpperCase",
+          "lineNumber": 43
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "slug.toUpperCase",
+          "lineNumber": 44
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 48
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "loadPrefs",
+          "lineNumber": 50
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 52
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 53
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 54
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 55
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 56
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 57
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 58
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 59
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 60
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 61
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 62
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 63
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 64
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 65
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 66
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useState",
+          "lineNumber": 67
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 69
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 70
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 71
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 72
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 73
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 74
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 75
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 76
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 77
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 78
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 79
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 80
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 81
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 82
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useRef",
+          "lineNumber": 83
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useEffect",
+          "lineNumber": 85
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useEffect",
+          "lineNumber": 86
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useEffect",
+          "lineNumber": 87
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useCallback",
+          "lineNumber": 89
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "performance.now",
+          "lineNumber": 91
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "normalizeSequence",
+          "lineNumber": 92
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "session.run",
+          "lineNumber": 95
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "Math.max",
+          "lineNumber": 97
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "Array.from",
+          "lineNumber": 98
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "Math.exp",
+          "lineNumber": 98
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "exps.reduce",
+          "lineNumber": 99
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "exps.map",
+          "lineNumber": 100
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "probs.map((p, i) => ({ label: labels[i] || String(i), prob: p })).sort",
+          "lineNumber": 102
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "probs.map",
+          "lineNumber": 102
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "String",
+          "lineNumber": 102
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "performance.now",
+          "lineNumber": 103
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setHudLatency",
+          "lineNumber": 104
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "dt.toFixed",
+          "lineNumber": 104
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setDetected",
+          "lineNumber": 107
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setConfidence",
+          "lineNumber": 108
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "(top.prob * 100).toFixed",
+          "lineNumber": 108
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setTopK",
+          "lineNumber": 109
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "ranked.slice",
+          "lineNumber": 109
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setVerdict",
+          "lineNumber": 115
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setTip",
+          "lineNumber": 116
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "computeTip",
+          "lineNumber": 116
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useCallback",
+          "lineNumber": 119
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "overlayRef.current?.getContext",
+          "lineNumber": 121
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "ctx.clearRect",
+          "lineNumber": 123
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setHudHand",
+          "lineNumber": 126
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "libs.drawConnectors",
+          "lineNumber": 129
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "libs.drawLandmarks",
+          "lineNumber": 130
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "bufferRef.current.push",
+          "lineNumber": 138
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "bufferRef.current.shift",
+          "lineNumber": 139
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setBufferCount",
+          "lineNumber": 140
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "inferFn(session, buf, target).finally",
+          "lineNumber": 148
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "inferFn",
+          "lineNumber": 148
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setRecording",
+          "lineNumber": 148
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "inferFn",
+          "lineNumber": 156
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setHudHand",
+          "lineNumber": 160
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "performance.now",
+          "lineNumber": 163
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "performance.now",
+          "lineNumber": 165
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setFps",
+          "lineNumber": 167
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "(fc.frames * 1000 / (now - fc.t0)).toFixed",
+          "lineNumber": 167
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useCallback",
+          "lineNumber": 175
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setModelReady",
+          "lineNumber": 178
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setModelBadge",
+          "lineNumber": 179
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useCallback",
+          "lineNumber": 182
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setModelBadge",
+          "lineNumber": 182
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useCallback",
+          "lineNumber": 184
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setLoadingExternals",
+          "lineNumber": 193
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setExternalsError",
+          "lineNumber": 194
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "loadMediaPipe",
+          "lineNumber": 199
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "loadONNX",
+          "lineNumber": 206
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setModelBadge",
+          "lineNumber": 208
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "onnxLibsRef.current.InferenceSession.create",
+          "lineNumber": 215
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "fetch",
+          "lineNumber": 216
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "resp.json",
+          "lineNumber": 217
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "onModelLoaded",
+          "lineNumber": 218
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "onModelError",
+          "lineNumber": 220
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "hands.setOptions",
+          "lineNumber": 228
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "hands.onResults",
+          "lineNumber": 229
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "onResults",
+          "lineNumber": 229
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "navigator.mediaDevices.getUserMedia",
+          "lineNumber": 233
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "video.play",
+          "lineNumber": 240
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "handsRef.current!.send",
+          "lineNumber": 247
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "camera.start",
+          "lineNumber": 252
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setRunning",
+          "lineNumber": 253
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setExternalsError",
+          "lineNumber": 255
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setLoadingExternals",
+          "lineNumber": 257
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useCallback",
+          "lineNumber": 261
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "cameraRef.current?.stop",
+          "lineNumber": 262
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "streamRef.current?.getTracks().forEach",
+          "lineNumber": 263
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "streamRef.current?.getTracks",
+          "lineNumber": 263
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "t.stop",
+          "lineNumber": 263
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setRunning",
+          "lineNumber": 264
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setRecording",
+          "lineNumber": 265
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setBufferCount",
+          "lineNumber": 267
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setHudHand",
+          "lineNumber": 268
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "useCallback",
+          "lineNumber": 271
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setBufferCount",
+          "lineNumber": 273
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setRecording",
+          "lineNumber": 274
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setTip",
+          "lineNumber": 275
+        },
+        {
+          "caller": "handleMirrorChange",
+          "callee": "setPrefs",
+          "lineNumber": 281
+        },
+        {
+          "caller": "handleMirrorChange",
+          "callee": "savePrefs",
+          "lineNumber": 282
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "[\n                  { label: \"Handshape\", value: vocabSign.handshape },\n                  { label: \"Location\", value: vocabSign.location },\n                  { label: \"Movement\", value: vocabSign.movement },\n                  { label: \"Orientation\", value: vocabSign.orientation },\n                ].map",
+          "lineNumber": 319
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "signGloss.charAt",
+          "lineNumber": 381
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "setContinuous",
+          "lineNumber": 413
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "handleMirrorChange",
+          "lineNumber": 417
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "DYNAMIC_SIGNS.map",
+          "lineNumber": 458
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "s.toLowerCase",
+          "lineNumber": 461
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "topK.map",
+          "lineNumber": 535
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "(r.prob * 100).toFixed",
+          "lineNumber": 541
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "tip.replace(/<strong>/g, '<strong class=\"text-accent\">').replace",
+          "lineNumber": 548
+        },
+        {
+          "caller": "DynamicSignPage",
+          "callee": "tip.replace",
+          "lineNumber": 548
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/learn/asl/words/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 255,
+      "nonEmptyLines": 239,
+      "functions": [
+        {
+          "name": "WordsPage",
+          "startLine": 24,
+          "endLine": 255,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "WordsPage",
+          "line": 24,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "WordsPage",
+          "callee": "useState",
+          "lineNumber": 25
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "useState",
+          "lineNumber": 26
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "useMemo",
+          "lineNumber": 28
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "signs.filter",
+          "lineNumber": 31
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "search.trim",
+          "lineNumber": 33
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "search.toLowerCase",
+          "lineNumber": 34
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "signs.filter",
+          "lineNumber": 35
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "s.gloss.toLowerCase().includes",
+          "lineNumber": 37
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "s.gloss.toLowerCase",
+          "lineNumber": 37
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "s.description.toLowerCase().includes",
+          "lineNumber": 38
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "s.description.toLowerCase",
+          "lineNumber": 38
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "s.category.toLowerCase().includes",
+          "lineNumber": 39
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "s.category.toLowerCase",
+          "lineNumber": 39
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "useMemo",
+          "lineNumber": 46
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "map[sign.category].push",
+          "lineNumber": 51
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "useMemo",
+          "lineNumber": 56
+        },
+        {
+          "caller": "renderSignCard",
+          "callee": "ML_SIGNS.has",
+          "lineNumber": 65
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "setSearch",
+          "lineNumber": 163
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "[\"All\", ...CATEGORIES].map",
+          "lineNumber": 170
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "setActiveCategory",
+          "lineNumber": 173
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "Object.entries(grouped).map",
+          "lineNumber": 200
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "Object.entries",
+          "lineNumber": 200
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "signs.map",
+          "lineNumber": 222
+        },
+        {
+          "caller": "WordsPage",
+          "callee": "filtered.map",
+          "lineNumber": 231
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/practice/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 241,
+      "nonEmptyLines": 230,
+      "functions": [
+        {
+          "name": "PracticePage",
+          "startLine": 8,
+          "endLine": 241,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "PracticePage",
+          "line": 8,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "PracticePage",
+          "callee": "useState",
+          "lineNumber": 9
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "loadProgress",
+          "lineNumber": 11
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "useState",
+          "lineNumber": 13
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "loadProgress",
+          "lineNumber": 15
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "CURRICULUM.map",
+          "lineNumber": 16
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "getReviewQueue",
+          "lineNumber": 17
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "Object.values(progress).reduce",
+          "lineNumber": 20
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "Object.values",
+          "lineNumber": 20
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "Object.values(progress).reduce",
+          "lineNumber": 21
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "Object.values",
+          "lineNumber": 21
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "((totalCorrect / totalAttempts) * 100).toFixed",
+          "lineNumber": 22
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "Object.values(progress).filter",
+          "lineNumber": 23
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "Object.values",
+          "lineNumber": 23
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "Object.values(progress).filter",
+          "lineNumber": 24
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "Object.values",
+          "lineNumber": 24
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "Object.keys",
+          "lineNumber": 25
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "CURRICULUM.map",
+          "lineNumber": 28
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "[\n          { label: \"Due now\", value: reviewQueue.length, color: \"text-accent\", bg: \"bg-accent/10\" },\n          { label: \"Mastered\", value: mastered, color: \"text-ok\", bg: \"bg-ok/10\" },\n          { label: \"Learning\", value: learning, color: \"text-warm\", bg: \"bg-warm/10\" },\n          { label: \"New\", value: newCount, color: \"text-muted\", bg: \"bg-elevated\" },\n        ].map",
+          "lineNumber": 47
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "reviewQueue.slice(0, 12).map",
+          "lineNumber": 123
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "reviewQueue.slice",
+          "lineNumber": 123
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "signMap.get",
+          "lineNumber": 124
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "STATIC_LETTERS.map",
+          "lineNumber": 181
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "DYNAMIC_SIGNS.map",
+          "lineNumber": 210
+        },
+        {
+          "caller": "PracticePage",
+          "callee": "sign.toLowerCase",
+          "lineNumber": 217
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/app/setup/page.tsx",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 478,
+      "nonEmptyLines": 461,
+      "functions": [
+        {
+          "name": "SetupPage",
+          "startLine": 9,
+          "endLine": 478,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "SetupPage",
+          "line": 9,
+          "isDefault": true
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "SetupPage",
+          "callee": "useRouter",
+          "lineNumber": 10
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useState",
+          "lineNumber": 11
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useState",
+          "lineNumber": 12
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "loadPrefs",
+          "lineNumber": 14
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useState",
+          "lineNumber": 17
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useState",
+          "lineNumber": 18
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useState",
+          "lineNumber": 19
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useState",
+          "lineNumber": 20
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useState",
+          "lineNumber": 21
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useRef",
+          "lineNumber": 22
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useRef",
+          "lineNumber": 23
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useRef",
+          "lineNumber": 24
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useEffect",
+          "lineNumber": 26
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "loadPrefs",
+          "lineNumber": 27
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "router.replace",
+          "lineNumber": 29
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useEffect",
+          "lineNumber": 33
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "video.play().catch",
+          "lineNumber": 37
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "video.play",
+          "lineNumber": 37
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useCallback",
+          "lineNumber": 41
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "clearInterval",
+          "lineNumber": 43
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "document.createElement",
+          "lineNumber": 46
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "c.getContext",
+          "lineNumber": 49
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setInterval",
+          "lineNumber": 51
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "ctx.drawImage",
+          "lineNumber": 54
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "ctx.getImageData",
+          "lineNumber": 55
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "Math.sqrt",
+          "lineNumber": 70
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setBrightness",
+          "lineNumber": 71
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "Math.min",
+          "lineNumber": 71
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setUniformity",
+          "lineNumber": 72
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "Math.max",
+          "lineNumber": 72
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useEffect",
+          "lineNumber": 76
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "startLightingLoop",
+          "lineNumber": 77
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "clearInterval",
+          "lineNumber": 79
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "clearInterval",
+          "lineNumber": 84
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "useEffect",
+          "lineNumber": 90
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "stream.getTracks().forEach",
+          "lineNumber": 92
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "stream.getTracks",
+          "lineNumber": 92
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "t.stop",
+          "lineNumber": 92
+        },
+        {
+          "caller": "requestCamera",
+          "callee": "setPermErr",
+          "lineNumber": 97
+        },
+        {
+          "caller": "requestCamera",
+          "callee": "navigator.mediaDevices.getUserMedia",
+          "lineNumber": 99
+        },
+        {
+          "caller": "requestCamera",
+          "callee": "setStream",
+          "lineNumber": 103
+        },
+        {
+          "caller": "requestCamera",
+          "callee": "setPermOk",
+          "lineNumber": 104
+        },
+        {
+          "caller": "requestCamera",
+          "callee": "setPermErr",
+          "lineNumber": 106
+        },
+        {
+          "caller": "finish",
+          "callee": "new Date().toISOString",
+          "lineNumber": 111
+        },
+        {
+          "caller": "finish",
+          "callee": "savePrefs",
+          "lineNumber": 112
+        },
+        {
+          "caller": "finish",
+          "callee": "stream.getTracks().forEach",
+          "lineNumber": 113
+        },
+        {
+          "caller": "finish",
+          "callee": "stream.getTracks",
+          "lineNumber": 113
+        },
+        {
+          "caller": "finish",
+          "callee": "t.stop",
+          "lineNumber": 113
+        },
+        {
+          "caller": "finish",
+          "callee": "router.push",
+          "lineNumber": 114
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "STEPS.map",
+          "lineNumber": 138
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "[\n              { value: \"asl\", label: \"ASL\", sub: \"American Sign Language\", badge: \"Shipped\", badgeColor: \"ok\" as const, disabled: false },\n              { value: \"bsl\", label: \"BSL\", sub: \"British Sign Language\", badge: \"Coming soon\", badgeColor: \"muted\" as const, disabled: true },\n              { value: \"arsl\", label: \"ArSL\", sub: \"Arabic Sign Language\", badge: \"Coming soon\", badgeColor: \"muted\" as const, disabled: true },\n              { value: \"other\", label: \"Other\", sub: \"More languages\", badge: \"Coming soon\", badgeColor: \"muted\" as const, disabled: true },\n            ].map",
+          "lineNumber": 190
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setPrefs",
+          "lineNumber": 212
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setStep",
+          "lineNumber": 236
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setStep",
+          "lineNumber": 296
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setStep",
+          "lineNumber": 310
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "brightness.mean.toFixed",
+          "lineNumber": 339
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "brightMsg",
+          "lineNumber": 339
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "uniformity.std.toFixed",
+          "lineNumber": 353
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "uniMsg",
+          "lineNumber": 353
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setStep",
+          "lineNumber": 389
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setStep",
+          "lineNumber": 395
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "([\"right\", \"left\"] as const).map",
+          "lineNumber": 424
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setPrefs",
+          "lineNumber": 438
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setPrefs",
+          "lineNumber": 450
+        },
+        {
+          "caller": "SetupPage",
+          "callee": "setStep",
+          "lineNumber": 462
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/curriculum.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 136,
+      "nonEmptyLines": 124,
+      "functions": [
+        {
+          "name": "getStaticLetter",
+          "startLine": 130,
+          "endLine": 132,
+          "params": [
+            "letter"
+          ]
+        },
+        {
+          "name": "getDynamicSign",
+          "startLine": 134,
+          "endLine": 136,
+          "params": [
+            "slug"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "STATIC_LETTERS",
+          "line": 1,
+          "isDefault": false
+        },
+        {
+          "name": "MOTION_LETTERS",
+          "line": 6,
+          "isDefault": false
+        },
+        {
+          "name": "ASL_REF_IMAGES",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "LETTER_DESCRIPTIONS",
+          "line": 39,
+          "isDefault": false
+        },
+        {
+          "name": "DYNAMIC_SIGNS",
+          "line": 68,
+          "isDefault": false
+        },
+        {
+          "name": "SIGN_DESCRIPTIONS",
+          "line": 81,
+          "isDefault": false
+        },
+        {
+          "name": "CURRICULUM",
+          "line": 103,
+          "isDefault": false
+        },
+        {
+          "name": "getStaticLetter",
+          "line": 130,
+          "isDefault": false
+        },
+        {
+          "name": "getDynamicSign",
+          "line": 134,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getStaticLetter",
+          "callee": "CURRICULUM.find",
+          "lineNumber": 131
+        },
+        {
+          "caller": "getStaticLetter",
+          "callee": "letter.toUpperCase",
+          "lineNumber": 131
+        },
+        {
+          "caller": "getDynamicSign",
+          "callee": "CURRICULUM.find",
+          "lineNumber": 135
+        },
+        {
+          "caller": "getDynamicSign",
+          "callee": "slug.toLowerCase",
+          "lineNumber": 135
+        }
+      ],
+      "metrics": {
+        "importCount": 1,
+        "exportCount": 9,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/loadExternals.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 99,
+      "nonEmptyLines": 83,
+      "functions": [
+        {
+          "name": "loadScript",
+          "startLine": 32,
+          "endLine": 49,
+          "params": [
+            "src",
+            "timeoutMs"
+          ]
+        },
+        {
+          "name": "loadMediaPipe",
+          "startLine": 52,
+          "endLine": 78,
+          "params": []
+        },
+        {
+          "name": "loadONNX",
+          "startLine": 81,
+          "endLine": 99,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "loadMediaPipe",
+          "line": 52,
+          "isDefault": false
+        },
+        {
+          "name": "loadONNX",
+          "line": 81,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadScript",
+          "callee": "document.querySelector",
+          "lineNumber": 34
+        },
+        {
+          "caller": "loadScript",
+          "callee": "resolve",
+          "lineNumber": 35
+        },
+        {
+          "caller": "loadScript",
+          "callee": "document.createElement",
+          "lineNumber": 38
+        },
+        {
+          "caller": "loadScript",
+          "callee": "setTimeout",
+          "lineNumber": 41
+        },
+        {
+          "caller": "loadScript",
+          "callee": "script.remove",
+          "lineNumber": 42
+        },
+        {
+          "caller": "loadScript",
+          "callee": "reject",
+          "lineNumber": 43
+        },
+        {
+          "caller": "loadScript",
+          "callee": "clearTimeout",
+          "lineNumber": 45
+        },
+        {
+          "caller": "loadScript",
+          "callee": "resolve",
+          "lineNumber": 45
+        },
+        {
+          "caller": "loadScript",
+          "callee": "clearTimeout",
+          "lineNumber": 46
+        },
+        {
+          "caller": "loadScript",
+          "callee": "reject",
+          "lineNumber": 46
+        },
+        {
+          "caller": "loadScript",
+          "callee": "document.head.appendChild",
+          "lineNumber": 47
+        },
+        {
+          "caller": "loadMediaPipe",
+          "callee": "(async () => {\n    await Promise.all([\n      loadScript(\"https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js\"),\n      loadScript(\"https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.js\"),\n      loadScript(\"https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js\"),\n    ]);\n\n    const w = window as unknown as {\n      Hands: MediaPipeLibs[\"Hands\"];\n      Camera: MediaPipeLibs[\"Camera\"];\n      drawConnectors: MediaPipeLibs[\"drawConnectors\"];\n      drawLandmarks: MediaPipeLibs[\"drawLandmarks\"];\n      HAND_CONNECTIONS: MediaPipeLibs[\"HAND_CONNECTIONS\"];\n    };\n\n    if (!w.Hands || !w.Camera) {\n      throw new Error(\"MediaPipe libraries failed to load onto window\");\n    }\n\n    return w as MediaPipeLibs;\n  })",
+          "lineNumber": 55
+        },
+        {
+          "caller": "loadMediaPipe",
+          "callee": "Promise.all",
+          "lineNumber": 56
+        },
+        {
+          "caller": "loadMediaPipe",
+          "callee": "loadScript",
+          "lineNumber": 57
+        },
+        {
+          "caller": "loadMediaPipe",
+          "callee": "loadScript",
+          "lineNumber": 58
+        },
+        {
+          "caller": "loadMediaPipe",
+          "callee": "loadScript",
+          "lineNumber": 59
+        },
+        {
+          "caller": "loadONNX",
+          "callee": "(async () => {\n    await loadScript(\"https://cdn.jsdelivr.net/npm/onnxruntime-web@1.26.0/dist/ort.min.js\");\n\n    const w = window as unknown as {\n      ort: ONNXLibs;\n    };\n\n    if (!w.ort) {\n      throw new Error(\"onnxruntime-web failed to load\");\n    }\n\n    return w.ort;\n  })",
+          "lineNumber": 84
+        },
+        {
+          "caller": "loadONNX",
+          "callee": "loadScript",
+          "lineNumber": 85
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/normalize.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 172,
+      "nonEmptyLines": 154,
+      "functions": [
+        {
+          "name": "normalize",
+          "startLine": 10,
+          "endLine": 26,
+          "params": [
+            "landmarks"
+          ]
+        },
+        {
+          "name": "dist",
+          "startLine": 28,
+          "endLine": 33,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "fingerExtended",
+          "startLine": 39,
+          "endLine": 47,
+          "params": [
+            "lm",
+            "tip",
+            "pip",
+            "mcp"
+          ]
+        },
+        {
+          "name": "thumbExtended",
+          "startLine": 49,
+          "endLine": 51,
+          "params": [
+            "lm"
+          ]
+        },
+        {
+          "name": "fingerStates",
+          "startLine": 61,
+          "endLine": 69,
+          "params": [
+            "lm"
+          ]
+        },
+        {
+          "name": "inSameGroup",
+          "startLine": 79,
+          "endLine": 85,
+          "params": [
+            "a",
+            "b"
+          ]
+        },
+        {
+          "name": "scoreLetterRule",
+          "startLine": 118,
+          "endLine": 128,
+          "params": [
+            "states",
+            "target"
+          ]
+        },
+        {
+          "name": "classifyRule",
+          "startLine": 130,
+          "endLine": 136,
+          "params": [
+            "lm"
+          ]
+        },
+        {
+          "name": "palmFacingCamera",
+          "startLine": 138,
+          "endLine": 148,
+          "params": [
+            "lm"
+          ]
+        },
+        {
+          "name": "locationLabel",
+          "startLine": 150,
+          "endLine": 155,
+          "params": [
+            "lm"
+          ]
+        },
+        {
+          "name": "recentMovement",
+          "startLine": 163,
+          "endLine": 172,
+          "params": [
+            "buf"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "WRIST",
+          "line": 1,
+          "isDefault": false
+        },
+        {
+          "name": "MIDDLE_MCP",
+          "line": 2,
+          "isDefault": false
+        },
+        {
+          "name": "normalize",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "dist",
+          "line": 28,
+          "isDefault": false
+        },
+        {
+          "name": "FT",
+          "line": 35,
+          "isDefault": false
+        },
+        {
+          "name": "PIP",
+          "line": 36,
+          "isDefault": false
+        },
+        {
+          "name": "MCP",
+          "line": 37,
+          "isDefault": false
+        },
+        {
+          "name": "fingerStates",
+          "line": 61,
+          "isDefault": false
+        },
+        {
+          "name": "COLLISION_GROUPS",
+          "line": 71,
+          "isDefault": false
+        },
+        {
+          "name": "inSameGroup",
+          "line": 79,
+          "isDefault": false
+        },
+        {
+          "name": "PATTERNS",
+          "line": 89,
+          "isDefault": false
+        },
+        {
+          "name": "scoreLetterRule",
+          "line": 118,
+          "isDefault": false
+        },
+        {
+          "name": "classifyRule",
+          "line": 130,
+          "isDefault": false
+        },
+        {
+          "name": "palmFacingCamera",
+          "line": 138,
+          "isDefault": false
+        },
+        {
+          "name": "locationLabel",
+          "line": 150,
+          "isDefault": false
+        },
+        {
+          "name": "recentMovement",
+          "line": 163,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "normalize",
+          "callee": "Math.hypot",
+          "lineNumber": 22
+        },
+        {
+          "caller": "dist",
+          "callee": "Math.hypot",
+          "lineNumber": 32
+        },
+        {
+          "caller": "fingerExtended",
+          "callee": "dist",
+          "lineNumber": 46
+        },
+        {
+          "caller": "fingerExtended",
+          "callee": "dist",
+          "lineNumber": 46
+        },
+        {
+          "caller": "fingerExtended",
+          "callee": "dist",
+          "lineNumber": 46
+        },
+        {
+          "caller": "fingerExtended",
+          "callee": "dist",
+          "lineNumber": 46
+        },
+        {
+          "caller": "thumbExtended",
+          "callee": "dist",
+          "lineNumber": 50
+        },
+        {
+          "caller": "thumbExtended",
+          "callee": "dist",
+          "lineNumber": 50
+        },
+        {
+          "caller": "fingerStates",
+          "callee": "thumbExtended",
+          "lineNumber": 63
+        },
+        {
+          "caller": "fingerStates",
+          "callee": "fingerExtended",
+          "lineNumber": 64
+        },
+        {
+          "caller": "fingerStates",
+          "callee": "fingerExtended",
+          "lineNumber": 65
+        },
+        {
+          "caller": "fingerStates",
+          "callee": "fingerExtended",
+          "lineNumber": 66
+        },
+        {
+          "caller": "fingerStates",
+          "callee": "fingerExtended",
+          "lineNumber": 67
+        },
+        {
+          "caller": "inSameGroup",
+          "callee": "g.includes",
+          "lineNumber": 82
+        },
+        {
+          "caller": "inSameGroup",
+          "callee": "g.includes",
+          "lineNumber": 82
+        },
+        {
+          "caller": "scoreLetterRule",
+          "callee": "Object.keys",
+          "lineNumber": 123
+        },
+        {
+          "caller": "classifyRule",
+          "callee": "fingerStates",
+          "lineNumber": 131
+        },
+        {
+          "caller": "classifyRule",
+          "callee": "Object.keys(PATTERNS)\r\n    .map((letter) => ({ label: letter, prob: scoreLetterRule(states, letter) }))\r\n    .sort",
+          "lineNumber": 132
+        },
+        {
+          "caller": "classifyRule",
+          "callee": "Object.keys(PATTERNS)\r\n    .map",
+          "lineNumber": 132
+        },
+        {
+          "caller": "classifyRule",
+          "callee": "Object.keys",
+          "lineNumber": 132
+        },
+        {
+          "caller": "classifyRule",
+          "callee": "scoreLetterRule",
+          "lineNumber": 133
+        },
+        {
+          "caller": "palmFacingCamera",
+          "callee": "Math.abs",
+          "lineNumber": 147
+        },
+        {
+          "caller": "recentMovement",
+          "callee": "Math.hypot",
+          "lineNumber": 169
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 16,
+        "functionCount": 11,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/seq-features.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 78,
+      "nonEmptyLines": 67,
+      "functions": [
+        {
+          "name": "normalizeSequence",
+          "startLine": 7,
+          "endLine": 40,
+          "params": [
+            "buf"
+          ]
+        },
+        {
+          "name": "normalizeSequenceFixed",
+          "startLine": 43,
+          "endLine": 78,
+          "params": [
+            "buf",
+            "targetLen"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "T_FRAMES",
+          "line": 1,
+          "isDefault": false
+        },
+        {
+          "name": "N_LANDMARKS",
+          "line": 2,
+          "isDefault": false
+        },
+        {
+          "name": "FEATURE_DIM",
+          "line": 3,
+          "isDefault": false
+        },
+        {
+          "name": "JZ_FRAMES",
+          "line": 5,
+          "isDefault": false
+        },
+        {
+          "name": "normalizeSequence",
+          "line": 7,
+          "isDefault": false
+        },
+        {
+          "name": "normalizeSequenceFixed",
+          "line": 43,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "normalizeSequence",
+          "callee": "Math.hypot",
+          "lineNumber": 27
+        },
+        {
+          "caller": "normalizeSequenceFixed",
+          "callee": "Math.hypot",
+          "lineNumber": 63
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/storage.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 122,
+      "nonEmptyLines": 109,
+      "functions": [
+        {
+          "name": "loadPrefs",
+          "startLine": 10,
+          "endLine": 19,
+          "params": []
+        },
+        {
+          "name": "savePrefs",
+          "startLine": 21,
+          "endLine": 25,
+          "params": [
+            "prefs"
+          ]
+        },
+        {
+          "name": "loadProgress",
+          "startLine": 45,
+          "endLine": 52,
+          "params": []
+        },
+        {
+          "name": "saveProgress",
+          "startLine": 54,
+          "endLine": 58,
+          "params": [
+            "progress"
+          ]
+        },
+        {
+          "name": "recordAttempt",
+          "startLine": 60,
+          "endLine": 111,
+          "params": [
+            "progress",
+            "signId",
+            "type",
+            "correct"
+          ]
+        },
+        {
+          "name": "getReviewQueue",
+          "startLine": 113,
+          "endLine": 122,
+          "params": [
+            "progress",
+            "allSigns"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "loadPrefs",
+          "line": 10,
+          "isDefault": false
+        },
+        {
+          "name": "savePrefs",
+          "line": 21,
+          "isDefault": false
+        },
+        {
+          "name": "loadProgress",
+          "line": 45,
+          "isDefault": false
+        },
+        {
+          "name": "saveProgress",
+          "line": 54,
+          "isDefault": false
+        },
+        {
+          "name": "recordAttempt",
+          "line": 60,
+          "isDefault": false
+        },
+        {
+          "name": "getReviewQueue",
+          "line": 113,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "loadPrefs",
+          "callee": "localStorage.getItem",
+          "lineNumber": 15
+        },
+        {
+          "caller": "loadPrefs",
+          "callee": "JSON.parse",
+          "lineNumber": 16
+        },
+        {
+          "caller": "savePrefs",
+          "callee": "localStorage.setItem",
+          "lineNumber": 23
+        },
+        {
+          "caller": "savePrefs",
+          "callee": "JSON.stringify",
+          "lineNumber": 23
+        },
+        {
+          "caller": "loadProgress",
+          "callee": "localStorage.getItem",
+          "lineNumber": 48
+        },
+        {
+          "caller": "loadProgress",
+          "callee": "JSON.parse",
+          "lineNumber": 49
+        },
+        {
+          "caller": "saveProgress",
+          "callee": "localStorage.setItem",
+          "lineNumber": 56
+        },
+        {
+          "caller": "saveProgress",
+          "callee": "JSON.stringify",
+          "lineNumber": 56
+        },
+        {
+          "caller": "recordAttempt",
+          "callee": "Date.now",
+          "lineNumber": 66
+        },
+        {
+          "caller": "recordAttempt",
+          "callee": "Math.min",
+          "lineNumber": 91
+        },
+        {
+          "caller": "recordAttempt",
+          "callee": "Math.min",
+          "lineNumber": 93
+        },
+        {
+          "caller": "recordAttempt",
+          "callee": "Math.min",
+          "lineNumber": 96
+        },
+        {
+          "caller": "recordAttempt",
+          "callee": "Math.max",
+          "lineNumber": 102
+        },
+        {
+          "caller": "recordAttempt",
+          "callee": "Math.max",
+          "lineNumber": 107
+        },
+        {
+          "caller": "recordAttempt",
+          "callee": "Math.max",
+          "lineNumber": 108
+        },
+        {
+          "caller": "recordAttempt",
+          "callee": "Math.round",
+          "lineNumber": 108
+        },
+        {
+          "caller": "getReviewQueue",
+          "callee": "Date.now",
+          "lineNumber": 117
+        },
+        {
+          "caller": "getReviewQueue",
+          "callee": "allSigns.filter",
+          "lineNumber": 118
+        },
+        {
+          "caller": "getReviewQueue",
+          "callee": "allSigns.filter",
+          "lineNumber": 119
+        },
+        {
+          "caller": "getReviewQueue",
+          "callee": "due.sort",
+          "lineNumber": 120
+        },
+        {
+          "caller": "getReviewQueue",
+          "callee": "untried.slice",
+          "lineNumber": 121
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 6,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/src/lib/vocabulary_200.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 2598,
+      "nonEmptyLines": 2582,
+      "functions": [
+        {
+          "name": "getSignsByCategory",
+          "startLine": 2577,
+          "endLine": 2579,
+          "params": [
+            "category"
+          ]
+        },
+        {
+          "name": "searchSigns",
+          "startLine": 2582,
+          "endLine": 2590,
+          "params": [
+            "query"
+          ]
+        },
+        {
+          "name": "getSignById",
+          "startLine": 2593,
+          "endLine": 2595,
+          "params": [
+            "id"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "VOCABULARY_200",
+          "line": 23,
+          "isDefault": false
+        },
+        {
+          "name": "CATEGORIES",
+          "line": 2562,
+          "isDefault": false
+        },
+        {
+          "name": "getSignsByCategory",
+          "line": 2577,
+          "isDefault": false
+        },
+        {
+          "name": "searchSigns",
+          "line": 2582,
+          "isDefault": false
+        },
+        {
+          "name": "getSignById",
+          "line": 2593,
+          "isDefault": false
+        },
+        {
+          "name": "TOTAL_SIGNS",
+          "line": 2598,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "getSignsByCategory",
+          "callee": "VOCABULARY_200.filter",
+          "lineNumber": 2578
+        },
+        {
+          "caller": "searchSigns",
+          "callee": "query.toLowerCase",
+          "lineNumber": 2583
+        },
+        {
+          "caller": "searchSigns",
+          "callee": "VOCABULARY_200.filter",
+          "lineNumber": 2584
+        },
+        {
+          "caller": "searchSigns",
+          "callee": "s.gloss.toLowerCase().includes",
+          "lineNumber": 2586
+        },
+        {
+          "caller": "searchSigns",
+          "callee": "s.gloss.toLowerCase",
+          "lineNumber": 2586
+        },
+        {
+          "caller": "searchSigns",
+          "callee": "s.description.toLowerCase().includes",
+          "lineNumber": 2587
+        },
+        {
+          "caller": "searchSigns",
+          "callee": "s.description.toLowerCase",
+          "lineNumber": 2587
+        },
+        {
+          "caller": "searchSigns",
+          "callee": "s.category.toLowerCase().includes",
+          "lineNumber": 2588
+        },
+        {
+          "caller": "searchSigns",
+          "callee": "s.category.toLowerCase",
+          "lineNumber": 2588
+        },
+        {
+          "caller": "getSignById",
+          "callee": "VOCABULARY_200.find",
+          "lineNumber": 2594
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 6,
+        "functionCount": 3,
+        "classCount": 0
+      }
+    }
+  ]
+}

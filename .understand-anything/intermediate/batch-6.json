@@ -1,0 +1,227 @@
+{
+  "nodes": [
+    {
+      "id": "pipeline:.github/workflows/ml-gate.yml",
+      "type": "pipeline",
+      "label": "CI (ML release gates + Frontend checks)",
+      "properties": {
+        "filePath": ".github/workflows/ml-gate.yml",
+        "language": "yaml",
+        "jobCount": 2,
+        "triggerOn": ["push (ml/**|prototype/**|ci/**|signtutor/**)", "pull_request", "workflow_dispatch"],
+        "runsOn": "ubuntu-latest",
+        "totalLines": 169
+      }
+    },
+    {
+      "id": "job:ml-gate",
+      "type": "ci-job",
+      "label": "ml-gate",
+      "properties": {
+        "runsOn": "ubuntu-latest",
+        "timeoutMinutes": 20,
+        "stepCount": 9,
+        "purpose": "Train ML models, run eval/robustness checks, verify JS↔Python feature parity, enforce release gates, upload reports"
+      }
+    },
+    {
+      "id": "step:ml-install-deps",
+      "type": "ci-step",
+      "label": "Install Python deps",
+      "properties": {
+        "deps": ["numpy", "scikit-learn", "skl2onnx", "onnx", "onnxruntime", "onnxscript", "torch"]
+      }
+    },
+    {
+      "id": "step:ml-train-static-mlp",
+      "type": "ci-step",
+      "label": "Train static MLP & write eval report",
+      "properties": {
+        "script": "ml/train_export.py"
+      }
+    },
+    {
+      "id": "step:ml-train-dynamic-transformer",
+      "type": "ci-step",
+      "label": "Train dynamic Transformer & write eval report",
+      "properties": {
+        "script": "ml/train_transformer.py",
+        "flag": "--rotation-aug"
+      }
+    },
+    {
+      "id": "step:ml-robustness-sweep",
+      "type": "ci-step",
+      "label": "Robustness sweep on dynamic model",
+      "properties": {
+        "script": "ml/eval_robustness.py"
+      }
+    },
+    {
+      "id": "step:ml-copy-models",
+      "type": "ci-step",
+      "label": "Copy models into served bundle",
+      "properties": {
+        "outputs": ["prototype/models/fingerspell_mlp.onnx", "prototype/models/dynamic_signs_transformer.onnx"]
+      }
+    },
+    {
+      "id": "step:ml-regenerate-parity",
+      "type": "ci-step",
+      "label": "Regenerate parity samples",
+      "properties": {
+        "output": "prototype/models/parity_samples.json"
+      }
+    },
+    {
+      "id": "step:ml-js-py-parity",
+      "type": "ci-step",
+      "label": "JS↔Python feature parity",
+      "properties": {
+        "script": "ci/run_parity.mjs"
+      }
+    },
+    {
+      "id": "step:ml-enforce-gates",
+      "type": "ci-step",
+      "label": "Enforce release gates",
+      "properties": {
+        "script": "ci/check_nfr.py"
+      }
+    },
+    {
+      "id": "step:ml-upload-artifacts",
+      "type": "ci-step",
+      "label": "Upload ml-reports artifact",
+      "properties": {
+        "artifact": "ml-reports",
+        "paths": ["ml/models/eval_report.md", "ml/models/dynamic_eval_report.md", "ml/models/dynamic_robustness_report.md", "ci/parity.log"],
+        "always": true
+      }
+    },
+    {
+      "id": "job:frontend-gate",
+      "type": "ci-job",
+      "label": "frontend-gate",
+      "properties": {
+        "runsOn": "ubuntu-latest",
+        "timeoutMinutes": 15,
+        "stepCount": 12,
+        "workingDirectory": "signtutor",
+        "purpose": "Lint, typecheck, unit test, build, Playwright E2E, Lighthouse a11y audit (score >= 95), upload reports"
+      }
+    },
+    {
+      "id": "step:fe-install-pnpm",
+      "type": "ci-step",
+      "label": "Install pnpm",
+      "properties": {}
+    },
+    {
+      "id": "step:fe-install-deps",
+      "type": "ci-step",
+      "label": "Install deps",
+      "properties": {
+        "command": "pnpm install --frozen-lockfile"
+      }
+    },
+    {
+      "id": "step:fe-lint",
+      "type": "ci-step",
+      "label": "Lint",
+      "properties": {
+        "command": "npm run lint -- --max-warnings=0"
+      }
+    },
+    {
+      "id": "step:fe-typecheck",
+      "type": "ci-step",
+      "label": "Type check",
+      "properties": {
+        "command": "npm run typecheck"
+      }
+    },
+    {
+      "id": "step:fe-unit-tests",
+      "type": "ci-step",
+      "label": "Unit tests",
+      "properties": {
+        "command": "npm run test"
+      }
+    },
+    {
+      "id": "step:fe-build",
+      "type": "ci-step",
+      "label": "Build",
+      "properties": {
+        "command": "npm run build"
+      }
+    },
+    {
+      "id": "step:fe-e2e",
+      "type": "ci-step",
+      "label": "Playwright E2E tests",
+      "properties": {}
+    },
+    {
+      "id": "step:fe-lighthouse-a11y",
+      "type": "ci-step",
+      "label": "Lighthouse a11y audit",
+      "properties": {
+        "urls": ["/", "/setup", "/learn/asl/fingerspelling/A"],
+        "preset": "desktop",
+        "categories": ["accessibility"]
+      }
+    },
+    {
+      "id": "step:fe-enforce-a11y",
+      "type": "ci-step",
+      "label": "Enforce a11y >= 95",
+      "properties": {
+        "threshold": 0.95
+      }
+    },
+    {
+      "id": "step:fe-upload-artifacts",
+      "type": "ci-step",
+      "label": "Upload frontend-reports artifact",
+      "properties": {
+        "artifact": "frontend-reports",
+        "paths": ["signtutor/lighthouse/", "signtutor/playwright-report/", "signtutor/test-results/"],
+        "always": true
+      }
+    }
+  ],
+  "edges": [
+    { "from": "pipeline:.github/workflows/ml-gate.yml", "to": "project:signlanguage", "relation": "serves" },
+    { "from": "pipeline:.github/workflows/ml-gate.yml", "to": "job:ml-gate", "relation": "contains" },
+    { "from": "pipeline:.github/workflows/ml-gate.yml", "to": "job:frontend-gate", "relation": "contains" },
+    { "from": "job:ml-gate", "to": "step:ml-install-deps", "relation": "runs" },
+    { "from": "job:ml-gate", "to": "step:ml-train-static-mlp", "relation": "runs" },
+    { "from": "job:ml-gate", "to": "step:ml-train-dynamic-transformer", "relation": "runs" },
+    { "from": "job:ml-gate", "to": "step:ml-robustness-sweep", "relation": "runs" },
+    { "from": "job:ml-gate", "to": "step:ml-copy-models", "relation": "runs" },
+    { "from": "job:ml-gate", "to": "step:ml-regenerate-parity", "relation": "runs" },
+    { "from": "job:ml-gate", "to": "step:ml-js-py-parity", "relation": "runs" },
+    { "from": "job:ml-gate", "to": "step:ml-enforce-gates", "relation": "runs" },
+    { "from": "job:ml-gate", "to": "step:ml-upload-artifacts", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-install-pnpm", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-install-deps", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-lint", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-typecheck", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-unit-tests", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-build", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-e2e", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-lighthouse-a11y", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-enforce-a11y", "relation": "runs" },
+    { "from": "job:frontend-gate", "to": "step:fe-upload-artifacts", "relation": "runs" },
+    { "from": "step:ml-copy-models", "to": "prototype/models", "relation": "delivers-to" },
+    { "from": "step:fe-lighthouse-a11y", "to": "step:fe-enforce-a11y", "relation": "feeds" },
+    { "from": "step:ml-train-static-mlp", "to": "step:ml-copy-models", "relation": "produces-input" },
+    { "from": "step:ml-train-dynamic-transformer", "to": "step:ml-robustness-sweep", "relation": "produces-input" },
+    { "from": "step:ml-train-dynamic-transformer", "to": "step:ml-copy-models", "relation": "produces-input" },
+    { "from": "step:ml-regenerate-parity", "to": "step:ml-js-py-parity", "relation": "produces-input" },
+    { "from": "step:ml-js-py-parity", "to": "step:ml-enforce-gates", "relation": "feeds" },
+    { "from": "step:ml-robustness-sweep", "to": "step:ml-enforce-gates", "relation": "feeds" }
+  ]
+}

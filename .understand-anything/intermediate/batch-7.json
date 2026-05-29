@@ -1,0 +1,447 @@
+{
+  "nodes": [
+    {
+      "name": ".agents/skills/impeccable/reference/adapt.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "190 lines, 143 non-empty, 14 sections",
+        "Covers responsive adaptation: mobile, tablet, desktop, print, email",
+        "Includes sections: Assess Adaptation Challenge, Plan Adaptation Strategy, Implement Adaptations, Verify Adaptations",
+        "Sub-topics: Responsive Breakpoints, Layout Adaptation, Touch Adaptation, Content Adaptation, Navigation Adaptation"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/animate.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "175 lines, 135 non-empty, 17 sections",
+        "Covers adding motion that conveys state, feedback, and hierarchy",
+        "Includes: Assess Animation Opportunities, Plan Animation Strategy, Implement Animations",
+        "Sub-topics: Entrance Animations, Micro-interactions, State Transitions, Navigation & Flow, Feedback & Guidance, Delight Moments",
+        "Technical sections: Timing & Easing, CSS Animations, JavaScript Animation, Performance, Accessibility"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/classic-ux-patterns.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "21 lines, markdown, docs",
+        "Covers classic and proven UX patterns for interface design",
+        "Reference for standard interaction patterns and established design conventions"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/colorize.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "154 lines, 112 non-empty, 17 sections",
+        "Covers replacing grayscale with strategic color palettes",
+        "Includes: Assess Color Opportunity, Plan Color Strategy, Introduce Color Strategically",
+        "Sub-topics: Semantic Color, Accent Color Application, Background & Surfaces, Data Visualization, Borders & Accents, Typography Color, Decorative Elements",
+        "Sections on Balance & Refinement: Maintain Hierarchy, Accessibility, Cohesion"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/entry.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "20 lines, markdown, docs",
+        "Entry point document for the reference system",
+        "Likely contains navigation or index of available reference documents"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/extract.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "69 lines, 46 non-empty, 7 sections",
+        "Covers design system extraction and migration workflow",
+        "Steps: Discover the Design System, Identify Patterns, Plan Extraction, Extract & Enrich, Migrate, Document"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/frontier-mode.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "84 lines, markdown, docs",
+        "Covers frontier/advanced mode for ambitious visual effects",
+        "Likely describes advanced CSS/visual techniques beyond standard patterns"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/grid.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "71 lines, markdown, docs",
+        "Covers grid layout patterns and best practices",
+        "Reference for CSS Grid and layout systems"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/harden.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "347 lines, 285 non-empty, 11 sections",
+        "Covers hardening interfaces against real-world edge cases",
+        "Includes: Assess Hardening Needs, Hardening Dimensions, Testing Strategies, Verify Hardening",
+        "Sub-topics: Text Overflow & Wrapping, Internationalization (i18n), Error Handling, Edge Cases & Boundary Conditions, Input Validation, Accessibility Resilience, Performance Resilience"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/iphone.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "5 lines, markdown, docs",
+        "Covers iPhone-specific design patterns and considerations",
+        "Likely addresses notch, Dynamic Island, safe areas, and iOS conventions"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/live.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "204 lines (estimated from user input), markdown, docs",
+        "Covers interactive live browser iteration mode",
+        "Describes selecting elements in browser and hot-swapping AI-generated variants via HMR"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/optimize.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "4 lines (user estimate), markdown, docs",
+        "Covers performance optimization for interfaces",
+        "Focuses on identifying actual bottlenecks and measuring before optimizing"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/organize.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "5 lines, markdown, docs",
+        "Covers organizing design systems and component libraries",
+        "Likely covers information architecture of design assets and code organization"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/polish.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "4 lines (user estimate), markdown, docs",
+        "Covers final polish pass for production-quality UI",
+        "Focuses on the small details that separate good from great work"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/responsive-grid.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "41 lines, markdown, docs",
+        "Covers responsive grid system patterns",
+        "Likely builds on grid.md with responsive breakpoint strategies"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/style.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "8 lines, markdown, docs",
+        "Covers general style conventions and guidelines",
+        "Likely describes CSS/styling approach for the impeccable skill"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/tokens.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "35 lines, markdown, docs",
+        "Covers design tokens system and conventions",
+        "Likely describes token naming, structure, and usage patterns"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/typography.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "26 lines (user estimate), markdown, docs",
+        "Covers typography principles and best practices",
+        "Includes classic typography principles and vertical rhythm"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/ux-write.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "16 lines, markdown, docs",
+        "Covers UX writing patterns and guidelines",
+        "Likely covers microcopy, error messages, CTAs, and interface text"
+      ]
+    },
+    {
+      "name": ".agents/skills/impeccable/reference/visual-hierarchy.md",
+      "type": "document",
+      "fileCategory": "docs",
+      "observations": [
+        "Reference document for the impeccable design skill",
+        "17 lines, markdown, docs",
+        "Covers visual hierarchy principles for interface design",
+        "Likely covers spacing, sizing, color weight, and scanning patterns"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/adapt.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/animate.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/classic-ux-patterns.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/colorize.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/extract.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/frontier-mode.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/grid.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/harden.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/iphone.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/live.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/optimize.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/organize.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/polish.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/responsive-grid.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/style.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/tokens.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/typography.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/ux-write.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/visual-hierarchy.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/grid.md",
+      "to": ".agents/skills/impeccable/reference/responsive-grid.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/adapt.md",
+      "to": ".agents/skills/impeccable/reference/responsive-grid.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/adapt.md",
+      "to": ".agents/skills/impeccable/reference/iphone.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/colorize.md",
+      "to": ".agents/skills/impeccable/reference/tokens.md",
+      "relationType": "references"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/typography.md",
+      "to": ".agents/skills/impeccable/reference/tokens.md",
+      "relationType": "references"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/typography.md",
+      "to": ".agents/skills/impeccable/reference/visual-hierarchy.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/colorize.md",
+      "to": ".agents/skills/impeccable/reference/visual-hierarchy.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/visual-hierarchy.md",
+      "to": ".agents/skills/impeccable/reference/style.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/tokens.md",
+      "to": ".agents/skills/impeccable/reference/style.md",
+      "relationType": "references"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/classic-ux-patterns.md",
+      "to": ".agents/skills/impeccable/reference/ux-write.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/animate.md",
+      "to": ".agents/skills/impeccable/reference/live.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/polish.md",
+      "to": ".agents/skills/impeccable/reference/harden.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/polish.md",
+      "to": ".agents/skills/impeccable/reference/optimize.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/harden.md",
+      "to": ".agents/skills/impeccable/reference/optimize.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/extract.md",
+      "to": ".agents/skills/impeccable/reference/organize.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/frontier-mode.md",
+      "to": ".agents/skills/impeccable/reference/live.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/frontier-mode.md",
+      "to": ".agents/skills/impeccable/reference/animate.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/frontier-mode.md",
+      "to": ".agents/skills/impeccable/reference/colorize.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/entry.md",
+      "to": ".agents/skills/impeccable/reference/classic-ux-patterns.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/classic-ux-patterns.md",
+      "to": ".agents/skills/impeccable/reference/visual-hierarchy.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/ux-write.md",
+      "to": ".agents/skills/impeccable/reference/classic-ux-patterns.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/style.md",
+      "to": ".agents/skills/impeccable/reference/polish.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/live.md",
+      "to": ".agents/skills/impeccable/reference/polish.md",
+      "relationType": "documents"
+    },
+    {
+      "from": ".agents/skills/impeccable/reference/live.md",
+      "to": ".agents/skills/impeccable/reference/optimize.md",
+      "relationType": "documents"
+    }
+  ]
+}

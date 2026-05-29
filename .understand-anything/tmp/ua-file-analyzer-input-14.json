@@ -1,0 +1,47 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "signtutor/DESIGN.md",
+                           "language":  "markdown",
+                           "sizeLines":  63,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/IMPLEMENTATION_STATUS.md",
+                           "language":  "markdown",
+                           "sizeLines":  92,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/PRODUCT.md",
+                           "language":  "markdown",
+                           "sizeLines":  32,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/README.md",
+                           "language":  "markdown",
+                           "sizeLines":  36,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/package.json",
+                           "language":  "json",
+                           "sizeLines":  38,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "signtutor/pnpm-workspace.yaml",
+                           "language":  "yaml",
+                           "sizeLines":  7,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "signtutor/tsconfig.json",
+                           "language":  "json",
+                           "sizeLines":  34,
+                           "fileCategory":  "config"
+                       }
+                   ]
+}

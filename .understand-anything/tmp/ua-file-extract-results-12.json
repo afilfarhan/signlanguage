@@ -1,0 +1,123 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 6,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "prototype/README.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 205,
+      "nonEmptyLines": 170,
+      "sections": [
+        {
+          "heading": "SignTutor — Prototype Bundle",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "How to run",
+          "level": 2,
+          "line": 40
+        },
+        {
+          "heading": "Serve the prototype",
+          "level": 3,
+          "line": 42
+        },
+        {
+          "heading": "Reproduce the CI gate locally",
+          "level": 3,
+          "line": 48
+        },
+        {
+          "heading": "What each page does",
+          "level": 2,
+          "line": 81
+        },
+        {
+          "heading": "`wizard.html` — camera-setup wizard (S-01)",
+          "level": 3,
+          "line": 83
+        },
+        {
+          "heading": "`index.html` — static-sign lesson player (S-05) ⭐",
+          "level": 3,
+          "line": 88
+        },
+        {
+          "heading": "`dynamic.html` — dynamic-sign lesson player (S-06)",
+          "level": 3,
+          "line": 131
+        },
+        {
+          "heading": "`educator.html` — v2 educator dashboard wireframe (EPIC-15)",
+          "level": 3,
+          "line": 136
+        },
+        {
+          "heading": "CI release gates ⭐",
+          "level": 2,
+          "line": 140
+        },
+        {
+          "heading": "What maps to which PDR requirement",
+          "level": 2,
+          "line": 165
+        },
+        {
+          "heading": "Path to v1",
+          "level": 2,
+          "line": 189
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 12
+      }
+    },
+    {
+      "path": "prototype/dynamic.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 539,
+      "nonEmptyLines": 489,
+      "metrics": {}
+    },
+    {
+      "path": "prototype/educator.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 395,
+      "nonEmptyLines": 360,
+      "metrics": {}
+    },
+    {
+      "path": "prototype/home.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 190,
+      "nonEmptyLines": 173,
+      "metrics": {}
+    },
+    {
+      "path": "prototype/index.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 852,
+      "nonEmptyLines": 788,
+      "metrics": {}
+    },
+    {
+      "path": "prototype/wizard.html",
+      "language": "html",
+      "fileCategory": "markup",
+      "totalLines": 431,
+      "nonEmptyLines": 404,
+      "metrics": {}
+    }
+  ]
+}

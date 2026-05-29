@@ -1,0 +1,59 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "signtutor/docs/ADR-002-dataset-choice.md",
+                           "language":  "markdown",
+                           "sizeLines":  23,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/docs/ADR-003-signer-disjoint-splits.md",
+                           "language":  "markdown",
+                           "sizeLines":  21,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/docs/ADR-004-calibration.md",
+                           "language":  "markdown",
+                           "sizeLines":  23,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/docs/ADR-005-personalization.md",
+                           "language":  "markdown",
+                           "sizeLines":  27,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/docs/ADR-006-nmm-fusion.md",
+                           "language":  "markdown",
+                           "sizeLines":  25,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/docs/ADR-007-continuous-slr.md",
+                           "language":  "markdown",
+                           "sizeLines":  23,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/docs/ADR-008-language-bundles.md",
+                           "language":  "markdown",
+                           "sizeLines":  22,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/docs/ADR-009-reference-media.md",
+                           "language":  "markdown",
+                           "sizeLines":  25,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "signtutor/docs/ARCHITECTURE.md",
+                           "language":  "markdown",
+                           "sizeLines":  171,
+                           "fileCategory":  "docs"
+                       }
+                   ]
+}

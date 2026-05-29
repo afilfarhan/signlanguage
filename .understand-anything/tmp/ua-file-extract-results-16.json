@@ -1,0 +1,187 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 5,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "signtutor/public/models/dynamic_labels.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 14,
+      "nonEmptyLines": 14,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "seq_len",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "feature_dim",
+          "level": 1,
+          "line": 13
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "signtutor/public/models/jz_labels.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 9,
+      "nonEmptyLines": 9,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "seq_len",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "feature_dim",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "n_classes",
+          "level": 1,
+          "line": 8
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "signtutor/public/models/labels.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 57,
+      "nonEmptyLines": 57,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "synth_collisions",
+          "level": 1,
+          "line": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "signtutor/public/models/labels_v2.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 84,
+      "nonEmptyLines": 84,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "synth_collisions",
+          "level": 1,
+          "line": 30
+        },
+        {
+          "heading": "feature_dim",
+          "level": 1,
+          "line": 67
+        },
+        {
+          "heading": "geometry_features",
+          "level": 1,
+          "line": 68
+        },
+        {
+          "heading": "hard_classes",
+          "level": 1,
+          "line": 75
+        },
+        {
+          "heading": "hard_class_weight",
+          "level": 1,
+          "line": 83
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    },
+    {
+      "path": "signtutor/public/models/parity_samples.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 592,
+      "nonEmptyLines": 592,
+      "sections": [
+        {
+          "heading": "B",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "F",
+          "level": 1,
+          "line": 120
+        },
+        {
+          "heading": "I",
+          "level": 1,
+          "line": 238
+        },
+        {
+          "heading": "L",
+          "level": 1,
+          "line": 356
+        },
+        {
+          "heading": "Y",
+          "level": 1,
+          "line": 474
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,652 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 25,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "ml/models/dynamic_signs_transformer_BEFORE.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 2068,
+      "nonEmptyLines": 2065,
+      "metrics": {}
+    },
+    {
+      "path": "ml/models/dynamic_signs_transformer.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 2035,
+      "nonEmptyLines": 2033,
+      "metrics": {}
+    },
+    {
+      "path": "ml/models/fingerspell_mlp_v2.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 1065,
+      "nonEmptyLines": 1057,
+      "metrics": {}
+    },
+    {
+      "path": "ml/models/fingerspell_mlp.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 322,
+      "nonEmptyLines": 315,
+      "metrics": {}
+    },
+    {
+      "path": "ml/models/jz_classifier.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 1511,
+      "nonEmptyLines": 1496,
+      "metrics": {}
+    },
+    {
+      "path": "ml/models/jz_classifier.onnx.data",
+      "language": "data",
+      "fileCategory": "code",
+      "totalLines": 2228,
+      "nonEmptyLines": 2223,
+      "metrics": {}
+    },
+    {
+      "path": "ml/ROBUSTNESS_GATE_DEMO.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 147,
+      "nonEmptyLines": 114,
+      "sections": [
+        {
+          "heading": "Robustness gate demonstration — closing a real failure",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Step 1 — Detect",
+          "level": 2,
+          "line": 18
+        },
+        {
+          "heading": "Step 2 — Diagnose",
+          "level": 2,
+          "line": 36
+        },
+        {
+          "heading": "Step 3 — Fix",
+          "level": 2,
+          "line": 45
+        },
+        {
+          "heading": "Step 4 — Re-measure",
+          "level": 2,
+          "line": 77
+        },
+        {
+          "heading": "Step 5 — Decide",
+          "level": 2,
+          "line": 95
+        },
+        {
+          "heading": "What this would look like in CI on real data",
+          "level": 2,
+          "line": 109
+        },
+        {
+          "heading": "Files referenced",
+          "level": 2,
+          "line": 135
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "prototype/models/dynamic_signs_transformer.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 2035,
+      "nonEmptyLines": 2033,
+      "metrics": {}
+    },
+    {
+      "path": "prototype/models/fingerspell_mlp.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 322,
+      "nonEmptyLines": 315,
+      "metrics": {}
+    },
+    {
+      "path": "screenshot-test.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 21,
+      "nonEmptyLines": 17,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "screenshot.js",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 43,
+      "nonEmptyLines": 38,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/__tests__/curriculum-v2.test.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 60,
+      "nonEmptyLines": 52,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/__tests__/privacy.test.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 34,
+      "nonEmptyLines": 28,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/.github/workflows/ml-gate.yml",
+      "language": "yaml",
+      "fileCategory": "config",
+      "totalLines": 216,
+      "nonEmptyLines": 206,
+      "sections": [
+        {
+          "heading": "name",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "on",
+          "level": 1,
+          "line": 3
+        },
+        {
+          "heading": "jobs",
+          "level": 1,
+          "line": 9
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "signtutor/ci/check_ece.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 37,
+      "nonEmptyLines": 33,
+      "functions": [
+        {
+          "name": "compute_ece",
+          "startLine": 9,
+          "endLine": 20,
+          "params": [
+            "probs",
+            "labels",
+            "n_bins"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 22,
+          "endLine": 30,
+          "params": [
+            "probs_path",
+            "labels_path",
+            "threshold"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "compute_ece",
+          "line": 9,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 22,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "compute_ece",
+          "callee": "len",
+          "lineNumber": 10
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "len",
+          "lineNumber": 10
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "np.linspace",
+          "lineNumber": 11
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "range",
+          "lineNumber": 13
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "probs.max",
+          "lineNumber": 14
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "probs.max",
+          "lineNumber": 14
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "in_bin.sum",
+          "lineNumber": 15
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "(labels[in_bin] == probs.argmax(axis=1)[in_bin]).mean",
+          "lineNumber": 17
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "probs.argmax",
+          "lineNumber": 17
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "probs[in_bin].max().mean",
+          "lineNumber": 18
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "probs[in_bin].max",
+          "lineNumber": 18
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "in_bin.sum",
+          "lineNumber": 19
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "len",
+          "lineNumber": 19
+        },
+        {
+          "caller": "compute_ece",
+          "callee": "abs",
+          "lineNumber": 19
+        },
+        {
+          "caller": "main",
+          "callee": "np.load",
+          "lineNumber": 23
+        },
+        {
+          "caller": "main",
+          "callee": "np.load",
+          "lineNumber": 24
+        },
+        {
+          "caller": "main",
+          "callee": "compute_ece",
+          "lineNumber": 25
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 27
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 29
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/ci/check_licenses.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 24,
+      "nonEmptyLines": 20,
+      "functions": [
+        {
+          "name": "main",
+          "startLine": 10,
+          "endLine": 21,
+          "params": []
+        }
+      ],
+      "exports": [
+        {
+          "name": "main",
+          "line": 10,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "main",
+          "callee": "LICENSES_MD.read_text",
+          "lineNumber": 11
+        },
+        {
+          "caller": "main",
+          "callee": "DATA_DIR.iterdir",
+          "lineNumber": 13
+        },
+        {
+          "caller": "main",
+          "callee": "entry.is_dir",
+          "lineNumber": 14
+        },
+        {
+          "caller": "main",
+          "callee": "missing.append",
+          "lineNumber": 16
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 18
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 1,
+        "functionCount": 1,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/ci/check_signer_disjoint.py",
+      "language": "python",
+      "fileCategory": "code",
+      "totalLines": 27,
+      "nonEmptyLines": 23,
+      "functions": [
+        {
+          "name": "load_signers",
+          "startLine": 8,
+          "endLine": 11,
+          "params": [
+            "path"
+          ]
+        },
+        {
+          "name": "main",
+          "startLine": 13,
+          "endLine": 21,
+          "params": [
+            "train_path",
+            "test_path"
+          ]
+        }
+      ],
+      "exports": [
+        {
+          "name": "load_signers",
+          "line": 8,
+          "isDefault": false
+        },
+        {
+          "name": "main",
+          "line": 13,
+          "isDefault": false
+        }
+      ],
+      "callGraph": [
+        {
+          "caller": "load_signers",
+          "callee": "open",
+          "lineNumber": 9
+        },
+        {
+          "caller": "load_signers",
+          "callee": "json.load",
+          "lineNumber": 10
+        },
+        {
+          "caller": "load_signers",
+          "callee": "set",
+          "lineNumber": 11
+        },
+        {
+          "caller": "load_signers",
+          "callee": "data.get",
+          "lineNumber": 11
+        },
+        {
+          "caller": "main",
+          "callee": "load_signers",
+          "lineNumber": 14
+        },
+        {
+          "caller": "main",
+          "callee": "Path",
+          "lineNumber": 14
+        },
+        {
+          "caller": "main",
+          "callee": "load_signers",
+          "lineNumber": 15
+        },
+        {
+          "caller": "main",
+          "callee": "Path",
+          "lineNumber": 15
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 18
+        },
+        {
+          "caller": "main",
+          "callee": "print",
+          "lineNumber": 20
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 2,
+        "functionCount": 2,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/e2e/dynamic-lesson.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 47,
+      "nonEmptyLines": 37,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/e2e/static-lesson.spec.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 45,
+      "nonEmptyLines": 37,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/eslint.config.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 29,
+      "nonEmptyLines": 27,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/ml/data/LICENSES.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 48,
+      "nonEmptyLines": 37,
+      "sections": [
+        {
+          "heading": "Real Data Foundation",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Datasets",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "ChicagoFSWild+",
+          "level": 3,
+          "line": 11
+        },
+        {
+          "heading": "WLASL2000",
+          "level": 3,
+          "line": 18
+        },
+        {
+          "heading": "MS-ASL",
+          "level": 3,
+          "line": 25
+        },
+        {
+          "heading": "ASL Citizen",
+          "level": 3,
+          "line": 32
+        },
+        {
+          "heading": "In-House Recordings",
+          "level": 2,
+          "line": 41
+        },
+        {
+          "heading": "CI Enforcement",
+          "level": 2,
+          "line": 46
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "signtutor/next.config.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 42,
+      "nonEmptyLines": 39,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/playwright.config.ts",
+      "language": "typescript",
+      "fileCategory": "code",
+      "totalLines": 35,
+      "nonEmptyLines": 34,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/postcss.config.mjs",
+      "language": "javascript",
+      "fileCategory": "code",
+      "totalLines": 7,
+      "nonEmptyLines": 6,
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0
+      }
+    },
+    {
+      "path": "signtutor/public/models/dynamic_signs_transformer.onnx",
+      "language": "onnx",
+      "fileCategory": "code",
+      "totalLines": 2035,
+      "nonEmptyLines": 2033,
+      "metrics": {}
+    }
+  ]
+}

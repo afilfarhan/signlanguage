@@ -1,0 +1,501 @@
+{
+  "nodes": [
+    {
+      "name": "file:.agents/skills/impeccable/SKILL.md",
+      "type": "file",
+      "observations": [
+        "Skill definition file for the impeccable UI design skill",
+        "Contains instructions for UI design critique, redesign, and polishing",
+        "Entry point for the impeccable skill system",
+        "References agent files and scripts in the impeccable directory"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "type": "file",
+      "observations": [
+        "Critique persistence helper for the impeccable skill",
+        "242 lines, JavaScript/ES module",
+        "Imports: fs (node:fs), path (node:path), fileURLToPath/pathToFileURL (node:url), getCritiqueDir (./impeccable-paths.mjs)",
+        "Exports: slugFromTarget, nowFilenameStamp, writeSnapshot, readLatestSnapshot, readTrend",
+        "Writes per-target snapshot files to .impeccable/critique/<timestamp>__<slug>.md",
+        "CLI entry points: slug, write, latest, trend subcommands",
+        "Slug derived mechanically from resolved artifact path or URL"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:slugFromTarget",
+      "type": "function",
+      "observations": [
+        "Line 43-68, exported",
+        "Derives a stable slug from a resolved target (file path or URL)",
+        "Params: resolved, cwd",
+        "Calls: process.cwd, path.isAbsolute, path.resolve, path.relative, path.basename, kebab"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:kebab",
+      "type": "function",
+      "observations": [
+        "Line 70-81, private",
+        "Converts string to kebab-case slug, capped at 50 chars",
+        "Params: s"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:nowFilenameStamp",
+      "type": "function",
+      "observations": [
+        "Line 87-90, exported",
+        "Generates filename-safe UTC ISO timestamp",
+        "Params: date"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:writeSnapshot",
+      "type": "function",
+      "observations": [
+        "Line 99-112, exported",
+        "Writes a snapshot file for a slug with frontmatter and body",
+        "Calls: getCritiqueDir, fs.mkdirSync, nowFilenameStamp, path.join, serializeFrontmatter, fs.writeFileSync"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:serializeFrontmatter",
+      "type": "function",
+      "observations": [
+        "Line 114-125, private",
+        "Serializes an object to YAML-like frontmatter string",
+        "Quotes strings containing : or # characters"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:parseFrontmatter",
+      "type": "function",
+      "observations": [
+        "Line 127-144, private",
+        "Parses YAML-like frontmatter from text",
+        "Handles quoted strings, numbers"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:listSnapshotsForSlug",
+      "type": "function",
+      "observations": [
+        "Line 149-157, private",
+        "Lists all snapshot files for a slug, sorted oldest to newest",
+        "Calls: getCritiqueDir, fs.existsSync, fs.readdirSync, path.join"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readLatestSnapshot",
+      "type": "function",
+      "observations": [
+        "Line 163-169, exported",
+        "Returns the most recent snapshot for a slug, or null",
+        "Calls: listSnapshotsForSlug, fs.readFileSync, parseFrontmatter"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readTrend",
+      "type": "function",
+      "observations": [
+        "Line 175-179, exported",
+        "Returns last N snapshots' frontmatter for trend display",
+        "Calls: listSnapshotsForSlug, parseFrontmatter, fs.readFileSync"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:main",
+      "type": "function",
+      "observations": [
+        "Line 183-223, private",
+        "CLI entry point dispatching to slug/write/latest/trend subcommands",
+        "Parses process.argv for command and arguments"
+      ]
+    },
+    {
+      "name": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:isMainModule",
+      "type": "function",
+      "observations": [
+        "Line 225-234, private",
+        "Checks if this module is the main entry point using realpath comparison"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/agents/impeccable-redesigner.md",
+      "type": "file",
+      "observations": [
+        "Agent prompt file for the impeccable redesigner agent (37 lines)",
+        "Provides instructions for redesigning UI elements based on critique output",
+        "Category: code (agent instruction prompt)"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/agents/impeccable-wrapper.md",
+      "type": "file",
+      "observations": [
+        "Agent prompt file for the impeccable wrapper agent (164 lines)",
+        "Provides orchestration instructions for the impeccable pipeline",
+        "Category: code (agent instruction prompt)",
+        "Coordinates other impeccable sub-agents"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/scripts/critique.mjs",
+      "type": "file",
+      "observations": [
+        "Main critique script for the impeccable skill (163 lines)",
+        "JavaScript/ES module, category: code",
+        "Likely orchestrates the critique pipeline across colors, components, copy"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/agents/impeccable-critique-agent.md",
+      "type": "file",
+      "observations": [
+        "Agent prompt file for the impeccable critique agent (23 lines)",
+        "Provides instructions for performing UI critiques",
+        "Category: code (agent instruction prompt)"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/agents/impeccable-color-auditor.md",
+      "type": "file",
+      "observations": [
+        "Agent prompt file for the impeccable color auditor agent (279 lines)",
+        "Provides instructions for auditing color usage in UI designs",
+        "Category: code (agent instruction prompt)"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/agents/impeccable-ux-writer.md",
+      "type": "file",
+      "observations": [
+        "Agent prompt file for the impeccable UX writer agent (137 lines)",
+        "Provides instructions for UX copywriting and content critique",
+        "Category: code (agent instruction prompt)"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/agents/impeccable-refiner.md",
+      "type": "file",
+      "observations": [
+        "Agent prompt file for the impeccable refiner agent (148 lines)",
+        "Provides instructions for refining UI based on critique findings",
+        "Category: code (agent instruction prompt)"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/reference/professional-audience.md",
+      "type": "document",
+      "observations": [
+        "Reference document for professional audience considerations (26 lines)",
+        "Category: docs",
+        "Part of the impeccable skill's reference library for UI design"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/scripts/critique-colors.mjs",
+      "type": "file",
+      "observations": [
+        "Color critique script for the impeccable skill (125 lines)",
+        "JavaScript/ES module, category: code",
+        "Performs color-specific UI critique analysis"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/scripts/critique-components.mjs",
+      "type": "file",
+      "observations": [
+        "Component critique script for the impeccable skill (219 lines)",
+        "JavaScript/ES module, category: code",
+        "Performs component-specific UI critique analysis"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/scripts/critique-copy.mjs",
+      "type": "file",
+      "observations": [
+        "Copy/copywriting critique script for the impeccable skill (279 lines)",
+        "JavaScript/ES module, category: code",
+        "Performs copy-specific UI critique analysis"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/scripts/critique-summary.mjs",
+      "type": "file",
+      "observations": [
+        "Critique summary script for the impeccable skill (78 lines)",
+        "JavaScript/ES module, category: code",
+        "Aggregates critique results into a summary report"
+      ]
+    },
+    {
+      "name": "file:.agents/skills/impeccable/scripts/impeccable-paths.mjs",
+      "type": "file",
+      "observations": [
+        "Path resolution utility for the impeccable skill",
+        "Exports directory and path resolution functions",
+        "Imported by critique-storage.mjs via getCritiqueDir"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-redesigner.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-wrapper.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-critique-agent.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-color-auditor.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-ux-writer.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-refiner.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/scripts/critique.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/scripts/critique-colors.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/scripts/critique-components.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/scripts/critique-copy.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/scripts/critique-summary.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/SKILL.md",
+      "to": "file:.agents/skills/impeccable/reference/professional-audience.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "file:.agents/skills/impeccable/scripts/impeccable-paths.mjs",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:slugFromTarget",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:kebab",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:nowFilenameStamp",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:writeSnapshot",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:serializeFrontmatter",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:parseFrontmatter",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:listSnapshotsForSlug",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readLatestSnapshot",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readTrend",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:main",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:isMainModule",
+      "relationType": "contains"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:slugFromTarget",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:kebab",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:writeSnapshot",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:nowFilenameStamp",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:writeSnapshot",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:serializeFrontmatter",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readLatestSnapshot",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:listSnapshotsForSlug",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readLatestSnapshot",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:parseFrontmatter",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readTrend",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:listSnapshotsForSlug",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readTrend",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:parseFrontmatter",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:main",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:slugFromTarget",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:main",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:writeSnapshot",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:main",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readLatestSnapshot",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:main",
+      "to": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:readTrend",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:.agents/skills/impeccable/scripts/critique-storage.mjs:listSnapshotsForSlug",
+      "to": "file:.agents/skills/impeccable/scripts/impeccable-paths.mjs",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique.mjs",
+      "to": "file:.agents/skills/impeccable/scripts/critique-colors.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique.mjs",
+      "to": "file:.agents/skills/impeccable/scripts/critique-components.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique.mjs",
+      "to": "file:.agents/skills/impeccable/scripts/critique-copy.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique.mjs",
+      "to": "file:.agents/skills/impeccable/scripts/critique-summary.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/scripts/critique.mjs",
+      "to": "file:.agents/skills/impeccable/scripts/critique-storage.mjs",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/agents/impeccable-wrapper.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-critique-agent.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/agents/impeccable-wrapper.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-color-auditor.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/agents/impeccable-wrapper.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-ux-writer.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/agents/impeccable-wrapper.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-redesigner.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/agents/impeccable-wrapper.md",
+      "to": "file:.agents/skills/impeccable/agents/impeccable-refiner.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/agents/impeccable-color-auditor.md",
+      "to": "file:.agents/skills/impeccable/reference/professional-audience.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/agents/impeccable-ux-writer.md",
+      "to": "file:.agents/skills/impeccable/reference/professional-audience.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/agents/impeccable-redesigner.md",
+      "to": "file:.agents/skills/impeccable/reference/professional-audience.md",
+      "relationType": "references"
+    },
+    {
+      "from": "file:.agents/skills/impeccable/agents/impeccable-refiner.md",
+      "to": "file:.agents/skills/impeccable/reference/professional-audience.md",
+      "relationType": "references"
+    }
+  ]
+}

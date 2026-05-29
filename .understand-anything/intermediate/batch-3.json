@@ -1,0 +1,205 @@
+{
+  "nodes": [
+    {
+      "name": "file:ml/eval_robustness.py",
+      "type": "file",
+      "observations": [
+        "Python script (142 lines) that stress-tests the trained Transformer ONNX model under realistic noise/perturbation conditions",
+        "Evaluates 6 robustness slices: clean, landmark_jitter, dropped_frames, missing_z, rotated, scale_shift",
+        "Writes dynamic_robustness_report.md with accuracy degradation analysis",
+        "Imports onnxruntime, sklearn.metrics, synth_sequences, seq_features",
+        "NFR-9/NFR-10 release gate analysis for the PDR"
+      ]
+    },
+    {
+      "name": "function:ml/eval_robustness.py:evaluate",
+      "type": "function",
+      "observations": [
+        "Runs a single robustness slice through normalize_batch, ONNX inference, argmax, and accuracy_score",
+        "Parameters: X_raw_slice (np.ndarray), name (str)",
+        "Returns float accuracy"
+      ]
+    },
+    {
+      "name": "function:ml/eval_robustness.py:rotate_clip",
+      "type": "function",
+      "observations": [
+        "Rotates a full landmark clip around the first-frame wrist by a given angle in degrees",
+        "Parameters: clip, deg",
+        "Returns rotated clip as np.ndarray"
+      ]
+    },
+    {
+      "name": "file:ml/features.py",
+      "type": "file",
+      "observations": [
+        "Python script (38 lines) providing static landmark→feature vector normalization",
+        "Pipeline: translate wrist to origin, scale by wrist→middle-MCP distance, flatten to 63 floats",
+        "Contract between Python training and JS browser inference",
+        "Exports: normalize()"
+      ]
+    },
+    {
+      "name": "function:ml/features.py:normalize",
+      "type": "function",
+      "observations": [
+        "Normalizes (..., 21, 3) landmarks to (..., 63) feature vectors",
+        "Translates by wrist position and scales by wrist-to-middle-MCP distance",
+        "Returns flat float32 array"
+      ]
+    },
+    {
+      "name": "file:ml/models/convert_to_onnx.py",
+      "type": "file",
+      "observations": [
+        "Python script (127 lines) that converts trained models to ONNX format for browser deployment with onnxruntime-web",
+        "Likely handles model loading, ONNX export configuration, and output serialization",
+        "Part of the model deployment pipeline targeting ml/models/ directory"
+      ]
+    },
+    {
+      "name": "file:ml/models/train_dynamic_signs.py",
+      "type": "file",
+      "observations": [
+        "Python script (349 lines) that trains the dynamic sign classification model",
+        "Likely processes (N, T, 21, 3) landmark sequences for dynamic sign recognition",
+        "Probably uses the synth_sequences synthetic dataset and seq_features normalization",
+        "Outputs an ONNX model and eval report to ml/models/"
+      ]
+    },
+    {
+      "name": "file:ml/models/train_fingerspell_mlp.py",
+      "type": "file",
+      "observations": [
+        "Python script (109 lines) that trains a fingerspelling MLP classifier",
+        "Likely uses static landmark features from features.py and synth_landmarks synthetic data",
+        "Smaller model focused on fingerspelling letter classification"
+      ]
+    },
+    {
+      "name": "file:ml/data/dataset.py",
+      "type": "file",
+      "observations": [
+        "Python script (230 lines) providing base dataset class and data loading utilities",
+        "Likely defines Dataset base class used by all real dataset loaders (WLASL, ChicagoFSWild, MS-ASL, in-house)",
+        "Probably handles train/val/test splitting, caching to .npz, and shape contracts (N, 21, 3) for static and (N, T, 21, 3) for dynamic"
+      ]
+    },
+    {
+      "name": "file:ml/data/processing.py",
+      "type": "file",
+      "observations": [
+        "Python script (456 lines) providing data preprocessing and augmentation utilities",
+        "Likely includes landmark normalization, frame interpolation, noise injection, rotation augmentation",
+        "Probably shared across all dataset loaders in ml/data/"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "function:ml/eval_robustness.py:evaluate",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "function:ml/eval_robustness.py:rotate_clip",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:ml/features.py",
+      "to": "function:ml/features.py:normalize",
+      "relationType": "contains"
+    },
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "module:numpy",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "module:onnxruntime",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "module:json",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "module:os",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "module:sklearn.metrics.accuracy_score",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "module:sklearn.model_selection.train_test_split",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "file:ml/synth_sequences.py",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:ml/eval_robustness.py",
+      "to": "file:ml/seq_features.py",
+      "relationType": "imports"
+    },
+    {
+      "from": "function:ml/eval_robustness.py:evaluate",
+      "to": "function:ml/seq_features.py:normalize_batch",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:ml/eval_robustness.py:evaluate",
+      "to": "module:onnxruntime",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:ml/eval_robustness.py:evaluate",
+      "to": "module:sklearn.metrics.accuracy_score",
+      "relationType": "calls"
+    },
+    {
+      "from": "function:ml/eval_robustness.py:rotate_clip",
+      "to": "module:numpy",
+      "relationType": "calls"
+    },
+    {
+      "from": "file:ml/features.py",
+      "to": "module:numpy",
+      "relationType": "imports"
+    },
+    {
+      "from": "file:ml/models/convert_to_onnx.py",
+      "to": "file:ml/models/",
+      "relationType": "located_in"
+    },
+    {
+      "from": "file:ml/models/train_dynamic_signs.py",
+      "to": "file:ml/models/",
+      "relationType": "located_in"
+    },
+    {
+      "from": "file:ml/models/train_fingerspell_mlp.py",
+      "to": "file:ml/models/",
+      "relationType": "located_in"
+    },
+    {
+      "from": "file:ml/data/dataset.py",
+      "to": "file:ml/data/",
+      "relationType": "located_in"
+    },
+    {
+      "from": "file:ml/data/processing.py",
+      "to": "file:ml/data/",
+      "relationType": "located_in"
+    }
+  ]
+}

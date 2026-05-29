@@ -1,0 +1,327 @@
+{
+  "nodes": [
+    {
+      "id": "agent-impeccable-asset-producer",
+      "type": "document",
+      "label": "Impeccable Asset Producer Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-asset-producer.md",
+      "description": "Agent that produces UI assets (icons, illustrations) for UI refinement tasks",
+      "sections": ["Core Rule", "Input Contract", "Workflow", "Prompt Pattern", "Output Contract"]
+    },
+    {
+      "id": "agent-impeccable-beautifier",
+      "type": "document",
+      "label": "Impeccable Beautifier Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-beautifier.md",
+      "description": "Agent that applies visual polish and beautification to UI components"
+    },
+    {
+      "id": "agent-impeccable-color-auditor",
+      "type": "document",
+      "label": "Impeccable Color Auditor Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-color-auditor.md",
+      "description": "Agent that audits color usage and contrast ratios in UI designs"
+    },
+    {
+      "id": "agent-impeccable-component-researcher",
+      "type": "document",
+      "label": "Impeccable Component Researcher Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-component-researcher.md",
+      "description": "Agent that researches UI component patterns and best practices"
+    },
+    {
+      "id": "agent-impeccable-critique-agent",
+      "type": "document",
+      "label": "Impeccable Critique Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-critique-agent.md",
+      "description": "Agent that provides UX/UI critique of designs"
+    },
+    {
+      "id": "agent-impeccable-design-token-agent",
+      "type": "document",
+      "label": "Impeccable Design Token Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-design-token-agent.md",
+      "description": "Agent that manages design token extraction and application"
+    },
+    {
+      "id": "agent-impeccable-page-builder",
+      "type": "document",
+      "label": "Impeccable Page Builder Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-page-builder.md",
+      "description": "Agent that builds complete pages from design specifications"
+    },
+    {
+      "id": "agent-impeccable-page-components",
+      "type": "document",
+      "label": "Impeccable Page Components Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-page-components.md",
+      "description": "Agent that designs and implements UI page components"
+    },
+    {
+      "id": "agent-impeccable-planner",
+      "type": "document",
+      "label": "Impeccable Planner Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-planner.md",
+      "description": "Agent that plans UI design workflows and task decomposition"
+    },
+    {
+      "id": "agent-impeccable-redesigner",
+      "type": "document",
+      "label": "Impeccable Redesigner Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-redesigner.md",
+      "description": "Agent that handles full UI redesign tasks"
+    },
+    {
+      "id": "agent-impeccable-refiner",
+      "type": "document",
+      "label": "Impeccable Refiner Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-refiner.md",
+      "description": "Agent that iteratively refines UI designs based on feedback"
+    },
+    {
+      "id": "agent-impeccable-ux-writer",
+      "type": "document",
+      "label": "Impeccable UX Writer Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-ux-writer.md",
+      "description": "Agent that crafts UX microcopy and content for interfaces"
+    },
+    {
+      "id": "agent-impeccable-wrapper",
+      "type": "document",
+      "label": "Impeccable Wrapper Agent",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-wrapper.md",
+      "description": "Agent that wraps content in impeccables interactive UI overlay"
+    },
+    {
+      "id": "script-impeccable-paths-agent",
+      "type": "script",
+      "label": "impeccable-paths.mjs (agents)",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-paths.mjs",
+      "description": "Path resolution utility for agent-level tools"
+    },
+    {
+      "id": "script-impeccable-colors",
+      "type": "script",
+      "label": "impeccable-colors.mjs",
+      "filePath": ".agents/skills/impeccable/agents/impeccable-colors.mjs",
+      "description": "Color token definitions and palette helpers"
+    },
+    {
+      "id": "script-impeccable-paths-scripts",
+      "type": "script",
+      "label": "impeccable-paths.mjs (scripts)",
+      "filePath": ".agents/skills/impeccable/scripts/impeccable-paths.mjs",
+      "description": "Path resolution utility used by critique and live scripts"
+    },
+    {
+      "id": "script-live-accept",
+      "type": "script",
+      "label": "live-accept.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/live-accept.mjs",
+      "description": "Handles accepting a live preview session result"
+    },
+    {
+      "id": "script-live-wrap",
+      "type": "script",
+      "label": "live-wrap.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/live-wrap.mjs",
+      "description": "Wraps HTML content for live preview rendering"
+    },
+    {
+      "id": "script-render-live-preview",
+      "type": "script",
+      "label": "render-live-preview.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/render-live-preview.mjs",
+      "description": "Renders live preview of UI changes in browser"
+    },
+    {
+      "id": "script-critique-storage",
+      "type": "script",
+      "label": "critique-storage.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-storage.mjs",
+      "description": "Storage layer for critique data persistence"
+    },
+    {
+      "id": "script-critique",
+      "type": "script",
+      "label": "critique.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique.mjs",
+      "description": "Main critique engine — coordinates design review analysis"
+    },
+    {
+      "id": "script-critique-colors",
+      "type": "script",
+      "label": "critique-colors.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-colors.mjs",
+      "description": "Color-specific critique logic: contrast, harmony, accessibility"
+    },
+    {
+      "id": "script-critique-components",
+      "type": "script",
+      "label": "critique-components.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-components.mjs",
+      "description": "Component-level critique: structure, consistency, reusability"
+    },
+    {
+      "id": "script-critique-copy",
+      "type": "script",
+      "label": "critique-copy.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-copy.mjs",
+      "description": "Copy/text critique: tone, clarity, conciseness"
+    },
+    {
+      "id": "script-critique-summary",
+      "type": "script",
+      "label": "critique-summary.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/critique-summary.mjs",
+      "description": "Generates aggregated summary from all critique dimensions"
+    },
+    {
+      "id": "script-cleanup-deprecated",
+      "type": "script",
+      "label": "cleanup-deprecated.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/cleanup-deprecated.mjs",
+      "description": "Removes deprecated skill symlinks and cleans lockfile",
+      "functions": [
+        "findProjectRoot", "loadLock", "isImpeccableSkill", "buildTargetNames",
+        "findSkillsDirs", "removeDeprecatedSkills", "cleanSkillsLock", "cleanup"
+      ]
+    },
+    {
+      "id": "script-detect-csp",
+      "type": "script",
+      "label": "detect-csp.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/detect-csp.mjs",
+      "description": "Detects Content Security Policy configuration across frameworks",
+      "functions": ["detectCsp", "walk"]
+    },
+    {
+      "id": "script-detect",
+      "type": "script",
+      "label": "detect.mjs",
+      "filePath": ".agents/skills/impeccable/scripts/detect.mjs",
+      "description": "Framework/browser detection injected into target pages"
+    },
+    {
+      "id": "script-live-browser-session",
+      "type": "script",
+      "label": "live-browser-session.js",
+      "filePath": ".agents/skills/impeccable/scripts/live-browser-session.js",
+      "description": "Browser session state management for live preview",
+      "functions": [
+        "createLiveBrowserSessionState", "safeRead", "safeWrite", "safeRemove",
+        "loadSession", "saveSession", "clearSession", "nextCheckpointRevision",
+        "seedCheckpointRevision", "markHandled", "isHandled", "clearHandled",
+        "writeScrollY", "readScrollY", "clearScrollY"
+      ]
+    },
+    {
+      "id": "script-live-browser",
+      "type": "script",
+      "label": "live-browser.js",
+      "filePath": ".agents/skills/impeccable/scripts/live-browser.js",
+      "description": "Full live-preview browser agent injected into target page: highlight, annotate, variant cycling, action bar, design panel, SSE, canvas capture, WebGL shader overlay",
+      "functions": [
+        "init", "apply", "own", "pickable", "desc", "id8",
+        "initHighlight", "showHighlight", "hideHighlight",
+        "initAnnotOverlay", "showAnnotOverlay", "hideAnnotOverlay",
+        "initBar", "showBar", "hideBar", "positionBar",
+        "initActionPicker", "toggleActionPicker", "hideActionPicker",
+        "initParamsPanel", "buildParamsPanel", "showParamsPanel", "hideParamsPanel",
+        "initGlobalBar", "togglePick", "toggleDetect", "toggleDesignPanel",
+        "initDesignPanel", "renderDesignChrome", "renderDesignBody",
+        "connectSSE", "sendEvent", "handleGo", "handleAccept", "handleDiscard",
+        "captureElementToBlob", "captureAndEmit",
+        "showShaderOverlay", "compileShader", "frame",
+        "resumeSession", "cleanup", "teardown"
+      ]
+    },
+    {
+      "id": "script-modern-screenshot",
+      "type": "script",
+      "label": "modern-screenshot.umd.js",
+      "filePath": ".agents/skills/impeccable/scripts/modern-screenshot.umd.js",
+      "description": "Third-party screenshot library (UMD) for capturing DOM to image"
+    },
+    {
+      "id": "script-command-metadata",
+      "type": "config",
+      "label": "command-metadata.json",
+      "filePath": ".agents/skills/impeccable/scripts/command-metadata.json",
+      "description": "Maps 23 impeccable commands (craft, teach, document, extract, live, adapt, animate, audit, etc.) to their metadata",
+      "commands": 23
+    }
+  ],
+  "edges": [
+    { "from": "agent-impeccable-planner", "to": "script-critique", "relation": "uses" },
+    { "from": "agent-impeccable-planner", "to": "script-command-metadata", "relation": "uses" },
+    { "from": "agent-impeccable-design-token-agent", "to": "script-impeccable-colors", "relation": "uses" },
+    { "from": "agent-impeccable-design-token-agent", "to": "script-impeccable-paths-agent", "relation": "uses" },
+    { "from": "agent-impeccable-page-builder", "to": "script-render-live-preview", "relation": "uses" },
+    { "from": "agent-impeccable-page-builder", "to": "script-live-browser", "relation": "uses" },
+    { "from": "agent-impeccable-page-components", "to": "script-render-live-preview", "relation": "uses" },
+    { "from": "agent-impeccable-page-components", "to": "script-critique-components", "relation": "uses" },
+    { "from": "agent-impeccable-beautifier", "to": "script-live-accept", "relation": "uses" },
+    { "from": "agent-impeccable-beautifier", "to": "script-live-browser", "relation": "uses" },
+    { "from": "agent-impeccable-color-auditor", "to": "script-critique-colors", "relation": "uses" },
+    { "from": "agent-impeccable-ux-writer", "to": "script-critique-copy", "relation": "uses" },
+    { "from": "agent-impeccable-critique-agent", "to": "script-critique", "relation": "uses" },
+    { "from": "agent-impeccable-critique-agent", "to": "script-critique-storage", "relation": "uses" },
+    { "from": "agent-impeccable-critique-agent", "to": "script-critique-summary", "relation": "uses" },
+    { "from": "agent-impeccable-critique-agent", "to": "script-critique-colors", "relation": "uses" },
+    { "from": "agent-impeccable-critique-agent", "to": "script-critique-components", "relation": "uses" },
+    { "from": "agent-impeccable-critique-agent", "to": "script-critique-copy", "relation": "uses" },
+    { "from": "agent-impeccable-refiner", "to": "script-live-browser", "relation": "uses" },
+    { "from": "agent-impeccable-wrapper", "to": "script-live-wrap", "relation": "uses" },
+    { "from": "agent-impeccable-wrapper", "to": "script-live-browser", "relation": "uses" },
+    { "from": "agent-impeccable-asset-producer", "to": "script-impeccable-paths-scripts", "relation": "uses" },
+    { "from": "agent-impeccable-redesigner", "to": "script-live-browser", "relation": "uses" },
+    { "from": "agent-impeccable-component-researcher", "to": "script-critique-components", "relation": "uses" },
+    { "from": "script-critique", "to": "script-critique-storage", "relation": "imports" },
+    { "from": "script-critique", "to": "script-critique-colors", "relation": "imports" },
+    { "from": "script-critique", "to": "script-critique-components", "relation": "imports" },
+    { "from": "script-critique", "to": "script-critique-copy", "relation": "imports" },
+    { "from": "script-critique", "to": "script-critique-summary", "relation": "imports" },
+    { "from": "script-live-browser", "to": "script-live-browser-session", "relation": "imports" },
+    { "from": "script-live-browser", "to": "script-modern-screenshot", "relation": "imports" },
+    { "from": "script-render-live-preview", "to": "script-live-browser", "relation": "imports" },
+    { "from": "script-render-live-preview", "to": "script-live-accept", "relation": "imports" },
+    { "from": "script-render-live-preview", "to": "script-live-wrap", "relation": "imports" },
+    { "from": "script-cleanup-deprecated", "to": "script-impeccable-paths-scripts", "relation": "imports" },
+    { "from": "script-detect-csp", "to": "script-impeccable-paths-scripts", "relation": "imports" },
+    { "from": "script-live-browser-session", "to": "script-live-browser", "relation": "provides-session-state" },
+    { "from": "script-impeccable-paths-agent", "to": "script-impeccable-paths-scripts", "relation": "sibling" },
+    { "from": "script-impeccable-colors", "to": "script-critique-colors", "relation": "provides-palette" },
+    { "from": "script-command-metadata", "to": "script-critique", "relation": "provides-command-map" },
+    { "from": "agent-impeccable-asset-producer", "to": "agent-impeccable-beautifier", "relation": "feeds-into" },
+    { "from": "agent-impeccable-beautifier", "to": "agent-impeccable-refiner", "relation": "feeds-into" },
+    { "from": "agent-impeccable-refiner", "to": "agent-impeccable-wrapper", "relation": "feeds-into" },
+    { "from": "agent-impeccable-critique-agent", "to": "agent-impeccable-refiner", "relation": "provides-feedback" },
+    { "from": "agent-impeccable-color-auditor", "to": "agent-impeccable-critique-agent", "relation": "feeds-into" },
+    { "from": "agent-impeccable-planner", "to": "agent-impeccable-page-builder", "relation": "delegates-to" },
+    { "from": "agent-impeccable-planner", "to": "agent-impeccable-page-components", "relation": "delegates-to" },
+    { "from": "agent-impeccable-planner", "to": "agent-impeccable-design-token-agent", "relation": "delegates-to" },
+    { "from": "agent-impeccable-design-token-agent", "to": "agent-impeccable-color-auditor", "relation": "validates" },
+    { "from": "agent-impeccable-page-builder", "to": "agent-impeccable-ux-writer", "relation": "collaborates" },
+    { "from": "agent-impeccable-ux-writer", "to": "agent-impeccable-critique-agent", "relation": "feeds-into" },
+    { "from": "agent-impeccable-component-researcher", "to": "agent-impeccable-page-components", "relation": "informs" },
+    { "from": "agent-impeccable-component-researcher", "to": "agent-impeccable-page-builder", "relation": "informs" },
+    { "from": "agent-impeccable-redesigner", "to": "agent-impeccable-page-builder", "relation": "delegates-to" },
+    { "from": "agent-impeccable-redesigner", "to": "agent-impeccable-beautifier", "relation": "delegates-to" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-asset-producer", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-beautifier", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-color-auditor", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-component-researcher", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-critique-agent", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-design-token-agent", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-page-builder", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-page-components", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-planner", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-redesigner", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-refiner", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-ux-writer", "relation": "maintains" },
+    { "from": "script-cleanup-deprecated", "to": "agent-impeccable-wrapper", "relation": "maintains" },
+    { "from": "script-detect-csp", "to": "agent-impeccable-wrapper", "relation": "provides-security-info" },
+    { "from": "script-detect", "to": "agent-impeccable-wrapper", "relation": "provides-framework-info" }
+  ]
+}

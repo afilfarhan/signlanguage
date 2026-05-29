@@ -1,0 +1,23 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "prototype/models/dynamic_labels.json",
+                           "language":  "json",
+                           "sizeLines":  13,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "prototype/models/labels.json",
+                           "language":  "json",
+                           "sizeLines":  56,
+                           "fileCategory":  "config"
+                       },
+                       {
+                           "path":  "prototype/models/parity_samples.json",
+                           "language":  "json",
+                           "sizeLines":  591,
+                           "fileCategory":  "config"
+                       }
+                   ]
+}

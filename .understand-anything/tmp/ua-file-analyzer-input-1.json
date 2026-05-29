@@ -1,0 +1,95 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "signtutor/__tests__/lib.test.ts",
+                           "language":  "typescript",
+                           "sizeLines":  160,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/__tests__/parity.test.ts",
+                           "language":  "typescript",
+                           "sizeLines":  42,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/learn/asl/fingerspelling/[letter]/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  703,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/learn/asl/fingerspelling/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  82,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/learn/asl/settings/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  169,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/learn/asl/words/[slug]/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  562,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/learn/asl/words/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  255,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/practice/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  241,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/app/setup/page.tsx",
+                           "language":  "typescript",
+                           "sizeLines":  478,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/curriculum.ts",
+                           "language":  "typescript",
+                           "sizeLines":  136,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/loadExternals.ts",
+                           "language":  "typescript",
+                           "sizeLines":  99,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/normalize.ts",
+                           "language":  "typescript",
+                           "sizeLines":  172,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/seq-features.ts",
+                           "language":  "typescript",
+                           "sizeLines":  78,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/storage.ts",
+                           "language":  "typescript",
+                           "sizeLines":  122,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "signtutor/src/lib/vocabulary_200.ts",
+                           "language":  "typescript",
+                           "sizeLines":  2598,
+                           "fileCategory":  "code"
+                       }
+                   ]
+}

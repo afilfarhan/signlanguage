@@ -1,0 +1,453 @@
+{
+  "scriptCompleted": true,
+  "filesAnalyzed": 11,
+  "filesSkipped": [],
+  "results": [
+    {
+      "path": "ml/models/dynamic_eval_report.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 79,
+      "nonEmptyLines": 61,
+      "sections": [
+        {
+          "heading": "Eval report — `dynamic_signs_transformer.onnx`",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Headline",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Per-class",
+          "level": 2,
+          "line": 15
+        },
+        {
+          "heading": "Confusion matrix (rows = true, cols = predicted)",
+          "level": 2,
+          "line": 35
+        },
+        {
+          "heading": "Fairness slices (placeholder)",
+          "level": 2,
+          "line": 48
+        },
+        {
+          "heading": "Files",
+          "level": 2,
+          "line": 62
+        },
+        {
+          "heading": "How to serve in the browser",
+          "level": 2,
+          "line": 67
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "path": "ml/models/dynamic_labels.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 14,
+      "nonEmptyLines": 14,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "seq_len",
+          "level": 1,
+          "line": 12
+        },
+        {
+          "heading": "feature_dim",
+          "level": 1,
+          "line": 13
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 3
+      }
+    },
+    {
+      "path": "ml/models/dynamic_robustness_report.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 41,
+      "nonEmptyLines": 33,
+      "sections": [
+        {
+          "heading": "Robustness report — `dynamic_signs_transformer.onnx`",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Robustness slices",
+          "level": 2,
+          "line": 12
+        },
+        {
+          "heading": "What each slice tests",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "Recommended action when a slice fails on real data",
+          "level": 2,
+          "line": 36
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "ml/models/dynamic_robustness_report_AFTER.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 41,
+      "nonEmptyLines": 33,
+      "sections": [
+        {
+          "heading": "Robustness report — `dynamic_signs_transformer.onnx`",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Robustness slices",
+          "level": 2,
+          "line": 12
+        },
+        {
+          "heading": "What each slice tests",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "Recommended action when a slice fails on real data",
+          "level": 2,
+          "line": 36
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "ml/models/dynamic_robustness_report_BEFORE.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 41,
+      "nonEmptyLines": 33,
+      "sections": [
+        {
+          "heading": "Robustness report — `dynamic_signs_transformer.onnx`",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Robustness slices",
+          "level": 2,
+          "line": 12
+        },
+        {
+          "heading": "What each slice tests",
+          "level": 2,
+          "line": 23
+        },
+        {
+          "heading": "Recommended action when a slice fails on real data",
+          "level": 2,
+          "line": 36
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "ml/models/eval_report.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 116,
+      "nonEmptyLines": 94,
+      "sections": [
+        {
+          "heading": "Eval report — `fingerspell_mlp.onnx`",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Headline",
+          "level": 2,
+          "line": 7
+        },
+        {
+          "heading": "Per-class",
+          "level": 2,
+          "line": 16
+        },
+        {
+          "heading": "Confusion matrix (rows = true, cols = predicted)",
+          "level": 2,
+          "line": 52
+        },
+        {
+          "heading": "Synth collisions",
+          "level": 2,
+          "line": 82
+        },
+        {
+          "heading": "Fairness slices (placeholder)",
+          "level": 2,
+          "line": 99
+        },
+        {
+          "heading": "Files",
+          "level": 2,
+          "line": 113
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 7
+      }
+    },
+    {
+      "path": "ml/models/eval_report_v2.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 130,
+      "nonEmptyLines": 104,
+      "sections": [
+        {
+          "heading": "Eval report — `fingerspell_mlp_v2.onnx`",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Headline",
+          "level": 2,
+          "line": 9
+        },
+        {
+          "heading": "Important: Synthetic Data Limitations",
+          "level": 2,
+          "line": 16
+        },
+        {
+          "heading": "Hard Class Performance (Collision Groups)",
+          "level": 2,
+          "line": 36
+        },
+        {
+          "heading": "Per-class",
+          "level": 2,
+          "line": 50
+        },
+        {
+          "heading": "Confusion matrix (rows = true, cols = predicted)",
+          "level": 2,
+          "line": 86
+        },
+        {
+          "heading": "Feature Engineering",
+          "level": 2,
+          "line": 116
+        },
+        {
+          "heading": "Files",
+          "level": 2,
+          "line": 127
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 8
+      }
+    },
+    {
+      "path": "ml/models/jz_eval_report.md",
+      "language": "markdown",
+      "fileCategory": "docs",
+      "totalLines": 35,
+      "nonEmptyLines": 24,
+      "sections": [
+        {
+          "heading": "J/Z Classifier Evaluation",
+          "level": 1,
+          "line": 1
+        },
+        {
+          "heading": "Model",
+          "level": 2,
+          "line": 3
+        },
+        {
+          "heading": "Results",
+          "level": 2,
+          "line": 10
+        },
+        {
+          "heading": "Classification Report",
+          "level": 3,
+          "line": 16
+        },
+        {
+          "heading": "Confusion Matrix",
+          "level": 3,
+          "line": 30
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 5
+      }
+    },
+    {
+      "path": "ml/models/jz_labels.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 9,
+      "nonEmptyLines": 9,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "seq_len",
+          "level": 1,
+          "line": 6
+        },
+        {
+          "heading": "feature_dim",
+          "level": 1,
+          "line": 7
+        },
+        {
+          "heading": "n_classes",
+          "level": 1,
+          "line": 8
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 4
+      }
+    },
+    {
+      "path": "ml/models/labels.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 57,
+      "nonEmptyLines": 57,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "synth_collisions",
+          "level": 1,
+          "line": 28
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 2
+      }
+    },
+    {
+      "path": "ml/models/labels_v2.json",
+      "language": "json",
+      "fileCategory": "config",
+      "totalLines": 74,
+      "nonEmptyLines": 74,
+      "sections": [
+        {
+          "heading": "labels",
+          "level": 1,
+          "line": 2
+        },
+        {
+          "heading": "synth_collisions",
+          "level": 1,
+          "line": 28
+        },
+        {
+          "heading": "feature_dim",
+          "level": 1,
+          "line": 57
+        },
+        {
+          "heading": "geometry_features",
+          "level": 1,
+          "line": 58
+        },
+        {
+          "heading": "hard_classes",
+          "level": 1,
+          "line": 65
+        },
+        {
+          "heading": "hard_class_weight",
+          "level": 1,
+          "line": 73
+        }
+      ],
+      "metrics": {
+        "importCount": 0,
+        "exportCount": 0,
+        "functionCount": 0,
+        "classCount": 0,
+        "sectionCount": 6
+      }
+    }
+  ]
+}

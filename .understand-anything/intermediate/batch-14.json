@@ -1,0 +1,140 @@
+{
+  "nodes": [
+    {
+      "id": "prototype__README_md",
+      "type": "documentation",
+      "filePath": "prototype/README.md",
+      "lines": 205,
+      "language": "markdown",
+      "category": "docs",
+      "label": "Prototype README",
+      "observations": [
+        "Root-level documentation for the prototype bundle",
+        "Describes 4 working pages: wizard.html, index.html, dynamic.html, educator.html",
+        "Describes CI pipeline with ml-gate.yml enforcing NFR-9 (accuracy) and NFR-10 (robustness) gates",
+        "Documents 3 ML pipelines: static MLP, dynamic Transformer, CI gate pipeline",
+        "Maps implementation to PDR requirements (S-01, S-05, S-06, EPIC-15)"
+      ]
+    },
+    {
+      "id": "prototype__home_html",
+      "type": "markup",
+      "filePath": "prototype/home.html",
+      "lines": 190,
+      "language": "HTML",
+      "category": "entry-point",
+      "label": "Home page (entry point)",
+      "observations": [
+        "Entry-point landing page for the prototype bundle",
+        "Dark-themed bioluminescent UI design",
+        "Links to 4 pages: wizard.html, index.html, dynamic.html, educator.html",
+        "Displays CI/release-gate section describing ML gate workflow",
+        "Contains section listing bundle map with all file references",
+        "Uses CSS custom properties for theming (--bg, --panel, --accent, etc.)",
+        "Badges: On-device, MediaPipe Hands, ONNX MLP, Transformer, WCAG-conscious"
+      ]
+    },
+    {
+      "id": "prototype__camera_html",
+      "type": "markup",
+      "filePath": "prototype/camera.html",
+      "lines": 0,
+      "language": "HTML",
+      "category": "phantom",
+      "label": "MISSING — camera.html does not exist on disk",
+      "observations": [
+        "File does not exist at prototype/camera.html",
+        "The actual camera-setup wizard is at prototype/wizard.html",
+        "Likely intended to be wizard.html but listed under wrong name in batch manifest"
+      ]
+    },
+    {
+      "id": "prototype_pages__library_html",
+      "type": "markup",
+      "filePath": "prototype/pages/library.html",
+      "lines": 0,
+      "language": "HTML",
+      "category": "phantom",
+      "label": "MISSING — pages/library.html does not exist on disk",
+      "observations": [
+        "File does not exist at prototype/pages/library.html",
+        "No pages/ subdirectory exists in prototype/",
+        "No library/index page exists anywhere in prototype/"
+      ]
+    },
+    {
+      "id": "prototype_pages__settings_html",
+      "type": "markup",
+      "filePath": "prototype/pages/settings.html",
+      "lines": 0,
+      "language": "HTML",
+      "category": "phantom",
+      "label": "MISSING — pages/settings.html does not exist on disk",
+      "observations": [
+        "File does not exist at prototype/pages/settings.html",
+        "No pages/ subdirectory exists in prototype/",
+        "No settings page exists anywhere in prototype/"
+      ]
+    },
+    {
+      "id": "prototype_pages__stats_html",
+      "type": "markup",
+      "filePath": "prototype/pages/stats.html",
+      "lines": 0,
+      "language": "HTML",
+      "category": "phantom",
+      "label": "MISSING — pages/stats.html does not exist on disk",
+      "observations": [
+        "File does not exist at prototype/pages/stats.html",
+        "No pages/ subdirectory exists in prototype/",
+        "No stats page exists anywhere in prototype/"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "from": "prototype__README_md",
+      "to": "prototype__home_html",
+      "label": "describes"
+    },
+    {
+      "from": "prototype__home_html",
+      "to": "prototype__README_md",
+      "label": "described_by"
+    },
+    {
+      "from": "prototype__home_html",
+      "to": "prototype__camera_html",
+      "label": "names_as_page_but_actual_file_is_wizard_html"
+    },
+    {
+      "from": "prototype__home_html",
+      "to": "prototype_pages__library_html",
+      "label": "does_not_reference"
+    },
+    {
+      "from": "prototype__home_html",
+      "to": "prototype_pages__settings_html",
+      "label": "does_not_reference"
+    },
+    {
+      "from": "prototype__home_html",
+      "to": "prototype_pages__stats_html",
+      "label": "does_not_reference"
+    }
+  ],
+  "warnings": [
+    "4 of 6 files listed in this batch do not exist on disk",
+    "Batch lists prototype/camera.html but actual file is prototype/wizard.html",
+    "Batch lists prototype/pages/*.html but no pages/ subdirectory exists — the prototype has no library/settings/stats pages",
+    "The actual prototype has 5 HTML pages: home.html, wizard.html, index.html, dynamic.html, educator.html"
+  ],
+  "_meta": {
+    "batchId": 14,
+    "totalBatches": 19,
+    "filesAnalyzed": 2,
+    "filesMissing": 4,
+    "project": "signlanguage",
+    "subsystem": "prototype"
+  }
+}

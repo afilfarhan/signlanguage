@@ -1,0 +1,47 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "ml/eval_robustness.py",
+                           "language":  "python",
+                           "sizeLines":  142,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/seq_features.py",
+                           "language":  "python",
+                           "sizeLines":  55,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/synth_jz_sequences.py",
+                           "language":  "python",
+                           "sizeLines":  213,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/synth_sequences.py",
+                           "language":  "python",
+                           "sizeLines":  182,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/train_jz_classifier.py",
+                           "language":  "python",
+                           "sizeLines":  213,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/train_transformer.py",
+                           "language":  "python",
+                           "sizeLines":  279,
+                           "fileCategory":  "code"
+                       },
+                       {
+                           "path":  "ml/train_transformer_v2.py",
+                           "language":  "python",
+                           "sizeLines":  269,
+                           "fileCategory":  "code"
+                       }
+                   ]
+}

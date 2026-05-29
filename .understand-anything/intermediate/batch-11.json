@@ -1,0 +1,183 @@
+{
+  "nodes": [
+    {
+      "id": "doc-pdr-review-01",
+      "type": "document",
+      "label": "PDR Review — Sign Language Learning Web Platform",
+      "file": "pdr-review/01-PDR-Review.md",
+      "category": "docs",
+      "lines": 139,
+      "sections": 13,
+      "description": "Critique + gap analysis of PDR v1. Covers executive summary, strengths, section-by-section critique, 12 cross-cutting gaps (G1–G12), prioritized recommendations (P0–P2), risk register, and what changed in v2."
+    },
+    {
+      "id": "doc-pdr-review-02",
+      "type": "document",
+      "label": "PDR v2 Refined — Product Design Requirement",
+      "file": "pdr-review/02-PDR-v2-Refined.md",
+      "category": "docs",
+      "lines": 254,
+      "sections": 37,
+      "description": "Full refined PDR spec. TL;DR, background, goals/non-goals (G1–G5, N1–N4), personas (Hana, Farid, Eli), 6 user stories, MVP/v1/v2 scope matrix, functional requirements (FR-1..FR-5), 10 non-functional requirements (NFR-1..NFR-10), technical architecture (MediaPipe → Transformer/ST-GCN → ONNX Runtime Web), data strategy, privacy/security, accessibility, success metrics, 6-milestone roadmap, risks, glossary."
+    },
+    {
+      "id": "doc-pdr-review-03",
+      "type": "document",
+      "label": "PDR v2 One-Page Summary (HTML)",
+      "file": "pdr-review/03-PDR-summary.html",
+      "category": "markup",
+      "lines": 239,
+      "description": "Visual one-page summary of PDR v2. Cards for description, KPIs (<60s, <300ms, ≥85% acc, ≥95 a11y), personas, architecture, scope-by-release table, privacy/accessibility, fairness, roadmap (M0–M5), and key changes from v1."
+    },
+    {
+      "id": "doc-pdr-review-04",
+      "type": "document",
+      "label": "Epics & User Stories — Jira-Ready Backlog",
+      "file": "pdr-review/04-Epics-and-Stories.md",
+      "category": "docs",
+      "lines": 271,
+      "sections": 90,
+      "description": "Decomposed backlog from PDR v2. 17 epics (EPIC-01..EPIC-17), 65 stories/spikes (S-01..S-65, SPK-01..SPK-03), 6 cross-cutting tasks (T-01..T-06), release plan mapped to milestones M1–M5, Given/When/Then acceptance criteria, definitions of ready and done."
+    },
+    {
+      "id": "config-skills-lock",
+      "type": "config",
+      "label": "Skills Lock Configuration",
+      "file": "skills-lock.json",
+      "category": "config",
+      "lines": 11,
+      "description": "Version 1 skill lock. Locks 'impeccable' skill from GitHub source pbakaus/impeccable with SHA-256 hash e08cc9... for integrity verification."
+    },
+    {
+      "id": "persona-hana",
+      "type": "concept",
+      "label": "Persona: Hana (hearing learner)",
+      "description": "Primary persona — hearing adult learning sign language to communicate with a Deaf colleague."
+    },
+    {
+      "id": "persona-farid",
+      "type": "concept",
+      "label": "Persona: Farid (family member)",
+      "description": "Parent of a Deaf child, motivated but irregular practice schedule."
+    },
+    {
+      "id": "persona-eli",
+      "type": "concept",
+      "label": "Persona: Eli (educator)",
+      "description": "Educator assigning practice, v2 persona."
+    },
+    {
+      "id": "gap-analysis",
+      "type": "concept",
+      "label": "Cross-Cutting Gap Analysis",
+      "description": "12 gaps identified in PDR v1: no personas/user stories (G1), no KPIs (G2), no MVP boundary (G3), no accessibility commitment (G4), no data/privacy (G5), no Deaf community plan (G6), no content plan (G7), no model evaluation (G8), no fairness (G9), no risks section (G10), no roadmap (G11), no analytics loop (G12)."
+    },
+    {
+      "id": "recognition-pipeline",
+      "type": "concept",
+      "label": "Recognition Pipeline",
+      "description": "MediaPipe Holistic landmarks → MLP for static fingerspelling + sliding-window Transformer/ST-GCN for dynamic signs → ONNX Runtime Web / TF.js, WebGPU when available."
+    },
+    {
+      "id": "feedback-taxonomy",
+      "type": "concept",
+      "label": "Structured Feedback Taxonomy",
+      "description": "Four-component feedback: handshape, location, movement, palm orientation. v2 adds non-manual markers (brow, mouth, head tilt). Confidence-gated verdict avoids false 'wrong' labels."
+    },
+    {
+      "id": "privacy-posture",
+      "type": "concept",
+      "label": "Privacy & On-Device Posture",
+      "description": "On-device inference by default, no webcam frames or landmarks leave the browser, persistent '🔒 On-device' indicator, opt-in sync/donation, COPPA/FERPA-ready, one-click data deletion."
+    },
+    {
+      "id": "epic-17-map",
+      "type": "concept",
+      "label": "17 Epic Breakdown",
+      "description": "EPIC-01 Camera/runtime, EPIC-02 Recognition/feedback, EPIC-03 Lesson UI, EPIC-04 Curriculum/content, EPIC-05 Multi-language, EPIC-06 Accessibility, EPIC-07 Privacy/security, EPIC-08 Onboarding, EPIC-09 Model evaluation, EPIC-10 Trust UX, EPIC-11 Telemetry, EPIC-12 Beta, EPIC-13 Marketing, EPIC-14 NMM scoring, EPIC-15 Educator dashboard, EPIC-16 PWA/offline, EPIC-17 Continuous SLR."
+    },
+    {
+      "id": "milestone-map",
+      "type": "concept",
+      "label": "6-Milestone Roadmap",
+      "description": "M0 Discovery/advisory (4w), M1 Technical spike (4w), M2 MVP build (10w), M3 Closed beta (4w), M4 Public launch (4w), M5 v2 features (rolling)."
+    }
+  ],
+  "edges": [
+    {
+      "from": "doc-pdr-review-01",
+      "to": "doc-pdr-review-02",
+      "label": "critique_of"
+    },
+    {
+      "from": "doc-pdr-review-01",
+      "to": "gap-analysis",
+      "label": "identifies"
+    },
+    {
+      "from": "doc-pdr-review-02",
+      "to": "doc-pdr-review-01",
+      "label": "addresses_feedback_from"
+    },
+    {
+      "from": "doc-pdr-review-02",
+      "to": "persona-hana",
+      "label": "defines"
+    },
+    {
+      "from": "doc-pdr-review-02",
+      "to": "persona-farid",
+      "label": "defines"
+    },
+    {
+      "from": "doc-pdr-review-02",
+      "to": "persona-eli",
+      "label": "defines"
+    },
+    {
+      "from": "doc-pdr-review-02",
+      "to": "recognition-pipeline",
+      "label": "specifies"
+    },
+    {
+      "from": "doc-pdr-review-02",
+      "to": "feedback-taxonomy",
+      "label": "specifies"
+    },
+    {
+      "from": "doc-pdr-review-02",
+      "to": "privacy-posture",
+      "label": "specifies"
+    },
+    {
+      "from": "doc-pdr-review-02",
+      "to": "milestone-map",
+      "label": "defines"
+    },
+    {
+      "from": "doc-pdr-review-03",
+      "to": "doc-pdr-review-02",
+      "label": "summarizes"
+    },
+    {
+      "from": "doc-pdr-review-04",
+      "to": "doc-pdr-review-02",
+      "label": "derived_from"
+    },
+    {
+      "from": "doc-pdr-review-04",
+      "to": "epic-17-map",
+      "label": "decomposes_into"
+    },
+    {
+      "from": "doc-pdr-review-04",
+      "to": "milestone-map",
+      "label": "maps_to"
+    },
+    {
+      "from": "gap-analysis",
+      "to": "doc-pdr-review-02",
+      "label": "motivated_refinement_of"
+    }
+  ]
+}

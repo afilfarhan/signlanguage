@@ -1,0 +1,41 @@
+{
+    "projectRoot":  "D:\\signlanguage",
+    "batchFiles":  [
+                       {
+                           "path":  "prototype/README.md",
+                           "language":  "markdown",
+                           "sizeLines":  205,
+                           "fileCategory":  "docs"
+                       },
+                       {
+                           "path":  "prototype/dynamic.html",
+                           "language":  "html",
+                           "sizeLines":  539,
+                           "fileCategory":  "markup"
+                       },
+                       {
+                           "path":  "prototype/educator.html",
+                           "language":  "html",
+                           "sizeLines":  395,
+                           "fileCategory":  "markup"
+                       },
+                       {
+                           "path":  "prototype/home.html",
+                           "language":  "html",
+                           "sizeLines":  190,
+                           "fileCategory":  "markup"
+                       },
+                       {
+                           "path":  "prototype/index.html",
+                           "language":  "html",
+                           "sizeLines":  852,
+                           "fileCategory":  "markup"
+                       },
+                       {
+                           "path":  "prototype/wizard.html",
+                           "language":  "html",
+                           "sizeLines":  431,
+                           "fileCategory":  "markup"
+                       }
+                   ]
+}
