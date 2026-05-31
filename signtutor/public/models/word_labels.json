@@ -21,7 +21,7 @@
     "TELL",
     "ASK"
   ],
-  "vocab_size": 20,
+  "vocab_size": 22,
   "t_frames": 60,
   "feature_dim": 126,
   "d_model": 128,

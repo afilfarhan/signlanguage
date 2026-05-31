@@ -70,10 +70,13 @@ export default function DynamicSignPage() {
     }
   }, [router]);
 
-  const vocabSign = getSignById(slug);
-  const isMLSign = ML_SIGNS.has(slug.toUpperCase());
-  const signGloss = vocabSign ? vocabSign.gloss : slug.toUpperCase();
-  const signDescription = vocabSign ? vocabSign.description : (SIGN_DESCRIPTIONS[signGloss as keyof typeof SIGN_DESCRIPTIONS] || WORD_SIGN_DESCRIPTIONS[signGloss] || "");
+const vocabSign = getSignById(slug);
+const SLUG_GLOSS_ALIASES: Record<string, string> = { thank_you: "THANKS" };
+const signGloss = vocabSign ? (SLUG_GLOSS_ALIASES[slug] || vocabSign.gloss) : slug.toUpperCase();
+const target = signGloss;
+const signDescription = vocabSign ? vocabSign.description : (SIGN_DESCRIPTIONS[signGloss as keyof typeof SIGN_DESCRIPTIONS] || WORD_SIGN_DESCRIPTIONS[signGloss] || "");
+const isMLSign = ML_SIGNS.has(target);
+
   
 
   const [prefs, setPrefs] = useState<Prefs>(() => {
@@ -267,7 +270,7 @@ export default function DynamicSignPage() {
           onModelError();
         }
       }
-      if (!wordSessionRef.current && onnxLibsRef.current && !modelReady) {
+      if (!wordSessionRef.current && onnxLibsRef.current) {
         try {
           const wSession = await onnxLibsRef.current.InferenceSession.create("/models/word_transformer.onnx", { executionProviders: ["wasm"] });
           const wResp = await fetch("/models/word_labels.json");
