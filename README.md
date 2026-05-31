@@ -66,11 +66,60 @@ Model files under `public/models/` are served as static assets.
 
 ## Privacy
 
--  **On-device by default** — no webcam frames or hand landmarks leave the device.
--  **No account required** — start your first lesson in under 60 seconds.
--  **No analytics during practice** — the only network requests on lesson pages are to load model files.
+- **On-device by default** — no webcam frames or hand landmarks leave the device.
+- **No account required** — start your first lesson in under 60 seconds.
+- **No analytics during practice** — the only network requests on lesson pages are to load model files.
 
 For details, see the [Privacy Policy](/privacy) page.
+
+## ML Pipeline
+
+### Alphabet (static) — 24 letters
+- **Model**: sklearn MLP → `fingerspell_mlp.onnx` (63-dim per-frame features)
+- **Normalization**: per-frame wrist-anchor + palm-scale (`features.py`)
+- **Training**: `python ml/train_export_v2.py`
+
+### Dynamic signs — 8 signs
+- **Model**: Transformer Encoder (d=128, 4 layers, 8 heads) → `dynamic_signs_transformer.onnx`
+- **Normalization**: sequence-level first-frame anchor + velocity (`seq_features.py`, 126-dim)
+- **Training**: `python ml/train_transformer.py`
+
+### Word recognition — 100 words
+- **Model**: WordTransformer (d=128, 4 layers, 8 heads, T=60) → `word_transformer.onnx`
+- **Vocab**: `ml/models/vocab_v1.json` (100 ASL conversation words)
+- **Normalization**: same `seq_features.py` contract (126-dim)
+- **Training**: `python ml/train_word_model.py --source synth`
+- **Evaluation**: `python ml/evaluate.py --source synth --benchmark --sweep`
+- **Inference**: `python -m ml.inference.recogniser --source dry-run --mode word`
+
+### Retrain on real data
+```bash
+# 1. Prepare dataset (ASL Citizen or WLASL)
+python -m ml.data.prepare_word_dataset --source asl_citizen --manifest path/to/manifest.json
+
+# 2. Train (optionally from pretrained dynamic model)
+python ml/train_word_model.py --source asl_citizen --pretrained ml/models/dynamic_transformer_v2.pt --freeze-encoder
+
+# 3. Evaluate
+python ml/evaluate.py --source asl_citizen --benchmark --sweep
+
+# 4. Copy to public/models for browser serving
+copy ml\models\word_transformer.onnx signtutor\public\models\
+copy ml\models\word_labels.json signtutor\public\models\
+```
+
+### Hardware requirements
+
+| Mode | Min CPU | Rec GPU | Latency (ONNX CPU) | Latency (PyTorch GPU) |
+|---|---|---|---|---|
+| Alphabet | any | — | <1 ms | — |
+| 8 dynamic | any | — | ~1 ms | — |
+| 100 words | 4-core | GTX 1060+ | ~1.2 ms | ~2.7 ms (CPU) / <1 ms (GPU) |
+
+### Latency / Accuracy tradeoff
+
+Use `--sweep` to find the optimal confidence threshold. Higher thresholds give
+better precision at the cost of coverage (some predictions are rejected).
 
 ## License
 

@@ -1,4 +1,5 @@
 export const T_FRAMES = 45;
+export const WORD_T_FRAMES = 60;
 export const N_LANDMARKS = 21;
 export const FEATURE_DIM = N_LANDMARKS * 3 * 2;
 

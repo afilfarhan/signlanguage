@@ -1,0 +1,15 @@
+{
+  "vocab_size": 20,
+  "t_frames": 60,
+  "feature_dim": 126,
+  "d_model": 128,
+  "n_heads": 8,
+  "n_layers": 4,
+  "ff_dim": 256,
+  "dropout": 0.1,
+  "mode": "word",
+  "head_type": "softmax",
+  "ctc_blank": -1,
+  "pretrained_path": null,
+  "freeze_encoder": false
+}

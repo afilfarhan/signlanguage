@@ -199,9 +199,9 @@ def main():
         gpu_target = 30
         torch_pass = torch_fps >= (gpu_target if device == "cuda" else cpu_target)
         onnx_pass = onnx_fps >= cpu_target
-        print(f"  Latency target (CPU ≥{cpu_target} FPS): {'PASS' if onnx_pass else 'FAIL'}")
+        print(f"  Latency target (CPU >={cpu_target} FPS): {'PASS' if onnx_pass else 'FAIL'}")
         if device == "cuda":
-            print(f"  Latency target (GPU ≥{gpu_target} FPS): {'PASS' if torch_pass else 'FAIL'}")
+            print(f"  Latency target (GPU >={gpu_target} FPS): {'PASS' if torch_pass else 'FAIL'}")
 
     if args.sweep:
         print(f"\n--- Confidence Threshold Sweep ---")

@@ -1,0 +1,30 @@
+{
+  "labels": [
+    "HELLO",
+    "GOODBYE",
+    "YES",
+    "NO",
+    "PLEASE",
+    "THANKS",
+    "SORRY",
+    "HELP",
+    "WANT",
+    "NEED",
+    "LIKE",
+    "LOVE",
+    "KNOW",
+    "THINK",
+    "FEEL",
+    "SEE",
+    "HEAR",
+    "SAY",
+    "TELL",
+    "ASK"
+  ],
+  "vocab_size": 20,
+  "t_frames": 60,
+  "feature_dim": 126,
+  "d_model": 128,
+  "n_layers": 4,
+  "n_heads": 8
+}

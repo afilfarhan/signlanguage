@@ -68,17 +68,13 @@ def normalize_sequence_word(buffer: np.ndarray) -> np.ndarray:
     normed = normalize_sequence(buffer)
     T = normed.shape[0]
     if T < WORD_SEQ_LEN:
-        padded = np.zeros((WORD_SEQ_LEN, 21, 6), dtype=np.float32)
+        padded = np.zeros((WORD_SEQ_LEN, WORD_FEATURE_DIM), dtype=np.float32)
         padded[:T] = normed
         normed = padded
     elif T > WORD_SEQ_LEN:
         start = (T - WORD_SEQ_LEN) // 2
         normed = normed[start:start + WORD_SEQ_LEN]
-    flat = normed.reshape(WORD_SEQ_LEN, -1)
-    if flat.shape[1] < WORD_FEATURE_DIM:
-        pad = np.zeros((WORD_SEQ_LEN, WORD_FEATURE_DIM - flat.shape[1]), dtype=np.float32)
-        flat = np.concatenate([flat, pad], axis=1)
-    return flat[:, :WORD_FEATURE_DIM]
+    return normed[:, :WORD_FEATURE_DIM]
 
 
 class MediaPipeHands:

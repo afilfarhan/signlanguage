@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
-import { normalizeSequence, T_FRAMES, N_LANDMARKS, FEATURE_DIM } from "@/lib/seq-features";
+import { normalizeSequenceFixed, T_FRAMES, WORD_T_FRAMES, N_LANDMARKS, FEATURE_DIM } from "@/lib/seq-features";
 import { DYNAMIC_SIGNS, SIGN_DESCRIPTIONS } from "@/lib/curriculum";
 import { getSignById } from "@/lib/vocabulary_200";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
@@ -18,14 +18,45 @@ type Verdict = "match" | "close" | "miss";
 interface RankedResult { label: string; prob: number; }
 
 function computeTip(verdict: Verdict, top: RankedResult, target: string): string {
-  const desc = SIGN_DESCRIPTIONS[target as keyof typeof SIGN_DESCRIPTIONS] || target;
+  const desc = SIGN_DESCRIPTIONS[target as keyof typeof SIGN_DESCRIPTIONS]
+    || WORD_SIGN_DESCRIPTIONS[target]
+    || target;
   if (verdict === "match") return `<strong>Nice — that's "${target}".</strong> Try once more to confirm.`;
   if (verdict === "miss") return "Couldn't read your sign clearly — try again with the hand fully in frame and consistent lighting.";
   if (top.label === target) return `Looks like "${target}" but confidence is only ${(top.prob * 100) | 0}%. Slow down and exaggerate the motion slightly.`;
   return `That came out closer to <strong>"${top.label}"</strong>. Re-watch the demo: <i>${desc}</i>`;
 }
 
-const ML_SIGNS = new Set<string>(DYNAMIC_SIGNS as unknown as string[]);
+const WORD_SIGNS = [
+  "HELLO", "GOODBYE", "YES", "NO", "PLEASE", "THANKS", "SORRY", "HELP",
+  "WANT", "NEED", "LIKE", "LOVE", "KNOW", "THINK", "FEEL", "SEE",
+  "HEAR", "SAY", "TELL", "ASK",
+] as const;
+
+const WORD_SIGN_DESCRIPTIONS: Record<string, string> = {
+  HELLO: "Right hand starts near forehead, salutes outward.",
+  GOODBYE: "Open hand at chest height, fingers wave (curl/uncurl).",
+  YES: "Closed fist, nods up-down twice.",
+  NO: "Index and middle extended, snap closed twice.",
+  PLEASE: "Flat hand on chest, small circular motion.",
+  THANKS: "Flat hand starts at chin, moves outward.",
+  SORRY: "Closed fist on chest, small circular motion.",
+  HELP: "Closed fist lifts upward (on a flat palm in real ASL).",
+  WANT: "Both claw hands pull toward body.",
+  NEED: "Index finger bends down, then straightens.",
+  LIKE: "Middle and thumb on chest, pull away.",
+  LOVE: "Cross arms over chest, hug self.",
+  KNOW: "Fingertips tap temple.",
+  THINK: "Index finger taps temple.",
+  FEEL: "Middle finger slides up chest.",
+  SEE: "V-hand from eye moves forward.",
+  HEAR: "Index finger near ear, flicks out.",
+  SAY: "Index finger taps chin, moves forward.",
+  TELL: "Index finger from chin moves forward.",
+  ASK: "Index finger on chin, hand moves toward listener.",
+};
+
+const ML_SIGNS = new Set<string>([...DYNAMIC_SIGNS, ...WORD_SIGNS] as unknown as string[]);
 
 export default function DynamicSignPage() {
   const params = useParams();
@@ -42,7 +73,7 @@ export default function DynamicSignPage() {
   const vocabSign = getSignById(slug);
   const isMLSign = ML_SIGNS.has(slug.toUpperCase());
   const signGloss = vocabSign ? vocabSign.gloss : slug.toUpperCase();
-  const signDescription = vocabSign ? vocabSign.description : (SIGN_DESCRIPTIONS[signGloss as keyof typeof SIGN_DESCRIPTIONS] || "");
+  const signDescription = vocabSign ? vocabSign.description : (SIGN_DESCRIPTIONS[signGloss as keyof typeof SIGN_DESCRIPTIONS] || WORD_SIGN_DESCRIPTIONS[signGloss] || "");
   
 
   const [prefs, setPrefs] = useState<Prefs>(() => {
@@ -69,6 +100,9 @@ export default function DynamicSignPage() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
   const sessionRef = useRef<OrtSession | null>(null);
+  const wordSessionRef = useRef<OrtSession | null>(null);
+  const [activeSeqLen, setActiveSeqLen] = useState(T_FRAMES);
+  const activeSeqLenRef = useRef(T_FRAMES);
   const handsRef = useRef<MediaPipeHands | null>(null);
   const cameraRef = useRef<MediaPipeCamera | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
@@ -81,17 +115,18 @@ export default function DynamicSignPage() {
   const mpLibsRef = useRef<MediaPipeLibs | null>(null);
   const onnxLibsRef = useRef<ONNXLibs | null>(null);
   const modelLabelsRef = useRef<string[]>([]);
+  const wordModelLabelsRef = useRef<string[]>([]);
 
   useEffect(() => { targetRef.current = signGloss; }, [signGloss]);
   useEffect(() => { recordingRef.current = recording; }, [recording]);
   useEffect(() => { continuousRef.current = continuous; }, [continuous]);
 
-  const runInference = useCallback(async (session: OrtSession, buf: Float32Array[], target: string) => {
-    if (buf.length < T_FRAMES) return;
+  const runInference = useCallback(async (session: OrtSession, buf: Float32Array[], target: string, seqLen: number) => {
+    if (buf.length < seqLen) return;
     const t0 = performance.now();
-    const flat = normalizeSequence(buf);
+    const flat = normalizeSequenceFixed(buf, seqLen);
     if (!onnxLibsRef.current) return;
-    const tensor = new onnxLibsRef.current.Tensor("float32", flat, [1, T_FRAMES, FEATURE_DIM]);
+    const tensor = new onnxLibsRef.current.Tensor("float32", flat, [1, seqLen, FEATURE_DIM]);
     const out = await session.run({ input: tensor });
     const logits = out.logits.data;
     const max = Math.max(...logits);
@@ -122,6 +157,16 @@ export default function DynamicSignPage() {
       if (!ctx || !overlayRef.current) return;
       ctx.clearRect(0, 0, overlayRef.current.width, overlayRef.current.height);
       const lm = results.multiHandLandmarks?.[0] || null;
+
+      const target = targetRef.current;
+      const isWordSign = WORD_SIGNS.includes(target.toUpperCase() as typeof WORD_SIGNS[number]);
+      const activeSession = isWordSign && wordSessionRef.current ? wordSessionRef.current : sessionRef.current;
+      const seqLen = isWordSign && wordSessionRef.current ? WORD_T_FRAMES : T_FRAMES;
+      activeSeqLenRef.current = seqLen;
+      if (isWordSign && wordSessionRef.current) {
+        modelLabelsRef.current = wordModelLabelsRef.current;
+      }
+
       if (lm) {
         setHudHand("Hand detected");
         const libs = mpLibsRef.current;
@@ -136,24 +181,20 @@ export default function DynamicSignPage() {
           arr[i * 3 + 2] = lm[i].z || 0;
         }
         bufferRef.current.push(arr);
-        if (bufferRef.current.length > T_FRAMES) bufferRef.current.shift();
+        if (bufferRef.current.length > seqLen + 10) bufferRef.current.shift();
         setBufferCount(bufferRef.current.length);
 
         framesSinceInferRef.current++;
-        if (recordingRef.current && bufferRef.current.length >= T_FRAMES) {
+        if (recordingRef.current && bufferRef.current.length >= seqLen) {
           const buf = bufferRef.current;
-          const session = sessionRef.current;
-          const target = targetRef.current;
-          if (session && modelLabelsRef.current.length > 0) {
-            inferFn(session, buf, target).finally(() => { setRecording(false); });
+          if (activeSession && modelLabelsRef.current.length > 0) {
+            inferFn(activeSession, buf, target, seqLen).finally(() => { setRecording(false); });
           }
-        } else if (continuousRef.current && bufferRef.current.length >= T_FRAMES && framesSinceInferRef.current >= 10) {
+        } else if (continuousRef.current && bufferRef.current.length >= seqLen && framesSinceInferRef.current >= 10) {
           framesSinceInferRef.current = 0;
           const buf = bufferRef.current;
-          const session = sessionRef.current;
-          const target = targetRef.current;
-          if (session && modelLabelsRef.current.length > 0) {
-            inferFn(session, buf, target);
+          if (activeSession && modelLabelsRef.current.length > 0) {
+            inferFn(activeSession, buf, target, seqLen);
           }
         }
       } else {
@@ -175,6 +216,7 @@ export default function DynamicSignPage() {
   const onModelLoaded = useCallback((labels: string[], session: OrtSession, seqLen: number) => {
     sessionRef.current = session;
     modelLabelsRef.current = labels;
+    activeSeqLenRef.current = seqLen;
     setModelReady(true);
     setModelBadge(`Transformer · ${labels.length} signs · seq=${seqLen}`);
   }, []);
@@ -209,15 +251,34 @@ export default function DynamicSignPage() {
         }
       }
 
-      // Load ML model
+      // Load ML models
       if (!sessionRef.current && onnxLibsRef.current && !modelReady) {
         try {
           const session = await onnxLibsRef.current.InferenceSession.create("/models/dynamic_signs_transformer.onnx", { executionProviders: ["wasm"] });
           const resp = await fetch("/models/dynamic_labels.json");
           const meta = await resp.json();
-          onModelLoaded(meta.labels, session, meta.seq_len);
+          sessionRef.current = session;
+          if (!wordSessionRef.current) {
+            onModelLoaded(meta.labels, session, meta.seq_len);
+            activeSeqLenRef.current = meta.seq_len;
+            setActiveSeqLen(meta.seq_len);
+          }
         } catch {
           onModelError();
+        }
+      }
+      if (!wordSessionRef.current && onnxLibsRef.current && !modelReady) {
+        try {
+          const wSession = await onnxLibsRef.current.InferenceSession.create("/models/word_transformer.onnx", { executionProviders: ["wasm"] });
+          const wResp = await fetch("/models/word_labels.json");
+          const wMeta = await wResp.json();
+          wordSessionRef.current = wSession;
+          wordModelLabelsRef.current = wMeta.labels;
+          onModelLoaded(wMeta.labels, wSession, wMeta.t_frames);
+          activeSeqLenRef.current = wMeta.t_frames;
+          setActiveSeqLen(wMeta.t_frames);
+        } catch {
+          // word model optional — fall back to 8-sign model
         }
       }
 
@@ -352,7 +413,7 @@ export default function DynamicSignPage() {
 
               <div className="mt-5 rounded-xl border border-dashed border-line bg-accent/5 p-3 text-xs text-muted">
                 <p className="font-medium text-foreground mb-1">Reference Only</p>
-                <p>This sign doesn&apos;t have real-time ML feedback yet. Practice with the <Link href="/learn/asl/words/hello" className="text-accent hover:underline">8 ML-enabled signs</Link> for interactive practice.</p>
+                <p>This sign doesn&apos;t have real-time ML feedback yet. Practice with the <Link href="/learn/asl/words/hello" className="text-accent hover:underline">ML-enabled signs</Link> for interactive practice.</p>
               </div>
             </div>
           </div>
@@ -454,21 +515,36 @@ export default function DynamicSignPage() {
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-1.5 border-t border-line p-3">
-            {DYNAMIC_SIGNS.map((s) => (
-              <Link
-                key={s}
-                href={`/learn/asl/words/${s.toLowerCase()}`}
-                aria-label={`Practice sign ${s}`}
-                className={`rounded-md px-2.5 py-1.5 text-xs font-medium transition-all duration-150 ${
-                  s === signGloss
-                    ? "bg-accent2 text-background"
-                    : "border border-line bg-elevated text-muted hover:border-accent/30 hover:text-foreground"
-                }`}
-              >
-                {s}
-              </Link>
-            ))}
+        <div className="flex flex-wrap gap-1.5 border-t border-line p-3">
+        {DYNAMIC_SIGNS.map((s) => (
+          <Link
+            key={s}
+            href={`/learn/asl/words/${s.toLowerCase()}`}
+            aria-label={`Practice sign ${s}`}
+            className={`rounded-md px-2.5 py-1.5 text-xs font-medium transition-all duration-150 ${
+              s === signGloss
+                ? "bg-accent2 text-background"
+                : "border border-line bg-elevated text-muted hover:border-accent/30 hover:text-foreground"
+            }`}
+          >
+            {s}
+          </Link>
+        ))}
+        <span className="w-px self-stretch bg-line mx-1" />
+        {WORD_SIGNS.filter((s) => !(DYNAMIC_SIGNS as readonly string[]).includes(s)).map((s) => (
+          <Link
+            key={s}
+            href={`/learn/asl/words/${s.toLowerCase()}`}
+            aria-label={`Practice word ${s}`}
+            className={`rounded-md px-2.5 py-1.5 text-xs font-medium transition-all duration-150 ${
+              s === signGloss
+                ? "bg-accent text-background"
+                : "border border-line bg-elevated text-muted hover:border-accent/30 hover:text-foreground"
+            }`}
+          >
+            {s}
+          </Link>
+        ))}
           </div>
         </section>
 
@@ -477,9 +553,9 @@ export default function DynamicSignPage() {
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
             <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">Your Attempt</h2>
             <div className="flex items-center gap-2">
-              <span className="rounded-full border border-line bg-elevated px-2 py-0.5 text-[10px] font-mono text-muted">
-                Buffer: {bufferCount}/{T_FRAMES}
-              </span>
+          <span className="rounded-full border border-line bg-elevated px-2 py-0.5 text-[10px] font-mono text-muted">
+            Buffer: {bufferCount}/{activeSeqLen}
+          </span>
               <span className="flex items-center gap-1.5 text-xs font-mono font-medium text-ok">
                 <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse" />
                 On-device
@@ -508,9 +584,9 @@ export default function DynamicSignPage() {
             <div className="flex items-center gap-3">
               <span className="text-xs text-muted">Recording</span>
               <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-elevated">
-                <div className="h-full rounded-full bg-accent2 transition-all" style={{ width: `${(bufferCount / T_FRAMES) * 100}%` }} />
-              </div>
-              <span className="text-xs font-mono text-muted">{bufferCount}/{T_FRAMES}</span>
+        <div className="h-full rounded-full bg-accent2 transition-all" style={{ width: `${(bufferCount / activeSeqLen) * 100}%` }} />
+        </div>
+        <span className="text-xs font-mono text-muted">{bufferCount}/{activeSeqLen}</span>
             </div>
 
             <div className={`flex items-center justify-between rounded-xl border p-4 transition-colors ${
