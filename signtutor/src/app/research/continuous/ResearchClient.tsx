@@ -8,7 +8,7 @@ export default function ResearchClient() {
   const [readTime, setReadTime] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     const interval = setInterval(() => {

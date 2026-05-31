@@ -1,0 +1,9 @@
+{
+  "rootDirectory": "signtutor",
+  "functions": {
+    "src/app/**/*.ts": {
+      "memory": 1024,
+      "maxDuration": 30
+    }
+  }
+}
