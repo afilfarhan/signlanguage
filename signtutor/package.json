@@ -1,5 +1,6 @@
 {
   "name": "signtutor",
+  "packageManager": "pnpm@9.15.10",
   "version": "0.1.0",
   "engines": {
     "node": ">=20.0.0"
