@@ -9,6 +9,7 @@ const links = [
   { label: "Fingerspelling", href: "/learn/asl/fingerspelling" },
   { label: "Words", href: "/learn/asl/words" },
   { label: "Practice", href: "/practice" },
+  { label: "Collect", href: "/research/collect" },
   { label: "Setup", href: "/setup" },
   { label: "About", href: "/about" },
 ];
