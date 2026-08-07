@@ -1,128 +1,244 @@
 # SignTutor
 
-A browser-based, vision-driven sign language learning platform with on-device inference.
+A browser-based, vision-driven sign language learning platform with on-device inference. Learn fingerspublik ASL signs using your webcam. All processing happens in your browser — no video or landmark data ever leaves your device.
 
-Learn fingerspelling and common ASL signs using your webcam. All processing happens in your browser — no video or landmark data ever leaves your device.
-
-## Quick start
+## Quick Start
 
 ```bash
 # Install dependencies
 cd signtutor
-npm install
+npm install          # or: pnpm install
 
 # Start development server
-npm run dev
+npm run dev          # or: pnpm dev
 ```
 
 Visit `http://localhost:3000` and click **"Start your first lesson"**.
 
-## Available commands
+## Project Overview
+
+### What it does
+- **Fingerspelling (Alphabet)**: Practice A–Z with real-time hand tracking and instant feedback
+- **Word Recognition**: Learn 100 common ASL conversation words
+- **Dynamic Signs**: 8 multi-frame signs with temporal modeling
+- **Data Collection Studio**: `/research/collect` — record your own signs to retrain models
+- **Research Pages**: Continuous SLR exploration, multi-language evaluation
+
+### Privacy by Design
+- **On-device by default** — webcam frames and hand landmarks never leave the browser
+- **No account required** — start in under 60 seconds
+- **No analytics during practice** — only network requests are for model file downloads
+
+## Local Development
+
+### Prerequisites
+- Node.js ≥ 20
+- pnpm ≥ 9 (recommended) or npm
+- Webcam + HTTPS (or `localhost`) for MediaPipe Hands
+
+### Commands (run from `signtutor/`)
 
 | Command | Description |
-|---|---|
-| `npm run dev` | Development server with hot reload |
-| `npm run build` | Production build (outputs `.next/`) |
-| `npm run start` | Serve the production build |
-| `npm run lint` | ESLint (zero warnings tolerance in CI) |
-| `npm run typecheck` | TypeScript strict type checking |
-| `npm run test` | Vitest unit tests (incl. JS↔Python parity) |
-| `npm run test:watch` | Vitest in watch mode |
-| `npm run test:e2e` | Playwright end-to-end tests |
+|---------|-------------|
+| `npm run dev` | Dev server with hot reload (Turbopack) |
+| `npm run build` | Production build → `.next/` |
+| `npm run start` | Serve production build |
+| `npm run lint` | ESLint (zero warnings in CI) |
+| `npm run typecheck` | TypeScript strict mode |
+| `npm run test` | Vitest unit tests (JS↔Python parity, normalization, curriculum) |
+| `npm run test:watch` | Vitest watch mode |
+| `npm run test:e2e` | Playwright E2E tests (Chromium) |
 
-## Testing
+### First-time setup
+```bash
+cd signtutor
+npm install          # installs deps + creates pnpm-lock.yaml
+npm run dev          # starts at http://localhost:3000
+```
 
-- **Unit tests** (`__tests__/`) run in jsdom via Vitest. They cover the
-  `normalize()` and `normalizeSequence()` pipelines, finger-state logic,
-  collision groups, and the JS↔Python parity test.
-- **E2E tests** (`e2e/`) run in Chromium via Playwright. They verify the
-  static and dynamic lesson shells load correctly, navigation works, and
-  controls are present.
+**Camera permission**: Browser will prompt for webcam access on lesson pages. Use Chrome/Edge/Firefox on desktop; Safari on iOS 14.3+ works but requires HTTPS (use `ngrok` or `vercel dev` for local HTTPS).
+
+## Architecture
+
+```
+signlanguage/
+├── ml/                          # Python ML pipeline (training, export, evaluation)
+│   ├── train_export_v2.py       # Static MLP (24 letters, 63-dim features)
+│   ├── train_transformer_v2.py  # Dynamic Transformer (8 signs, 126-dim seq)
+│   ├── train_word_model.py      # WordTransformer (100 words, 126-dim, T=60)
+│   ├── features.py / seq_features.py  # Normalization (wrist-anchor + palm-scale)
+│   ├── evaluate.py              # Accuracy, robustness sweep, threshold tuning
+│   ├── data/                    # Dataset preparation (ASL Citizen, WLASL, ChicagoFS)
+│   └── models/                  # Exported ONNX + label JSONs
+│
+├── signtutor/                   # Next.js 16 + React 19 frontend
+│   ├── src/
+│   │   ├── app/                 # App Router pages
+│   │   │   ├── learn/           # Alphabet + Word lessons
+│   │   │   ├── practice/        # Free-form practice mode
+│   │   │   ├── research/        # Data collection + research tools
+│   │   │   └── setup/           # Camera calibration
+│   │   ├── components/          # Shared React components (UI, canvas, video)
+│   │   └── lib/                 # Core logic
+│   │       ├── normalize.ts     # JS port of features.py (per-frame)
+│   │       ├── seq-features.ts  # JS port of seq_features.py (sequence)
+│   │       ├── curriculum.ts    # Lesson definitions + progression
+│   │       ├── landmark-db.ts   # IndexedDB storage for collected samples
+│   │       ├── export-npz.ts    # Generates Python script → .npz for retraining
+│   │       ├── loadExternals.ts # MediaPipe + ONNX Runtime Web lazy load
+│   │       ├── vocabulary_200.ts# Word list + metadata
+│   │       └── calibration.ts   # Camera + hand detection tuning
+│   ├── public/models/           # ONNX models served as static assets
+│   │   ├── fingerspell_mlp.onnx
+│   │   ├── dynamic_signs_transformer.onnx
+│   │   ├── word_transformer.onnx
+│   │   └── *_labels.json
+│   ├── __tests__/               # Vitest unit tests
+│   └── e2e/                     # Playwright E2E tests
+│
+├── prototype/                   # Legacy vanilla JS prototype (kept for reference)
+└── .github/workflows/ml-gate.yml # CI: ML gates + frontend checks + Vercel deploy
+```
+
+### Data Flow (Inference)
+
+1. **Camera → MediaPipe Hands** → 21 landmarks/frame (x, y, z)
+2. **Normalize (JS)** → `normalize.ts` (static) or `seq-features.ts` (dynamic/word)
+   - Static: per-frame wrist-anchor + palm-scale → 63-dim vector
+   - Dynamic/Word: sequence-level first-frame anchor + velocity → 126-dim/frame
+3. **ONNX Runtime Web** → model inference in WebAssembly/WASM
+4. **Post-process** → confidence threshold, smoothing, display
+
+### Model Specs
+
+| Model | Classes | Input | Latency (ONNX CPU) |
+|-------|---------|-------|---------------------|
+| Static MLP | 24 letters | 63-dim/frame | <1 ms |
+| Dynamic Transformer | 8 signs | 126-dim × T | ~1 ms |
+| WordTransformer | 100 words | 126-dim × 60 | ~1.2 ms |
+
+## ML Pipeline (Retraining)
+
+### Static Alphabet (24 letters)
+```bash
+cd ml
+python train_export_v2.py          # trains sklearn MLP → fingerspell_mlp.onnx + labels.json
+```
+
+### Dynamic Signs (8 signs)
+```bash
+python train_transformer_v2.py --rotation-aug  # rotation augmentation closes NFR-10
+```
+
+### Word Recognition (100 words)
+```bash
+# Synthetic data (fast, for CI)
+python train_word_model.py --source synth
+python evaluate.py --source synth --benchmark --sweep
+
+# Real data (ASL Citizen / WLASL)
+python -m ml.data.prepare_word_dataset --source asl_citizen --manifest path/to/manifest.json
+python train_word_model.py --source asl_citizen --pretrained ml/models/dynamic_transformer_v2.pt --freeze-encoder
+python evaluate.py --source asl_citizen --benchmark --sweep
+
+# Copy to frontend for browser serving
+cp ml/models/word_transformer.onnx signtutor/public/models/
+cp ml/models/word_labels.json signtutor/public/models/
+```
+
+### Synthetic Data Generators
+- `synth_landmarks.py` — static letter landmarks
+- `synth_sequences.py` — dynamic sign sequences
+- `synth_jz_sequences.py` — J/Z motion patterns
+
+## CI/CD Pipeline
+
+`.github/workflows/ml-gate.yml` runs on every push to `main`/`develop` and PRs:
+
+1. **ml-gate** (20 min)
+   - Train static MLP + dynamic Transformer (with rotation augmentation)
+   - Robustness sweep on dynamic model
+   - Sync models to `prototype/models/`
+   - Regenerate JS↔Python parity samples
+   - Enforce release gates (`ci/check_nfr.py`)
+   - Upload eval reports as artifacts
+
+2. **frontend-gate** (15 min)
+   - pnpm install + lint + typecheck + unit tests + build
+   - Playwright E2E (commented out by default)
+   - Lighthouse a11y audit on `/`, `/setup`, `/learn/asl/fingerspelling/A` (≥95)
+   - Upload lighthouse/playwright reports
+
+3. **deploy-vercel** (after frontend-gate passes)
+   - Deploys to Vercel production on `main` branch
+   - Requires secrets: `VERCEL_TOKEN`, `VERCEL_ORG_ID`, `VERCEL_PROJECT_ID`
+
+### Local CI Commands
+```bash
+# ML gate (from repo root)
+cd ml && python train_export_v2.py
+cd ml && python train_transformer_v2.py --rotation-aug
+cd ml && python eval_robustness.py
+node ci/run_parity.mjs
+python ci/check_nfr.py
+
+# Frontend gate (from signtutor/)
+cd signtutor && npm run lint && npm run typecheck && npm run test && npm run build
+```
 
 ## Deployment
 
-The app is a standard Next.js application. Deploy to Vercel (or any static+
-serverless host that supports Next.js):
+### Vercel (Recommended)
+1. Push to GitHub
+2. Import project in Vercel → detects Next.js in `signtutor/`
+3. Add environment variables if needed
+4. Deploy
 
+The `vercel.json` at repo root uses legacy `builds` config to point at `signtutor/package.json`.
+
+### Manual Build
 ```bash
-# Build for production
 cd signtutor && npm run build
-# Then deploy the `.next` folder
+# Deploy .next/ folder to any static+serverless host supporting Next.js
 ```
 
-Model files under `public/models/` are served as static assets.
-
-## Project structure
-
-| Path | Description |
-|---|---|
-| `src/app/` | Next.js App Router pages |
-| `src/lib/` | Shared logic (norms, curriculum, storage) |
-| `src/components/` | Shared React components |
-| `public/models/` | ONNX models + label JSONs served as static assets |
-| `__tests__/` | Vitest unit tests |
-| `e2e/` | Playwright end-to-end tests |
-| `docs/ARCHITECTURE.md` | Stack, data flows, and the eight preserved architectural decisions |
-
-## Privacy
-
-- **On-device by default** — no webcam frames or hand landmarks leave the device.
-- **No account required** — start your first lesson in under 60 seconds.
-- **No analytics during practice** — the only network requests on lesson pages are to load model files.
-
-For details, see the [Privacy Policy](/privacy) page.
-
-## ML Pipeline
-
-### Alphabet (static) — 24 letters
-- **Model**: sklearn MLP → `fingerspell_mlp.onnx` (63-dim per-frame features)
-- **Normalization**: per-frame wrist-anchor + palm-scale (`features.py`)
-- **Training**: `python ml/train_export_v2.py`
-
-### Dynamic signs — 8 signs
-- **Model**: Transformer Encoder (d=128, 4 layers, 8 heads) → `dynamic_signs_transformer.onnx`
-- **Normalization**: sequence-level first-frame anchor + velocity (`seq_features.py`, 126-dim)
-- **Training**: `python ml/train_transformer.py`
-
-### Word recognition — 100 words
-- **Model**: WordTransformer (d=128, 4 layers, 8 heads, T=60) → `word_transformer.onnx`
-- **Vocab**: `ml/models/vocab_v1.json` (100 ASL conversation words)
-- **Normalization**: same `seq_features.py` contract (126-dim)
-- **Training**: `python ml/train_word_model.py --source synth`
-- **Evaluation**: `python ml/evaluate.py --source synth --benchmark --sweep`
-- **Inference**: `python -m ml.inference.recogniser --source dry-run --mode word`
-
-### Retrain on real data
-```bash
-# 1. Prepare dataset (ASL Citizen or WLASL)
-python -m ml.data.prepare_word_dataset --source asl_citizen --manifest path/to/manifest.json
-
-# 2. Train (optionally from pretrained dynamic model)
-python ml/train_word_model.py --source asl_citizen --pretrained ml/models/dynamic_transformer_v2.pt --freeze-encoder
-
-# 3. Evaluate
-python ml/evaluate.py --source asl_citizen --benchmark --sweep
-
-# 4. Copy to public/models for browser serving
-copy ml\models\word_transformer.onnx signtutor\public\models\
-copy ml\models\word_labels.json signtutor\public\models\
+### Docker
+```dockerfile
+FROM node:20-alpine
+WORKDIR /app
+COPY signtutor/package*.json ./
+RUN npm ci
+COPY signtutor/ ./
+RUN npm run build
+CMD ["npm", "start"]
 ```
 
-### Hardware requirements
+## Key Design Decisions (Preserved)
 
-| Mode | Min CPU | Rec GPU | Latency (ONNX CPU) | Latency (PyTorch GPU) |
-|---|---|---|---|---|
-| Alphabet | any | — | <1 ms | — |
-| 8 dynamic | any | — | ~1 ms | — |
-| 100 words | 4-core | GTX 1060+ | ~1.2 ms | ~2.7 ms (CPU) / <1 ms (GPU) |
+1. **On-device inference only** — no server-side ML, zero egress of biometric data
+2. **MediaPipe Hands** — lightweight, proven hand landmark model
+3. **ONNX Runtime Web** — cross-platform WASM inference, no WebGL dependency
+4. **Per-frame normalization parity** — JS `normalize.ts` matches Python `features.py` bit-for-bit
+5. **Sequence normalization parity** — JS `seq-features.ts` matches Python `seq_features.py`
+6. **Rotation augmentation** — closes dynamic sign robustness gap (NFR-10)
+7. **IndexedDB for collected data** — persists locally, exportable as JSON/NPZ
+8. **Curriculum-driven lessons** — JSON-like config in `curriculum.ts` for easy iteration
 
-### Latency / Accuracy tradeoff
+## Hardware Requirements
 
-Use `--sweep` to find the optimal confidence threshold. Higher thresholds give
-better precision at the cost of coverage (some predictions are rejected).
+| Mode | Min CPU | Rec GPU | ONNX CPU Latency |
+|------|---------|---------|------------------|
+| Alphabet | any | — | <1 ms |
+| 8 Dynamic | any | — | ~1 ms |
+| 100 Words | 4-core | GTX 1060+ | ~1.2 ms |
+
+## Contributing
+
+1. Fork → branch → PR
+2. Run `npm run lint && npm run typecheck && npm run test` in `signtutor/`
+3. For ML changes, run relevant `ml/train_*.py` and `ml/evaluate.py`
+4. Ensure parity tests pass (`node ci/run_parity.mjs`)
 
 ## License
 
 MIT
-"# signlang" 
-"# signlang" 
