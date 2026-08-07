@@ -1,14 +1,8 @@
 {
-  "builds": [
-    {
-      "src": "signtutor/package.json",
-      "use": "@vercel/next"
-    }
-  ],
-  "crons": [
-    {
-      "path": "/api/health",
-      "schedule": "0 * * * *"
-    }
-  ]
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "buildCommand": "cd signtutor && npm run build",
+  "devCommand": "cd signtutor && npm run dev",
+  "installCommand": "cd signtutor && npm install",
+  "outputDirectory": "signtutor/.next"
 }
