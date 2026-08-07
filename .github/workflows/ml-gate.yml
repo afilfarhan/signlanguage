@@ -168,4 +168,22 @@ jobs:
           path: |
             signtutor/lighthouse/
             signtutor/playwright-report/
-            signtutor/test-results/"
+            signtutor/test-results/
+
+  # --------------------------------------------------------------------------
+  # Vercel Deployment – runs after frontend-gate passes
+  # --------------------------------------------------------------------------
+  deploy-vercel:
+    needs: frontend-gate
+    if: github.ref == 'refs/heads/main' || github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
