@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { normalizeSequenceFixed, T_FRAMES, WORD_T_FRAMES, N_LANDMARKS, FEATURE_DIM } from "@/lib/seq-features";
@@ -84,8 +84,8 @@ export default function DynamicSignPage() {
   const modelLabelsRef = useRef<string[]>([]);
   const wordModelLabelsRef = useRef<string[]>([]);
 
-  // Compute isMLSign from the loaded word model labels
-  const isMLSign = wordModelLabels.includes(target.toUpperCase());
+  // Compute isMLSign from the loaded word model labels (reacts to model load)
+  const isMLSign = useMemo(() => wordModelLabels.includes(target.toUpperCase()), [wordModelLabels, target]);
 
   useEffect(() => { targetRef.current = signGloss; }, [signGloss]);
   useEffect(() => { recordingRef.current = recording; }, [recording]);
