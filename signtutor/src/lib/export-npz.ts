@@ -1,15 +1,6 @@
 import { type RecordingSample } from "./landmark-db";
 
-export function generateNpzPython(samples: RecordingSample[]): string {
-  const words = Array.from(new Set(samples.map((s) => s.word)));
-  const wordToIdx = Object.fromEntries(words.map((w, i) => [w, i]));
-
-  const samplesByWord = words.map((w) => samples.filter((s) => s.word === w));
-  const maxFrames = 60;
-  const nDims = 126;
-
-  const shape = `(${samples.length}, ${maxFrames}, ${nDims})`;
-
+export function generateNpzPython(_samples: RecordingSample[]): string {
   const lines: string[] = [
     '"""',
     "Auto-generated NumPy dataset builder from SignTutor Data Collection Studio.",

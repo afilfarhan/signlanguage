@@ -7,7 +7,6 @@ import {
   getAllSamples,
   getStats,
   clearAllSamples,
-  deleteSample,
   type RecordingSample,
 } from "@/lib/landmark-db";
 import { WORD_T_FRAMES, N_LANDMARKS } from "@/lib/seq-features";
@@ -215,14 +214,7 @@ useEffect(() => {
     setTotalSamples(0);
   }, []);
 
-  const handleDeleteOne = useCallback(async (id: string) => {
-    await deleteSample(id);
-    const s = await getStats();
-    setStats(s);
-    setTotalSamples(Object.values(s).reduce((a, b) => a + b, 0));
-  }, []);
-
-  const currentWordCount = stats[selectedWord] || 0;
+  
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-6 lg:px-6 lg:py-8">
@@ -326,7 +318,7 @@ useEffect(() => {
             </div>
 
             <p className="mt-3 text-xs text-muted">
-              Tip: Keep the camera at arm's length. Make sure your whole hand is in frame.
+              Tip: Keep the camera at arm&apos;s length. Make sure your whole hand is in frame.
               Each sign should take 1-2 seconds. Aim for <strong className="text-foreground">5-10 recordings per word</strong> with slight variation in angle, speed, and position.
             </p>
           </div>
