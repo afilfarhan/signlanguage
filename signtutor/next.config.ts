@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const lessonCSP = [
   "default-src 'self'",
   "script-src 'self' 'unsafe-eval' 'wasm-unsafe-eval' https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/ https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/ https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/ https://cdn.jsdelivr.net/npm/onnxruntime-web@1.26.0/",
-  "connect-src 'self' https://cdn.jsdelivr.net/npm/@mediapipe/",
+  "connect-src 'self' https://cdn.jsdelivr.net/npm/@mediapipe/ https://cdn.jsdelivr.net/npm/onnxruntime-web@1.26.0/",
   "img-src 'self' data: blob: https://upload.wikimedia.org",
   "style-src 'self' 'unsafe-inline'",
   "font-src 'self'",
@@ -19,6 +19,13 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
+      {
+        source: "/models/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+          { key: "Access-Control-Allow-Origin", value: "*" },
+        ],
+      },
       {
         source: "/learn/:path*",
         headers: [
