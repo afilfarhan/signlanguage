@@ -91,6 +91,17 @@ export default function DynamicSignPage() {
   useEffect(() => { recordingRef.current = recording; }, [recording]);
   useEffect(() => { continuousRef.current = continuous; }, [continuous]);
 
+  // Fetch word model labels on mount so loading state can resolve
+  useEffect(() => {
+    fetch("/models/word_labels.json")
+      .then((r) => r.json())
+      .then((wMeta) => {
+        wordModelLabelsRef.current = wMeta.labels;
+        setWordModelLabels(wMeta.labels);
+      })
+      .catch(console.error);
+  }, []);
+
   const runInference = useCallback(async (session: OrtSession, buf: Float32Array[], target: string, seqLen: number) => {
     if (buf.length < seqLen) return;
     const t0 = performance.now();
