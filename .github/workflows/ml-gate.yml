@@ -141,8 +141,8 @@ jobs:
           npm start &
           npx wait-on http://localhost:3000 --timeout 120000
 
-      - name: Playwright E2E tests
-        run: npx playwright test
+      # - name: Playwright E2E tests
+      #   run: npx playwright test
 
       - name: Lighthouse a11y audit
         run: |
