@@ -1,9 +1,14 @@
 {
-  "rootDirectory": "signtutor",
-  "functions": {
-    "src/app/**/*.ts": {
-      "memory": 1024,
-      "maxDuration": 30
+  "builds": [
+    {
+      "src": "signtutor/package.json",
+      "use": "@vercel/next"
     }
-  }
+  ],
+  "crons": [
+    {
+      "path": "/api/health",
+      "schedule": "0 * * * *"
+    }
+  ]
 }
