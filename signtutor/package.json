@@ -6,6 +6,7 @@
     "node": ">=20.0.0"
   },
   "private": true,
+  "homepage": "https://signlanguage-three.vercel.app",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

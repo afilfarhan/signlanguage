@@ -1,5 +1,9 @@
 # SignTutor
 
+**Live Demo:** https://signlanguage-three.vercel.app/
+
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000?logo=vercel&logoColor=white)](https://signlanguage-three.vercel.app/)
+
 A browser-based, vision-driven sign language learning platform with on-device inference. Learn fingerspublik ASL signs using your webcam. All processing happens in your browser — no video or landmark data ever leaves your device.
 
 ## Quick Start
