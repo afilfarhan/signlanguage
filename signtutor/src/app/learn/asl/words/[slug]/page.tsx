@@ -17,46 +17,12 @@ interface MediaPipeResults { multiHandLandmarks?: { x: number; y: number; z: num
 type Verdict = "match" | "close" | "miss";
 interface RankedResult { label: string; prob: number; }
 
-function computeTip(verdict: Verdict, top: RankedResult, target: string): string {
-  const desc = SIGN_DESCRIPTIONS[target as keyof typeof SIGN_DESCRIPTIONS]
-    || WORD_SIGN_DESCRIPTIONS[target]
-    || target;
+function computeTip(verdict: Verdict, top: RankedResult, target: string, description: string): string {
   if (verdict === "match") return `<strong>Nice — that's "${target}".</strong> Try once more to confirm.`;
   if (verdict === "miss") return "Couldn't read your sign clearly — try again with the hand fully in frame and consistent lighting.";
   if (top.label === target) return `Looks like "${target}" but confidence is only ${(top.prob * 100) | 0}%. Slow down and exaggerate the motion slightly.`;
-  return `That came out closer to <strong>"${top.label}"</strong>. Re-watch the demo: <i>${desc}</i>`;
+  return `That came out closer to <strong>"${top.label}"</strong>. Re-watch the demo: <i>${description}</i>`;
 }
-
-const WORD_SIGNS = [
-  "HELLO", "GOODBYE", "YES", "NO", "PLEASE", "THANKS", "SORRY", "HELP",
-  "WANT", "NEED", "LIKE", "LOVE", "KNOW", "THINK", "FEEL", "SEE",
-  "HEAR", "SAY", "TELL", "ASK",
-] as const;
-
-const WORD_SIGN_DESCRIPTIONS: Record<string, string> = {
-  HELLO: "Right hand starts near forehead, salutes outward.",
-  GOODBYE: "Open hand at chest height, fingers wave (curl/uncurl).",
-  YES: "Closed fist, nods up-down twice.",
-  NO: "Index and middle extended, snap closed twice.",
-  PLEASE: "Flat hand on chest, small circular motion.",
-  THANKS: "Flat hand starts at chin, moves outward.",
-  SORRY: "Closed fist on chest, small circular motion.",
-  HELP: "Closed fist lifts upward (on a flat palm in real ASL).",
-  WANT: "Both claw hands pull toward body.",
-  NEED: "Index finger bends down, then straightens.",
-  LIKE: "Middle and thumb on chest, pull away.",
-  LOVE: "Cross arms over chest, hug self.",
-  KNOW: "Fingertips tap temple.",
-  THINK: "Index finger taps temple.",
-  FEEL: "Middle finger slides up chest.",
-  SEE: "V-hand from eye moves forward.",
-  HEAR: "Index finger near ear, flicks out.",
-  SAY: "Index finger taps chin, moves forward.",
-  TELL: "Index finger from chin moves forward.",
-  ASK: "Index finger on chin, hand moves toward listener.",
-};
-
-const ML_SIGNS = new Set<string>([...DYNAMIC_SIGNS, ...WORD_SIGNS] as unknown as string[]);
 
 export default function DynamicSignPage() {
   const params = useParams();
@@ -70,14 +36,11 @@ export default function DynamicSignPage() {
     }
   }, [router]);
 
-const vocabSign = getSignById(slug);
-const SLUG_GLOSS_ALIASES: Record<string, string> = { thank_you: "THANKS" };
-const signGloss = vocabSign ? (SLUG_GLOSS_ALIASES[slug] || vocabSign.gloss) : slug.toUpperCase();
-const target = signGloss;
-const signDescription = vocabSign ? vocabSign.description : (SIGN_DESCRIPTIONS[signGloss as keyof typeof SIGN_DESCRIPTIONS] || WORD_SIGN_DESCRIPTIONS[signGloss] || "");
-const isMLSign = ML_SIGNS.has(target);
-
-  
+  const vocabSign = getSignById(slug);
+  const SLUG_GLOSS_ALIASES: Record<string, string> = { thank_you: "THANKS" };
+  const signGloss = vocabSign ? (SLUG_GLOSS_ALIASES[slug] || vocabSign.gloss) : slug.toUpperCase();
+  const target = signGloss;
+  const signDescription = vocabSign ? vocabSign.description : (SIGN_DESCRIPTIONS[signGloss as keyof typeof SIGN_DESCRIPTIONS] || "");
 
   const [prefs, setPrefs] = useState<Prefs>(() => {
     if (typeof window === "undefined") return { language: "asl", handedness: "right", mirror: true };
@@ -99,6 +62,7 @@ const isMLSign = ML_SIGNS.has(target);
   const [fps, setFps] = useState("—");
   const [loadingExternals, setLoadingExternals] = useState(false);
   const [externalsError, setExternalsError] = useState("");
+  const [wordModelLabels, setWordModelLabels] = useState<string[]>([]);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
@@ -119,6 +83,9 @@ const isMLSign = ML_SIGNS.has(target);
   const onnxLibsRef = useRef<ONNXLibs | null>(null);
   const modelLabelsRef = useRef<string[]>([]);
   const wordModelLabelsRef = useRef<string[]>([]);
+
+  // Compute isMLSign from the loaded word model labels
+  const isMLSign = wordModelLabels.includes(target.toUpperCase());
 
   useEffect(() => { targetRef.current = signGloss; }, [signGloss]);
   useEffect(() => { recordingRef.current = recording; }, [recording]);
@@ -151,8 +118,8 @@ const isMLSign = ML_SIGNS.has(target);
     else if (top.label === target && top.prob >= 0.75) v = "match";
     else v = "close";
     setVerdict(v);
-    setTip(computeTip(v, top, target));
-  }, []);
+    setTip(computeTip(v, top, target, signDescription));
+  }, [signDescription, setHudLatency, setDetected, setConfidence, setTopK, setVerdict, setTip]);
 
   const onResults = useCallback(
     (results: MediaPipeResults, inferFn: typeof runInference) => {
@@ -162,7 +129,8 @@ const isMLSign = ML_SIGNS.has(target);
       const lm = results.multiHandLandmarks?.[0] || null;
 
       const target = targetRef.current;
-      const isWordSign = WORD_SIGNS.includes(target.toUpperCase() as typeof WORD_SIGNS[number]);
+      const wordLabels = wordModelLabels;
+      const isWordSign = wordLabels.length > 0 && wordLabels.includes(target.toUpperCase());
       const activeSession = isWordSign && wordSessionRef.current ? wordSessionRef.current : sessionRef.current;
       const seqLen = isWordSign && wordSessionRef.current ? WORD_T_FRAMES : T_FRAMES;
       activeSeqLenRef.current = seqLen;
@@ -213,7 +181,7 @@ const isMLSign = ML_SIGNS.has(target);
         fc.t0 = now;
       }
     },
-    [],
+    [wordModelLabels],
   );
 
   const onModelLoaded = useCallback((labels: string[], session: OrtSession, seqLen: number) => {
@@ -222,7 +190,7 @@ const isMLSign = ML_SIGNS.has(target);
     activeSeqLenRef.current = seqLen;
     setModelReady(true);
     setModelBadge(`Transformer · ${labels.length} signs · seq=${seqLen}`);
-  }, []);
+  }, [setModelReady, setModelBadge]);
 
   const onModelError = useCallback(() => { setModelBadge("failed to load"); }, []);
 
@@ -277,6 +245,7 @@ const isMLSign = ML_SIGNS.has(target);
           const wMeta = await wResp.json();
           wordSessionRef.current = wSession;
           wordModelLabelsRef.current = wMeta.labels;
+          setWordModelLabels(wMeta.labels);
           onModelLoaded(wMeta.labels, wSession, wMeta.t_frames);
           activeSeqLenRef.current = wMeta.t_frames;
           setActiveSeqLen(wMeta.t_frames);
@@ -534,7 +503,7 @@ const isMLSign = ML_SIGNS.has(target);
           </Link>
         ))}
         <span className="w-px self-stretch bg-line mx-1" />
-        {WORD_SIGNS.filter((s) => !(DYNAMIC_SIGNS as readonly string[]).includes(s)).map((s) => (
+        {wordModelLabels.filter((s) => !(DYNAMIC_SIGNS as readonly string[]).includes(s)).map((s) => (
           <Link
             key={s}
             href={`/learn/asl/words/${s.toLowerCase()}`}

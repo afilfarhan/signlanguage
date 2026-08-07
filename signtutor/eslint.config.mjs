@@ -22,6 +22,7 @@ const eslintConfig = defineConfig([
         "error",
         { argsIgnorePattern: "^_" },
       ],
+      "react-hooks/preserve-manual-memoization": "off",
     },
   },
 ]);
