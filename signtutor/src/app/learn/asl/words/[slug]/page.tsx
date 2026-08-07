@@ -315,7 +315,20 @@ export default function DynamicSignPage() {
     savePrefs(next);
   };
 
-  // ── Reference-only view (no ML model) ──
+  // ── Loading state (word model not loaded yet) ──
+  if (wordModelLabels.length === 0) {
+    return (
+      <div className="mx-auto max-w-6xl px-4 py-6 lg:px-6 lg:py-8">
+        <div className="rounded-2xl border border-line bg-surface p-8 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-4 border-accent border-t-transparent mx-auto mb-4" />
+          <p className="text-muted">Loading word recognition model…</p>
+          <p className="text-xs text-dim mt-2">This may take a moment on first visit.</p>
+        </div>
+      </div>
+    );
+  }
+
+  // ── Reference-only view (word not in ML model vocabulary) ──
   if (!isMLSign && vocabSign) {
     return (
       <div className="mx-auto max-w-5xl px-4 py-6 lg:px-6 lg:py-8">
