@@ -27,6 +27,13 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 from sklearn.preprocessing import StandardScaler
 import argparse
 
+# FP16 conversion
+try:
+    from onnxconverter_common import float16
+    FP16_AVAILABLE = True
+except ImportError:
+    FP16_AVAILABLE = False
+
 # Import v1 synth for baseline comparison
 from synth_landmarks import make_dataset, LETTERS, SYNTH_COLLISIONS
 
@@ -185,10 +192,13 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--n-per-class", type=int, default=400, help="Samples per class")
     parser.add_argument("--seed", type=int, default=0)
+    parser.add_argument("--fp16", action="store_true", help="Export FP16 ONNX model for WebGPU")
     args = parser.parse_args()
-    
-    print(f"Generating synthetic landmark dataset ({len(LETTERS)} classes)…")
-    X_raw, y, labels = make_dataset(n_per_class=args.n_per_class, seed=args.seed)
+
+    # 24 letters: A-Z excluding J and Z (handled by jz_classifier.onnx)
+    LETTERS_24 = [l for l in LETTERS if l not in ("J", "Z")]
+    print(f"Generating synthetic landmark dataset ({len(LETTERS_24)} classes, J/Z excluded)…")
+    X_raw, y, labels = make_dataset(n_per_class=args.n_per_class, seed=args.seed, letters=LETTERS_24)
     print(f"  raw shape: {X_raw.shape}, classes: {len(labels)}")
     
     # ── Step 1: Mirror Augmentation ──────────────────────────────────────────
@@ -296,10 +306,32 @@ def main():
         clf, initial_types=initial_type, target_opset=15,
         options={id(clf): {"zipmap": False}},
     )
-    onnx_path = os.path.join(MODEL_DIR, "fingerspell_mlp_v2.onnx")
-    with open(onnx_path, "wb") as f:
+    
+    # FP32 export (always)
+    onnx_path_fp32 = os.path.join(MODEL_DIR, "fingerspell_mlp_v2.onnx")
+    with open(onnx_path_fp32, "wb") as f:
         f.write(onnx_model.SerializeToString())
-    print(f"  wrote {onnx_path} ({os.path.getsize(onnx_path)/1024:.1f} KB)")
+    print(f"  wrote {onnx_path_fp32} ({os.path.getsize(onnx_path_fp32)/1024:.1f} KB) [FP32]")
+    
+    # FP16 export (optional, for WebGPU)
+    if args.fp16:
+        if not FP16_AVAILABLE:
+            print("  WARNING: onnxconverter_common not installed, skipping FP16 export")
+            print("  Install with: pip install onnxconverter_common")
+        else:
+            print("  Converting to FP16…")
+            onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
+            onnx_path_fp16 = os.path.join(MODEL_DIR, "fingerspell_mlp_v2_fp16.onnx")
+            with open(onnx_path_fp16, "wb") as f:
+                f.write(onnx_model_fp16.SerializeToString())
+            print(f"  wrote {onnx_path_fp16} ({os.path.getsize(onnx_path_fp16)/1024:.1f} KB) [FP16]")
+            
+            # Also copy to signtutor public/models for web serving
+            import shutil
+            web_model_dir = os.path.join(os.path.dirname(__file__), "..", "signtutor", "public", "models")
+            if os.path.exists(web_model_dir):
+                shutil.copy2(onnx_path_fp16, os.path.join(web_model_dir, "fingerspell_mlp_v2_fp16.onnx"))
+                print(f"  copied to {web_model_dir}/fingerspell_mlp_v2_fp16.onnx")
     
     with open(os.path.join(MODEL_DIR, "labels_v2.json"), "w") as f:
         json.dump({

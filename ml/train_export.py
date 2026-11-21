@@ -29,16 +29,30 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 from skl2onnx import convert_sklearn
 from skl2onnx.common.data_types import FloatTensorType
+import argparse
 
 from synth_landmarks import make_dataset, LETTERS, SYNTH_COLLISIONS
 from features import normalize
 
+# FP16 conversion
+try:
+    from onnxconverter_common import float16
+    FP16_AVAILABLE = True
+except ImportError:
+    FP16_AVAILABLE = False
+
 MODEL_DIR = os.path.join(os.path.dirname(__file__), "models")
 os.makedirs(MODEL_DIR, exist_ok=True)
 
+# Parse args
+parser = argparse.ArgumentParser()
+parser.add_argument("--fp16", action="store_true", help="Export FP16 ONNX model for WebGPU")
+parser.add_argument("--n-per-class", type=int, default=400, help="Samples per class")
+args = parser.parse_args()
+
 # -------------------------- Data ------------------------------------------
 print(f"Generating synthetic landmark dataset ({len(LETTERS)} classes)…")
-X_raw, y, labels = make_dataset(n_per_class=400, seed=0)
+X_raw, y, labels = make_dataset(n_per_class=args.n_per_class, seed=0)
 print(f"  raw shape: {X_raw.shape}, classes: {len(labels)} ({labels[0]}…{labels[-1]})")
 
 X = normalize(X_raw)
@@ -95,10 +109,32 @@ onnx_model = convert_sklearn(
     clf, initial_types=initial_type, target_opset=15,
     options={id(clf): {"zipmap": False}},
 )
-onnx_path = os.path.join(MODEL_DIR, "fingerspell_mlp.onnx")
-with open(onnx_path, "wb") as f:
+
+# FP32 export (always)
+onnx_path_fp32 = os.path.join(MODEL_DIR, "fingerspell_mlp.onnx")
+with open(onnx_path_fp32, "wb") as f:
     f.write(onnx_model.SerializeToString())
-print(f"  wrote {onnx_path} ({os.path.getsize(onnx_path)/1024:.1f} KB)")
+print(f"  wrote {onnx_path_fp32} ({os.path.getsize(onnx_path_fp32)/1024:.1f} KB) [FP32]")
+
+# FP16 export (optional, for WebGPU)
+if args.fp16:
+    if not FP16_AVAILABLE:
+        print("  WARNING: onnxconverter_common not installed, skipping FP16 export")
+        print("  Install with: pip install onnxconverter_common")
+    else:
+        print("  Converting to FP16…")
+        onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
+        onnx_path_fp16 = os.path.join(MODEL_DIR, "fingerspell_mlp_fp16.onnx")
+        with open(onnx_path_fp16, "wb") as f:
+            f.write(onnx_model_fp16.SerializeToString())
+        print(f"  wrote {onnx_path_fp16} ({os.path.getsize(onnx_path_fp16)/1024:.1f} KB) [FP16]")
+        
+        # Also copy to signtutor public/models for web serving
+        import shutil
+        web_model_dir = os.path.join(os.path.dirname(__file__), "..", "signtutor", "public", "models")
+        if os.path.exists(web_model_dir):
+            shutil.copy2(onnx_path_fp16, os.path.join(web_model_dir, "fingerspell_mlp_fp16.onnx"))
+            print(f"  copied to {web_model_dir}/fingerspell_mlp_fp16.onnx")
 
 with open(os.path.join(MODEL_DIR, "labels.json"), "w") as f:
     json.dump({"labels": labels, "synth_collisions": SYNTH_COLLISIONS}, f, indent=2)
@@ -180,6 +216,6 @@ Worst gap here: **{abs(min(acc_a, acc_b) - acc_strict)*100:.1f}pp** — {'✅ pa
 - `labels.json` — class index → letter map + synth-collision groups.
 """
 report_path = os.path.join(MODEL_DIR, "eval_report.md")
-with open(report_path, "w") as f:
+with open(report_path, "w", encoding="utf-8") as f:
     f.write(report_md)
 print(f"  wrote {report_path}")

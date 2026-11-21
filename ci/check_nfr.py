@@ -17,14 +17,21 @@ from __future__ import annotations
 import re, sys, pathlib, json
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
+# Use ASCII-only symbols for Windows cp1252 compatibility
 RED, GREEN, YELLOW, RESET = "\033[31m", "\033[32m", "\033[33m", "\033[0m"
+PASS_SYM = "[PASS]"
+FAIL_SYM = "[FAIL]"
+WARN_SYM = "[WARN]"
+
+def read_utf8(path: pathlib.Path) -> str:
+    return path.read_text(encoding="utf-8")
 
 errors: list[str] = []
 notes:  list[str] = []
 
-def fail(msg: str): errors.append(msg);  print(f"{RED}✗ {msg}{RESET}")
-def ok(msg: str):    notes.append(msg);  print(f"{GREEN}✓ {msg}{RESET}")
-def warn(msg: str):                       print(f"{YELLOW}! {msg}{RESET}")
+def fail(msg: str): errors.append(msg);  print(f"{RED}{FAIL_SYM} {msg}{RESET}")
+def ok(msg: str):    notes.append(msg);  print(f"{GREEN}{PASS_SYM} {msg}{RESET}")
+def warn(msg: str):                       print(f"{YELLOW}{WARN_SYM} {msg}{RESET}")
 
 # ----------------------------- NFR-9 -------------------------------------
 NFR9 = {
@@ -43,7 +50,7 @@ for name, (path, target, rx) in NFR9.items():
     if not path.exists():
         fail(f"{name}: report missing at {path.relative_to(ROOT)}")
         continue
-    m = rx.search(path.read_text())
+    m = rx.search(read_utf8(path))
     if not m:
         fail(f"{name}: couldn't parse accuracy from {path.relative_to(ROOT)}")
         continue
@@ -51,7 +58,7 @@ for name, (path, target, rx) in NFR9.items():
     if acc + 1e-6 < target:
         fail(f"{name}: accuracy {acc:.3f} below NFR-9 target {target:.2f}")
     else:
-        ok(f"{name}: accuracy {acc:.3f} ≥ {target:.2f}")
+        ok(f"{name}: accuracy {acc:.3f} >= {target:.2f}")
 
 # ----------------------------- NFR-10 ------------------------------------
 def parse_robustness_or_fairness_table(text: str) -> list[tuple[str, float]]:
@@ -80,7 +87,7 @@ for path in [ROOT / "ml/models/dynamic_robustness_report.md"]:
     if not path.exists():
         fail(f"missing: {path.relative_to(ROOT)}")
         continue
-    rows = parse_robustness_or_fairness_table(path.read_text())
+    rows = parse_robustness_or_fairness_table(read_utf8(path))
     if not rows:
         fail(f"{path.relative_to(ROOT)}: no rows parsed")
         continue
@@ -93,20 +100,20 @@ for path in [ROOT / "ml/models/dynamic_robustness_report.md"]:
         if s.lower() == "clean": continue
         delta = acc - clean
         within = abs(delta) <= GATE_PP + 1e-6
-        line = f"    {s:<22s} acc={acc:.3f} Δ={delta:+.3f}"
+        line = f"    {s:<22s} acc={acc:.3f} d={delta:+.3f}"
         if within:
-            print(f"{GREEN}{line} ✓{RESET}")
+            print(f"{GREEN}{line} [OK]{RESET}")
         else:
-            print(f"{RED}{line} ✗{RESET}")
-            errors.append(f"slice '{s}' deviates {delta:+.3f} from clean (gate ±{GATE_PP})")
+            print(f"{RED}{line} [FAIL]{RESET}")
+            errors.append(f"slice '{s}' deviates {delta:+.3f} from clean (gate +/-{GATE_PP})")
 
 # ----------------------------- Parity ------------------------------------
-print("\n== JS ↔ Python feature parity ==")
+print("\n== JS <-> Python feature parity ==")
 parity_log = ROOT / "ci/parity.log"
 if not parity_log.exists():
     warn("parity.log not found — skipped (run ci/run_parity.mjs first)")
 else:
-    text = parity_log.read_text()
+    text = read_utf8(parity_log)
     if "5/5 samples within tolerance" in text:
         ok("static MLP normalize() parity: 5/5 within tolerance")
     else:

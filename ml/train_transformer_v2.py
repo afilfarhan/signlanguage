@@ -264,6 +264,6 @@ report_md = f"""# Eval report — `dynamic_transformer_v2.onnx`
 - Temperature scaling (W6) should be applied post-export for calibration.
 """
 report_path = os.path.join(MODEL_DIR, "dynamic_eval_report_v2.md")
-with open(report_path, "w") as f:
+with open(report_path, "w", encoding="utf-8") as f:
     f.write(report_md)
 print(f"  wrote {report_path}")

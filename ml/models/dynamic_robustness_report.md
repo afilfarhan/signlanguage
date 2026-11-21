@@ -13,12 +13,12 @@ gate is 5pp; we apply the same tolerance here as a robustness gate.
 
 | Slice | Accuracy | Δ vs. clean | Within ±5pp? |
 |---|---|---|---|
-| clean | 0.991 | +0.000 | ✅ |
-| landmark_jitter | 0.956 | -0.034 | ✅ |
-| dropped_frames | 0.991 | +0.000 | ✅ |
-| missing_z | 0.991 | +0.000 | ✅ |
-| rotated | 0.972 | -0.019 | ✅ |
-| scale_shift | 0.991 | +0.000 | ✅ |
+| clean | 1.000 | +0.000 | ✅ |
+| landmark_jitter | 0.988 | -0.012 | ✅ |
+| dropped_frames | 1.000 | +0.000 | ✅ |
+| missing_z | 1.000 | +0.000 | ✅ |
+| rotated | 1.000 | +0.000 | ✅ |
+| scale_shift | 1.000 | +0.000 | ✅ |
 
 ## What each slice tests
 

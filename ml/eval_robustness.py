@@ -137,6 +137,6 @@ gate is 5pp; we apply the same tolerance here as a robustness gate.
 """
 
 out = os.path.join(MODEL_DIR, "dynamic_robustness_report.md")
-with open(out, "w") as f:
+with open(out, "w", encoding="utf-8") as f:
     f.write(report)
 print(f"\nWrote {out}")
