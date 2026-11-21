@@ -214,7 +214,15 @@ if args.fp16:
         
         print("  Converting to FP16…")
         onnx_model = onnx.load(onnx_path_fp32)
-        onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
+        try:
+            # Convert to FP16 but keep outputs as FP32 for compatibility
+            onnx_model_fp16 = float16.convert_float_to_float16(
+                onnx_model,
+                keep_io_types=True  # Keep input/output as FP32
+            )
+        except TypeError:
+            # Older onnxconverter_common doesn't support keep_io_types
+            onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
         onnx_path_fp16 = os.path.join(MODEL_DIR, "dynamic_transformer_v2_fp16.onnx")
         onnx.save(onnx_model_fp16, onnx_path_fp16)
         size_kb_fp16 = os.path.getsize(onnx_path_fp16) / 1024

@@ -123,18 +123,37 @@ if args.fp16:
         print("  Install with: pip install onnxconverter_common")
     else:
         print("  Converting to FP16…")
-        onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
-        onnx_path_fp16 = os.path.join(MODEL_DIR, "fingerspell_mlp_fp16.onnx")
-        with open(onnx_path_fp16, "wb") as f:
-            f.write(onnx_model_fp16.SerializeToString())
-        print(f"  wrote {onnx_path_fp16} ({os.path.getsize(onnx_path_fp16)/1024:.1f} KB) [FP16]")
-        
-        # Also copy to signtutor public/models for web serving
-        import shutil
-        web_model_dir = os.path.join(os.path.dirname(__file__), "..", "signtutor", "public", "models")
-        if os.path.exists(web_model_dir):
-            shutil.copy2(onnx_path_fp16, os.path.join(web_model_dir, "fingerspell_mlp_fp16.onnx"))
-            print(f"  copied to {web_model_dir}/fingerspell_mlp_fp16.onnx")
+        try:
+            # Convert to FP16 but keep outputs as FP32 for compatibility
+            onnx_model_fp16 = float16.convert_float_to_float16(
+                onnx_model,
+                keep_io_types=True  # Keep input/output as FP32
+            )
+            onnx_path_fp16 = os.path.join(MODEL_DIR, "fingerspell_mlp_fp16.onnx")
+            with open(onnx_path_fp16, "wb") as f:
+                f.write(onnx_model_fp16.SerializeToString())
+            print(f"  wrote {onnx_path_fp16} ({os.path.getsize(onnx_path_fp16)/1024:.1f} KB) [FP16]")
+            
+            # Also copy to signtutor public/models for web serving
+            import shutil
+            web_model_dir = os.path.join(os.path.dirname(__file__), "..", "signtutor", "public", "models")
+            if os.path.exists(web_model_dir):
+                shutil.copy2(onnx_path_fp16, os.path.join(web_model_dir, "fingerspell_mlp_fp16.onnx"))
+                print(f"  copied to {web_model_dir}/fingerspell_mlp_fp16.onnx")
+        except TypeError:
+            # Older onnxconverter_common doesn't support keep_io_types
+            print("  Note: keep_io_types not supported, trying without...")
+            onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
+            onnx_path_fp16 = os.path.join(MODEL_DIR, "fingerspell_mlp_fp16.onnx")
+            with open(onnx_path_fp16, "wb") as f:
+                f.write(onnx_model_fp16.SerializeToString())
+            print(f"  wrote {onnx_path_fp16} ({os.path.getsize(onnx_path_fp16)/1024:.1f} KB) [FP16]")
+            
+            import shutil
+            web_model_dir = os.path.join(os.path.dirname(__file__), "..", "signtutor", "public", "models")
+            if os.path.exists(web_model_dir):
+                shutil.copy2(onnx_path_fp16, os.path.join(web_model_dir, "fingerspell_mlp_fp16.onnx"))
+                print(f"  copied to {web_model_dir}/fingerspell_mlp_fp16.onnx")
 
 with open(os.path.join(MODEL_DIR, "labels.json"), "w") as f:
     json.dump({"labels": labels, "synth_collisions": SYNTH_COLLISIONS}, f, indent=2)

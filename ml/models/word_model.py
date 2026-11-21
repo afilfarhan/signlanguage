@@ -179,7 +179,15 @@ class WordTransformer(nn.Module):
                 try:
                     print("  Converting to FP16…")
                     onnx_model = onnx.load(path)
-                    onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
+                    try:
+                        # Convert to FP16 but keep outputs as FP32 for compatibility
+                        onnx_model_fp16 = float16.convert_float_to_float16(
+                            onnx_model,
+                            keep_io_types=True  # Keep input/output as FP32
+                        )
+                    except TypeError:
+                        # Older onnxconverter_common doesn't support keep_io_types
+                        onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
                     fp16_path = path.replace('.onnx', '_fp16.onnx')
                     onnx.save(onnx_model_fp16, fp16_path)
                     size_kb_fp16 = os.path.getsize(fp16_path) / 1024
