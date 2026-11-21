@@ -1,0 +1,18 @@
+{
+  "labels": [
+    "HELLO",
+    "GOODBYE",
+    "YES",
+    "NO",
+    "PLEASE",
+    "THANKS",
+    "SORRY",
+    "HELP"
+  ],
+  "seq_len": 45,
+  "feature_dim": 126,
+  "d_model": 128,
+  "n_layers": 4,
+  "n_heads": 8,
+  "n_classes": 8
+}

@@ -33,6 +33,7 @@ parser.add_argument("--epochs", type=int, default=30)
 parser.add_argument("--d-model", type=int, default=128, help="Transformer d_model")
 parser.add_argument("--n-layers", type=int, default=4, help="Number of encoder layers")
 parser.add_argument("--n-heads", type=int, default=8, help="Number of attention heads")
+parser.add_argument("--fp16", action="store_true", help="Export FP16 ONNX model for WebGPU")
 args = parser.parse_args()
 
 T_FRAMES = 45
@@ -189,12 +190,12 @@ for i in range(len(labels)):
             flagged_pairs.append((labels[i], labels[j], cm[i, j] / row_sum))
 
 # ----------------------------- Export to ONNX -----------------------------
-onnx_path = os.path.join(MODEL_DIR, "dynamic_transformer_v2.onnx")
-print(f"Exporting to {onnx_path}…")
+onnx_path_fp32 = os.path.join(MODEL_DIR, "dynamic_transformer_v2.onnx")
+print(f"Exporting to {onnx_path_fp32}…")
 
 dummy = torch.randn(1, T_FRAMES, FEATURE_DIM, dtype=torch.float32)
 torch.onnx.export(
-    model, dummy, onnx_path,
+    model, dummy, onnx_path_fp32,
     input_names=["sequence"],
     output_names=["logits", "embedding"],  # embedding for PersonalAdapter
     dynamic_axes={"sequence": {0: "batch"}, "logits": {0: "batch"}, "embedding": {0: "batch"}},
@@ -202,8 +203,34 @@ torch.onnx.export(
     do_constant_folding=True,
     dynamo=False,
 )
-size_kb = os.path.getsize(onnx_path) / 1024
-print(f"  wrote {size_kb:.1f} KB ({size_kb/1024:.2f} MB)")
+size_kb = os.path.getsize(onnx_path_fp32) / 1024
+print(f"  wrote {size_kb:.1f} KB ({size_kb/1024:.2f} MB) [FP32]")
+
+# FP16 export (optional, for WebGPU)
+if args.fp16:
+    try:
+        from onnxconverter_common import float16
+        import onnx
+        
+        print("  Converting to FP16…")
+        onnx_model = onnx.load(onnx_path_fp32)
+        onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
+        onnx_path_fp16 = os.path.join(MODEL_DIR, "dynamic_transformer_v2_fp16.onnx")
+        onnx.save(onnx_model_fp16, onnx_path_fp16)
+        size_kb_fp16 = os.path.getsize(onnx_path_fp16) / 1024
+        print(f"  wrote {size_kb_fp16:.1f} KB ({size_kb_fp16/1024:.2f} MB) [FP16]")
+        
+        # Also copy to signtutor public/models for web serving
+        import shutil
+        web_model_dir = os.path.join(os.path.dirname(__file__), "..", "signtutor", "public", "models")
+        if os.path.exists(web_model_dir):
+            shutil.copy2(onnx_path_fp16, os.path.join(web_model_dir, "dynamic_signs_transformer_fp16.onnx"))
+            print(f"  copied to {web_model_dir}/dynamic_signs_transformer_fp16.onnx")
+    except ImportError:
+        print("  WARNING: onnxconverter_common not installed, skipping FP16 export")
+        print("  Install with: pip install onnxconverter_common")
+    except Exception as e:
+        print(f"  WARNING: FP16 conversion failed: {e}")
 
 with open(os.path.join(MODEL_DIR, "dynamic_labels_v2.json"), "w") as f:
     json.dump({

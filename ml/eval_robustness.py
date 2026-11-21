@@ -29,7 +29,7 @@ from seq_features import normalize_batch
 from sklearn.model_selection import train_test_split
 
 MODEL_DIR = os.path.join(os.path.dirname(__file__), "models")
-ONNX_PATH = os.path.join(MODEL_DIR, "dynamic_signs_transformer.onnx")
+ONNX_PATH = os.path.join(MODEL_DIR, "dynamic_transformer_v2.onnx")
 
 print("Loading data + model…")
 X_raw, y, labels = make_dataset(n_per_class=200, seed=0)
@@ -37,10 +37,11 @@ _, X_test_raw, _, y_test = train_test_split(
     X_raw, y, test_size=0.2, random_state=42, stratify=y
 )
 sess = ort.InferenceSession(ONNX_PATH, providers=["CPUExecutionProvider"])
+input_name = sess.get_inputs()[0].name
 
 def evaluate(X_raw_slice: np.ndarray, name: str) -> float:
     feats = normalize_batch(X_raw_slice).astype(np.float32)
-    logits = sess.run(["logits"], {"input": feats})[0]
+    logits = sess.run(["logits"], {input_name: feats})[0]
     pred = logits.argmax(1)
     acc = accuracy_score(y_test, pred)
     print(f"  {name:20s} acc = {acc:.3f}")
