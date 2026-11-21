@@ -12,18 +12,28 @@ Supports:
     - Loading existing DynamicTransformerV2 weights as frozen backbone
     - CTC head (for sentence-level, future)
     - ONNX export with dynamic batch axis
+    - FP16 export for WebGPU deployment
 
 Config driven via WordModelConfig or CLI args.
 """
 from __future__ import annotations
 
 import json
+import os
 from dataclasses import dataclass, field, asdict
 from typing import Optional
 
 import torch
 import torch.nn as nn
 import numpy as np
+
+# FP16 conversion (optional)
+try:
+    from onnxconverter_common import float16
+    import onnx
+    FP16_AVAILABLE = True
+except ImportError:
+    FP16_AVAILABLE = False
 
 
 @dataclass
@@ -131,7 +141,15 @@ class WordTransformer(nn.Module):
         logits = self.classifier(emb)
         return logits, emb
 
-    def export_onnx(self, path: str, opset: int = 17):
+    def export_onnx(self, path: str, opset: int = 17, fp16: bool = False):
+        """Export model to ONNX format.
+        
+        Args:
+            path: Output path for FP32 model
+            opset: ONNX opset version
+            fp16: If True, also export FP16 version (requires onnxconverter_common)
+        """
+        # Export FP32
         dummy = torch.randn(1, self.config.t_frames, self.config.feature_dim, dtype=torch.float32)
         outputs = ["logits", "embedding"]
         torch.onnx.export(
@@ -150,7 +168,31 @@ class WordTransformer(nn.Module):
             dynamo=False,
         )
         size_kb = os.path.getsize(path) / 1024
-        print(f"Exported ONNX: {path} ({size_kb:.1f} KB)")
+        print(f"Exported ONNX: {path} ({size_kb:.1f} KB) [FP32]")
+
+        # Export FP16 if requested
+        if fp16:
+            if not FP16_AVAILABLE:
+                print("  WARNING: onnxconverter_common not installed, skipping FP16 export")
+                print("  Install with: pip install onnxconverter_common")
+            else:
+                try:
+                    print("  Converting to FP16…")
+                    onnx_model = onnx.load(path)
+                    onnx_model_fp16 = float16.convert_float_to_float16(onnx_model)
+                    fp16_path = path.replace('.onnx', '_fp16.onnx')
+                    onnx.save(onnx_model_fp16, fp16_path)
+                    size_kb_fp16 = os.path.getsize(fp16_path) / 1024
+                    print(f"  Exported FP16 ONNX: {fp16_path} ({size_kb_fp16:.1f} KB) [FP16]")
+                    
+                    # Also copy to signtutor public/models for web serving
+                    import shutil
+                    web_model_dir = os.path.join(os.path.dirname(__file__), "..", "..", "signtutor", "public", "models")
+                    if os.path.exists(web_model_dir):
+                        shutil.copy2(fp16_path, os.path.join(web_model_dir, "word_transformer_fp16.onnx"))
+                        print(f"  copied to {web_model_dir}/word_transformer_fp16.onnx")
+                except Exception as e:
+                    print(f"  WARNING: FP16 conversion failed: {e}")
 
 
 import os

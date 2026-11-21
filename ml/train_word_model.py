@@ -116,6 +116,7 @@ def main():
     parser.add_argument("--pretrained", type=str, default=None, help="Path to pretrained .pt weights")
     parser.add_argument("--freeze-encoder", action="store_true")
     parser.add_argument("--opset", type=int, default=17)
+    parser.add_argument("--fp16", action="store_true", help="Export FP16 ONNX model for WebGPU")
     args = parser.parse_args()
 
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -213,7 +214,7 @@ def main():
                 flagged_pairs.append((labels[i], labels[j], cm[i, j] / row_sum))
 
     onnx_path = os.path.join(MODEL_DIR, "word_transformer.onnx")
-    model.export_onnx(onnx_path, opset=args.opset)
+    model.export_onnx(onnx_path, opset=args.opset, fp16=args.fp16)
     size_kb = os.path.getsize(onnx_path) / 1024
 
     config_path = os.path.join(MODEL_DIR, "word_transformer_config.json")
@@ -276,7 +277,7 @@ def main():
 - `word_labels.json` — label names + metadata
 """
     report_path = os.path.join(MODEL_DIR, "word_eval_report.md")
-    with open(report_path, "w") as f:
+    with open(report_path, "w", encoding="utf-8") as f:
         f.write(report_md)
     print(f"Saved eval report -> {report_path}")
 

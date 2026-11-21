@@ -1,5 +1,5 @@
 {
-  "vocab_size": 100,
+  "vocab_size": 10,
   "t_frames": 60,
   "feature_dim": 126,
   "d_model": 128,
