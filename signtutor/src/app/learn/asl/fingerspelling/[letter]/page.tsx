@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import {
-  normalize,
+  normalizeWithGeometry,
   fingerStates,
   inSameGroup,
   classifyRule,
@@ -21,7 +21,7 @@ import { normalizeSequenceFixed, JZ_FRAMES } from "@/lib/seq-features";
 import Image from "next/image";
 import { LETTER_DESCRIPTIONS, STATIC_LETTERS, ASL_REF_IMAGES, MOTION_LETTERS } from "@/lib/curriculum";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
-import { loadMediaPipe, loadONNX, type MediaPipeLibs, type ONNXLibs } from "@/lib/loadExternals";
+import { loadMediaPipe, loadONNX, getONNXBackend, createSessionOptions, type MediaPipeLibs, type ONNXLibs, type ONNXBackendInfo } from "@/lib/loadExternals";
 
 type MediaPipeHands = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void> };
 type MediaPipeCamera = { start: () => void; stop: () => void };
@@ -101,6 +101,7 @@ export default function FingerspellingLetterPage() {
   const [fps, setFps] = useState("—");
   const [loadingExternals, setLoadingExternals] = useState(false);
   const [externalsError, setExternalsError] = useState("");
+  const [backendInfo, setBackendInfo] = useState<ONNXBackendInfo | null>(null);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
@@ -131,7 +132,7 @@ export default function FingerspellingLetterPage() {
   const runModel = useCallback(async (landmarks: Landmark[], session: OrtSession): Promise<RankedResult[] | null> => {
     try {
       const t0 = performance.now();
-      const feats = normalize(landmarks);
+      const feats = normalizeWithGeometry(landmarks);
       if (!onnxLibsRef.current) return null;
       const tensor = new onnxLibsRef.current.Tensor("float32", feats, [1, featureDimRef.current]);
       const out = await session.run({ input: tensor });
@@ -273,8 +274,9 @@ export default function FingerspellingLetterPage() {
     modelLabelsRef.current = labels;
     if (featureDim) featureDimRef.current = featureDim;
     setModelReady(true);
-    setModelBadge(`MLP · ${labels.length} classes`);
-  }, []);
+    const backendLabel = backendInfo?.label || 'WASM';
+    setModelBadge(`${backendLabel} MLP · ${labels.length} classes`);
+  }, [backendInfo]);
 
   const onModelError = useCallback(() => {
     setModelBadge("failed to load");
@@ -300,10 +302,12 @@ export default function FingerspellingLetterPage() {
       }
       const mpLibs = mpLibsRef.current;
 
-      // Load ONNX Runtime
+      // Detect ONNX backend (WebGPU or WASM)
       if (!onnxLibsRef.current && !modelReady) {
         try {
           onnxLibsRef.current = await loadONNX();
+          const backend = await getONNXBackend();
+          setBackendInfo(backend);
         } catch {
           setModelBadge("ort.js unavailable");
           setMode("rule");
@@ -313,7 +317,9 @@ export default function FingerspellingLetterPage() {
       // Load ML model if ONNX is available
       if (!sessionRef.current && onnxLibsRef.current && !modelReady) {
         try {
-          const session = await onnxLibsRef.current.InferenceSession.create("/models/fingerspell_mlp_v2.onnx", { executionProviders: ["wasm"] });
+          const backend = backendInfo || await getONNXBackend();
+          const sessionOptions = createSessionOptions(backend, 'static');
+          const session = await onnxLibsRef.current.InferenceSession.create("/models/fingerspell_mlp_v2.onnx", sessionOptions);
           const resp = await fetch("/models/labels_v2.json");
           const meta = await resp.json();
           onModelLoaded(meta.labels, session, meta.feature_dim);
@@ -325,7 +331,9 @@ export default function FingerspellingLetterPage() {
       // Load J/Z temporal model
       if (!jzSessionRef.current && onnxLibsRef.current && !jzReadyRef.current) {
         try {
-          const jzSession = await onnxLibsRef.current.InferenceSession.create("/models/jz_classifier.onnx", { executionProviders: ["wasm"] });
+          const backend = backendInfo || await getONNXBackend();
+          const sessionOptions = createSessionOptions(backend, 'jz');
+          const jzSession = await onnxLibsRef.current.InferenceSession.create("/models/jz_classifier.onnx", sessionOptions);
           const jzResp = await fetch("/models/jz_labels.json");
           const jzMeta = await jzResp.json();
           jzSessionRef.current = jzSession;

@@ -7,7 +7,7 @@ import { normalizeSequenceFixed, T_FRAMES, WORD_T_FRAMES, N_LANDMARKS, FEATURE_D
 import { DYNAMIC_SIGNS, SIGN_DESCRIPTIONS } from "@/lib/curriculum";
 import { getSignById } from "@/lib/vocabulary_200";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
-import { loadMediaPipe, loadONNX, type MediaPipeLibs, type ONNXLibs } from "@/lib/loadExternals";
+import { loadMediaPipe, loadONNX, getONNXBackend, createSessionOptions, type MediaPipeLibs, type ONNXLibs, type ONNXBackendInfo } from "@/lib/loadExternals";
 
 type MediaPipeHands = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void> };
 type MediaPipeCamera = { start: () => void; stop: () => void };
@@ -63,6 +63,7 @@ export default function DynamicSignPage() {
   const [loadingExternals, setLoadingExternals] = useState(false);
   const [externalsError, setExternalsError] = useState("");
   const [wordModelLabels, setWordModelLabels] = useState<string[]>([]);
+  const [backendInfo, setBackendInfo] = useState<ONNXBackendInfo | null>(null);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
@@ -200,8 +201,9 @@ export default function DynamicSignPage() {
     modelLabelsRef.current = labels;
     activeSeqLenRef.current = seqLen;
     setModelReady(true);
-    setModelBadge(`Transformer · ${labels.length} signs · seq=${seqLen}`);
-  }, [setModelReady, setModelBadge]);
+    const backendLabel = backendInfo?.label || 'WASM';
+    setModelBadge(`${backendLabel} Transformer · ${labels.length} signs · seq=${seqLen}`);
+  }, [setModelReady, setModelBadge, backendInfo]);
 
   const onModelError = useCallback(() => { setModelBadge("failed to load"); }, []);
 
@@ -224,10 +226,12 @@ export default function DynamicSignPage() {
       }
       const mpLibs = mpLibsRef.current;
 
-      // Load ONNX Runtime
+      // Detect ONNX backend (WebGPU or WASM)
       if (!onnxLibsRef.current && !modelReady) {
         try {
           onnxLibsRef.current = await loadONNX();
+          const backend = await getONNXBackend();
+          setBackendInfo(backend);
         } catch {
           setModelBadge("ort.js unavailable");
         }
@@ -236,7 +240,9 @@ export default function DynamicSignPage() {
       // Load ML models
       if (!sessionRef.current && onnxLibsRef.current && !modelReady) {
         try {
-          const session = await onnxLibsRef.current.InferenceSession.create("/models/dynamic_signs_transformer.onnx", { executionProviders: ["wasm"] });
+          const backend = backendInfo || await getONNXBackend();
+          const sessionOptions = createSessionOptions(backend, 'dynamic');
+          const session = await onnxLibsRef.current.InferenceSession.create("/models/dynamic_signs_transformer.onnx", sessionOptions);
           const resp = await fetch("/models/dynamic_labels.json");
           const meta = await resp.json();
           sessionRef.current = session;
@@ -251,7 +257,9 @@ export default function DynamicSignPage() {
       }
       if (!wordSessionRef.current && onnxLibsRef.current) {
         try {
-          const wSession = await onnxLibsRef.current.InferenceSession.create("/models/word_transformer.onnx", { executionProviders: ["wasm"] });
+          const backend = backendInfo || await getONNXBackend();
+          const sessionOptions = createSessionOptions(backend, 'word');
+          const wSession = await onnxLibsRef.current.InferenceSession.create("/models/word_transformer.onnx", sessionOptions);
           const wResp = await fetch("/models/word_labels.json");
           const wMeta = await wResp.json();
           wordSessionRef.current = wSession;
