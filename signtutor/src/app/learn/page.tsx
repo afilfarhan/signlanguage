@@ -34,8 +34,16 @@ const modules = [
     count: "Few-shot",
   },
   {
-    tag: "Retention",
+    tag: "Multilingual",
     tagColor: "ok",
+    title: "Multi-Language",
+    description: "Learn BSL, ArSL, and more with SignCLIP cross-lingual embeddings. Auto-detect language.",
+    href: "/learn/asl/multilang",
+    count: "3 languages",
+  },
+  {
+    tag: "Retention",
+    tagColor: "accent2",
     title: "Spaced Repetition",
     description: "Personalized review queue that adapts to your learning pace. Powered by FSRS algorithm.",
     href: "/practice",
