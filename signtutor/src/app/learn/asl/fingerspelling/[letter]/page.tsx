@@ -24,11 +24,9 @@ import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
 import { loadMediaPipe, loadONNX, getONNXBackend, createSessionOptions, type MediaPipeLibs, type ONNXLibs, type ONNXBackendInfo, type MediaPipeHolisticResults } from "@/lib/loadExternals";
 import { extractNMMFeatures, getNMMDescription, isNMMDataReliable, type NMMFeatures } from "@/lib/nmm";
 
-type MediaPipeHands = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void> };
 type MediaPipeHolistic = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeHolisticResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void>; close: () => void };
 type MediaPipeCamera = { start: () => void; stop: () => void };
 type OrtSession = { run: (f: Record<string, unknown>) => Promise<Record<string, { data: Float32Array }>> };
-interface MediaPipeResults { multiHandLandmarks?: Landmark[][]; }
 
 type Verdict = "match" | "close" | "miss";
 type Mode = "ml" | "rule";
@@ -41,7 +39,7 @@ function chooseTip(
   target: string,
   orient: ReturnType<typeof palmFacingCamera>,
   ruleStates: FingerStates,
-  nmm?: NMMFeatures
+  _nmm?: NMMFeatures
 ): string {
   if (top.label === target && c.shape >= 0.75 && c.orient > 0.5 && c.move > 0.5) {
     return `Nice — that looks like "${target}". Hold it for a beat to confirm.`;
@@ -70,6 +68,10 @@ function chooseTip(
   if (worstKey === "loc") return "Bring your hand into the neutral signing space in front of your chest.";
   if (worstKey === "move") return "Hold the sign still — fingerspelling letters are static.";
   return "Keep going.";
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.max(min, Math.min(max, value));
 }
 
 export default function FingerspellingLetterPage() {
@@ -202,10 +204,6 @@ export default function FingerspellingLetterPage() {
     setTopK(ranked.slice(0, 5));
     setTip(chooseTip(comps, top, target, orient, states, nmm || undefined));
   }, [runModel]);
-
-  function clamp(value: number, min: number, max: number): number {
-    return Math.max(min, Math.min(max, value));
-  }
 
   const onResults = useCallback(
     (results: MediaPipeHolisticResults) => {

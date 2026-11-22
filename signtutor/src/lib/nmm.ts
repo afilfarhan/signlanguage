@@ -97,11 +97,6 @@ function dist2d(a: { x: number; y: number }, b: { x: number; y: number }): numbe
   return Math.hypot(a.x - b.x, a.y - b.y);
 }
 
-/** Calculate Euclidean distance between two 3D points */
-function dist3d(a: { x: number; y: number; z: number }, b: { x: number; y: number; z: number }): number {
-  return Math.hypot(a.x - b.x, a.y - b.y, a.z - b.z);
-}
-
 /** Get landmark safely with fallback */
 function getLandmark(landmarks: { x: number; y: number; z: number }[] | undefined, index: number): { x: number; y: number; z: number } | null {
   if (!landmarks || index >= landmarks.length) return null;
@@ -235,10 +230,6 @@ function calculateHeadPose(poseLandmarks: { x: number; y: number; z: number; vis
   const nose = getLandmark(poseLandmarks, POSE_LANDMARKS.nose);
   const leftEye = getLandmark(poseLandmarks, POSE_LANDMARKS.leftEye);
   const rightEye = getLandmark(poseLandmarks, POSE_LANDMARKS.rightEye);
-  const leftEar = getLandmark(poseLandmarks, POSE_LANDMARKS.leftEar);
-  const rightEar = getLandmark(poseLandmarks, POSE_LANDMARKS.rightEar);
-  const leftShoulder = getLandmark(poseLandmarks, POSE_LANDMARKS.leftShoulder);
-  const rightShoulder = getLandmark(poseLandmarks, POSE_LANDMARKS.rightShoulder);
   
   if (!nose || !leftEye || !rightEye) return { pitch: 0, yaw: 0, roll: 0 };
   
@@ -287,7 +278,8 @@ export function extractNMMFeatures(results: MediaPipeHolisticResults): NMMFeatur
   const rightEyeLeft = getLandmark(face, FACE_LANDMARKS.rightEye.left);
   const rightEyeRight = getLandmark(face, FACE_LANDMARKS.rightEye.right);
   
-  let eyeGazeLeftRight = 0, eyeGazeUpDown = 0;
+  let eyeGazeLeftRight = 0;
+  const eyeGazeUpDown = 0;
   if (leftIris && leftEyeLeft && leftEyeRight) {
     const eyeCenterX = (leftEyeLeft.x + leftEyeRight.x) / 2;
     eyeGazeLeftRight = clamp((leftIris.x - eyeCenterX) * 4, -1, 1);
