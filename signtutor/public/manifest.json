@@ -1,0 +1,94 @@
+{
+  "name": "SignTutor - Learn ASL",
+  "short_name": "SignTutor",
+  "description": "Learn ASL with real-time AI feedback. Practice fingerspelling, vocabulary, and continuous signing offline.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080c14",
+  "theme_color": "#00e5b0",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "utilities"],
+  "shortcuts": [
+    {
+      "name": "Fingerspelling",
+      "short_name": "Alphabet",
+      "description": "Practice ASL fingerspelling",
+      "url": "/learn/asl/fingerspelling",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Vocabulary",
+      "short_name": "Words",
+      "description": "Learn 200+ ASL signs",
+      "url": "/learn/asl/words",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Continuous SLR",
+      "short_name": "Continuous",
+      "description": "Real-time phrase recognition",
+      "url": "/learn/asl/continuous",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Personal Signs",
+      "short_name": "Personal",
+      "description": "Teach custom signs with few-shot learning",
+      "url": "/learn/asl/personal",
+      "icons": [{ "src": "/icons/icon-192x192.png", "sizes": "192x192" }]
+    }
+  ],
+  "screenshots": [],
+  "prefer_related_applications": false
+}

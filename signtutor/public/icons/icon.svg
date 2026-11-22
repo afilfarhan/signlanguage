@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00e5b0;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4f8cff;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#grad)" opacity="0.15"/>
+  <!-- Hand silhouette - simplified ASL "I love you" handshape -->
+  <g transform="translate(120, 100) scale(1.4)">
+    <!-- Palm -->
+    <path d="M100 180 Q100 140 140 140 L220 140 Q260 140 260 180 L260 260 Q260 300 220 300 L140 300 Q100 300 100 260 Z" fill="#080c14" stroke="#00e5b0" stroke-width="4"/>
+    <!-- Thumb -->
+    <path d="M140 180 Q100 180 100 140 Q100 100 140 100 L180 100 Q220 100 220 140 Q220 180 180 180 Z" fill="#080c14" stroke="#00e5b0" stroke-width="4"/>
+    <!-- Index finger -->
+    <path d="M180 140 Q180 80 200 60 Q220 40 240 60 Q260 80 260 140 Q260 180 240 180 L180 180 Z" fill="#080c14" stroke="#00e5b0" stroke-width="4"/>
+    <!-- Middle finger -->
+    <path d="M220 140 Q220 60 240 30 Q260 0 280 30 Q300 60 300 140 Q300 180 280 180 L220 180 Z" fill="#080c14" stroke="#00e5b0" stroke-width="4"/>
+    <!-- Ring finger -->
+    <path d="M260 140 Q260 80 280 50 Q300 20 320 50 Q340 80 340 140 Q340 180 320 180 L260 180 Z" fill="#080c14" stroke="#00e5b0" stroke-width="4"/>
+    <!-- Pinky finger -->
+    <path d="M300 140 Q300 100 310 80 Q320 60 340 80 Q360 100 360 140 Q360 180 340 180 L300 180 Z" fill="#080c14" stroke="#00e5b0" stroke-width="4"/>
+  </g>
+  <!-- Sparkle accents -->
+  <circle cx="80" cy="80" r="12" fill="#00e5b0" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="432" cy="432" r="8" fill="#4f8cff" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="432" cy="80" r="6" fill="#ffb347" opacity="0.8">
+    <animate attributeName="opacity" values="0.8;0.2;0.8" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+</svg>
