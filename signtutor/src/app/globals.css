@@ -45,6 +45,7 @@
   /* Accents */
   --color-accent: var(--accent-primary);
   --color-accent2: var(--accent-secondary);
+  --color-accent3: var(--accent-warm);
   --color-warm: var(--accent-warm);
   --color-ok: var(--accent-success);
   --color-bad: var(--accent-danger);

@@ -18,6 +18,14 @@ const modules = [
     count: "200 signs",
   },
   {
+    tag: "Continuous",
+    tagColor: "accent3",
+    title: "Continuous SLR",
+    description: "Real-time phrase recognition with streaming CTC decoder. Sign sentences naturally.",
+    href: "/learn/asl/continuous",
+    count: "8 phrases",
+  },
+  {
     tag: "Retention",
     tagColor: "warm",
     title: "Spaced Repetition",
