@@ -21,9 +21,11 @@ import { normalizeSequenceFixed, JZ_FRAMES } from "@/lib/seq-features";
 import Image from "next/image";
 import { LETTER_DESCRIPTIONS, STATIC_LETTERS, ASL_REF_IMAGES, MOTION_LETTERS } from "@/lib/curriculum";
 import { loadPrefs, savePrefs, type Prefs } from "@/lib/storage";
-import { loadMediaPipe, loadONNX, getONNXBackend, createSessionOptions, type MediaPipeLibs, type ONNXLibs, type ONNXBackendInfo } from "@/lib/loadExternals";
+import { loadMediaPipe, loadONNX, getONNXBackend, createSessionOptions, type MediaPipeLibs, type ONNXLibs, type ONNXBackendInfo, type MediaPipeHolisticResults } from "@/lib/loadExternals";
+import { extractNMMFeatures, getNMMDescription, isNMMDataReliable, type NMMFeatures } from "@/lib/nmm";
 
 type MediaPipeHands = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void> };
+type MediaPipeHolistic = { setOptions: (o: object) => void; onResults: (cb: (r: MediaPipeHolisticResults) => void) => void; send: (i: { image: HTMLVideoElement }) => Promise<void>; close: () => void };
 type MediaPipeCamera = { start: () => void; stop: () => void };
 type OrtSession = { run: (f: Record<string, unknown>) => Promise<Record<string, { data: Float32Array }>> };
 interface MediaPipeResults { multiHandLandmarks?: Landmark[][]; }
@@ -39,6 +41,7 @@ function chooseTip(
   target: string,
   orient: ReturnType<typeof palmFacingCamera>,
   ruleStates: FingerStates,
+  nmm?: NMMFeatures
 ): string {
   if (top.label === target && c.shape >= 0.75 && c.orient > 0.5 && c.move > 0.5) {
     return `Nice — that looks like "${target}". Hold it for a beat to confirm.`;
@@ -94,7 +97,7 @@ export default function FingerspellingLetterPage() {
   const [topK, setTopK] = useState<RankedResult[]>([]);
   const [fingers, setFingers] = useState<FingerStates>({ thumb: false, index: false, middle: false, ring: false, pinky: false });
   const [tip, setTip] = useState("Click Start camera and choose a target letter to begin practicing.");
-  const [components, setComponents] = useState({ shape: 0, orient: 0, loc: 0, move: 0 });
+  const [components, setComponents] = useState({ shape: 0, orient: 0, loc: 0, move: 0, nmm: 0 });
   const [hudHand, setHudHand] = useState("No hand detected");
   const [hudLatency, setHudLatency] = useState("— ms");
   const [modelBadge, setModelBadge] = useState("Model: loading…");
@@ -102,11 +105,14 @@ export default function FingerspellingLetterPage() {
   const [loadingExternals, setLoadingExternals] = useState(false);
   const [externalsError, setExternalsError] = useState("");
   const [backendInfo, setBackendInfo] = useState<ONNXBackendInfo | null>(null);
+  const [nmmFeatures, setNmmFeatures] = useState<NMMFeatures | null>(null);
+  const [nmmReliable, setNmmReliable] = useState(false);
+  const [showNMM, setShowNMM] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const overlayRef = useRef<HTMLCanvasElement>(null);
   const sessionRef = useRef<OrtSession | null>(null);
-  const handsRef = useRef<MediaPipeHands | null>(null);
+  const holisticRef = useRef<MediaPipeHolistic | null>(null);
   const cameraRef = useRef<MediaPipeCamera | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const movementBufRef = useRef<MovementPoint[]>([]);
@@ -119,7 +125,7 @@ export default function FingerspellingLetterPage() {
   const mpLibsRef = useRef<MediaPipeLibs | null>(null);
   const onnxLibsRef = useRef<ONNXLibs | null>(null);
   const modelLabelsRef = useRef<string[]>([]);
-  const featureDimRef = useRef(63);
+  const featureDimRef = useRef(68);
   const jzSessionRef = useRef<OrtSession | null>(null);
   const jzLabelsRef = useRef<string[]>([]);
   const jzReadyRef = useRef(false);
@@ -143,7 +149,7 @@ export default function FingerspellingLetterPage() {
     } catch { return null; }
   }, []);
 
-  const classifyAndScore = useCallback(async (lm: Landmark[]) => {
+  const classifyAndScore = useCallback(async (lm: Landmark[], nmm?: NMMFeatures) => {
     const states = fingerStates(lm);
     setFingers(states);
     const target = targetRef.current;
@@ -165,15 +171,25 @@ export default function FingerspellingLetterPage() {
     const targetEntry = ranked.find((r) => r.label === target);
     const shapeScore = targetEntry ? targetEntry.prob : 0;
 
+    // NMM component score (for letters that benefit from NMM)
+    let nmmScore = 0.5;
+    if (nmm) {
+      // For fingerspelling, NMM mainly helps with orientation feedback
+      nmmScore = nmm.isQuestion ? 0.8 : nmm.isWhQuestion ? 0.8 : nmm.isAffirmation ? 0.7 : nmm.isNegation ? 0.6 : 0.5;
+      // Slight boost if head is oriented well
+      if (Math.abs(nmm.headYaw) < 15 && Math.abs(nmm.headPitch) < 15) nmmScore += 0.1;
+    }
+
     const comps = {
       shape: shapeScore,
       orient: orient.facing ? 1 : 0.4,
       loc: loc.startsWith("middle") ? 1 : 0.6,
       move: movement < 0.05 ? 1 : movement < 0.15 ? 0.6 : 0.2,
+      nmm: clamp(nmmScore, 0, 1),
     };
     setComponents(comps);
 
-    const conf = comps.shape * 0.55 + comps.orient * 0.15 + comps.loc * 0.1 + comps.move * 0.2;
+    const conf = comps.shape * 0.45 + comps.orient * 0.15 + comps.loc * 0.1 + comps.move * 0.15 + comps.nmm * 0.15;
 
     let v: Verdict = "close";
     if (top.label === target && comps.shape >= 0.5 && conf >= 0.65) v = "match";
@@ -184,21 +200,44 @@ export default function FingerspellingLetterPage() {
     setConfidence(conf > 0 ? `${(conf * 100).toFixed(0)}%` : "—");
     setVerdict(v);
     setTopK(ranked.slice(0, 5));
-    setTip(chooseTip(comps, top, target, orient, states));
+    setTip(chooseTip(comps, top, target, orient, states, nmm || undefined));
   }, [runModel]);
 
+  function clamp(value: number, min: number, max: number): number {
+    return Math.max(min, Math.min(max, value));
+  }
+
   const onResults = useCallback(
-    (results: MediaPipeResults) => {
+    (results: MediaPipeHolisticResults) => {
       const ctx = overlayRef.current?.getContext("2d");
       if (!ctx || !overlayRef.current) return;
       ctx.clearRect(0, 0, overlayRef.current.width, overlayRef.current.height);
-      const lm = results.multiHandLandmarks?.[0] || null;
+      
+      // Extract hand landmarks (right hand preferred) - these are already arrays of 21 landmarks
+      const rightHand = results.rightHandLandmarks || null;
+      const leftHand = results.leftHandLandmarks || null;
+      const lm = rightHand || leftHand || null;
+      
+      // Extract NMM features
+      const nmm = extractNMMFeatures(results);
+      setNmmFeatures(nmm);
+      setNmmReliable(isNMMDataReliable(results));
+
       if (lm) {
         setHudHand("Hand detected");
         const libs = mpLibsRef.current;
         if (libs) {
+          // Draw hand landmarks
           libs.drawConnectors(ctx, lm, libs.HAND_CONNECTIONS, { color: "#00e5b0", lineWidth: 3 });
-          libs.drawLandmarks(ctx, lm, { color: "#4f8cff", lineWidth: 1, radius: 3 });
+          libs.drawLandmarks(ctx, lm, libs.HAND_CONNECTIONS, { color: "#4f8cff", lineWidth: 1, radius: 3 });
+          
+          // Optionally draw face mesh (subtle)
+          if (showNMM && results.faceLandmarks) {
+            libs.drawConnectors(ctx, results.faceLandmarks, libs.FACEMESH_TESSELATION, { color: "#4f8cff40", lineWidth: 0.5 });
+            libs.drawConnectors(ctx, results.faceLandmarks, libs.FACEMESH_RIGHT_EYEBROW, { color: "#ff6b6b", lineWidth: 1.5 });
+            libs.drawConnectors(ctx, results.faceLandmarks, libs.FACEMESH_LEFT_EYEBROW, { color: "#ff6b6b", lineWidth: 1.5 });
+            libs.drawConnectors(ctx, results.faceLandmarks, libs.FACEMESH_LIPS, { color: "#ffd93d", lineWidth: 1 });
+          }
         }
         movementBufRef.current.push({ x: lm[0].x, y: lm[0].y, t: performance.now() });
         if (movementBufRef.current.length > 30) movementBufRef.current.shift();
@@ -237,15 +276,15 @@ export default function FingerspellingLetterPage() {
               const targetProb = ranked.find((r: { label: string }) => r.label === target)?.prob || 0;
               const v: Verdict = top.label === target && targetProb >= 0.7 ? "match" : targetProb >= 0.3 ? "close" : "miss";
               setVerdict(v);
-              setComponents({ shape: targetProb, orient: 1, loc: 1, move: 1 });
+              setComponents({ shape: targetProb, orient: 1, loc: 1, move: 1, nmm: 0.5 });
               setTip(v === "match" ? `Nice — that looks like "${target}". Hold it for a beat.` : v === "close" ? `Almost "${target}". Keep tracing the shape.` : `Trace the "${target}" shape with your finger.`);
             } catch {
               // Fallback to static
-              classifyAndScore(lm);
+              classifyAndScore(lm, nmm);
             }
           })();
         } else {
-          classifyAndScore(lm);
+          classifyAndScore(lm, nmm);
         }
       } else {
         setHudHand("No hand detected");
@@ -296,7 +335,7 @@ export default function FingerspellingLetterPage() {
     setExternalsError("");
 
     try {
-      // Load MediaPipe Hands
+      // Load MediaPipe Hands + Holistic
       if (!mpLibsRef.current) {
         mpLibsRef.current = await loadMediaPipe();
       }
@@ -344,13 +383,18 @@ export default function FingerspellingLetterPage() {
         }
       }
 
-      // Create Hands instance
-      const hands = new mpLibs.Hands({
-        locateFile: (f: string) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/${f}`,
+      // Create Holistic instance
+      const holistic = new mpLibs.Holistic({
+        locateFile: (f: string) => `https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.4.1675469240/${f}`,
       });
-      hands.setOptions({ maxNumHands: 1, modelComplexity: 1, minDetectionConfidence: 0.6, minTrackingConfidence: 0.5 });
-      hands.onResults(onResults);
-      handsRef.current = hands;
+      holistic.setOptions({ 
+        modelComplexity: 1, 
+        minDetectionConfidence: 0.5, 
+        minTrackingConfidence: 0.5,
+        refineFaceLandmarks: true, // Enable refined face landmarks (468 -> 478)
+      });
+      holistic.onResults(onResults);
+      holisticRef.current = holistic;
 
       // Get camera stream
       streamRef.current = await navigator.mediaDevices.getUserMedia({
@@ -369,7 +413,7 @@ export default function FingerspellingLetterPage() {
       const camera = new mpLibs.Camera(video, {
         onFrame: async () => {
           const t0 = performance.now();
-          await handsRef.current!.send({ image: video });
+          await holisticRef.current!.send({ image: video });
           mpLatencyRef.current = performance.now() - t0;
           setHudLatency(`mp ${mpLatencyRef.current.toFixed(0)}ms · clf ${clfLatencyRef.current.toFixed(0)}ms`);
         },
@@ -388,6 +432,7 @@ export default function FingerspellingLetterPage() {
 
   const stop = useCallback(() => {
     try { cameraRef.current?.stop(); } catch {}
+    try { holisticRef.current?.close(); } catch {}
     streamRef.current?.getTracks().forEach((t) => t.stop());
     setRunning(false);
     setHudHand("No hand detected");
@@ -481,6 +526,10 @@ export default function FingerspellingLetterPage() {
             <input type="checkbox" checked={prefs.handedness === "left"} onChange={handleHandednessChange} className="rounded border-line bg-elevated accent-accent" />
             Left hand
           </label>
+          <label className="flex items-center gap-1.5 text-xs text-muted">
+            <input type="checkbox" checked={showNMM} onChange={(e) => setShowNMM(e.target.checked)} className="rounded border-line bg-elevated accent-accent" />
+            Show NMM
+          </label>
         </div>
       </div>
 
@@ -503,7 +552,8 @@ export default function FingerspellingLetterPage() {
             </span>
           </div>
 
-          <div className="relative flex aspect-[4/3] items-center justify-center overflow-hidden"
+          <div
+            className="relative flex aspect-[4/3] items-center justify-center overflow-hidden"
             style={{
               background: "radial-gradient(ellipse at center, rgba(0, 229, 176, 0.06) 0%, var(--bg-surface) 70%)",
             }}
@@ -552,10 +602,16 @@ export default function FingerspellingLetterPage() {
         <section className="flex flex-col overflow-hidden rounded-2xl border border-line bg-surface" aria-label="Your attempt">
           <div className="flex items-center justify-between border-b border-line px-4 py-3">
             <h2 className="text-xs font-semibold uppercase tracking-wider text-muted">Your Attempt</h2>
-            <span className="flex items-center gap-1.5 text-xs font-mono font-medium text-ok">
-              <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse" />
-              On-device
-            </span>
+            <div className="flex items-center gap-2">
+              <span className={`flex items-center gap-1.5 text-xs font-mono font-medium ${nmmFeatures?.isQuestion ? "text-accent" : nmmFeatures?.isWhQuestion ? "text-warm" : "text-ok"}`}>
+                {nmmFeatures?.isQuestion && "❓"}
+                {nmmFeatures?.isWhQuestion && "❓"}
+                {nmmFeatures?.isNegation && "🙅"}
+                {nmmFeatures?.isAffirmation && "✅"}
+                <span className="h-1.5 w-1.5 rounded-full bg-ok animate-pulse" />
+                On-device
+              </span>
+            </div>
           </div>
 
           {/* Webcam */}
@@ -657,13 +713,14 @@ export default function FingerspellingLetterPage() {
               })}
             </div>
 
-            {/* 2x2 feedback grid */}
+            {/* 2x2 feedback grid + NMM */}
             <div className="grid grid-cols-2 gap-2">
               {([
                 { key: "shape", label: "Handshape", val: components.shape, text: `${(components.shape * 100) | 0}% "${letter}"` },
                 { key: "orient", label: "Orientation", val: components.orient, text: components.orient > 0.5 ? "palm forward" : "rotate toward camera" },
                 { key: "loc", label: "Location", val: components.loc, text: locationLabel([{ x: 0.5, y: 0.5, z: 0 }]) },
                 { key: "move", label: "Movement", val: components.move, text: components.move > 0.7 ? "steady" : "hold still" },
+                { key: "nmm", label: "Non-Manual", val: components.nmm, text: nmmFeatures ? getNMMDescription(nmmFeatures).join(", ") || "neutral" : "N/A" },
               ] as const).map((c) => (
                 <div key={c.key} className="flex flex-col gap-1 rounded-lg border border-line bg-elevated/50 p-2.5">
                   <span className="text-[10px] uppercase tracking-wider text-muted">{c.label}</span>
@@ -703,6 +760,11 @@ export default function FingerspellingLetterPage() {
             <span className="rounded-full border border-line bg-elevated px-2 py-0.5 text-[10px] font-mono">
               FPS: {fps}
             </span>
+            {nmmFeatures && (
+              <span className="rounded-full border border-line bg-elevated px-2 py-0.5 text-[10px] font-mono text-muted">
+                NMM: {nmmReliable ? "✓" : "✗"}
+              </span>
+            )}
           </div>
         </section>
       </div>

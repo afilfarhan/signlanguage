@@ -25,6 +25,55 @@ export function normalize(landmarks: Landmark[]): Float32Array {
   return out;
 }
 
+/** Returns 68-dim: 63 normalized landmarks + 5 geometry features.
+ *  Matches ml/train_export_v2.py compute_geometry_features(). */
+export function normalizeWithGeometry(landmarks: Landmark[]): Float32Array {
+  const normed = normalize(landmarks);
+  const out = new Float32Array(68);
+  out.set(normed);
+
+  const idxTip = landmarks[8];
+  const midTip = landmarks[12];
+  const idxMcp = landmarks[5];
+  const midMcp = landmarks[9];
+
+  // 1. Distance between index and middle fingertips
+  const tipDist = Math.hypot(idxTip.x - midTip.x, idxTip.y - midTip.y, (idxTip.z || 0) - (midTip.z || 0));
+
+  // 2. Distance between index and middle MCP joints
+  const mcpDist = Math.hypot(idxMcp.x - midMcp.x, idxMcp.y - midMcp.y, (idxMcp.z || 0) - (midMcp.z || 0));
+
+  // 3. Cosine angle between index and middle finger vectors (3D)
+  const idxVecX = idxTip.x - idxMcp.x;
+  const idxVecY = idxTip.y - idxMcp.y;
+  const idxVecZ = (idxTip.z || 0) - (idxMcp.z || 0);
+  const midVecX = midTip.x - midMcp.x;
+  const midVecY = midTip.y - midMcp.y;
+  const midVecZ = (midTip.z || 0) - (midMcp.z || 0);
+  const idxNorm = Math.hypot(idxVecX, idxVecY, idxVecZ);
+  const midNorm = Math.hypot(midVecX, midVecY, midVecZ);
+  let cosAngle = 1.0;
+  if (idxNorm > 1e-6 && midNorm > 1e-6) {
+    const dot = idxVecX * midVecX + idxVecY * midVecY + idxVecZ * midVecZ;
+    cosAngle = Math.max(-1, Math.min(1, dot / (idxNorm * midNorm)));
+  }
+
+  // 4. Cross product sign
+  const crossZ = idxVecX * midVecY - idxVecY * midVecX;
+  const crossSign = crossZ > 0 ? 1 : crossZ < 0 ? -1 : 0;
+
+  // 5. Ratio of fingertip distance to MCP distance
+  const tipMcpRatio = mcpDist > 1e-6 ? tipDist / mcpDist : 0;
+
+  out[63] = tipDist;
+  out[64] = mcpDist;
+  out[65] = cosAngle;
+  out[66] = crossSign;
+  out[67] = tipMcpRatio;
+
+  return out;
+}
+
 export function dist(a: Landmark, b: Landmark): number {
   const dx = a.x - b.x;
   const dy = a.y - b.y;

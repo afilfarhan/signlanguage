@@ -1,21 +1,44 @@
 /**
- * External script loader for MediaPipe Hands and ONNX Runtime
+ * External script loader for MediaPipe Hands/Holistic and ONNX Runtime
  * Supports WebGPU execution provider with WASM fallback
  */
 
 export interface MediaPipeLibs {
   drawConnectors: (ctx: CanvasRenderingContext2D, lm: { x: number; y: number; z: number }[], conns: unknown, opts: object) => void;
-  drawLandmarks: (ctx: CanvasRenderingContext2D, lm: { x: number; y: number; z: number }[], opts: object) => void;
+  drawLandmarks: (ctx: CanvasRenderingContext2D, lm: { x: number; y: number; z: number }[], conns: unknown, opts: object) => void;
   HAND_CONNECTIONS: unknown;
+  POSE_CONNECTIONS: unknown;
+  FACEMESH_CONNECTIONS: unknown;
+  FACEMESH_TESSELATION: unknown;
+  FACEMESH_RIGHT_EYE: unknown;
+  FACEMESH_LEFT_EYE: unknown;
+  FACEMESH_RIGHT_EYEBROW: unknown;
+  FACEMESH_LEFT_EYEBROW: unknown;
+  FACEMESH_FACE_OVAL: unknown;
+  FACEMESH_LIPS: unknown;
   Hands: new (opts: { locateFile: (f: string) => string }) => {
     setOptions: (opts: object) => void;
     onResults: (cb: (results: { multiHandLandmarks?: { x: number; y: number; z: number }[][] }) => void) => void;
     send: (input: { image: HTMLVideoElement }) => Promise<void>;
   };
+  Holistic: new (opts: { locateFile: (f: string) => string }) => {
+    setOptions: (opts: object) => void;
+    onResults: (cb: (results: MediaPipeHolisticResults) => void) => void;
+    send: (input: { image: HTMLVideoElement }) => Promise<void>;
+    close: () => void;
+  };
   Camera: new (video: HTMLVideoElement, opts: { onFrame: () => Promise<void>; width: number; height: number }) => {
     start: () => void;
     stop: () => void;
   };
+}
+
+export interface MediaPipeHolisticResults {
+  poseLandmarks?: { x: number; y: number; z: number; visibility?: number }[];
+  poseWorldLandmarks?: { x: number; y: number; z: number }[];
+  faceLandmarks?: { x: number; y: number; z: number }[];
+  leftHandLandmarks?: { x: number; y: number; z: number }[];
+  rightHandLandmarks?: { x: number; y: number; z: number }[];
 }
 
 export interface ONNXLibs {
@@ -30,7 +53,6 @@ export interface ONNXSessionOptions {
   graphOptimizationLevel?: 'basic' | 'extended' | 'all';
   enableMemPattern?: boolean;
   enableCpuMemArena?: boolean;
-  // WebGPU-specific options
   'webgpu.enableGraphCapture'?: boolean;
   'webgpu.contextOptions'?: Record<string, unknown>;
 }
@@ -44,29 +66,6 @@ export interface ONNXBackendInfo {
   label: 'WebGPU' | 'WASM';
   supportsFP16: boolean;
   supportsGraphCapture: boolean;
-}
-
-/** Detect WebGPU support */
-export async function detectWebGPU(): Promise<boolean> {
-  if (!('gpu' in navigator)) return false;
-  try {
-    const nav = navigator as unknown as { gpu: { requestAdapter: () => Promise<unknown> } };
-    const adapter = await nav.gpu.requestAdapter();
-    return adapter !== null;
-  } catch {
-    return false;
-  }
-}
-
-/** Get ONNX backend info based on WebGPU availability */
-export async function getONNXBackendInfo(): Promise<ONNXBackendInfo> {
-  const webgpuSupported = await detectWebGPU();
-  return {
-    name: webgpuSupported ? 'webgpu' : 'wasm',
-    label: webgpuSupported ? 'WebGPU' : 'WASM',
-    supportsFP16: webgpuSupported,
-    supportsGraphCapture: webgpuSupported,
-  };
 }
 
 let mediaPipePromise: Promise<MediaPipeLibs> | null = null;
@@ -92,26 +91,60 @@ function loadScript(src: string, timeoutMs = 15000): Promise<void> {
   });
 }
 
-/** Load MediaPipe Hands + drawing + camera from CDN */
+/** Detect WebGPU support */
+export async function detectWebGPU(): Promise<boolean> {
+  if (!('gpu' in navigator)) return false;
+  try {
+    const nav = navigator as unknown as { gpu: { requestAdapter: () => Promise<unknown> } };
+    const adapter = await nav.gpu.requestAdapter();
+    return adapter !== null;
+  } catch {
+    return false;
+  }
+}
+
+/** Get ONNX backend info based on WebGPU availability */
+export async function getONNXBackendInfo(): Promise<ONNXBackendInfo> {
+  const webgpuSupported = await detectWebGPU();
+  return {
+    name: webgpuSupported ? 'webgpu' : 'wasm',
+    label: webgpuSupported ? 'WebGPU' : 'WASM',
+    supportsFP16: webgpuSupported,
+    supportsGraphCapture: webgpuSupported,
+  };
+}
+
+/** Load MediaPipe Hands + Holistic + drawing + camera from CDN */
 export async function loadMediaPipe(): Promise<MediaPipeLibs> {
   if (mediaPipePromise) return mediaPipePromise;
 
   mediaPipePromise = (async () => {
     await Promise.all([
       loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/hands@0.4.1675469240/hands.js"),
+      loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/holistic@0.4.1675469240/holistic.js"),
       loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils@0.3.1675466124/drawing_utils.js"),
       loadScript("https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils@0.3.1675466862/camera_utils.js"),
     ]);
 
     const w = window as unknown as {
       Hands: MediaPipeLibs["Hands"];
+      Holistic: MediaPipeLibs["Holistic"];
       Camera: MediaPipeLibs["Camera"];
       drawConnectors: MediaPipeLibs["drawConnectors"];
       drawLandmarks: MediaPipeLibs["drawLandmarks"];
       HAND_CONNECTIONS: MediaPipeLibs["HAND_CONNECTIONS"];
+      POSE_CONNECTIONS: MediaPipeLibs["POSE_CONNECTIONS"];
+      FACEMESH_CONNECTIONS: MediaPipeLibs["FACEMESH_CONNECTIONS"];
+      FACEMESH_TESSELATION: MediaPipeLibs["FACEMESH_TESSELATION"];
+      FACEMESH_RIGHT_EYE: MediaPipeLibs["FACEMESH_RIGHT_EYE"];
+      FACEMESH_LEFT_EYE: MediaPipeLibs["FACEMESH_LEFT_EYE"];
+      FACEMESH_RIGHT_EYEBROW: MediaPipeLibs["FACEMESH_RIGHT_EYEBROW"];
+      FACEMESH_LEFT_EYEBROW: MediaPipeLibs["FACEMESH_LEFT_EYEBROW"];
+      FACEMESH_FACE_OVAL: MediaPipeLibs["FACEMESH_FACE_OVAL"];
+      FACEMESH_LIPS: MediaPipeLibs["FACEMESH_LIPS"];
     };
 
-    if (!w.Hands || !w.Camera) {
+    if (!w.Hands || !w.Holistic || !w.Camera) {
       throw new Error("MediaPipe libraries failed to load onto window");
     }
 
@@ -125,10 +158,7 @@ export async function loadMediaPipe(): Promise<MediaPipeLibs> {
 export async function loadONNX(): Promise<ONNXLibs> {
   if (onnxPromise) return onnxPromise;
 
-  // Detect backend first
   const backendInfo = await getONNXBackendInfo();
-  
-  // Initialize backend info promise
   backendInfoPromise = Promise.resolve(backendInfo);
 
   onnxPromise = (async () => {
@@ -172,9 +202,6 @@ export function createSessionOptions(
     enableCpuMemArena: true,
   };
 
-  // Enable graph capture for static-shape models on WebGPU
-  // Static models (MLP, J/Z) have fixed input shapes and benefit from graph capture
-  // Dynamic/Word models have variable sequence lengths - graph capture may fail
   if (backendInfo.name === 'webgpu' && backendInfo.supportsGraphCapture) {
     const staticModels = ['static', 'jz'];
     if (staticModels.includes(modelType)) {

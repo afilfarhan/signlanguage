@@ -155,7 +155,7 @@ export default function DynamicSignPage() {
         const libs = mpLibsRef.current;
         if (libs) {
           libs.drawConnectors(ctx, lm, libs.HAND_CONNECTIONS, { color: "#00e5b0", lineWidth: 3 });
-          libs.drawLandmarks(ctx, lm, { color: "#4f8cff", lineWidth: 1, radius: 3 });
+          libs.drawLandmarks(ctx, lm, libs.HAND_CONNECTIONS, { color: "#4f8cff", lineWidth: 1, radius: 3 });
         }
         const arr = new Float32Array(N_LANDMARKS * 3);
         for (let i = 0; i < N_LANDMARKS; i++) {
