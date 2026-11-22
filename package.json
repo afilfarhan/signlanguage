@@ -5,6 +5,11 @@
     "dev": "cd signtutor && npm run dev",
     "build": "cd signtutor && npm run build",
     "lint": "cd signtutor && npm run lint",
-    "test": "cd signtutor && npm run test"
+    "test": "cd signtutor && npm run test",
+    "test:a11y": "vitest run"
+  },
+  "devDependencies": {
+    "axe-core": "^4.9.1",
+    "vitest": "^4.1.6"
   }
 }
