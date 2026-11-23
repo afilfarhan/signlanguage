@@ -1,6 +1,4 @@
-import { toHaveNoViolations } from "axe-core";
-
-expect.extend(toHaveNoViolations);
+// Vitest setup file for accessibility testing
 
 // Mock ResizeObserver (not available in JSDOM)
 global.ResizeObserver = class ResizeObserver {
@@ -19,15 +17,15 @@ global.IntersectionObserver = class IntersectionObserver {
 // Mock matchMedia
 Object.defineProperty(window, "matchMedia", {
   writable: true,
-  value: jest.fn().mockImplementation((query) => ({
+  value: vi.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
     onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
+    addListener: vi.fn(),
+    removeListener: vi.fn(),
+    addEventListener: vi.fn(),
+    removeEventListener: vi.fn(),
+    dispatchEvent: vi.fn(),
   })),
 });
 
@@ -42,12 +40,12 @@ Object.defineProperty(global, "performance", {
   writable: true,
   value: {
     now: () => Date.now(),
-    mark: jest.fn(),
-    measure: jest.fn(),
+    mark: vi.fn(),
+    measure: vi.fn(),
     getEntriesByType: () => [],
     getEntriesByName: () => [],
-    clearMarks: jest.fn(),
-    clearMeasures: jest.fn(),
+    clearMarks: vi.fn(),
+    clearMeasures: vi.fn(),
   },
 });
 
@@ -63,14 +61,37 @@ Object.defineProperty(global, "crypto", {
   },
 });
 
-// Suppress console.error in tests (optional)
-// const originalError = console.error;
-// beforeAll(() => {
-//   console.error = (...args) => {
-//     if (args[0]?.includes?.("Warning: ReactDOM.render is no longer supported")) return;
-//     originalError.apply(console, args);
-//   };
-// });
-// afterAll(() => {
-//   console.error = originalError;
-// });
+// Custom matcher for axe-core accessibility violations
+import { expect } from "vitest";
+import axe from "axe-core";
+
+expect.extend({
+  async toHaveNoViolations(html: string, options?: Parameters<typeof axe.run>[1]) {
+    const { JSDOM } = await import("jsdom");
+    const dom = new JSDOM(html, { url: "http://localhost:3000" });
+    const results = await axe.run(dom.window.document, options);
+    
+    if (results.violations.length > 0) {
+      const violationMessages = results.violations.map(v => 
+        `${v.id}: ${v.description} (impact: ${v.impact}) - ${v.nodes.map(n => n.target.join(", ")).join("; ")}`
+      ).join("\n");
+      
+      return {
+        pass: false,
+        message: () => `Expected no accessibility violations but found:\n${violationMessages}`
+      };
+    }
+    
+    return {
+      pass: true,
+      message: () => "Expected accessibility violations but found none"
+    };
+  }
+});
+
+// Type declaration for the custom matcher
+declare module "vitest" {
+  interface Assertion<T = any> {
+    toHaveNoViolations(options?: Parameters<typeof import("axe-core").run>[1]): Promise<T>;
+  }
+}

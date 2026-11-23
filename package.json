@@ -9,7 +9,9 @@
     "test:a11y": "vitest run"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^6.3.0",
     "axe-core": "^4.9.1",
+    "jsdom": "^29.1.1",
     "vitest": "^4.1.6"
   }
 }

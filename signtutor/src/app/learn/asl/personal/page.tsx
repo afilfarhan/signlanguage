@@ -41,7 +41,6 @@ export default function PersonalSignsPage() {
   const [newSignLabel, setNewSignLabel] = useState("");
   const [recordingProgress, setRecordingProgress] = useState(0);
   const [hudHand, setHudHand] = useState("No hand detected");
-  const [hudLatency, setHudLatency] = useState("— ms");
   const [fps, setFps] = useState("—");
   const [loadingExternals, setLoadingExternals] = useState(false);
   const [externalsError, setExternalsError] = useState("");
@@ -204,7 +203,7 @@ export default function PersonalSignsPage() {
       camera.start();
 
       setRunning(true);
-      setHudHand("Camera started — waiting for hand");
+      setHudHand("Camera started &mdash; waiting for hand");
       featureBufferRef.current = [];
       frameCountRef.current = 0;
     } catch (e) {
@@ -413,7 +412,7 @@ export default function PersonalSignsPage() {
       <header className="border-b border-line bg-elevated/80 backdrop-blur sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
           <Link href="/learn" className="text-muted hover:text-foreground transition-colors text-sm">
-            ← Learn
+            &larr; Learn
           </Link>
           <h1 className="text-xl font-semibold text-foreground">Personal Signs</h1>
           <span className="text-muted text-sm">Few-Shot Adapter</span>
@@ -523,7 +522,6 @@ export default function PersonalSignsPage() {
             
             <div className="flex items-center gap-4 text-sm font-mono text-muted">
               <span>Hand: {hudHand}</span>
-              <span>Latency: {hudLatency}</span>
               <span>FPS: {fps}</span>
               <span>Buffer: {featureBufferRef.current.length}/{WORD_T_FRAMES}</span>
             </div>
@@ -564,7 +562,7 @@ export default function PersonalSignsPage() {
           {personalSigns.length === 0 ? (
             <div className="text-center py-12 text-muted">
               <svg className="mx-auto h-12 w-12 text-muted/30 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2-2v12a2 2 0 002 2z" />
               </svg>
               <p className="text-lg">No personal signs yet</p>
               <p className="text-sm mt-1">Add your name sign, dialect variations, or any custom vocabulary</p>
@@ -600,14 +598,14 @@ export default function PersonalSignsPage() {
         {selectedSign && (
           <section className="rounded-xl border border-line bg-elevated/50 p-4">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-sm font-semibold text-foreground">Examples for "{selectedSign}"</h2>
+              <h2 className="text-sm font-semibold text-foreground">Examples for &quot;{selectedSign}&quot;</h2>
               <span className="text-xs text-muted">{selectedSignExamples.length} / {MAX_EXAMPLES}</span>
             </div>
 
             {selectedSignExamples.length === 0 ? (
               <div className="text-center py-8 text-muted">
                 <p>No examples recorded yet</p>
-                <p className="text-sm mt-1">Enter the label above and click "Record Examples"</p>
+                <p className="text-sm mt-1">Enter the label above and click &quot;Record Examples&quot;</p>
               </div>
             ) : (
               <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -658,7 +656,7 @@ export default function PersonalSignsPage() {
               </div>
               <div className="p-2 rounded bg-elevated">
                 <div className="text-muted">Head Pose</div>
-                <div className="font-mono">Yaw: {nmmFeatures.headYaw.toFixed(1)}° Pitch: {nmmFeatures.headPitch.toFixed(1)}°</div>
+                <div className="font-mono">Yaw: {nmmFeatures.headYaw.toFixed(1)}&deg; Pitch: {nmmFeatures.headPitch.toFixed(1)}&deg;</div>
               </div>
               <div className="p-2 rounded bg-elevated md:col-span-2">
                 <div className="text-muted">Grammatical</div>
@@ -683,7 +681,7 @@ export default function PersonalSignsPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
             <div>
               <div className="text-muted">Backend</div>
-              <div className="font-mono">{backendInfo?.label || "—"}</div>
+              <div className="font-mono">{backendInfo?.label || "&mdash;"}</div>
             </div>
             <div>
               <div className="text-muted">Base Vocabulary</div>

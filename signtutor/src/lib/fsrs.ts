@@ -115,6 +115,7 @@ export class FSRS {
 
   /** Get interval for a given rating */
   getInterval(card: Card, rating: Rating): number {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { w } = this.params;
     
     if (rating === 1) { // Again

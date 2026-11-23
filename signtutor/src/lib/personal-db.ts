@@ -105,7 +105,8 @@ export async function loadPersonalModel(): Promise<PersonalModel | null> {
 
     request.onsuccess = () => {
       if (request.result) {
-        const { id, ...model } = request.result;
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      const { id, ...model } = request.result;
         resolve(model as PersonalModel);
       } else {
         resolve(null);

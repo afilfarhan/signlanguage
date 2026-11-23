@@ -69,7 +69,7 @@ export const BADGES: Badge[] = [
     icon: '👶',
     category: 'milestone',
     tier: 'bronze',
-    criteria: (stats) => stats.lessonsCompleted >= 1,
+    criteria: (_stats) => _stats.lessonsCompleted >= 1,
   },
   {
     id: 'ten-lessons',
@@ -78,7 +78,7 @@ export const BADGES: Badge[] = [
     icon: '🌱',
     category: 'milestone',
     tier: 'bronze',
-    criteria: (stats) => stats.lessonsCompleted >= 10,
+    criteria: (_stats) => _stats.lessonsCompleted >= 10,
   },
   {
     id: 'fifty-lessons',
@@ -87,7 +87,7 @@ export const BADGES: Badge[] = [
     icon: '📚',
     category: 'milestone',
     tier: 'silver',
-    criteria: (stats) => stats.lessonsCompleted >= 50,
+    criteria: (_stats) => _stats.lessonsCompleted >= 50,
   },
   {
     id: 'hundred-lessons',
@@ -96,7 +96,7 @@ export const BADGES: Badge[] = [
     icon: '💯',
     category: 'milestone',
     tier: 'gold',
-    criteria: (stats) => stats.lessonsCompleted >= 100,
+    criteria: (_stats) => _stats.lessonsCompleted >= 100,
   },
 
   // === STREAK BADGES ===
@@ -107,7 +107,7 @@ export const BADGES: Badge[] = [
     icon: '🔥',
     category: 'streak',
     tier: 'bronze',
-    criteria: (stats) => stats.currentStreak >= 3,
+    criteria: (_stats) => _stats.currentStreak >= 3,
   },
   {
     id: 'week-streak',
@@ -116,7 +116,7 @@ export const BADGES: Badge[] = [
     icon: '🗓️',
     category: 'streak',
     tier: 'silver',
-    criteria: (stats) => stats.currentStreak >= 7,
+    criteria: (_stats) => _stats.currentStreak >= 7,
   },
   {
     id: 'two-week-streak',
@@ -125,7 +125,7 @@ export const BADGES: Badge[] = [
     icon: '📅',
     category: 'streak',
     tier: 'gold',
-    criteria: (stats) => stats.currentStreak >= 14,
+    criteria: (_stats) => _stats.currentStreak >= 14,
   },
   {
     id: 'month-streak',
@@ -134,7 +134,7 @@ export const BADGES: Badge[] = [
     icon: '🏆',
     category: 'streak',
     tier: 'platinum',
-    criteria: (stats) => stats.currentStreak >= 30,
+    criteria: (_stats) => _stats.currentStreak >= 30,
   },
   {
     id: 'hundred-day-streak',
@@ -143,7 +143,7 @@ export const BADGES: Badge[] = [
     icon: '💎',
     category: 'streak',
     tier: 'platinum',
-    criteria: (stats) => stats.currentStreak >= 100,
+    criteria: (_stats) => _stats.currentStreak >= 100,
   },
 
   // === MASTERY BADGES (Alphabet) ===
@@ -154,7 +154,7 @@ export const BADGES: Badge[] = [
     icon: '✋',
     category: 'mastery',
     tier: 'bronze',
-    criteria: (stats) => stats.staticMastered >= 5,
+    criteria: (_stats) => _stats.staticMastered >= 5,
   },
   {
     id: 'alphabet-13',
@@ -163,7 +163,7 @@ export const BADGES: Badge[] = [
     icon: '🤝',
     category: 'mastery',
     tier: 'silver',
-    criteria: (stats) => stats.staticMastered >= 13,
+    criteria: (_stats) => _stats.staticMastered >= 13,
   },
   {
     id: 'alphabet-master',
@@ -172,7 +172,7 @@ export const BADGES: Badge[] = [
     icon: '🎓',
     category: 'mastery',
     tier: 'gold',
-    criteria: (stats) => stats.staticMastered >= 24,
+    criteria: (_stats) => _stats.staticMastered >= 24,
   },
 
   // === MASTERY BADGES (Dynamic Signs) ===
@@ -183,7 +183,7 @@ export const BADGES: Badge[] = [
     icon: '👋',
     category: 'mastery',
     tier: 'bronze',
-    criteria: (stats) => stats.dynamicMastered >= 3,
+    criteria: (_stats) => _stats.dynamicMastered >= 3,
   },
   {
     id: 'dynamic-8',
@@ -192,7 +192,7 @@ export const BADGES: Badge[] = [
     icon: '🎭',
     category: 'mastery',
     tier: 'gold',
-    criteria: (stats) => stats.dynamicMastered >= 8,
+    criteria: (_stats) => _stats.dynamicMastered >= 8,
   },
 
   // === MASTERY BADGES (Vocabulary) ===
@@ -203,7 +203,7 @@ export const BADGES: Badge[] = [
     icon: '📖',
     category: 'mastery',
     tier: 'bronze',
-    criteria: (stats) => stats.vocabMastered >= 10,
+    criteria: (_stats) => _stats.vocabMastered >= 10,
   },
   {
     id: 'vocab-25',
@@ -212,7 +212,7 @@ export const BADGES: Badge[] = [
     icon: '📝',
     category: 'mastery',
     tier: 'silver',
-    criteria: (stats) => stats.vocabMastered >= 25,
+    criteria: (_stats) => _stats.vocabMastered >= 25,
   },
   {
     id: 'vocab-50',
@@ -221,7 +221,7 @@ export const BADGES: Badge[] = [
     icon: '🗣️',
     category: 'mastery',
     tier: 'gold',
-    criteria: (stats) => stats.vocabMastered >= 50,
+    criteria: (_stats) => _stats.vocabMastered >= 50,
   },
   {
     id: 'vocab-100',
@@ -230,7 +230,7 @@ export const BADGES: Badge[] = [
     icon: '💯',
     category: 'mastery',
     tier: 'platinum',
-    criteria: (stats) => stats.vocabMastered >= 100,
+    criteria: (_stats) => _stats.vocabMastered >= 100,
   },
 
   // === PERFECT SESSION BADGES ===
@@ -241,7 +241,7 @@ export const BADGES: Badge[] = [
     icon: '✨',
     category: 'special',
     tier: 'silver',
-    criteria: (stats) => stats.perfectSessions >= 1,
+    criteria: (_stats) => _stats.perfectSessions >= 1,
   },
   {
     id: 'perfect-5',
@@ -250,7 +250,7 @@ export const BADGES: Badge[] = [
     icon: '💎',
     category: 'special',
     tier: 'gold',
-    criteria: (stats) => stats.perfectSessions >= 5,
+    criteria: (_stats) => _stats.perfectSessions >= 5,
   },
   {
     id: 'perfect-10',
@@ -259,7 +259,7 @@ export const BADGES: Badge[] = [
     icon: '🏅',
     category: 'special',
     tier: 'platinum',
-    criteria: (stats) => stats.perfectSessions >= 10,
+    criteria: (_stats) => _stats.perfectSessions >= 10,
   },
 
   // === TIME-BASED BADGES ===
@@ -270,7 +270,7 @@ export const BADGES: Badge[] = [
     icon: '🦉',
     category: 'special',
     tier: 'bronze',
-    criteria: (stats) => stats.sessionsAfter10pm >= 10,
+    criteria: (_stats) => _stats.sessionsAfter10pm >= 10,
   },
   {
     id: 'early-bird',
@@ -279,7 +279,7 @@ export const BADGES: Badge[] = [
     icon: '🐦',
     category: 'special',
     tier: 'bronze',
-    criteria: (stats) => stats.sessionsBefore6am >= 10,
+    criteria: (_stats) => _stats.sessionsBefore6am >= 10,
   },
   {
     id: 'weekend-warrior',
@@ -288,7 +288,7 @@ export const BADGES: Badge[] = [
     icon: '🏖️',
     category: 'special',
     tier: 'silver',
-    criteria: (stats) => {
+    criteria: (_stats) => {
       // This would need weekend session tracking
       return false; // Placeholder
     },
@@ -302,7 +302,7 @@ export const BADGES: Badge[] = [
     icon: '🎯',
     category: 'special',
     tier: 'silver',
-    criteria: (stats) => stats.overallAccuracy >= 0.9,
+    criteria: (_stats) => _stats.overallAccuracy >= 0.9,
   },
   {
     id: 'accuracy-95',
@@ -311,7 +311,7 @@ export const BADGES: Badge[] = [
     icon: '🎯',
     category: 'special',
     tier: 'gold',
-    criteria: (stats) => stats.overallAccuracy >= 0.95,
+    criteria: (_stats) => _stats.overallAccuracy >= 0.95,
   },
   {
     id: 'accuracy-99',
@@ -320,7 +320,7 @@ export const BADGES: Badge[] = [
     icon: '🎯',
     category: 'special',
     tier: 'platinum',
-    criteria: (stats) => stats.overallAccuracy >= 0.99,
+    criteria: (_stats) => _stats.overallAccuracy >= 0.99,
   },
 
   // === SPECIAL BADGES ===
@@ -331,9 +331,9 @@ export const BADGES: Badge[] = [
     icon: '🌀',
     category: 'special',
     tier: 'gold',
-    criteria: (stats) => {
+    criteria: (_stats) => {
       // Would check specific letter mastery
-      return stats.staticMastered >= 24; // Placeholder
+      return _stats.staticMastered >= 24; // Placeholder
     },
   },
   {
@@ -343,7 +343,7 @@ export const BADGES: Badge[] = [
     icon: '🌈',
     category: 'mastery',
     tier: 'platinum',
-    criteria: (stats) => stats.vocabMastered >= 25, // Placeholder
+    criteria: (_stats) => _stats.vocabMastered >= 25, // Placeholder
   },
 ];
 

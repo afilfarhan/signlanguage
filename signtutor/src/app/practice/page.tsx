@@ -3,7 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { loadProgress, getReviewQueue, loadStats, loadBadges, loadStreak, getProgressStats, getBadgesWithProgress, SRSItemExtended } from "@/lib/storage";
-import { UserStats, EarnedBadge, Badge } from "@/lib/badges";
+import { UserStats, EarnedBadge } from "@/lib/badges";
 import { CURRICULUM, STATIC_LETTERS, DYNAMIC_SIGNS, LETTER_DESCRIPTIONS, SIGN_DESCRIPTIONS } from "@/lib/curriculum";
 import { VOCABULARY_200 } from "@/lib/vocabulary_200";
 

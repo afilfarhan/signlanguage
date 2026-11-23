@@ -1,4 +1,4 @@
-import { SRSItem, Card, createSRSItem, reviewItem, fsrs, FSRS } from "./fsrs";
+import { SRSItem, Card, createSRSItem, fsrs } from "./fsrs";
 import { Badge, EarnedBadge, BadgeProgress, getAllBadges, checkBadges, getBadgeProgress, UserStats } from "./badges";
 
 export interface Prefs {
