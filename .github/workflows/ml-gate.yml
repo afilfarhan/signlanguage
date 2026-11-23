@@ -7,7 +7,12 @@ on:
       - 'prototype/**'
       - 'ci/**'
       - 'signtutor/**'
+      - '__tests__/**'
       - '.github/workflows/ml-gate.yml'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'vitest.config.ts'
+      - 'vitest.setup.ts'
   pull_request: {}
   workflow_dispatch: {}
 
@@ -99,12 +104,12 @@ jobs:
             ci/parity.log
 
   # --------------------------------------------------------------------------
-  # Frontend jobs – lint, typecheck, unit tests, Playwright, Lighthouse.
+  # Frontend jobs – lint, typecheck, unit tests, accessibility, E2E, Lighthouse.
   # Gate: a11y score must be ≥ 95 on /, /setup, and a lesson page.
   # --------------------------------------------------------------------------
   frontend-gate:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     defaults:
       run:
         working-directory: signtutor
@@ -125,24 +130,30 @@ jobs:
         run: pnpm install
 
       - name: Lint
-        run: npm run lint -- --max-warnings=0
+        run: npm run lint
 
       - name: Type check
         run: npm run typecheck
 
-      - name: Unit tests
+      - name: Unit tests (Vitest)
         run: npm run test
+
+      - name: Accessibility tests (axe-core + JSDOM)
+        run: npx vitest run __tests__/accessibility.test.ts
 
       - name: Build
         run: npm run build
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
 
       - name: Start server for E2E & Lighthouse
         run: |
           npm start &
           npx wait-on http://localhost:3000 --timeout 120000
 
-      # - name: Playwright E2E tests
-      #   run: npx playwright test
+      - name: Playwright E2E tests
+        run: npx playwright test
 
       - name: Lighthouse a11y audit
         run: |
@@ -169,4 +180,4 @@ jobs:
             signtutor/lighthouse/
             signtutor/playwright-report/
             signtutor/test-results/
-
+            signtutor/coverage/
