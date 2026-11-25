@@ -18,7 +18,7 @@ on:
 
 jobs:
   # --------------------------------------------------------------------------
-  # ML jobs – must keep running and passing on every push that touches ML code.
+  # ML jobs - must keep running and passing on every push that touches ML code.
   # --------------------------------------------------------------------------
   ml-gate:
     runs-on: ubuntu-latest
@@ -83,7 +83,7 @@ jobs:
           json.dump(samples, open('prototype/models/parity_samples.json','w'), indent=2)
           PY
 
-      - name: JS↔Python feature parity
+      - name: JS<->Python feature parity
         run: |
           mkdir -p ci
           node ci/run_parity.mjs | tee ci/parity.log
@@ -104,8 +104,8 @@ jobs:
             ci/parity.log
 
   # --------------------------------------------------------------------------
-  # Frontend jobs – lint, typecheck, unit tests, accessibility, E2E, Lighthouse.
-  # Gate: a11y score must be ≥ 95 on /, /setup, and a lesson page.
+  # Frontend jobs - lint, typecheck, unit tests, accessibility, E2E, Lighthouse.
+  # Gate: a11y score must be >= 95 on /, /setup, and a lesson page.
   # --------------------------------------------------------------------------
   frontend-gate:
     runs-on: ubuntu-latest
@@ -162,7 +162,7 @@ jobs:
           npx lighthouse http://localhost:3000/setup --chrome-flags="--headless=new --no-sandbox" --preset=desktop --output=html --output-path=lighthouse/setup.html --only-categories=accessibility
           npx lighthouse http://localhost:3000/learn/asl/fingerspelling/A --chrome-flags="--headless=new --no-sandbox" --preset=desktop --output=html --output-path=lighthouse/lesson.html --only-categories=accessibility
 
-      - name: Enforce a11y ≥ 95
+      - name: Enforce a11y >= 95
         run: |
           for f in lighthouse/home.html lighthouse/setup.html lighthouse/lesson.html; do
             score=$(grep -oP 'lighthouse":\{"lighthouseVersion"[^}]*,"accessibility"[^}]*,"score":[0-9.]*' "$f" | grep -oP 'score":[0-9.]*' | cut -d: -f2)
@@ -171,6 +171,17 @@ jobs:
               echo "FAIL: a11y score < 95"; exit 1
             fi
           done
+
+      - name: Deploy to Vercel (preview)
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--prod'
+        env:
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
 
       - uses: actions/upload-artifact@v4
         if: always()
