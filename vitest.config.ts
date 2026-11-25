@@ -11,7 +11,7 @@ export default defineConfig({
   },
   test: {
     environment: "jsdom",
-    setupFiles: ["./vitest.setup.ts"],
+    setupFiles: ["./signtutor/vitest.setup.ts"],
     include: ["__tests__/**/*.test.ts", "__tests__/**/*.test.tsx"],
     globals: true,
     testTimeout: 30000,
